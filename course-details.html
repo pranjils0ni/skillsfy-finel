@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Curriculum | Skillsfy Institute</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#031636",
+            "primary-container": "#1a2b4c",
+            secondary: "#00677f",
+            "secondary-container": "#00ccf9",
+            surface: "#faf8ff",
+            "surface-container": "#e9edff",
+            "surface-container-high": "#e2e8fc"
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body class="bg-[#faf8ff] text-[#151b29] font-['Inter'] antialiased min-h-screen flex flex-col selection:bg-cyan-200">
+
+  <!-- ================= GLOBAL NAVIGATION HEADER ================= -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3.5 flex items-center justify-between">
+      
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-img group-hover:scale-105 transition-transform"/>
+        <span class="text-[10px] tracking-widest text-slate-400 uppercase font-['Geist'] font-bold pl-2 border-l border-slate-300 hidden sm:inline">Institute of Technology</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-slate-700">
+        <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+        <a href="courses.html" class="hover:text-primary transition-colors">All Programs</a>
+        <a href="dashboard.html" class="hover:text-primary transition-colors">Student Dashboard</a>
+        <a href="lms.html" class="hover:text-primary transition-colors">LMS Player</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openEnquiryModal()" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 transition-all">
+          <span class="material-symbols-outlined text-base">support_agent</span>
+          <span>Advising</span>
+        </button>
+
+        <button id="header-enroll-btn" class="btn-cyan text-xs px-4 py-2 rounded-lg font-bold shadow-sm flex items-center gap-1.5">
+          <span>Apply Now</span>
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </button>
+
+        <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-lg">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= BREADCRUMBS & HERO ================= -->
+  <section class="bg-gradient-to-b from-[#031636] to-[#1a2b4c] text-white py-14 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <div class="flex items-center gap-2 text-xs text-slate-400 font-['Geist'] mb-4">
+        <a href="index.html" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <a href="courses.html" class="hover:text-white transition-colors">Programs</a>
+        <span>/</span>
+        <span class="text-cyan-300" id="breadcrumb-title">Course Details</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <div class="lg:col-span-8 space-y-4">
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span class="badge-pill bg-[#00ccf9]/20 text-[#00ccf9] border border-[#00ccf9]/30" id="course-category-badge">
+              AI & Machine Learning
+            </span>
+            <span class="badge-pill bg-white/10 text-slate-300" id="course-level-badge">
+              Intermediate to Advanced
+            </span>
+            <span class="badge-pill bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              Verified Certificate Included
+            </span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-['Plus_Jakarta_Sans'] tracking-tight leading-[1.15]" id="course-title">
+            AI & Digital Business Masterclass
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-lg font-normal leading-relaxed font-['Inter']" id="course-subtitle">
+            Architect scalable AI ecosystems, autonomous agent workflows, and digital enterprise transformation.
+          </p>
+
+          <!-- Metrics Row -->
+          <div class="flex flex-wrap items-center gap-6 pt-4 text-xs font-['Geist'] text-slate-300">
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-amber-400 fill text-lg">star</span>
+              <span class="font-bold text-white text-sm" id="course-rating">4.96</span>
+              <span class="text-slate-400">(<span id="course-reviews">1,420</span> reviews)</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-cyan-400 text-lg">schedule</span>
+              <span id="course-duration">14 Weeks (10-12 hrs/wk)</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-emerald-400 text-lg">calendar_month</span>
+              <span id="course-next-cohort">Starts Oct 1, 2026</span>
+            </div>
+          </div>
+
+          <!-- Instructor mini bar -->
+          <div class="flex items-center gap-3 pt-3">
+            <img id="course-instructor-avatar" src="" alt="Instructor" class="w-10 h-10 rounded-full object-cover border border-white/20"/>
+            <div class="text-xs">
+              <p class="font-bold text-white text-sm font-['Plus_Jakarta_Sans']" id="course-instructor-name">Dr. Jonathan Vance</p>
+              <p class="text-cyan-300 font-['Geist']" id="course-instructor-role">Chief AI Architect & Ex-Google Fellow</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MAIN DETAILS CONTENT & SIDEBAR ================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full flex-1">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      
+      <!-- Left Column: Syllabus, Outcomes, Instructor, FAQ -->
+      <div class="lg:col-span-8 space-y-12">
+        
+        <!-- Outcomes -->
+        <section class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+          <h2 class="text-2xl font-bold text-primary font-['Plus_Jakarta_Sans'] mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#00677f]">verified</span>
+            <span>What You Will Master</span>
+          </h2>
+          <p class="text-sm text-slate-600 mb-6 font-['Inter']" id="course-overview-text">
+            Comprehensive curriculum designed to bridge the gap between academic research and production infrastructure.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="course-outcomes-list">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- Interactive Curriculum Accordion -->
+        <section class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <h2 class="text-2xl font-bold text-primary font-['Plus_Jakarta_Sans']">Course Curriculum & Syllabus</h2>
+              <p class="text-xs text-slate-500 font-['Geist'] mt-1">Detailed module breakdown with hands-on labs and capstones.</p>
+            </div>
+            <a href="lms.html" class="btn-cyan text-xs font-bold py-2 px-3.5 rounded-lg flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">play_circle</span>
+              <span>Test Drive in LMS</span>
+            </a>
+          </div>
+
+          <div class="space-y-4" id="curriculum-accordion">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- Capstone Projects Blueprint -->
+        <section class="p-8 rounded-2xl bg-slate-900 text-white shadow-xl relative overflow-hidden">
+          <div class="absolute right-0 top-0 w-64 h-64 bg-[#00ccf9]/10 rounded-full blur-2xl"></div>
+          <span class="badge-pill bg-[#00ccf9]/20 text-[#00ccf9] border border-[#00ccf9]/30 mb-3">Portfolio Capstones</span>
+          <h2 class="text-2xl font-bold font-['Plus_Jakarta_Sans'] mb-3">Build 8 Production-Ready Systems</h2>
+          <p class="text-slate-300 text-sm leading-relaxed mb-6 font-['Inter']">
+            Graduate with code you can showcase in technical interviews. Every project includes automated CI tests, containerization, and public API documentation.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-['Geist']">
+            <div class="p-3.5 bg-white/5 rounded-xl border border-white/10 flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-cyan-400 text-lg mt-0.5">deployed_code</span>
+              <div>
+                <p class="font-bold text-white">Enterprise RAG QA System</p>
+                <p class="text-slate-400 text-[11px]">Hybrid vector search with Qdrant + Cohere reranker</p>
+              </div>
+            </div>
+            <div class="p-3.5 bg-white/5 rounded-xl border border-white/10 flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-cyan-400 text-lg mt-0.5">smart_toy</span>
+              <div>
+                <p class="font-bold text-white">Autonomous Agent Swarm</p>
+                <p class="text-slate-400 text-[11px]">Multi-agent researcher with automated tool execution</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Bonuses Section -->
+        <section class="p-8 rounded-3xl bg-gradient-to-r from-cyan-50 to-blue-50 border-2 border-cyan-200 shadow-sm" id="course-bonuses-container">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-3xl text-cyan-600">redeem</span>
+            <div>
+              <h2 class="text-2xl font-bold text-primary font-['Plus_Jakarta_Sans']">3 Exclusive Bonuses Included</h2>
+              <span class="badge-pill bg-cyan-200 text-cyan-900 font-bold text-xs">Total Value ₹17,000 — Yours FREE</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2" id="course-bonuses-list">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- Instructor Profile Card -->
+        <section class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+          <h2 class="text-2xl font-bold text-primary font-['Plus_Jakarta_Sans'] mb-6">Meet Your Lead Instructors</h2>
+          <div class="flex flex-col sm:flex-row items-start gap-6">
+            <img id="detail-instructor-img" src="" alt="Instructor" class="w-24 h-24 rounded-2xl object-cover border-2 border-slate-200 shadow-sm"/>
+            <div class="space-y-2">
+              <h3 class="text-xl font-bold text-slate-900 font-['Plus_Jakarta_Sans']" id="detail-instructor-name">Skillsfy Faculty & Industry Fellows</h3>
+              <p class="text-xs font-bold text-[#00677f] font-['Geist'] uppercase tracking-wide" id="detail-instructor-title">AI Architects, Full-Stack Engineers & Ex-FAANG Mentors</p>
+              <p class="text-sm text-slate-600 leading-relaxed font-['Inter']" id="detail-instructor-bio">
+                Industry veterans delivering hands-on, practical training in Generative AI, prompt engineering, agentic automations, and digital business systems.
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Right Column: Sticky Pricing & Enrollment Widget -->
+      <div class="lg:col-span-4 sticky top-24 space-y-6">
+        
+        <div class="card-elevated rounded-2xl p-6 sm:p-7 bg-white">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+            <span class="badge-pill bg-cyan-100 text-cyan-800 font-bold">Admissions Live</span>
+            <span class="text-xs text-rose-600 font-bold flex items-center gap-1 font-['Geist']">
+              <span class="material-symbols-outlined text-sm animate-pulse">timer</span>
+              <span>4 Seats Left</span>
+            </span>
+          </div>
+
+          <div class="py-5">
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl font-extrabold text-primary font-['Plus_Jakarta_Sans']" id="sidebar-price-current">$949</span>
+              <span class="text-base text-slate-400 line-through font-['Geist']" id="sidebar-price-original">$1,899</span>
+              <span class="badge-pill bg-emerald-100 text-emerald-800 text-[10px]">50% OFF</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1 font-['Geist']" id="sidebar-emi">Or 3 monthly installments of $316</p>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="space-y-3">
+            <button id="main-enroll-btn" class="w-full py-3.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+              <span>Enroll In Cohort</span>
+              <span class="material-symbols-outlined text-lg text-[#00ccf9]">arrow_forward</span>
+            </button>
+            
+            <a href="lms.html" class="w-full py-3 px-4 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary font-semibold text-xs transition-all flex items-center justify-center gap-2 border border-slate-200">
+              <span class="material-symbols-outlined text-base text-[#00677f]">play_circle</span>
+              <span>Watch Free Lecture 1.1</span>
+            </a>
+
+            <button onclick="openEnquiryModal()" class="w-full py-2.5 px-4 text-xs font-semibold text-[#00677f] hover:text-primary transition-colors text-center block">
+              Have Questions? Request a Callback
+            </button>
+          </div>
+
+          <!-- Guarantees & Features Checklist -->
+          <div class="mt-6 pt-6 border-t border-slate-100 space-y-3 text-xs text-slate-600 font-['Inter']">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-base">verified</span>
+              <span><strong>14-Day Money-Back Guarantee</strong></span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-cyan-600 text-base">group</span>
+              <span>Weekly 1:1 Live Mentor Review</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-indigo-600 text-base">all_inclusive</span>
+              <span>Lifetime Access to Content & Community</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-amber-600 text-base">workspace_premium</span>
+              <span>Accredited Skillsfy Digital Certificate</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-[#031636] text-slate-400 text-xs font-['Inter'] py-10 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 text-center sm:flex items-center justify-between">
+      <p>© 2026 Skillsfy Institute of Technology. All rights reserved.</p>
+      <div class="flex items-center justify-center gap-6 mt-4 sm:mt-0 font-['Geist'] text-[11px]">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <a href="courses.html" class="hover:text-white">Courses</a>
+        <a href="dashboard.html" class="hover:text-white">Dashboard</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Get course id from URL query param
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseId = urlParams.get('id') || 'ai-masterclass';
+    const course = SKILLSFY_COURSES.find(c => c.id === courseId) || SKILLSFY_COURSES[0];
+
+    function renderCourseDetails() {
+      document.title = `${course.title} | Skillsfy Institute`;
+      document.getElementById('breadcrumb-title').textContent = course.title;
+      document.getElementById('course-category-badge').textContent = course.category;
+      document.getElementById('course-level-badge').textContent = course.level;
+      document.getElementById('course-title').textContent = course.title;
+      document.getElementById('course-subtitle').textContent = course.subtitle;
+      document.getElementById('course-rating').textContent = course.rating;
+      document.getElementById('course-reviews').textContent = course.reviewsCount;
+      document.getElementById('course-duration').textContent = `${course.duration} (${course.hoursPerWeek})`;
+      document.getElementById('course-next-cohort').textContent = course.nextCohort;
+
+      document.getElementById('course-instructor-avatar').src = course.instructor.avatar;
+      document.getElementById('course-instructor-name').textContent = course.instructor.name;
+      document.getElementById('course-instructor-role').textContent = course.instructor.role;
+
+      document.getElementById('course-overview-text').textContent = course.overview;
+
+      // Outcomes
+      const outcomesList = document.getElementById('course-outcomes-list');
+      outcomesList.innerHTML = course.outcomes.map(o => `
+        <div class="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs font-medium text-slate-700">
+          <span class="material-symbols-outlined text-emerald-600 text-base mt-0.5">check_circle</span>
+          <span class="leading-relaxed">${o}</span>
+        </div>
+      `).join('');
+
+      // Curriculum Accordion
+      const accordion = document.getElementById('curriculum-accordion');
+      accordion.innerHTML = course.curriculum.map((mod, idx) => `
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <button onclick="toggleAccordion('module-${idx}')" class="w-full p-4 bg-slate-50 hover:bg-slate-100 flex items-center justify-between text-left transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="w-7 h-7 rounded-lg bg-primary text-white font-['Geist'] text-xs font-bold flex items-center justify-center">
+                ${mod.moduleNumber}
+              </span>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900 font-['Plus_Jakarta_Sans']">${mod.title}</h4>
+                <p class="text-[11px] text-slate-500 font-['Geist']">${mod.lessonsCount} Lessons • ${mod.duration}</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-slate-400 transform transition-transform" id="icon-module-${idx}">expand_more</span>
+          </button>
+
+          <div id="module-${idx}" class="p-4 bg-white border-t border-slate-100 space-y-2.5 ${idx === 0 ? '' : 'hidden'}">
+            ${mod.lessons.map(l => `
+              <div class="flex items-center justify-between p-2 rounded-lg hover:bg-slate-50 text-xs">
+                <div class="flex items-center gap-2 text-slate-700">
+                  <span class="material-symbols-outlined text-base ${l.type === 'quiz' ? 'text-amber-500' : l.type === 'lab' || l.type === 'project' ? 'text-indigo-500' : 'text-cyan-600'}">
+                    ${l.type === 'quiz' ? 'quiz' : l.type === 'lab' ? 'terminal' : l.type === 'project' ? 'deployed_code' : 'play_circle'}
+                  </span>
+                  <span>${l.title}</span>
+                </div>
+                <span class="text-slate-400 font-['Geist'] text-[11px]">${l.duration}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      // Bonuses Rendering
+      const bonusesList = document.getElementById('course-bonuses-list');
+      if (course.bonuses && bonusesList) {
+        bonusesList.innerHTML = course.bonuses.map(b => `
+          <div class="p-4 bg-white rounded-2xl border border-cyan-100 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="badge-pill bg-emerald-100 text-emerald-800 text-[9px] font-bold">FREE</span>
+                <span class="text-xs font-bold text-slate-400 line-through font-['Geist']">${b.value}</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm font-['Plus_Jakarta_Sans'] leading-tight mb-1">${b.title}</h4>
+              <p class="text-xs text-slate-500 font-['Inter'] leading-relaxed">${b.desc}</p>
+            </div>
+          </div>
+        `).join('');
+      } else if (bonusesList) {
+        document.getElementById('course-bonuses-container').classList.add('hidden');
+      }
+
+      // Sidebar Prices in INR and USD
+      const priceText = course.priceCurrentINR ? `₹${course.priceCurrentINR.toLocaleString()}` : `$${course.priceCurrent}`;
+      const origText = course.priceOriginalINR ? `₹${course.priceOriginalINR.toLocaleString()}` : `$${course.priceOriginal}`;
+      document.getElementById('sidebar-price-current').textContent = priceText;
+      document.getElementById('sidebar-price-original').textContent = origText;
+      document.getElementById('sidebar-emi').textContent = `Use Coupon Code: ${course.couponCode || 'SKILLSFY30'} for 50% Instant Discount`;
+
+      // Setup Enroll Click Handlers
+      const enrollAction = () => startEnrollment(course.id);
+      document.getElementById('header-enroll-btn').onclick = enrollAction;
+      document.getElementById('main-enroll-btn').onclick = enrollAction;
+    }
+
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById(`icon-${id}`);
+      if (content) {
+        content.classList.toggle('hidden');
+        if (icon) {
+          icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCourseDetails();
+    });
+  </script>
+</body>
+</html>
