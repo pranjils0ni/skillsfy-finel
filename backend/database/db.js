@@ -8,11 +8,15 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 
-const DB_DIR = __dirname;
+const DB_DIR = (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) ? '/tmp' : __dirname;
 const DB_FILE = path.join(DB_DIR, 'skillsfy_store.json');
 
-if (!fs.existsSync(DB_DIR)) {
-  fs.mkdirSync(DB_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(DB_DIR)) {
+    fs.mkdirSync(DB_DIR, { recursive: true });
+  }
+} catch (e) {
+  // Read-only environment safe guard
 }
 
 // In-Memory & File-Persisted SQLite-Compatible Data Store
