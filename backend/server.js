@@ -86,23 +86,25 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`
-  =============================================================
-  🚀 SKILLSFY INSTITUTE OF TECHNOLOGY - BACKEND API SERVER
-  =============================================================
-  📡 Server running at: http://localhost:${PORT}
-  🔍 Public Verify Page: http://localhost:${PORT}/verify
-  🏥 Health Check:      http://localhost:${PORT}/api/health
-  📁 SQLite Database:   backend/database/skillsfy.db
-  📜 Certificates Dir:  backend/certificates/
-  =============================================================
-  Default Administrative Credentials (Seeded):
-  👉 Super Admin: admin@skillsfy.edu  | Password: Admin@2026
-  👉 Verifier:    verifier@skillsfy.edu | Password: Verifier@2026
-  =============================================================
-  `);
-});
+// Start Server if run directly
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`
+    =============================================================
+    🚀 SKILLSFY INSTITUTE OF TECHNOLOGY - BACKEND API SERVER
+    =============================================================
+    📡 Server running at: http://localhost:${PORT}
+    🔍 Public Verify Page: http://localhost:${PORT}/verify
+    🏥 Health Check:      http://localhost:${PORT}/api/health
+    📁 SQLite Database:   backend/database/skillsfy.db
+    📜 Certificates Dir:  backend/certificates/
+    =============================================================
+    Default Administrative Credentials (Seeded):
+    👉 Super Admin: admin@skillsfy.edu  | Password: Admin@2026
+    👉 Verifier:    verifier@skillsfy.edu | Password: Verifier@2026
+    =============================================================
+    `);
+  });
+}
 
 module.exports = app;
