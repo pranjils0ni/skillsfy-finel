@@ -37,31 +37,200 @@ function initPlatformStore() {
       webhookUrl: "https://api.skillsfy.edu/webhooks/leads"
     }));
   }
-}
+// ============================================================================
+// LIVE BACKEND API INTEGRATION CLIENT
+// Connects frontend pages to Node.js + Express + SQLite Backend at http://localhost:5000
+// ============================================================================
+const SKILLSFY_API_BASE = 'http://localhost:5000/api';
 
-initPlatformStore();
+const SkillsfyAPI = {
+  getToken: () => localStorage.getItem('skillsfy_token') || '',
+  setToken: (token) => localStorage.setItem('skillsfy_token', token),
+  clearToken: () => localStorage.removeItem('skillsfy_token'),
 
-// Getter & Setter Utilities
-function getGlobalConfig() {
-  try {
-    return JSON.parse(localStorage.getItem('skillsfy_config')) || SKILLSFY_GLOBAL_CONFIG;
-  } catch (e) {
-    return SKILLSFY_GLOBAL_CONFIG;
+  getHeaders: () => {
+    const headers = { 'Content-Type': 'application/json' };
+    const token = SkillsfyAPI.getToken();
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    return headers;
+  },
+
+  // Auth: Student Signup
+  async signup(data) {
+    try {
+      const res = await fetch(`${SKILLSFY_API_BASE}/auth/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      if (json.success && json.token) {
+        SkillsfyAPI.setToken(json.token);
+        const profile = {
+          name: json.student.name,
+          email: json.student.email,
+          phone: json.student.phone || '+91 9876543210',
+          avatar: 'assets/default-avatar.png',
+          enrolledCourses: ['standard-course'],
+          courseProgress: {
+            'standard-course': { percent: 0, completedLessons: [], lastActive: 'Just now' }
+          },
+          affiliateStats: {
+            referralCode: `SF-${json.student.name.split(' ')[0].toUpperCase()}-2026`,
+            totalEarningsINR: 0,
+            availablePayoutINR: 0,
+            totalReferrals: 0,
+            paidEnrollments: 0
+          }
+        };
+        saveStudentProfile(profile);
+      }
+      return json;
+    } catch (err) {
+      console.warn('Backend API offline or unreachable, using local fallback:', err);
+      return { success: false, message: err.message };
+    }
+  },
+
+  // Auth: Student Login
+  async login(email, password) {
+    try {
+      const res = await fetch(`${SKILLSFY_API_BASE}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const json = await res.json();
+      if (json.success && json.token) {
+        SkillsfyAPI.setToken(json.token);
+        const profile = getStudentProfile();
+        profile.name = json.student.name;
+        profile.email = json.student.email;
+        if (json.student.phone) profile.phone = json.student.phone;
+        saveStudentProfile(profile);
+      }
+      return json;
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  // Auth: Admin / Verifier Login
+  async adminLogin(email, password) {
+    try {
+      const res = await fetch(`${SKILLSFY_API_BASE}/auth/admin/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const json = await res.json();
+      if (json.success && json.token) {
+        localStorage.setItem('skillsfy_admin_token', json.token);
+        localStorage.setItem('skillsfy_admin_user', JSON.stringify(json.admin));
+      }
+      return json;
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  // Course Enrollment: POST /api/enroll/:courseId
+  async enroll(courseId = 1) {
+    try {
+      const res = await fetch(`${SKILLSFY_API_BASE}/enroll/${courseId}`, {
+        method: 'POST',
+        headers: SkillsfyAPI.getHeaders()
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  // Progress Update: PUT /api/progress/:enrollmentId
+  async updateProgress(enrollmentId = 1, progress_percent = 100) {
+    try {
+      const res = await fetch(`${SKILLSFY_API_BASE}/progress/${enrollmentId}`, {
+        method: 'PUT',
+        headers: SkillsfyAPI.getHeaders(),
+        body: JSON.stringify({ progress_percent })
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  // Get My Enrolled Courses: GET /api/my-courses
+  async getMyCourses() {
+    try {
+      const res = await fetch(`${SKILLSFY_API_BASE}/my-courses`, {
+        method: 'GET',
+        headers: SkillsfyAPI.getHeaders()
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  // Verify Certificate: GET /api/verify/:code
+  async verifyCertificate(code) {
+    try {
+      const res = await fetch(`${SKILLSFY_API_BASE}/verify/${encodeURIComponent(code.trim())}`);
+      return await res.json();
+    } catch (err) {
+      return { valid: false, message: err.message };
+    }
+  },
+
+  // Admin: Get Students
+  async getAdminStudents() {
+    try {
+      const adminToken = localStorage.getItem('skillsfy_admin_token') || SkillsfyAPI.getToken();
+      const res = await fetch(`${SKILLSFY_API_BASE}/admin/students`, {
+        headers: { 'Authorization': `Bearer ${adminToken}` }
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  // Admin: Get Certificates
+  async getAdminCertificates(search = '') {
+    try {
+      const adminToken = localStorage.getItem('skillsfy_admin_token') || SkillsfyAPI.getToken();
+      const url = search 
+        ? `${SKILLSFY_API_BASE}/admin/certificates?search=${encodeURIComponent(search)}`
+        : `${SKILLSFY_API_BASE}/admin/certificates`;
+      const res = await fetch(url, {
+        headers: { 'Authorization': `Bearer ${adminToken}` }
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  // Admin: Revoke Certificate
+  async revokeCertificate(id, reason) {
+    try {
+      const adminToken = localStorage.getItem('skillsfy_admin_token') || SkillsfyAPI.getToken();
+      const res = await fetch(`${SKILLSFY_API_BASE}/admin/certificates/${id}/revoke`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`
+        },
+        body: JSON.stringify({ reason })
+      });
+      return await res.json();
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
   }
-}
-
-function saveGlobalConfig(config) {
-  localStorage.setItem('skillsfy_config', JSON.stringify(config));
-  applySiteConfigToDOM();
-}
-
-function getStudentProfile() {
-  try {
-    return JSON.parse(localStorage.getItem('skillsfy_student')) || INITIAL_STUDENT_PROFILE;
-  } catch (e) {
-    return INITIAL_STUDENT_PROFILE;
-  }
-}
+};
 
 function saveStudentProfile(profile) {
   localStorage.setItem('skillsfy_student', JSON.stringify(profile));
