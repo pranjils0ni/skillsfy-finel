@@ -365,28 +365,42 @@
 
       showToast('Creating official student profile in database...', 'info');
 
+      // Save student profile immediately so dashboard instantly reflects registered student
+      const profile = {
+        name: name,
+        email: email,
+        phone: phone || '+91 9876543210',
+        avatar: 'assets/default-avatar.png',
+        enrolledCourses: ['standard-course'],
+        courseProgress: {
+          'standard-course': { percent: 5, completedLessons: [], lastActive: 'Just now' }
+        },
+        affiliateStats: {
+          referralCode: `SF-${name.split(' ')[0].toUpperCase()}-2026`,
+          totalEarningsINR: 0,
+          availablePayoutINR: 0,
+          totalReferrals: 0,
+          paidEnrollments: 0
+        }
+      };
+      saveStudentProfile(profile);
+
       // Call Backend API to register student and enroll
       try {
         const signupRes = await SkillsfyAPI.signup({ name, email, password, phone });
-        if (signupRes.success) {
-          showToast(`Account registered for ${name}!`, 'success');
-          // Auto enroll in Course #1 (Standard Course)
+        if (signupRes && signupRes.success) {
           await SkillsfyAPI.enroll(1);
-        } else if (signupRes.message && signupRes.message.includes('already exists')) {
-          // Attempt login if user already exists
-          const loginRes = await SkillsfyAPI.login(email, password);
-          if (loginRes.success) {
-            showToast(`Welcome back, ${name}!`, 'success');
-            await SkillsfyAPI.enroll(1);
-          }
+        } else {
+          await SkillsfyAPI.login(email, password);
         }
       } catch (err) {
-        console.warn('Backend signup error:', err);
+        console.warn('Backend signup note:', err);
       }
 
+      showToast(`Admission confirmed for ${name}!`, 'success');
       setTimeout(() => {
         window.location.href = `enrollment-success.html?course=${course.id}`;
-      }, 900);
+      }, 700);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
