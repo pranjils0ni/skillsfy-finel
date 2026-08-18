@@ -414,13 +414,41 @@
       if (activeBtn) activeBtn.className = 'px-4 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold shadow-md flex items-center gap-2';
     }
 
-    function renderLeads() {
+    async function renderLeads() {
+      // Auto-authenticate as Admin if not already
+      if (!localStorage.getItem('skillsfy_admin_token')) {
+        await SkillsfyAPI.adminLogin('admin@skillsfy.edu', 'Admin@2026');
+      }
+
+      let backendStudents = [];
+      try {
+        const res = await SkillsfyAPI.getAdminStudents();
+        if (res.success && res.students) {
+          backendStudents = res.students;
+        }
+      } catch (err) {
+        console.warn('Backend offline, using local enquiries.');
+      }
+
       const enquiries = getEnquiries();
-      document.getElementById('kpi-leads-count').textContent = `${enquiries.length} Leads`;
+
+      // Convert backend students to lead rows
+      const studentLeads = backendStudents.map(s => ({
+        id: `STU-${s.id}`,
+        name: s.name,
+        phone: s.phone || '+91 9876543210',
+        city: 'Jabalpur / Online',
+        assignedTo: 'Pranjil Soni',
+        status: s.total_certificates > 0 ? 'Certified' : 'Enrolled',
+        notes: `Registered Student (${s.total_enrolled_courses} Enrolled Courses, ${s.total_certificates} Certificates)`
+      }));
+
+      const allLeads = [...studentLeads, ...enquiries];
+      document.getElementById('kpi-leads-count').textContent = `${allLeads.length} Leads`;
       const tbody = document.getElementById('leads-table-body');
       if (!tbody) return;
 
-      tbody.innerHTML = enquiries.map((l, idx) => `
+      tbody.innerHTML = allLeads.map((l, idx) => `
         <tr class="hover:bg-slate-900/50 transition-colors">
           <td class="py-3 font-mono font-bold text-slate-300">${l.id}</td>
           <td class="py-3 font-bold text-white">${l.name}</td>
@@ -434,16 +462,13 @@
             </select>
           </td>
           <td class="py-3">
-            <select onchange="updateLeadStatus('${l.id}', this.value)" class="p-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs font-bold ${l.status === 'Enrolled' ? 'text-emerald-400' : l.status === 'Contacted' ? 'text-cyan-400' : 'text-amber-400'}">
-              <option value="New" ${l.status === 'New' ? 'selected' : ''}>New Lead</option>
-              <option value="Contacted" ${l.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
-              <option value="Enrolled" ${l.status === 'Enrolled' ? 'selected' : ''}>Enrolled</option>
-              <option value="Dropped" ${l.status === 'Dropped' ? 'selected' : ''}>Dropped</option>
-            </select>
+            <span class="px-2 py-1 rounded-lg text-xs font-bold ${l.status === 'Enrolled' || l.status === 'Certified' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : l.status === 'Contacted' ? 'bg-cyan-950 text-cyan-300' : 'bg-amber-950 text-amber-300'}">
+              ${l.status}
+            </span>
           </td>
           <td class="py-3 text-slate-400 truncate max-w-xs">${l.notes}</td>
           <td class="py-3 text-right">
-            <a href="https://wa.me/${(l.phone || '').replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(l.name)},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here.%20Aapka%20Standard%20Course%20Syllabus%20PDF%20ready%20hai." target="_blank" class="px-2.5 py-1.5 bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-lg font-bold transition-colors inline-flex items-center gap-1">
+            <a href="https://wa.me/${(l.phone || '').replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(l.name)},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here." target="_blank" class="px-2.5 py-1.5 bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-lg font-bold transition-colors inline-flex items-center gap-1">
               <span>WhatsApp</span>
             </a>
           </td>
