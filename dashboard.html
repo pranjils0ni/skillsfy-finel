@@ -59,18 +59,18 @@
         </button>
       </div>
 
-      <!-- User avatar dropdown -->
+      <!-- User avatar dropdown & Login Switcher -->
       <div class="flex items-center gap-3">
-        <button onclick="openMentorModal()" class="hidden sm:flex px-3 py-1.5 bg-slate-50 border border-slate-200 text-xs font-bold rounded-lg text-slate-700 items-center gap-1 hover:bg-slate-100">
-          <span class="material-symbols-outlined text-sm text-cyan-600">event_available</span>
-          <span>1:1 Mentor Call</span>
+        <button onclick="openStudentLoginModal()" class="px-3 py-1.5 bg-primary text-white hover:bg-slate-800 text-xs font-bold rounded-xl flex items-center gap-1.5 shadow-sm">
+          <span class="material-symbols-outlined text-sm text-[#00ccf9]">account_circle</span>
+          <span id="btn-login-label">Login / Switch</span>
         </button>
 
         <div class="flex items-center gap-2.5 pl-2 border-l border-slate-200">
           <img id="header-user-avatar" src="assets/founder.jpg" alt="Student Avatar" class="w-9 h-9 rounded-full object-cover border-2 border-cyan-500"/>
           <div class="hidden sm:block text-left text-xs">
             <p class="font-bold text-slate-900 leading-tight" id="header-user-name">Pranjil Soni</p>
-            <p class="text-[10px] text-slate-500 font-['Geist']">ID: SF-2026-8942</p>
+            <p class="text-[10px] text-slate-500 font-['Geist']" id="header-user-email">theskillsfy@gmail.com</p>
           </div>
         </div>
       </div>
@@ -453,10 +453,118 @@
     </div>
   </div>
 
+  <!-- ================= STUDENT LOGIN / SWITCH MODAL ================= -->
+  <div id="student-login-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative">
+      <button onclick="closeStudentLoginModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+
+      <div class="w-12 h-12 rounded-2xl bg-[#031636] text-[#00ccf9] flex items-center justify-center mx-auto mb-4">
+        <span class="material-symbols-outlined text-3xl">account_circle</span>
+      </div>
+
+      <h3 class="text-xl font-bold text-center text-[#031636] font-['Plus_Jakarta_Sans']">Student Account Login</h3>
+      <p class="text-xs text-center text-slate-500 mt-1 mb-6">
+        Login with your registered Skillsfy account to view your enrolled courses, certificates, and affiliate stats.
+      </p>
+
+      <form onsubmit="handleStudentLogin(event)" class="space-y-4 text-xs font-['Inter']">
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Registered Email *</label>
+          <input type="email" id="login-email" required placeholder="e.g. aman.verma@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-slate-900">
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Password *</label>
+          <input type="password" id="login-password" required placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-slate-900">
+        </div>
+
+        <button type="submit" class="w-full py-3 bg-[#031636] hover:bg-[#1a2b4c] text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5">
+          <span class="material-symbols-outlined text-base text-[#00ccf9]">login</span>
+          <span>Login to Student Portal</span>
+        </button>
+      </form>
+
+      <div class="mt-4 pt-4 border-t border-slate-100 text-center text-xs text-slate-500">
+        New Student? <a href="enroll.html" class="font-bold text-[#00677f] hover:underline">Enroll / Register here</a>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
   <script>
+    function openStudentLoginModal() {
+      document.getElementById('student-login-modal').classList.remove('hidden');
+    }
+
+    function closeStudentLoginModal() {
+      document.getElementById('student-login-modal').classList.add('hidden');
+    }
+
+    async function handleStudentLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+
+      showToast('Authenticating with Skillsfy server...', 'info');
+      try {
+        const res = await SkillsfyAPI.login(email, password);
+        if (res.success) {
+          closeStudentLoginModal();
+          showToast(`Welcome back, ${res.student.name}!`, 'success');
+          initDashboard();
+        } else {
+          showToast(res.message || 'Invalid credentials.', 'error');
+        }
+      } catch (err) {
+        showToast('Could not connect to backend server.', 'error');
+      }
+    }
+
+    async function initDashboard() {
+      const student = getStudentProfile();
+      
+      // Update DOM with student name & info
+      if (document.getElementById('dash-welcome-name')) {
+        document.getElementById('dash-welcome-name').textContent = `Welcome Back, ${student.name.split(' ')[0]}!`;
+      }
+      if (document.getElementById('header-user-name')) {
+        document.getElementById('header-user-name').textContent = student.name;
+      }
+      if (document.getElementById('header-user-email')) {
+        document.getElementById('header-user-email').textContent = student.email;
+      }
+      if (document.getElementById('prof-name')) {
+        document.getElementById('prof-name').value = student.name;
+      }
+      if (document.getElementById('prof-email')) {
+        document.getElementById('prof-email').value = student.email;
+      }
+      if (document.getElementById('prof-phone')) {
+        document.getElementById('prof-phone').value = student.phone || '+91 9876543210';
+      }
+      if (document.getElementById('btn-login-label')) {
+        document.getElementById('btn-login-label').textContent = student.name ? student.name.split(' ')[0] : 'Login / Switch';
+      }
+      if (document.getElementById('affiliate-link-display')) {
+        const refCode = student.affiliateStats?.referralCode || `SF-${student.name.split(' ')[0].toUpperCase()}-2026`;
+        document.getElementById('affiliate-link-display').textContent = `http://localhost:3000/enroll.html?ref=${refCode}`;
+      }
+
+      // Try fetching real courses & certificates from live backend
+      try {
+        const myCoursesRes = await SkillsfyAPI.getMyCourses();
+        if (myCoursesRes.success && myCoursesRes.my_courses && myCoursesRes.my_courses.length > 0) {
+          console.log('Loaded real courses from backend:', myCoursesRes.my_courses);
+        }
+      } catch (e) {
+        // Fallback to local
+      }
+    }
+
     function switchTab(tab) {
       document.getElementById('tab-content-learning').classList.add('hidden');
       document.getElementById('tab-content-affiliate').classList.add('hidden');
@@ -486,7 +594,7 @@
     }
 
     function requestAffiliateWithdrawal() {
-      showToast('Payout request for ₹3,000 submitted to Skillsfy Finance Manager. Transferred within 24h to UPI.', 'success');
+      showToast('Payout request submitted to Skillsfy Finance Manager. Transferred within 24h to UPI.', 'success');
     }
 
     function saveBankDetails(e) {
@@ -539,9 +647,9 @@
         const newReq = {
           id: `REQ-${Math.floor(300 + Math.random() * 700)}`,
           studentId: "SF-2026-8942",
-          currentName: "Pranjil Soni",
+          currentName: getStudentProfile().name,
           requestedName: pendingProfileData.name,
-          currentEmail: "theskillsfy@gmail.com",
+          currentEmail: getStudentProfile().email,
           requestedEmail: pendingProfileData.email,
           requestedPhone: pendingProfileData.phone,
           reason: pendingProfileData.reason || "Student updated profile details",
@@ -560,6 +668,10 @@
         showToast('Invalid OTP. Please enter 4821.', 'error');
       }
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initDashboard();
+    });
   </script>
 </body>
 </html>
