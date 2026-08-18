@@ -236,6 +236,28 @@ const SkillsfyAPI = {
   }
 };
 
+// Getter & Setter Utilities
+function getGlobalConfig() {
+  try {
+    return JSON.parse(localStorage.getItem('skillsfy_config')) || SKILLSFY_GLOBAL_CONFIG;
+  } catch (e) {
+    return SKILLSFY_GLOBAL_CONFIG;
+  }
+}
+
+function saveGlobalConfig(config) {
+  localStorage.setItem('skillsfy_config', JSON.stringify(config));
+  applySiteConfigToDOM();
+}
+
+function getStudentProfile() {
+  try {
+    return JSON.parse(localStorage.getItem('skillsfy_student')) || INITIAL_STUDENT_PROFILE;
+  } catch (e) {
+    return INITIAL_STUDENT_PROFILE;
+  }
+}
+
 function saveStudentProfile(profile) {
   localStorage.setItem('skillsfy_student', JSON.stringify(profile));
 }
