@@ -37,6 +37,10 @@ function initPlatformStore() {
       webhookUrl: "https://api.skillsfy.edu/webhooks/leads"
     }));
   }
+}
+
+initPlatformStore();
+
 // ============================================================================
 // LIVE BACKEND API INTEGRATION CLIENT
 // Connects frontend pages to Node.js + Express + SQLite Backend at http://localhost:5000
