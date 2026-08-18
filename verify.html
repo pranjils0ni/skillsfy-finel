@@ -163,16 +163,112 @@
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
   <script>
+    // Read code from URL query param if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialCode = urlParams.get('code');
+    if (initialCode) {
+      document.getElementById('verify-id-input').value = initialCode;
+      queryVerification(initialCode);
+    }
+
     function handleVerificationSearch(e) {
       e.preventDefault();
-      const code = document.getElementById('verify-id-input').value.trim().toUpperCase();
-      const resultCard = document.getElementById('verification-result');
-      
-      if (code.includes('CERT') || code.includes('SKF')) {
-        resultCard.classList.remove('hidden');
-        showToast('Certificate verified successfully!', 'success');
-      } else {
-        showToast('Certificate not found in registry.', 'error');
+      const code = document.getElementById('verify-id-input').value.trim();
+      if (code) {
+        queryVerification(code);
+      }
+    }
+
+    async function queryVerification(code) {
+      const container = document.getElementById('verification-result');
+      showToast(`Searching registry for ${code}...`, 'info');
+
+      try {
+        const res = await SkillsfyAPI.verifyCertificate(code);
+        if (res.valid && res.certificate) {
+          const c = res.certificate;
+          container.classList.remove('hidden');
+          container.innerHTML = `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+              <div class="flex items-center gap-3">
+                <img src="assets/logo-badge.png" alt="Skillsfy Emblem" class="w-12 h-12 object-contain rounded-xl border border-slate-200"/>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="text-base font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Verified Official Credential</h3>
+                    <span class="badge-pill bg-emerald-100 text-emerald-800 text-[9px] font-bold">Valid & Authentic ✓</span>
+                  </div>
+                  <p class="text-xs text-slate-500 font-['Geist']">ID: ${c.code} • Cryptographically Attested</p>
+                </div>
+              </div>
+
+              ${c.pdf_download_url ? `
+                <a href="http://localhost:5000${c.pdf_download_url}" target="_blank" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 shadow-sm">
+                  <span class="material-symbols-outlined text-base">download</span>
+                  <span>Download PDF Certificate</span>
+                </a>
+              ` : ''}
+            </div>
+
+            <!-- Credential Breakdown Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-['Geist']">
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                <span class="text-slate-400 block text-[10px] uppercase font-bold">Recipient Name</span>
+                <span class="font-bold text-slate-900 text-sm font-['Plus_Jakarta_Sans']">${c.student_name}</span>
+                <span class="text-[10px] text-slate-500 block">Status: Certified Graduate</span>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                <span class="text-slate-400 block text-[10px] uppercase font-bold">Program Completed</span>
+                <span class="font-bold text-[#00677f] text-sm font-['Plus_Jakarta_Sans']">${c.course_title}</span>
+                <span class="text-[10px] text-slate-500 block">${c.duration || 'Specialized Track'}</span>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                <span class="text-slate-400 block text-[10px] uppercase font-bold">Lead Instructor</span>
+                <span class="font-bold text-slate-900 text-sm font-['Plus_Jakarta_Sans']">${c.instructor || 'Pranjil Soni'}</span>
+                <span class="text-[10px] text-emerald-600 font-bold block">100% Curriculum Completed</span>
+              </div>
+
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                <span class="text-slate-400 block text-[10px] uppercase font-bold">Issue Date</span>
+                <span class="font-bold text-slate-900 text-sm font-['Plus_Jakarta_Sans']">${c.issued_date}</span>
+                <span class="text-[10px] text-slate-500 block">Jabalpur Flagship Center</span>
+              </div>
+            </div>
+
+            <div class="p-3.5 bg-[#031636] text-white rounded-xl font-mono text-[11px] space-y-1">
+              <span class="text-cyan-400 font-bold block text-[10px] uppercase tracking-wider">Cryptographic Security Hash</span>
+              <p class="text-slate-300 break-all">${c.verification_hash}</p>
+            </div>
+          `;
+          showToast(`Certificate verified for ${c.student_name}!`, 'success');
+        } else if (res.status === 'revoked') {
+          container.classList.remove('hidden');
+          container.innerHTML = `
+            <div class="p-6 text-center space-y-3">
+              <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center mx-auto">
+                <span class="material-symbols-outlined text-2xl">warning</span>
+              </div>
+              <h3 class="text-lg font-bold text-amber-900">Certificate Revoked</h3>
+              <p class="text-xs text-amber-700">This certificate was revoked by Skillsfy Administration. Reason: ${res.revoked_reason || 'Administrative action'}</p>
+            </div>
+          `;
+          showToast('Certificate has been revoked.', 'warning');
+        } else {
+          container.classList.remove('hidden');
+          container.innerHTML = `
+            <div class="p-6 text-center space-y-3">
+              <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center mx-auto">
+                <span class="material-symbols-outlined text-2xl">close</span>
+              </div>
+              <h3 class="text-lg font-bold text-rose-900">Certificate Not Found</h3>
+              <p class="text-xs text-rose-600">No official record found for code "${code}" in Skillsfy database.</p>
+            </div>
+          `;
+          showToast('Certificate code not found in database.', 'error');
+        }
+      } catch (err) {
+        showToast('Could not reach backend verification server.', 'error');
       }
     }
   </script>
