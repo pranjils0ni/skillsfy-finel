@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admissions & Enrollment | Skillsfy Institute</title>
+  <title>Admissions & Checkout | Skillsfy - Institute of Technology</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -34,377 +34,312 @@
 </head>
 <body class="bg-[#faf8ff] text-[#151b29] font-['Inter'] antialiased min-h-screen flex flex-col selection:bg-cyan-200">
 
-  <!-- ================= GLOBAL HEADER ================= -->
-  <header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-8 flex items-center justify-between z-30 shrink-0">
+  <!-- ================= GLOBAL FROZEN HEADER ================= -->
+  <header class="sticky-header-frozen h-16 px-4 sm:px-8 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2.5">
       <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-img"/>
-      <span class="text-[10px] tracking-widest text-slate-400 uppercase font-['Geist'] font-bold pl-2 border-l border-slate-300 hidden sm:inline">Admissions Office</span>
+      <span class="text-[10px] tracking-widest text-slate-400 uppercase font-['Geist'] font-bold pl-2 border-l border-slate-300 hidden sm:inline">Admissions Portal</span>
     </a>
 
-    <div class="flex items-center gap-2 text-xs text-slate-500 font-['Geist']">
-      <span class="material-symbols-outlined text-emerald-600 text-base">lock</span>
-      <span>256-Bit SSL Encrypted Checkout</span>
+    <div class="flex items-center gap-3">
+      <a href="courses.html" class="text-xs font-bold text-slate-600 hover:text-primary transition-colors flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">arrow_back</span>
+        <span class="hidden sm:inline">Back to Courses</span>
+      </a>
+      <div class="flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-[11px] font-bold">
+        <span class="material-symbols-outlined text-sm">verified_user</span>
+        <span>Razorpay SSL Secured</span>
+      </div>
     </div>
   </header>
 
   <!-- ================= MAIN CHECKOUT FLOW ================= -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 w-full flex-1">
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 w-full flex-1">
     
-    <div class="mb-8">
+    <div class="mb-8 text-center sm:text-left">
+      <span class="badge-pill bg-cyan-100 text-cyan-800 text-[11px] font-bold mb-2 inline-block">Official Institute Admission</span>
       <h1 class="text-2xl sm:text-3xl font-extrabold text-primary font-['Plus_Jakarta_Sans']">
-        Complete Your Admission Application
+        Enroll in Skillsfy Masterclass
       </h1>
       <p class="text-xs sm:text-sm text-slate-500 font-['Inter'] mt-1">
-        Cohort starts Oct 1, 2026. Secure your student seat with immediate LMS onboarding.
+        Instant LMS Access • 14 AI Skills Curriculum • Verifiable Industry Certificate (Jabalpur Flagship Center)
       </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- Left Column: 3 Steps Form -->
+      <!-- Left Column: Student Details Form -->
       <div class="lg:col-span-7 space-y-6">
         
-        <!-- Step 1: Student Information -->
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
-          <div class="flex items-center gap-2.5 pb-3 border-b border-slate-100">
-            <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold font-['Geist'] flex items-center justify-center">1</span>
-            <h3 class="text-sm font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Student & Cohort Details</h3>
+        <div class="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200 shadow-md space-y-5">
+          <div class="flex items-center gap-2.5 pb-4 border-b border-slate-100">
+            <span class="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold font-['Geist'] flex items-center justify-center">1</span>
+            <h3 class="text-base font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Student Details & Course Selection</h3>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-['Inter']">
+          <form id="admission-form" onsubmit="handleProceedToPayment(event)" class="space-y-4 text-xs font-['Inter']">
+            <!-- Full Name -->
             <div>
-              <label class="block font-semibold text-slate-700 mb-1">Full Legal Name *</label>
-              <input type="text" id="student-name" required placeholder="e.g. Aman Verma" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500">
+              <label class="block font-semibold text-slate-800 mb-1.5">Full Legal Name *</label>
+              <input 
+                type="text" 
+                id="student-name" 
+                required 
+                placeholder="e.g. Rahul Sharma" 
+                class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+                onblur="autoCaptureLead()"
+              />
             </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">Email Address *</label>
-              <input type="email" id="student-email" required placeholder="e.g. aman.verma@gmail.com" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500">
-            </div>
-          </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-['Inter']">
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">Phone Number (WhatsApp) *</label>
-              <input type="tel" id="student-phone" required placeholder="+91 9876543210" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500">
-            </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">Create Student Password *</label>
-              <input type="password" id="student-password" required placeholder="Min 6 characters (e.g. Pass@123)" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-slate-900 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500">
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 2: Program Add-Ons -->
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
-          <div class="flex items-center gap-2.5 pb-3 border-b border-slate-100">
-            <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold font-['Geist'] flex items-center justify-center">2</span>
-            <h3 class="text-sm font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Optional Career Acceleration Boosters</h3>
-          </div>
-
-          <div class="space-y-3 text-xs">
-            <label class="flex items-start justify-between p-3.5 bg-slate-50 hover:bg-slate-100/80 rounded-xl border border-slate-200 cursor-pointer transition-colors">
-              <div class="flex items-start gap-3">
-                <input type="checkbox" id="addon-mentor" onchange="calculateTotal()" class="mt-0.5 rounded text-primary focus:ring-cyan-500"/>
-                <div>
-                  <p class="font-bold text-slate-900">4x 1-on-1 Executive Mentorship Hours</p>
-                  <p class="text-slate-500 text-[11px]">Direct 60-min private architectural review sessions with Staff Engineers.</p>
-                </div>
-              </div>
-              <span class="font-bold text-slate-800 font-['Geist']">+$150</span>
-            </label>
-
-            <label class="flex items-start justify-between p-3.5 bg-slate-50 hover:bg-slate-100/80 rounded-xl border border-slate-200 cursor-pointer transition-colors">
-              <div class="flex items-start gap-3">
-                <input type="checkbox" id="addon-placement" onchange="calculateTotal()" class="mt-0.5 rounded text-primary focus:ring-cyan-500"/>
-                <div>
-                  <p class="font-bold text-slate-900">Dedicated Placement Concierge & Resume Revamp</p>
-                  <p class="text-slate-500 text-[11px]">Direct partner referrals and interview preparation simulations.</p>
-                </div>
-              </div>
-              <span class="font-bold text-slate-800 font-['Geist']">+$99</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Step 3: Payment Method -->
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
-          <div class="flex items-center gap-2.5 pb-3 border-b border-slate-100">
-            <span class="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold font-['Geist'] flex items-center justify-center">3</span>
-            <h3 class="text-sm font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Payment Method</h3>
-          </div>
-
-          <!-- Payment Tabs -->
-          <div class="grid grid-cols-3 gap-2 text-xs font-semibold">
-            <button type="button" onclick="setPaymentMethod('card')" id="pay-btn-card" class="p-3 rounded-xl border border-primary bg-primary text-white flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined text-lg">credit_card</span>
-              <span>Credit / Debit</span>
-            </button>
-            <button type="button" onclick="setPaymentMethod('upi')" id="pay-btn-upi" class="p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined text-lg">qr_code_2</span>
-              <span>UPI / Instant QR</span>
-            </button>
-            <button type="button" onclick="setPaymentMethod('emi')" id="pay-btn-emi" class="p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined text-lg">payments</span>
-              <span>Zero-Cost EMI</span>
-            </button>
-          </div>
-
-          <!-- Card Form -->
-          <div id="payment-card-form" class="space-y-3 pt-2 text-xs">
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">Card Number</label>
-              <input type="text" placeholder="4242 •••• •••• 4242" value="4242 •••• •••• 4242" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-slate-900 font-mono">
-            </div>
-            <div class="grid grid-cols-2 gap-3">
+            <!-- Phone & Email Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block font-semibold text-slate-700 mb-1">Expiry (MM/YY)</label>
-                <input type="text" placeholder="12/28" value="12/28" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-slate-900 font-mono">
+                <label class="block font-semibold text-slate-800 mb-1.5">WhatsApp Phone Number *</label>
+                <input 
+                  type="tel" 
+                  id="student-phone" 
+                  required 
+                  placeholder="+91 98765 43210" 
+                  class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 font-mono"
+                  onblur="autoCaptureLead()"
+                />
               </div>
+
               <div>
-                <label class="block font-semibold text-slate-700 mb-1">CVC / CVV</label>
-                <input type="password" placeholder="•••" value="888" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-slate-900 font-mono">
+                <label class="block font-semibold text-slate-800 mb-1.5">Email Address *</label>
+                <input 
+                  type="email" 
+                  id="student-email" 
+                  required 
+                  placeholder="e.g. rahul@gmail.com" 
+                  class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+                  onblur="autoCaptureLead()"
+                />
               </div>
             </div>
-          </div>
 
-          <!-- UPI Form -->
-          <div id="payment-upi-form" class="hidden text-center py-4 space-y-2 text-xs">
-            <div class="w-32 h-32 mx-auto bg-slate-100 border-2 border-slate-300 rounded-xl flex items-center justify-center">
-              <span class="material-symbols-outlined text-5xl text-slate-400">qr_code_2</span>
+            <!-- Program Selector -->
+            <div>
+              <label class="block font-semibold text-slate-800 mb-1.5">Select Program / Cohort *</label>
+              <select id="course-select" onchange="updateCourseSelection()" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 text-sm bg-white font-medium focus:border-cyan-500">
+                <option value="standard-course" data-price="2999" data-orig="5999" selected>
+                  Skillsfy Standard Course: AI + Digital Business Masterclass — ₹2,999 (Offer)
+                </option>
+                <option value="performance-marketing" data-price="2499" data-orig="4999">
+                  Performance Marketing & Paid Ads Track — ₹2,499
+                </option>
+                <option value="video-editing" data-price="2499" data-orig="4999">
+                  Video Editing & Motion Graphics Masterclass — ₹2,499
+                </option>
+                <option value="social-media" data-price="1999" data-orig="3999">
+                  Organic Social Media Marketing Bootcamp — ₹1,999
+                </option>
+              </select>
             </div>
-            <p class="font-bold text-slate-800">Scan QR Code with any UPI app (GPay / PhonePe)</p>
-            <p class="text-slate-400 text-[11px]">Instant admission authorization upon scan</p>
-          </div>
 
-          <!-- EMI Form -->
-          <div id="payment-emi-form" class="hidden space-y-2 text-xs pt-2">
-            <p class="text-slate-600 font-medium">Select your 0% interest tenure:</p>
-            <label class="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
-              <span class="font-bold">3 Months Plan ($316/mo)</span>
-              <span class="badge-pill bg-emerald-100 text-emerald-800 text-[10px]">0% APR</span>
-            </label>
-            <label class="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer">
-              <span class="font-bold">6 Months Plan ($158/mo)</span>
-              <span class="badge-pill bg-emerald-100 text-emerald-800 text-[10px]">0% APR</span>
-            </label>
+            <!-- Guarantee Note -->
+            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-2.5 text-[11px] text-slate-600">
+              <span class="material-symbols-outlined text-emerald-600 text-base shrink-0 mt-0.5">verified</span>
+              <p>Your details are securely transmitted to the Skillsfy Admissions Office (Jabalpur). Upon payment, student LMS credentials are instantly created.</p>
+            </div>
+
+            <!-- Proceed Button -->
+            <button type="submit" id="btn-proceed" class="w-full py-4 bg-[#031636] hover:bg-[#1a2b4c] text-white font-bold text-sm rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2">
+              <span>Continue to Secure Payment</span>
+              <span class="material-symbols-outlined text-base text-[#00ccf9]">arrow_forward</span>
+            </button>
+          </form>
+
+          <!-- Razorpay Official Container (Revealed after details) -->
+          <div id="razorpay-live-box" class="pt-5 border-t border-slate-200 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-700">Official Razorpay Instant Gateway:</span>
+              <span class="badge-pill bg-emerald-100 text-emerald-800 text-[10px] font-bold">UPI / Cards / NetBanking</span>
+            </div>
+
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col items-center justify-center text-center gap-3">
+              <!-- Live Razorpay Form Button -->
+              <form id="razorpay-embed-form">
+                <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TRhHuqKrOBK2ry" async> </script>
+              </form>
+              <p class="text-[11px] text-slate-500">Supports all Indian UPI Apps (GPay, PhonePe, Paytm), NetBanking & Debit/Credit Cards.</p>
+            </div>
           </div>
 
         </div>
 
       </div>
 
-      <!-- Right Column: Order Summary & Coupon -->
-      <div class="lg:col-span-5 sticky top-20 space-y-6">
+      <!-- Right Column: Order Summary (INR Only) -->
+      <div class="lg:col-span-5 sticky top-20 space-y-5">
         
-        <div class="card-elevated rounded-2xl p-6 bg-white space-y-5">
+        <div class="card-elevated rounded-3xl p-6 sm:p-7 bg-white space-y-5 border border-slate-200 shadow-md">
           <h3 class="text-base font-bold text-primary font-['Plus_Jakarta_Sans'] pb-3 border-b border-slate-100">
-            Order & Tuition Summary
+            Tuition Summary
           </h3>
 
           <!-- Course snippet -->
-          <div class="flex items-start gap-3">
-            <img id="summary-course-img" src="" alt="Course" class="w-16 h-16 rounded-xl object-cover border border-slate-200 shrink-0"/>
+          <div class="flex items-start gap-3.5">
+            <div class="w-14 h-14 rounded-2xl bg-[#031636] text-[#00ccf9] flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-2xl">smart_toy</span>
+            </div>
             <div class="text-xs">
-              <span class="text-[#00677f] font-bold font-['Geist'] block" id="summary-category">AI & Machine Learning</span>
-              <h4 class="font-bold text-slate-900 text-sm font-['Plus_Jakarta_Sans'] leading-snug" id="summary-title">AI & Digital Business Masterclass</h4>
-              <p class="text-slate-500 font-['Geist'] text-[11px]" id="summary-duration">14 Weeks Cohort</p>
+              <span class="text-[#00677f] font-bold font-['Geist'] block" id="summary-category">AI & Digital Business</span>
+              <h4 class="font-bold text-slate-900 text-sm font-['Plus_Jakarta_Sans'] leading-snug" id="summary-title">
+                Skillsfy Standard Course: AI + Digital Business Masterclass
+              </h4>
+              <p class="text-slate-500 font-['Geist'] text-[11px] mt-0.5" id="summary-duration">14 Weeks Cohort • Hinglish</p>
             </div>
-          </div>
-
-          <!-- Coupon Code Input -->
-          <div class="pt-2">
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Have a Scholarship / Promo Code?</label>
-            <div class="flex items-center gap-2">
-              <input type="text" id="coupon-input" placeholder="e.g. SKILLSFY50" value="SKILLSFY50" class="flex-1 px-3 py-2 text-xs rounded-lg border border-slate-300 uppercase font-mono font-bold">
-              <button onclick="applyCoupon()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs rounded-lg transition-colors">
-                Apply
-              </button>
-            </div>
-            <p id="coupon-feedback" class="text-[11px] font-semibold text-emerald-600 mt-1 font-['Geist']">
-              ✓ Promo code SKILLSFY50 applied! ($500 discount)
-            </p>
           </div>
 
           <!-- Price Calculation Breakdown -->
-          <div class="space-y-2.5 pt-3 border-t border-slate-100 text-xs font-['Geist']">
+          <div class="space-y-3 pt-4 border-t border-slate-100 text-xs font-['Geist']">
             <div class="flex items-center justify-between text-slate-600">
-              <span>Standard Tuition</span>
-              <span class="font-bold text-slate-900" id="calc-base-price">$1,449</span>
+              <span>Standard Course Fee</span>
+              <span class="font-bold text-slate-400 line-through" id="calc-base-price">₹5,999</span>
             </div>
-            <div class="flex items-center justify-between text-slate-600" id="row-addon-mentor">
-              <span>Executive Mentorship Booster</span>
-              <span class="font-bold text-slate-900" id="calc-addon-mentor">+$0</span>
+            
+            <div class="flex items-center justify-between text-emerald-600 font-bold">
+              <span>Direct Institute Scholarship (50% Off)</span>
+              <span id="calc-discount">-₹3,000</span>
             </div>
-            <div class="flex items-center justify-between text-slate-600" id="row-addon-placement">
-              <span>Placement Concierge</span>
-              <span class="font-bold text-slate-900" id="calc-addon-placement">+$0</span>
-            </div>
-            <div class="flex items-center justify-between text-emerald-600 font-bold" id="row-discount">
-              <span>Merit Scholarship Discount</span>
-              <span id="calc-discount">-$500</span>
-            </div>
-            <div class="flex items-center justify-between text-slate-400 text-[11px]">
-              <span>Institutional Taxes & Fees</span>
-              <span class="text-emerald-600 font-bold">$0.00 (Exempt)</span>
+
+            <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-slate-900">
+              <div>
+                <span class="text-base font-extrabold font-['Plus_Jakarta_Sans'] block">Total Payable Fee</span>
+                <span class="text-[10px] text-slate-400 font-normal">All 14 Modules + Certification Included</span>
+              </div>
+              <span class="text-2xl font-extrabold text-[#031636] font-['Plus_Jakarta_Sans']" id="calc-total">
+                ₹2,999
+              </span>
             </div>
           </div>
 
-          <!-- Total Due -->
-          <div class="pt-4 border-t-2 border-slate-100 flex items-baseline justify-between">
-            <div>
-              <span class="text-xs font-bold text-slate-500 font-['Geist'] block">Total Amount Due</span>
-              <span class="text-[11px] text-slate-400">Includes 14-day money-back guarantee</span>
+          <!-- Included Bonuses List -->
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2 text-[11px]">
+            <p class="font-bold text-slate-800">Everything Included in Tuition:</p>
+            <div class="space-y-1.5 text-slate-600">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-600 text-sm">check_circle</span>
+                <span>14 Practical AI Skills Curriculum (50+ Hours)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-600 text-sm">check_circle</span>
+                <span>Cryptographically Verified Certificate with QR Code</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-600 text-sm">check_circle</span>
+                <span>₹17,000+ AI Prompt Libraries & Agency Blueprints</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-600 text-sm">check_circle</span>
+                <span>Direct Access to Pranjil Soni & Skillsfy Mentors</span>
+              </div>
             </div>
-            <span class="text-3xl font-extrabold text-primary font-['Plus_Jakarta_Sans']" id="calc-total">$949</span>
           </div>
 
-          <!-- Submit Button -->
-          <button onclick="processAdmission()" class="w-full py-4 px-4 bg-primary hover:bg-primary-container text-white font-bold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
-            <span class="material-symbols-outlined text-lg text-[#00ccf9]">lock</span>
-            <span>Confirm Admission & Access LMS</span>
-          </button>
         </div>
 
       </div>
 
     </div>
+
   </main>
 
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 font-['Geist']">
+    © 2026 Skillsfy - Institute of Technology (Jabalpur) • All Payments Processed Securely via Razorpay
+  </footer>
+
+  <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
   <script>
+    // Read Course ID from URL
     const urlParams = new URLSearchParams(window.location.search);
-    const courseId = urlParams.get('course') || 'standard-course';
-    const course = SKILLSFY_COURSES.find(c => c.id === courseId) || SKILLSFY_COURSES[0];
+    const courseParam = urlParams.get('course') || 'standard-course';
 
-    let appliedDiscountINR = 3000; // default for 50% off
+    function updateCourseSelection() {
+      const select = document.getElementById('course-select');
+      const selectedOption = select.options[select.selectedIndex];
+      const price = parseInt(selectedOption.getAttribute('data-price')) || 2999;
+      const orig = parseInt(selectedOption.getAttribute('data-orig')) || 5999;
+      const discount = orig - price;
 
-    function initEnrollPage() {
-      document.getElementById('summary-course-img').src = course.image;
-      document.getElementById('summary-category').textContent = course.category;
-      document.getElementById('summary-title').textContent = course.title;
-      document.getElementById('summary-duration').textContent = `${course.duration} (${course.language || 'Hinglish'})`;
-      
-      const origPrice = course.priceOriginalINR || 5999;
-      document.getElementById('calc-base-price').textContent = `₹${origPrice.toLocaleString()}`;
-      document.getElementById('coupon-input').value = course.couponCode || 'SKILLSFY30';
-
-      calculateTotal();
+      document.getElementById('calc-base-price').textContent = `₹${orig.toLocaleString('en-IN')}`;
+      document.getElementById('calc-discount').textContent = `-₹${discount.toLocaleString('en-IN')}`;
+      document.getElementById('calc-total').textContent = `₹${price.toLocaleString('en-IN')}`;
+      document.getElementById('summary-title').textContent = selectedOption.text.split('—')[0].trim();
     }
 
-    function calculateTotal() {
-      const base = course.priceOriginalINR || 5999;
-      const mentorChecked = document.getElementById('addon-mentor').checked;
-      const placementChecked = document.getElementById('addon-placement').checked;
-
-      const mentorPrice = mentorChecked ? 999 : 0;
-      const placementPrice = placementChecked ? 699 : 0;
-
-      document.getElementById('calc-addon-mentor').textContent = `+₹${mentorPrice}`;
-      document.getElementById('calc-addon-placement').textContent = `+₹${placementPrice}`;
-      document.getElementById('calc-discount').textContent = `-₹${appliedDiscountINR.toLocaleString()}`;
-
-      const total = Math.max(0, base + mentorPrice + placementPrice - appliedDiscountINR);
-      document.getElementById('calc-total').textContent = `₹${total.toLocaleString()}`;
-    }
-
-    function applyCoupon() {
-      const code = document.getElementById('coupon-input').value.trim().toUpperCase();
-      const feedback = document.getElementById('coupon-feedback');
-
-      if (code === 'SKILLSFY30' || code === 'SKILLSFY50') {
-        appliedDiscountINR = 3000;
-        feedback.className = 'text-[11px] font-semibold text-emerald-600 mt-1 font-[\'Geist\']';
-        feedback.textContent = `✓ Promo code ${code} applied! (50% Instant Discount)`;
-        showToast(`Promo code ${code} applied: ₹3,000 OFF`, 'success');
-      } else if (code === 'FUTURE2026' || code === 'EARLYBIRD') {
-        appliedDiscountINR = 3500;
-        feedback.className = 'text-[11px] font-semibold text-emerald-600 mt-1 font-[\'Geist\']';
-        feedback.textContent = `✓ Special code ${code} applied! (₹3,500 Max Discount)`;
-        showToast('VIP discount applied: ₹3,500 OFF', 'success');
-      } else {
-        appliedDiscountINR = 0;
-        feedback.className = 'text-[11px] font-semibold text-rose-500 mt-1 font-[\'Geist\']';
-        feedback.textContent = '✗ Invalid or expired coupon code.';
-        showToast('Invalid coupon code.', 'error');
-      }
-      calculateTotal();
-    }
-
-    function setPaymentMethod(method) {
-      document.getElementById('payment-card-form').classList.add('hidden');
-      document.getElementById('payment-upi-form').classList.add('hidden');
-      document.getElementById('payment-emi-form').classList.add('hidden');
-
-      document.getElementById('pay-btn-card').className = 'p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 flex flex-col items-center gap-1';
-      document.getElementById('pay-btn-upi').className = 'p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 flex flex-col items-center gap-1';
-      document.getElementById('pay-btn-emi').className = 'p-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 flex flex-col items-center gap-1';
-
-      if (method === 'card') {
-        document.getElementById('payment-card-form').classList.remove('hidden');
-        document.getElementById('pay-btn-card').className = 'p-3 rounded-xl border border-primary bg-primary text-white flex flex-col items-center gap-1';
-      } else if (method === 'upi') {
-        document.getElementById('payment-upi-form').classList.remove('hidden');
-        document.getElementById('pay-btn-upi').className = 'p-3 rounded-xl border border-primary bg-primary text-white flex flex-col items-center gap-1';
-      } else if (method === 'emi') {
-        document.getElementById('payment-emi-form').classList.remove('hidden');
-        document.getElementById('pay-btn-emi').className = 'p-3 rounded-xl border border-primary bg-primary text-white flex flex-col items-center gap-1';
-      }
-    }
-
-    async function processAdmission() {
+    // Auto-capture lead to Supabase in background
+    let lastCapturedPhone = '';
+    async function autoCaptureLead() {
       const name = document.getElementById('student-name').value.trim();
-      const email = document.getElementById('student-email').value.trim();
       const phone = document.getElementById('student-phone').value.trim();
-      const password = document.getElementById('student-password').value.trim() || 'Skillsfy@2026';
+      const email = document.getElementById('student-email').value.trim();
+      const courseTitle = document.getElementById('course-select').options[document.getElementById('course-select').selectedIndex].text;
 
-      if (!name || !email) {
-        showToast('Please enter your Name and Email.', 'warning');
+      if (phone.length >= 10 && phone !== lastCapturedPhone) {
+        lastCapturedPhone = phone;
+        // Save to Supabase enquiries table immediately
+        SkillsfyAPI.saveEnquiry({
+          name: name || 'Interested Student',
+          phone: phone,
+          email: email,
+          notes: `Checkout Initiated for ${courseTitle} (₹2,999)`
+        });
+      }
+    }
+
+    async function handleProceedToPayment(e) {
+      e.preventDefault();
+      const name = document.getElementById('student-name').value.trim();
+      const phone = document.getElementById('student-phone').value.trim();
+      const email = document.getElementById('student-email').value.trim();
+      const courseTitle = document.getElementById('course-select').options[document.getElementById('course-select').selectedIndex].text;
+
+      if (!name || !phone || !email) {
+        showToast('Please fill Name, Phone, and Email.', 'warning');
         return;
       }
 
-      showToast('Creating official student profile in database...', 'info');
+      showToast('Registering student and initiating Razorpay Gateway...', 'info');
 
-      // Save student profile immediately so dashboard instantly reflects registered student
-      const profile = {
-        name: name,
-        email: email,
-        phone: phone || '+91 9876543210',
-        avatar: 'assets/default-avatar.png',
-        enrolledCourses: ['standard-course'],
-        courseProgress: {
-          'standard-course': { percent: 5, completedLessons: [], lastActive: 'Just now' }
-        },
-        affiliateStats: {
-          referralCode: `SF-${name.split(' ')[0].toUpperCase()}-2026`,
-          totalEarningsINR: 0,
-          availablePayoutINR: 0,
-          totalReferrals: 0,
-          paidEnrollments: 0
-        }
-      };
-      saveStudentProfile(profile);
-
-      // Call Backend API to register student and enroll
+      // 1. Instant save to Supabase Students and Enquiries
       try {
-        const signupRes = await SkillsfyAPI.signup({ name, email, password, phone });
-        if (signupRes && signupRes.success) {
-          await SkillsfyAPI.enroll(1);
-        } else {
-          await SkillsfyAPI.login(email, password);
-        }
+        await SkillsfyAPI.signup({
+          name: name,
+          email: email,
+          phone: phone,
+          password: 'Skillsfy@2026'
+        });
+        await SkillsfyAPI.saveEnquiry({
+          name: name,
+          phone: phone,
+          email: email,
+          notes: `Confirmed Checkout for ${courseTitle}`
+        });
       } catch (err) {
-        console.warn('Backend signup note:', err);
+        console.warn('Background sync note:', err);
       }
 
-      showToast(`Admission confirmed for ${name}!`, 'success');
-      setTimeout(() => {
-        window.location.href = `enrollment-success.html?course=${course.id}`;
-      }, 700);
+      showToast(`Student record saved! Click the Razorpay button below to complete payment.`, 'success');
+      
+      // Scroll to Razorpay button
+      const razorpayBox = document.getElementById('razorpay-live-box');
+      razorpayBox.scrollIntoView({ behavior: 'smooth' });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      initEnrollPage();
+      // Set select option if courseParam matches
+      const select = document.getElementById('course-select');
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value === courseParam) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+      updateCourseSelection();
     });
   </script>
 </body>
