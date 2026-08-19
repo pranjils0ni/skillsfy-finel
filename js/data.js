@@ -18,17 +18,17 @@ const SKILLSFY_GLOBAL_CONFIG = {
     avatar: "assets/founder.jpg",
     bio: "Passionate tech educator and digital entrepreneur on a mission to empower youth from Jabalpur and across India with high-income AI, engineering, and digital business skills.",
     socials: {
-      instagram: "https://instagram.com/pranjils0ni",
-      youtube: "https://youtube.com/@pranjils0ni",
-      linkedin: "https://linkedin.com/in/pranjils0ni",
-      x: "https://x.com/pranjils0ni"
+      instagram: "https://www.instagram.com/skillsfy?igsh=bHkzaHJ4Y21obDBs",
+      youtube: "https://youtube.com/@skillsfy?si=KlvPXToq47iqyMv8",
+      linkedin: "https://www.linkedin.com/company/skillsfy/",
+      x: "https://x.com/Skillsfy_"
     }
   },
   socials: {
-    instagram: "https://instagram.com/skillsfy",
-    youtube: "https://youtube.com/@skillsfy",
-    linkedin: "https://linkedin.com/company/skillsfy",
-    x: "https://x.com/skillsfy"
+    instagram: "https://www.instagram.com/skillsfy?igsh=bHkzaHJ4Y21obDBs",
+    youtube: "https://youtube.com/@skillsfy?si=KlvPXToq47iqyMv8",
+    linkedin: "https://www.linkedin.com/company/skillsfy/",
+    x: "https://x.com/Skillsfy_"
   }
 };
 
