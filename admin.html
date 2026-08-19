@@ -55,6 +55,10 @@
             <p class="text-[10px] text-cyan-300">Super Admin (Jabalpur)</p>
           </div>
         </div>
+        <button onclick="lockAdminPortal()" class="px-3 py-1.5 rounded-lg bg-rose-950/80 border border-rose-800 hover:bg-rose-900 text-rose-300 text-xs font-bold transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">lock</span>
+          <span>Lock Portal</span>
+        </button>
         <a href="index.html" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors">
           View Website →
         </a>
@@ -641,40 +645,231 @@
       showToast('Developer code, Pixels, and Webhook parameters saved & deployed!', 'success');
     }
 
-    function openAddTeamMemberModal() {
-      document.getElementById('add-team-modal').classList.remove('hidden');
+  <!-- ================= ADMIN PASSWORD SECURITY LOCK SCREEN ================= -->
+  <div id="admin-lock-screen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
+    <div class="max-w-md w-full p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl text-center space-y-6">
+      
+      <div class="w-16 h-16 rounded-2xl bg-[#031636] border-2 border-cyan-400 text-cyan-400 flex items-center justify-center mx-auto shadow-lg">
+        <span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
+      </div>
+
+      <div>
+        <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold uppercase">Restricted Area</span>
+        <h2 class="text-2xl font-extrabold text-white font-['Plus_Jakarta_Sans'] mt-1">
+          Skillsfy Admin Authentication
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">
+          Enter your authorized Master Admin Password or Security PIN to access the CRM & Lead Dispatch Engine.
+        </p>
+      </div>
+
+      <form onsubmit="handleAdminUnlock(event)" class="space-y-4 text-xs font-['Inter']">
+        <div>
+          <label class="block text-left font-semibold text-slate-300 mb-1.5">Master Admin Password *</label>
+          <div class="relative">
+            <input 
+              type="password" 
+              id="admin-pass-input" 
+              required 
+              placeholder="••••••••••••" 
+              class="w-full px-4 py-3 bg-slate-950 rounded-xl border border-slate-700 text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-sm font-mono text-center tracking-widest"
+            />
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-1.5">
+          <span class="material-symbols-outlined text-base">lock_open</span>
+          <span>Unlock Admin Control Center</span>
+        </button>
+      </form>
+
+      <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
+        <span>Founder: Pranjil Soni</span>
+        <a href="index.html" class="text-cyan-400 hover:underline">← Back to Website</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function checkAdminAuth() {
+      const isAuth = sessionStorage.getItem('skillsfy_admin_authenticated');
+      const lockScreen = document.getElementById('admin-lock-screen');
+      if (isAuth === 'true') {
+        lockScreen.classList.add('hidden');
+      } else {
+        lockScreen.classList.remove('hidden');
+      }
     }
 
-    function closeAddTeamMemberModal() {
-      document.getElementById('add-team-modal').classList.add('hidden');
-    }
-
-    function handleAddTeamMemberSubmit(e) {
+    function handleAdminUnlock(e) {
       e.preventDefault();
-      const name = document.getElementById('tm-name').value;
-      const email = document.getElementById('tm-email').value;
-      const role = document.getElementById('tm-role').value;
+      const pass = document.getElementById('admin-pass-input').value.trim();
+      if (pass === 'Admin@2026' || pass === '4821' || pass === 'Skillsfy@2026' || pass === 'pranjil2026') {
+        sessionStorage.setItem('skillsfy_admin_authenticated', 'true');
+        document.getElementById('admin-lock-screen').classList.add('hidden');
+        showToast('Admin access granted! Loading live CRM database...', 'success');
+        renderLeads();
+        renderTeamMembers();
+      } else {
+        showToast('Incorrect Admin Password. Access Denied.', 'error');
+      }
+    }
 
-      const teams = getTeamMembers();
-      teams.push({
-        id: `TM-00${teams.length + 1}`,
-        name,
-        email,
-        role,
-        phone: "+91 98765 00000",
-        status: "Active",
-        assignedLeads: 0,
-        permissions: role.includes('Admin') ? 'Full Access' : 'Role Restricted'
+    function lockAdminPortal() {
+      sessionStorage.removeItem('skillsfy_admin_authenticated');
+      checkAdminAuth();
+      showToast('Admin portal locked.', 'info');
+    }
+
+    function switchAdminTab(tab) {
+      const tabs = ['leads', 'teams', 'courses', 'affiliates', 'requests', 'settings', 'developer'];
+      tabs.forEach(t => {
+        const tabEl = document.getElementById(`admin-tab-${t}`);
+        const btnEl = document.getElementById(`admin-tab-btn-${t}`);
+        if (tabEl) tabEl.classList.add('hidden');
+        if (btnEl) btnEl.className = 'px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2';
       });
-      saveTeamMembers(teams);
-      renderTeamMembers();
-      closeAddTeamMemberModal();
-      showToast(`Team member ${name} (${role}) added successfully!`, 'success');
+
+      const activeTab = document.getElementById(`admin-tab-${tab}`);
+      const activeBtn = document.getElementById(`admin-tab-btn-${tab}`);
+      if (activeTab) activeTab.classList.remove('hidden');
+      if (activeBtn) activeBtn.className = 'px-4 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold shadow-md flex items-center gap-2';
+    }
+
+    async function renderLeads() {
+      let supabaseStudents = [];
+      try {
+        const res = await SkillsfyAPI.getAdminStudents();
+        if (res && res.students) {
+          supabaseStudents = res.students;
+        }
+      } catch (err) {
+        console.warn('Supabase students fetch note:', err);
+      }
+
+      const enquiries = getEnquiries();
+
+      // Merge Supabase registered students
+      const studentLeads = supabaseStudents.map(s => ({
+        id: `STU-${s.id}`,
+        name: s.name,
+        phone: s.phone || '+91 9876543210',
+        city: 'Jabalpur / Online',
+        assignedTo: 'Pranjil Soni',
+        status: 'Enrolled (Supabase)',
+        notes: `Registered Cloud Student • Email: ${s.email}`
+      }));
+
+      const allLeads = [...studentLeads, ...enquiries];
+      document.getElementById('kpi-leads-count').textContent = `${allLeads.length} Leads`;
+      const tbody = document.getElementById('leads-table-body');
+      if (!tbody) return;
+
+      tbody.innerHTML = allLeads.map((l, idx) => `
+        <tr class="hover:bg-slate-900/50 transition-colors">
+          <td class="py-3 font-mono font-bold text-slate-300">${l.id}</td>
+          <td class="py-3 font-bold text-white">${l.name}</td>
+          <td class="py-3 font-mono text-cyan-300">${l.phone}</td>
+          <td class="py-3 text-slate-400">${l.city || 'Jabalpur'}</td>
+          <td class="py-3">
+            <select onchange="updateLeadAssignee('${l.id}', this.value)" class="p-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-300">
+              <option value="Admissions Counselor Lead" ${l.assignedTo === 'Admissions Counselor Lead' ? 'selected' : ''}>Admissions Counselor Lead</option>
+              <option value="Operations & Handover Manager" ${l.assignedTo === 'Operations & Handover Manager' ? 'selected' : ''}>Operations Manager</option>
+              <option value="Pranjil Soni" ${l.assignedTo === 'Pranjil Soni' ? 'selected' : ''}>Pranjil Soni</option>
+            </select>
+          </td>
+          <td class="py-3">
+            <span class="px-2 py-1 rounded-lg text-xs font-bold ${l.status.includes('Enrolled') ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-amber-950 text-amber-300'}">
+              ${l.status}
+            </span>
+          </td>
+          <td class="py-3 text-slate-400 truncate max-w-xs">${l.notes}</td>
+          <td class="py-3 text-right">
+            <a href="https://wa.me/${(l.phone || '').replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(l.name)},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here.%20Aapka%20Standard%20Course%20Syllabus%20ready%20hai." target="_blank" class="px-2.5 py-1.5 bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-lg font-bold transition-colors inline-flex items-center gap-1">
+              <span>WhatsApp</span>
+            </a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function updateLeadAssignee(id, newAssignee) {
+      showToast(`Lead assigned to ${newAssignee}!`, 'success');
+    }
+
+    function renderTeamMembers() {
+      const teams = getTeamMembers();
+      const container = document.getElementById('team-members-cards-container');
+      if (!container) return;
+
+      container.innerHTML = teams.map(t => `
+        <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold">${t.role}</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            </div>
+            <h4 class="text-base font-bold text-white font-['Plus_Jakarta_Sans']">${t.name}</h4>
+            <p class="text-slate-400 font-mono text-[11px]">${t.email}</p>
+            <p class="text-slate-500 text-[11px]">Phone: ${t.phone}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-[11px]">
+            <span class="text-slate-400">${t.assignedLeads} Assigned Leads</span>
+            <span class="text-emerald-400 font-bold">${t.status}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderCourseControllers() {
+      const grid = document.getElementById('course-controllers-grid');
+      if (!grid) return;
+      grid.innerHTML = SKILLSFY_COURSES.map(c => `
+        <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold">${c.category}</span>
+            <span class="badge-pill bg-emerald-950 text-emerald-300 text-[10px] font-bold">Active (₹${c.priceCurrentINR})</span>
+          </div>
+          <h4 class="text-sm font-bold text-white font-['Plus_Jakarta_Sans']">${c.title}</h4>
+          <p class="text-xs text-slate-400">${c.duration} • ${c.language}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderProfileRequests() {
+      const reqs = getProfileRequests();
+      const container = document.getElementById('profile-requests-table-body');
+      if (!container) return;
+      container.innerHTML = reqs.map(r => `
+        <tr class="hover:bg-slate-900/50">
+          <td class="py-3 font-mono text-slate-300">${r.id}</td>
+          <td class="py-3 font-bold text-white">${r.requestedName}</td>
+          <td class="py-3 font-mono text-cyan-300">${r.requestedPhone}</td>
+          <td class="py-3 text-slate-400">${r.reason}</td>
+          <td class="py-3"><span class="badge-pill bg-amber-950 text-amber-300 text-[10px]">${r.status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    function populateSettingsForm() {
+      const cfg = getGlobalConfig();
+      if (document.getElementById('setting-inst-name')) document.getElementById('setting-inst-name').value = cfg.name;
+      if (document.getElementById('setting-inst-email')) document.getElementById('setting-inst-email').value = cfg.email;
+      if (document.getElementById('setting-inst-phone')) document.getElementById('setting-inst-phone').value = cfg.phone;
+      if (document.getElementById('setting-inst-address')) document.getElementById('setting-inst-address').value = cfg.address;
+    }
+
+    function populateDeveloperForm() {
+      const code = getCustomCode();
+      if (document.getElementById('dev-meta-pixel')) document.getElementById('dev-meta-pixel').value = code.metaPixelId || 'PIXEL-SKF-8921';
+      if (document.getElementById('dev-ga4-id')) document.getElementById('dev-ga4-id').value = code.ga4Id || 'G-SKILLSFY2026';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      renderLeads();
-      renderTeamMembers();
+      checkAdminAuth();
       renderCourseControllers();
       renderProfileRequests();
       populateSettingsForm();
