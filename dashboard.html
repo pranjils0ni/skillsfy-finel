@@ -34,8 +34,8 @@
 </head>
 <body class="bg-surface text-slate-900 font-['Inter'] antialiased min-h-screen flex flex-col">
 
-  <!-- ================= TOP NAVIGATION ================= -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+  <!-- ================= TOP FROZEN NAVIGATION ================= -->
+  <header class="sticky-header-frozen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
       
       <a href="index.html" class="flex items-center gap-3">
@@ -49,9 +49,9 @@
           <span>My Learning</span>
         </button>
         <button onclick="switchTab('affiliate')" id="tab-btn-affiliate" class="px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-sm text-emerald-600">payments</span>
-          <span>25% Affiliate Portal</span>
-          <span class="badge-pill bg-emerald-100 text-emerald-800 text-[9px]">₹750/Sale</span>
+          <span class="material-symbols-outlined text-sm text-purple-600">stars</span>
+          <span>Ambassador Club</span>
+          <span class="badge-pill bg-purple-100 text-purple-800 text-[9px] font-bold">By Invite</span>
         </button>
         <button onclick="switchTab('profile')" id="tab-btn-profile" class="px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5">
           <span class="material-symbols-outlined text-sm text-cyan-600">manage_accounts</span>
@@ -67,10 +67,10 @@
         </button>
 
         <div class="flex items-center gap-2.5 pl-2 border-l border-slate-200">
-          <img id="header-user-avatar" src="assets/founder.jpg" alt="Student Avatar" class="w-9 h-9 rounded-full object-cover border-2 border-cyan-500"/>
+          <img id="header-user-avatar" src="assets/logo-badge.png" alt="Learner Avatar" class="w-9 h-9 rounded-full object-cover border-2 border-cyan-500 bg-[#031636] p-0.5"/>
           <div class="hidden sm:block text-left text-xs">
-            <p class="font-bold text-slate-900 leading-tight" id="header-user-name">Pranjil Soni</p>
-            <p class="text-[10px] text-slate-500 font-['Geist']" id="header-user-email">theskillsfy@gmail.com</p>
+            <p class="font-bold text-slate-900 leading-tight" id="header-user-name">Aman Verma</p>
+            <p class="text-[10px] text-slate-500 font-['Geist']" id="header-user-email">aman.verma@example.com</p>
           </div>
         </div>
       </div>
@@ -85,19 +85,19 @@
         
         <div class="flex items-center gap-4">
           <div class="relative">
-            <img id="dash-banner-avatar" src="assets/founder.jpg" alt="Profile" class="w-16 h-16 rounded-2xl object-cover border-2 border-cyan-400 shadow-md"/>
-            <button onclick="document.getElementById('avatar-file-input').click()" class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#00ccf9] text-slate-950 flex items-center justify-center shadow-md hover:scale-110 transition-transform" title="Change Avatar">
+            <img id="dash-banner-avatar" src="assets/logo-badge.png" alt="Learner Profile" class="w-16 h-16 rounded-2xl object-cover border-2 border-cyan-400 shadow-md bg-[#031636] p-1"/>
+            <button onclick="document.getElementById('avatar-file-input').click()" class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#00ccf9] text-slate-950 flex items-center justify-center shadow-md hover:scale-110 transition-transform" title="Upload Custom Photo">
               <span class="material-symbols-outlined text-xs font-bold">edit</span>
             </button>
             <input type="file" id="avatar-file-input" class="hidden" accept="image/*" onchange="handleAvatarUpload(event)">
           </div>
           <div>
             <div class="flex items-center gap-2 mb-0.5">
-              <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px]">Jabalpur Cohort 2026</span>
-              <span class="text-xs font-['Geist'] text-slate-300">Student Roll No: SF-2026-8942</span>
+              <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px]">Skillsfy Certified Learner</span>
+              <span class="text-xs font-['Geist'] text-slate-300" id="dash-student-roll">Roll No: SF-2026-LEARNER</span>
             </div>
-            <h1 class="text-2xl sm:text-3xl font-extrabold font-['Plus_Jakarta_Sans']" id="dash-welcome-name">Welcome Back, Pranjil!</h1>
-            <p class="text-xs text-slate-300 font-['Inter'] mt-0.5">Skillsfy Standard Course: AI + Digital Business Masterclass (65% Completed)</p>
+            <h1 class="text-2xl sm:text-3xl font-extrabold font-['Plus_Jakarta_Sans']" id="dash-welcome-name">Welcome Back, Learner!</h1>
+            <p class="text-xs text-slate-300 font-['Inter'] mt-0.5">Skillsfy Standard Course: AI + Digital Business Masterclass (Active Enrollment)</p>
           </div>
         </div>
 
