@@ -72,19 +72,20 @@
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium font-['Geist'] text-slate-700">
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium font-['Geist'] text-slate-700">
         <a href="index.html" class="text-primary font-bold transition-colors">Home</a>
+        <a href="about.html" class="hover:text-primary transition-colors">About Us</a>
         <a href="courses.html" class="hover:text-primary transition-colors">All Courses</a>
         <a href="course-details.html?id=standard-course" class="text-cyan-700 font-bold hover:text-primary transition-colors flex items-center gap-1">
           <span>Standard Course</span>
           <span class="badge-pill bg-cyan-100 text-cyan-800 text-[10px]">₹2,999</span>
         </a>
-        <a href="#founder-section" class="hover:text-primary transition-colors">Meet Founder</a>
         <a href="dashboard.html" class="hover:text-primary transition-colors flex items-center gap-1">
           <span>Student Portal</span>
           <span class="badge-pill bg-cyan-100 text-cyan-800 text-[10px]">LMS</span>
         </a>
         <a href="verify.html" class="hover:text-primary transition-colors">Verify Certificate</a>
+        <a href="contact.html" class="hover:text-primary transition-colors">Contact Us</a>
       </nav>
 
       <!-- Desktop Header Actions -->
@@ -101,7 +102,7 @@
       </div>
 
       <!-- Mobile Menu Toggle Button -->
-      <div class="flex items-center gap-2 md:hidden">
+      <div class="flex items-center gap-2 lg:hidden">
         <a href="enroll.html?course=standard-course" class="btn-cyan py-1.5 px-3 rounded-lg text-xs font-bold">Enroll</a>
         <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none" aria-label="Toggle menu">
           <span class="material-symbols-outlined text-2xl">menu</span>
@@ -112,8 +113,8 @@
   </header>
 
   <!-- ================= MOBILE NAVIGATION DRAWER ================= -->
-  <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm">
-    <div class="fixed top-0 right-0 w-4/5 max-w-sm h-full bg-white shadow-2xl p-6 flex flex-col justify-between font-['Geist'] text-sm">
+  <div id="mobile-menu" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm">
+    <div class="fixed top-0 right-0 w-4/5 max-w-sm h-full bg-white shadow-2xl p-6 flex flex-col justify-between font-['Geist'] text-sm overflow-y-auto">
       <div class="space-y-6">
         <div class="flex items-center justify-between pb-4 border-b border-slate-100">
           <img src="assets/logo.png" alt="Skillsfy" class="h-8 object-contain" />
@@ -121,23 +122,23 @@
             <span class="material-symbols-outlined text-2xl">close</span>
           </button>
         </div>
-        <nav class="space-y-4 text-base font-semibold text-slate-800">
+        <nav class="space-y-3.5 text-sm font-semibold text-slate-800">
           <a href="index.html" class="block py-1 hover:text-primary">Home</a>
+          <a href="about.html" class="block py-1 text-cyan-700 font-bold hover:text-primary">About Us & Founder</a>
           <a href="courses.html" class="block py-1 hover:text-primary">All Programs</a>
-          <a href="course-details.html?id=standard-course" class="block py-1 text-cyan-700 font-bold">Standard Course (₹2,999)</a>
-          <a href="#founder-section" onclick="toggleMobileMenu()" class="block py-1 hover:text-primary">Meet Founder (Pranjil Soni)</a>
-          <a href="dashboard.html" class="block py-1 hover:text-primary">Student & Affiliate Portal (25% Commission)</a>
+          <a href="course-details.html?id=standard-course" class="block py-1 hover:text-primary">Standard Course (₹2,999)</a>
+          <a href="dashboard.html" class="block py-1 hover:text-primary">Student Portal (LMS)</a>
           <a href="verify.html" class="block py-1 hover:text-primary">Verify Certificate</a>
-          <a href="admin.html" class="block py-1 text-slate-400 text-xs">Admin & Team CRM</a>
+          <a href="contact.html" class="block py-1 text-[#00677f] font-bold hover:text-primary">Contact & Admissions Desk</a>
         </nav>
       </div>
       <div class="pt-6 border-t border-slate-100 space-y-3">
         <a href="enroll.html?course=standard-course" class="w-full btn-primary py-3 rounded-xl text-center block font-bold text-xs">
           Enroll in Standard Course (₹2,999)
         </a>
-        <button onclick="openEnquiryModal(); toggleMobileMenu();" class="w-full py-2.5 px-4 rounded-xl border border-slate-200 text-slate-700 text-xs font-semibold text-center block">
+        <a href="https://wa.me/919876543210?text=Namaste%20Skillsfy,%20I%20want%20the%20AI%20Course%20Syllabus." target="_blank" class="w-full py-2.5 px-4 rounded-xl border border-slate-200 text-slate-700 text-xs font-semibold text-center block">
           Get Free Syllabus on WhatsApp
-        </button>
+        </a>
       </div>
     </div>
   </div>
