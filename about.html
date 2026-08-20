@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Skillsfy - Institute of Technology</title>
+  <meta name="description" content="Learn about Skillsfy - Institute of Technology (Jabalpur, MP). Founded by Pranjil Soni with a mission to empower 100,000+ Indian youth with practical AI & digital business skills in Hinglish."/>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <link rel="stylesheet" href="css/styles.css"/>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#031636',
+            'primary-container': '#1a2b4c',
+            secondary: '#00677f',
+            'secondary-container': '#00ccf9',
+            surface: '#faf8ff',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#faf8ff] text-slate-900 font-['Inter'] antialiased min-h-screen flex flex-col selection:bg-cyan-200">
+
+  <!-- ================= GLOBAL FROZEN HEADER ================= -->
+  <header class="sticky-header-frozen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-img"/>
+        <span class="text-[10px] tracking-widest text-slate-400 uppercase font-['Geist'] font-bold pl-2 border-l border-slate-300 hidden sm:inline">Institute of Technology</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium font-['Geist'] text-slate-700">
+        <a href="index.html" class="hover:text-primary transition-colors">Home</a>
+        <a href="about.html" class="text-primary font-bold border-b-2 border-[#00ccf9] pb-0.5">About Us</a>
+        <a href="courses.html" class="hover:text-primary transition-colors">All Courses</a>
+        <a href="course-details.html?id=standard-course" class="text-cyan-700 font-bold hover:text-primary transition-colors flex items-center gap-1">
+          <span>Standard Course</span>
+          <span class="badge-pill bg-cyan-100 text-cyan-800 text-[10px]">₹2,999</span>
+        </a>
+        <a href="dashboard.html" class="hover:text-primary transition-colors">Student Portal</a>
+        <a href="verify.html" class="hover:text-primary transition-colors">Verify Certificate</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="enroll.html?course=standard-course" class="btn-primary py-2.5 px-5 rounded-xl text-xs font-bold shadow-sm flex items-center gap-1.5">
+          <span>Enroll Now</span>
+          <span class="material-symbols-outlined text-base text-[#00ccf9]">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="py-16 sm:py-24 bg-gradient-to-b from-[#031636] to-[#1a2b4c] text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
+      <span class="badge-pill bg-[#00ccf9]/20 text-[#00ccf9] border border-[#00ccf9]/40 text-xs font-bold uppercase tracking-wider">
+        Our Story & Mission
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold font-['Plus_Jakarta_Sans'] max-w-3xl mx-auto leading-tight">
+        Empowering India's Next Generation of AI Builders & Digital Creators
+      </h1>
+      <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto font-['Inter']">
+        Bridging the gap between theoretical college degrees and high-income AI, automation, and digital business skills — delivered in clear, conversational Hinglish.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= CORE MISSION GRID ================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full space-y-16">
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-md space-y-4">
+        <div class="w-12 h-12 rounded-2xl bg-cyan-100 text-[#00677f] flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">smart_toy</span>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Practical 14 AI Tools</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          We don't teach abstract theory. You learn by building production AI apps, automating workflows with Make/Zapier, and mastering LLMs in real-time labs.
+        </p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-md space-y-4">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">currency_rupee</span>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Hyper-Affordable Pricing</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          While corporate bootcamps charge ₹30,000 to ₹50,000, Skillsfy offers our complete 14-module flagship program at an accessible ₹2,999 offer fee.
+        </p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-md space-y-4">
+        <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-800 flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">location_city</span>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Jabalpur Flagship Center</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Proudly rooted in Civic Center, Jabalpur (Madhya Pradesh), we provide physical mentorship along with pan-India interactive cohort access.
+        </p>
+      </div>
+    </div>
+
+    <!-- Founder Section -->
+    <div class="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 shadow-md">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-4 text-center">
+          <img src="assets/founder.jpg" alt="Pranjil Soni" class="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl object-cover mx-auto border-4 border-cyan-400 shadow-xl"/>
+          <h3 class="text-xl font-extrabold text-slate-900 font-['Plus_Jakarta_Sans'] mt-4">Pranjil Soni</h3>
+          <p class="text-xs text-cyan-800 font-bold font-['Geist']">Founder & CEO, Skillsfy Institute</p>
+        </div>
+        <div class="lg:col-span-8 space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed font-['Inter']">
+          <span class="badge-pill bg-cyan-100 text-cyan-800 text-[11px] font-bold">Founder's Note</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-primary font-['Plus_Jakarta_Sans']">
+            "Education in Tier-2 and Tier-3 India Deserves Global-Standard Practical Skills."
+          </h2>
+          <p>
+            Having witnessed millions of students graduate with outdated theoretical syllabi that don't match the modern AI economy, I founded Skillsfy with a singular objective: <strong>to teach real skills that generate real income</strong>.
+          </p>
+          <p>
+            Whether you are building AI agents, launching a freelance agency, or automating client workflows, Skillsfy equips you with hands-on blueprints, prompts, and personal mentorship.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-3 font-['Geist']">
+            <a href="https://www.instagram.com/skillsfy?igsh=bHkzaHJ4Y21obDBs" target="_blank" class="text-cyan-700 font-bold hover:underline flex items-center gap-1">
+              <span>Instagram: @skillsfy</span>
+            </a>
+            <a href="https://youtube.com/@skillsfy?si=KlvPXToq47iqyMv8" target="_blank" class="text-cyan-700 font-bold hover:underline flex items-center gap-1">
+              <span>YouTube: @skillsfy</span>
+            </a>
+            <a href="https://x.com/Skillsfy_" target="_blank" class="text-cyan-700 font-bold hover:underline flex items-center gap-1">
+              <span>X: @Skillsfy_</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statutory Trust Strip -->
+    <div class="p-6 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div class="space-y-1">
+        <h4 class="text-base font-bold font-['Plus_Jakarta_Sans']">Recognized & Registered Training Institute</h4>
+        <p class="text-xs text-slate-300">Compliant with MSME, GST, and Indian Educational Standards. SAC Code: 999293.</p>
+      </div>
+      <a href="contact.html" class="px-5 py-2.5 bg-[#00ccf9] text-slate-950 text-xs font-bold rounded-xl shadow hover:bg-cyan-300 transition-colors shrink-0">
+        Visit Jabalpur Center →
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ================= GLOBAL FOOTER ================= -->
+  <footer class="bg-slate-950 text-white pt-12 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="space-y-3">
+          <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-white"/>
+          <p class="text-xs text-slate-400">Build Skills for the future that matter. Practical AI & digital business education.</p>
+        </div>
+        <div class="space-y-2 text-xs text-slate-400">
+          <h4 class="font-bold text-white uppercase font-['Geist']">Links</h4>
+          <p><a href="about.html" class="hover:text-white">About Us</a></p>
+          <p><a href="courses.html" class="hover:text-white">All Programs</a></p>
+          <p><a href="verify.html" class="hover:text-white">Verify Certificate</a></p>
+        </div>
+        <div class="space-y-2 text-xs text-slate-400">
+          <h4 class="font-bold text-white uppercase font-['Geist']">Legal & Trust</h4>
+          <p><a href="refund-policy.html" class="hover:text-white">Refund Policy</a></p>
+          <p><a href="privacy-policy.html" class="hover:text-white">Privacy Policy (DPDP 2023)</a></p>
+          <p><a href="terms.html" class="hover:text-white">Terms of Service</a></p>
+        </div>
+        <div class="space-y-2 text-xs text-slate-400 font-['Geist']">
+          <h4 class="font-bold text-white uppercase">Connect</h4>
+          <p><a href="https://www.instagram.com/skillsfy?igsh=bHkzaHJ4Y21obDBs" target="_blank" class="hover:text-cyan-300">Instagram</a></p>
+          <p><a href="https://youtube.com/@skillsfy?si=KlvPXToq47iqyMv8" target="_blank" class="hover:text-cyan-300">YouTube</a></p>
+          <p><a href="https://x.com/Skillsfy_" target="_blank" class="hover:text-cyan-300">X / Twitter</a></p>
+        </div>
+      </div>
+      <div class="pt-6 border-t border-slate-800 text-xs text-slate-500 font-['Geist'] text-center">
+        © 2026 Skillsfy - Institute of Technology (Civic Center, Jabalpur, MP - 482002). All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
