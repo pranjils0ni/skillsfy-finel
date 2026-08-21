@@ -1,7 +1,9 @@
 {
   "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index.js" },
-    { "source": "/verify", "destination": "/api/index.js" }
+    { "source": "/verify/:code", "destination": "/api/index.js" }
   ]
 }
