@@ -59,7 +59,7 @@
           <span class="material-symbols-outlined text-sm">lock</span>
           <span>Lock Portal</span>
         </button>
-        <a href="index.html" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors">
+        <a href="/" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors">
           View Website →
         </a>
       </div>
@@ -399,6 +399,72 @@
     </div>
   </div>
 
+  <!-- ================= ADMIN FOOTER STRIP ================= -->
+  <footer class="bg-slate-950 border-t border-slate-800 py-8 text-xs font-['Geist'] text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-white"/>
+        <span class="text-[10px] text-slate-500 uppercase tracking-widest pl-2 border-l border-slate-800">Admin Control Unit</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 text-[11px]">
+        <a href="/" class="hover:text-white">Home</a>
+        <a href="/about" class="hover:text-white">About Us</a>
+        <a href="/contact" class="hover:text-white">Contact Desk</a>
+        <a href="/dashboard" class="text-cyan-400 font-bold hover:underline">Student Portal</a>
+        <a href="/verify" class="hover:text-white">Verify Certificate</a>
+        <a href="/refund-policy" class="hover:text-white">Refund Policy</a>
+        <a href="/privacy-policy" class="hover:text-white">Privacy Policy</a>
+        <a href="/terms" class="hover:text-white">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= ADMIN PASSWORD SECURITY LOCK SCREEN ================= -->
+  <div id="admin-lock-screen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
+    <div class="max-w-md w-full p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl text-center space-y-6">
+      
+      <div class="w-16 h-16 rounded-2xl bg-[#031636] border-2 border-cyan-400 text-cyan-400 flex items-center justify-center mx-auto shadow-lg">
+        <span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
+      </div>
+
+      <div>
+        <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold uppercase">Restricted Area</span>
+        <h2 class="text-2xl font-extrabold text-white font-['Plus_Jakarta_Sans'] mt-1">
+          Skillsfy Admin Authentication
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">
+          Enter your authorized Master Admin Password or Security PIN to access the CRM & Lead Dispatch Engine.
+        </p>
+      </div>
+
+      <form onsubmit="handleAdminUnlock(event)" class="space-y-4 text-xs font-['Inter']">
+        <div>
+          <label class="block text-left font-semibold text-slate-300 mb-1.5">Master Admin Password *</label>
+          <div class="relative">
+            <input 
+              type="password" 
+              id="admin-pass-input" 
+              required 
+              placeholder="••••••••••••" 
+              class="w-full px-4 py-3 bg-slate-950 rounded-xl border border-slate-700 text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-sm font-mono text-center tracking-widest"
+            />
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-1.5">
+          <span class="material-symbols-outlined text-base">lock_open</span>
+          <span>Unlock Admin Control Center</span>
+        </button>
+      </form>
+
+      <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
+        <span>Founder: Pranjil Soni</span>
+        <a href="/" class="text-cyan-400 hover:underline">← Back to Website</a>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
@@ -641,59 +707,8 @@
         customCSS: document.getElementById('dev-custom-css').value,
         customJS: document.getElementById('dev-custom-js').value
       };
-      saveCustomCode(codeObj);
       showToast('Developer code, Pixels, and Webhook parameters saved & deployed!', 'success');
     }
-
-  <!-- ================= ADMIN PASSWORD SECURITY LOCK SCREEN ================= -->
-  <div id="admin-lock-screen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
-    <div class="max-w-md w-full p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl text-center space-y-6">
-      
-      <div class="w-16 h-16 rounded-2xl bg-[#031636] border-2 border-cyan-400 text-cyan-400 flex items-center justify-center mx-auto shadow-lg">
-        <span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
-      </div>
-
-      <div>
-        <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold uppercase">Restricted Area</span>
-        <h2 class="text-2xl font-extrabold text-white font-['Plus_Jakarta_Sans'] mt-1">
-          Skillsfy Admin Authentication
-        </h2>
-        <p class="text-xs text-slate-400 mt-1">
-          Enter your authorized Master Admin Password or Security PIN to access the CRM & Lead Dispatch Engine.
-        </p>
-      </div>
-
-      <form onsubmit="handleAdminUnlock(event)" class="space-y-4 text-xs font-['Inter']">
-        <div>
-          <label class="block text-left font-semibold text-slate-300 mb-1.5">Master Admin Password *</label>
-          <div class="relative">
-            <input 
-              type="password" 
-              id="admin-pass-input" 
-              required 
-              placeholder="••••••••••••" 
-              class="w-full px-4 py-3 bg-slate-950 rounded-xl border border-slate-700 text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-sm font-mono text-center tracking-widest"
-            />
-          </div>
-        </div>
-
-        <button type="submit" class="w-full py-3.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-1.5">
-          <span class="material-symbols-outlined text-base">lock_open</span>
-          <span>Unlock Admin Control Center</span>
-        </button>
-      </form>
-
-      <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
-        <span>Founder: Pranjil Soni</span>
-        <a href="index.html" class="text-cyan-400 hover:underline">← Back to Website</a>
-      </div>
-
-    </div>
-  </div>
-
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
-  <script>
     function checkAdminAuth() {
       const isAuth = sessionStorage.getItem('skillsfy_admin_authenticated');
       const lockScreen = document.getElementById('admin-lock-screen');
