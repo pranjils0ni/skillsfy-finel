@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student & Affiliate Dashboard | Skillsfy - Institute of Technology</title>
+  <title>Student LMS Portal & Learning Dashboard | Skillsfy - Institute of Technology</title>
   
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,655 +32,500 @@
     }
   </script>
 </head>
-<body class="bg-surface text-slate-900 font-['Inter'] antialiased min-h-screen flex flex-col">
+<body class="bg-surface text-slate-900 font-['Inter'] antialiased min-h-screen flex flex-col selection:bg-cyan-200">
 
-  <!-- ================= TOP FROZEN NAVIGATION ================= -->
-  <header class="sticky-header-frozen">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
-      
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-img object-contain" />
+  <!-- ================= AUTH GATE: SHOWN WHEN NOT LOGGED IN ================= -->
+  <div id="student-login-gate" class="min-h-screen bg-gradient-to-b from-[#031636] to-[#1a2b4c] text-white flex flex-col justify-between p-4 sm:p-6">
+    
+    <!-- Top Bar -->
+    <header class="max-w-6xl mx-auto w-full flex items-center justify-between py-4">
+      <a href="/" class="flex items-center gap-2.5">
+        <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-white"/>
       </a>
+      <a href="/" class="text-xs font-bold text-slate-300 hover:text-cyan-300 transition-colors flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">arrow_back</span>
+        <span>Back to Home</span>
+      </a>
+    </header>
 
-      <!-- Portal Tabs Switcher -->
-      <div class="flex items-center gap-2 p-1 bg-slate-100 rounded-xl font-['Geist'] text-xs font-bold">
-        <button onclick="switchTab('learning')" id="tab-btn-learning" class="px-4 py-2 rounded-lg bg-primary text-white shadow-sm transition-all flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-sm">school</span>
-          <span>My Learning</span>
-        </button>
-        <button onclick="switchTab('affiliate')" id="tab-btn-affiliate" class="px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-sm text-purple-600">stars</span>
-          <span>Ambassador Club</span>
-          <span class="badge-pill bg-purple-100 text-purple-800 text-[9px] font-bold">By Invite</span>
-        </button>
-        <button onclick="switchTab('profile')" id="tab-btn-profile" class="px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-sm text-cyan-600">manage_accounts</span>
-          <span>Profile & Security</span>
-        </button>
-      </div>
-
-      <!-- User avatar dropdown & Login Switcher -->
-      <div class="flex items-center gap-3">
-        <button onclick="openStudentLoginModal()" class="px-3 py-1.5 bg-primary text-white hover:bg-slate-800 text-xs font-bold rounded-xl flex items-center gap-1.5 shadow-sm">
-          <span class="material-symbols-outlined text-sm text-[#00ccf9]">account_circle</span>
-          <span id="btn-login-label">Login / Switch</span>
-        </button>
-
-        <div class="flex items-center gap-2.5 pl-2 border-l border-slate-200">
-          <img id="header-user-avatar" src="assets/logo-badge.png" alt="Learner Avatar" class="w-9 h-9 rounded-full object-cover border-2 border-cyan-500 bg-[#031636] p-0.5"/>
-          <div class="hidden sm:block text-left text-xs">
-            <p class="font-bold text-slate-900 leading-tight" id="header-user-name">Aman Verma</p>
-            <p class="text-[10px] text-slate-500 font-['Geist']" id="header-user-email">aman.verma@example.com</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </header>
-
-  <!-- ================= DASHBOARD HERO BANNER ================= -->
-  <section class="bg-[#031636] text-white py-8 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <!-- Main Auth Card Grid -->
+    <main class="max-w-4xl mx-auto w-full my-auto py-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-slate-900/90 rounded-3xl border border-slate-800 shadow-2xl p-6 sm:p-10 backdrop-blur-xl">
         
-        <div class="flex items-center gap-4">
-          <div class="relative">
-            <img id="dash-banner-avatar" src="assets/logo-badge.png" alt="Learner Profile" class="w-16 h-16 rounded-2xl object-cover border-2 border-cyan-400 shadow-md bg-[#031636] p-1"/>
-            <button onclick="document.getElementById('avatar-file-input').click()" class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#00ccf9] text-slate-950 flex items-center justify-center shadow-md hover:scale-110 transition-transform" title="Upload Custom Photo">
-              <span class="material-symbols-outlined text-xs font-bold">edit</span>
-            </button>
-            <input type="file" id="avatar-file-input" class="hidden" accept="image/*" onchange="handleAvatarUpload(event)">
-          </div>
+        <!-- Left Side: Value Props & Enrollment CTA -->
+        <div class="md:col-span-5 space-y-6 border-b md:border-b-0 md:border-r border-slate-800 pb-6 md:pb-0 md:pr-6 text-center md:text-left">
           <div>
-            <div class="flex items-center gap-2 mb-0.5">
-              <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px]">Skillsfy Certified Learner</span>
-              <span class="text-xs font-['Geist'] text-slate-300" id="dash-student-roll">Roll No: SF-2026-LEARNER</span>
-            </div>
-            <h1 class="text-2xl sm:text-3xl font-extrabold font-['Plus_Jakarta_Sans']" id="dash-welcome-name">Welcome Back, Learner!</h1>
-            <p class="text-xs text-slate-300 font-['Inter'] mt-0.5">Skillsfy Standard Course: AI + Digital Business Masterclass (Active Enrollment)</p>
+            <span class="badge-pill bg-[#00ccf9]/20 text-[#00ccf9] border border-[#00ccf9]/40 text-[10px] font-bold uppercase">
+              Official Student LMS
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold font-['Plus_Jakarta_Sans'] text-white mt-2">
+              Skillsfy Learning Portal
+            </h1>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+              Access your 14 AI modules, video lessons, prompt vault, assignments, and verified certificates.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 text-xs space-y-2 text-left">
+            <p class="font-bold text-cyan-300 font-['Geist']">Not enrolled yet?</p>
+            <p class="text-slate-400 text-[11px]">Join our flagship cohort and start building high-income AI skills in Hinglish.</p>
+            <a href="/enroll" class="w-full py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded-xl shadow transition-all flex items-center justify-center gap-1 mt-2">
+              <span>Enroll in Masterclass (₹2,999)</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+
+          <div class="flex items-center justify-center md:justify-start gap-4 text-[11px] text-slate-400 font-['Geist']">
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-emerald-400 text-sm">verified</span> 14 AI Tools</span>
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-cyan-400 text-sm">lock</span> SSL Secure</span>
           </div>
         </div>
 
-        <div class="flex items-center gap-3">
-          <div class="p-3 bg-white/10 rounded-xl border border-white/15 backdrop-blur-sm flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
-              <span class="material-symbols-outlined text-xl">local_fire_department</span>
-            </div>
+        <!-- Right Side: Supabase Login Form -->
+        <div class="md:col-span-7 space-y-5">
+          <div class="text-center md:text-left">
+            <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Student Sign In</h2>
+            <p class="text-xs text-slate-400">Enter your registered email / roll number and password to continue.</p>
+          </div>
+
+          <form onsubmit="handleStudentAuthLogin(event)" class="space-y-4 text-xs font-['Inter']">
             <div>
-              <p class="text-[10px] text-slate-300 uppercase font-['Geist'] font-semibold">Learning Streak</p>
-              <p class="text-sm font-extrabold text-white font-['Plus_Jakarta_Sans']">14 Days 🔥</p>
-            </div>
-          </div>
-
-          <a href="lms.html" class="btn-cyan px-4 py-3 rounded-xl font-bold text-xs shadow-lg flex items-center gap-1.5">
-            <span>Continue LMS</span>
-            <span class="material-symbols-outlined text-base">play_circle</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= TAB 1: MY LEARNING ================= -->
-  <main id="tab-content-learning" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-1">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      
-      <!-- Left: Enrolled Courses & LMS Access -->
-      <div class="lg:col-span-8 space-y-6">
-        
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-xl font-bold text-primary font-['Plus_Jakarta_Sans'] flex items-center gap-2">
-              <span class="material-symbols-outlined text-[#00677f]">school</span>
-              <span>Enrolled Programs</span>
-            </h2>
-            <a href="courses.html" class="text-xs font-bold text-[#00677f] hover:underline">Explore More Courses</a>
-          </div>
-
-          <!-- Standard Course Card -->
-          <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div class="flex items-center gap-4">
-                <div class="w-14 h-14 rounded-xl bg-[#031636] text-white flex items-center justify-center font-bold text-lg shrink-0">
-                  <span class="material-symbols-outlined text-3xl text-cyan-400">smart_toy</span>
-                </div>
-                <div>
-                  <span class="badge-pill bg-cyan-100 text-cyan-800 text-[10px] font-bold">14 AI Modules</span>
-                  <h3 class="text-base font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Skillsfy Standard Course: AI + Digital Business Masterclass</h3>
-                  <p class="text-xs text-slate-500 font-['Geist']">50+ Hours • Hinglish • Next Lab: 1.4 System Prompting</p>
-                </div>
-              </div>
-              <a href="lms.html" class="btn-primary py-2.5 px-4 rounded-xl text-xs font-bold shrink-0 flex items-center gap-1">
-                <span>Resume Lecture</span>
-                <span class="material-symbols-outlined text-sm text-[#00ccf9]">arrow_forward</span>
-              </a>
+              <label class="block font-semibold text-slate-300 mb-1.5 text-left">Email Address or Roll Number *</label>
+              <input 
+                type="text" 
+                id="auth-identifier" 
+                required 
+                placeholder="e.g. rahul@gmail.com or SF-2026-8942" 
+                class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+              />
             </div>
 
-            <!-- Progress Bar -->
-            <div class="pt-2">
-              <div class="flex justify-between text-xs font-['Geist'] mb-1">
-                <span class="font-bold text-slate-700">Course Completion: 65%</span>
-                <span class="text-slate-500">16 / 24 Lessons Completed</span>
-              </div>
-              <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-[#00677f] to-[#00ccf9] rounded-full" style="width: 65%;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Verified Certificates Section -->
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="text-lg font-bold text-primary font-['Plus_Jakarta_Sans'] flex items-center gap-2">
-              <span class="material-symbols-outlined text-amber-500 fill">workspace_premium</span>
-              <span>Verified Certificates</span>
-            </h2>
-            <span class="badge-pill bg-emerald-100 text-emerald-800 text-xs font-bold">1 Accredited</span>
-          </div>
-
-          <div class="p-4 rounded-xl bg-gradient-to-r from-slate-900 to-[#031636] text-white flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-              <img src="assets/logo-badge.png" alt="Skillsfy Badge" class="w-12 h-12 rounded-xl object-contain bg-white/10 p-1 border border-white/20"/>
-              <div>
-                <h4 class="font-bold text-sm text-white font-['Plus_Jakarta_Sans']">Certified AI + Digital Business Specialist</h4>
-                <p class="text-[11px] text-cyan-300 font-['Geist']">ID: CERT-SKF-7821 • Issued: August 2026</p>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <a href="verify.html?id=CERT-SKF-7821" target="_blank" class="px-3.5 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors flex items-center gap-1">
-                <span class="material-symbols-outlined text-sm">verified</span>
-                <span>Verify Credential</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Right: Live Schedule & Doubt Assistance -->
-      <div class="lg:col-span-4 space-y-6">
-        <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
-          <h3 class="font-bold text-slate-900 text-sm font-['Plus_Jakarta_Sans'] flex items-center gap-2">
-            <span class="material-symbols-outlined text-cyan-600">live_tv</span>
-            <span>Upcoming Live Doubt Sessions</span>
-          </h3>
-          <div class="space-y-2.5 text-xs font-['Inter']">
-            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-              <div class="flex justify-between items-center mb-1">
-                <span class="font-bold text-slate-800">Weekly AI Q&A Session</span>
-                <span class="badge-pill bg-emerald-100 text-emerald-800 text-[9px] font-bold">This Saturday</span>
-              </div>
-              <p class="text-slate-500 text-[11px]">07:00 PM IST • Zoom Link active in LMS</p>
-            </div>
-            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-              <div class="flex justify-between items-center mb-1">
-                <span class="font-bold text-slate-800">Client Outreach Strategy Lab</span>
-                <span class="badge-pill bg-cyan-100 text-cyan-800 text-[9px] font-bold">Next Tuesday</span>
-              </div>
-              <p class="text-slate-500 text-[11px]">08:00 PM IST • Hosted by Pranjil Soni</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- ================= TAB 2: 25% AFFILIATE PORTAL ================= -->
-  <main id="tab-content-affiliate" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-1 hidden">
-    <div class="space-y-8">
-      
-      <!-- Top Overview Banner -->
-      <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#031636] via-[#004e60] to-[#031636] text-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="badge-pill bg-emerald-400 text-slate-950 font-extrabold text-xs">25% FLAT COMMISSION</span>
-            <span class="text-xs text-cyan-300 font-['Geist']">Earn ₹750 on every ₹2,999 Standard Course referral</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold font-['Plus_Jakarta_Sans']">Skillsfy Partner & Affiliate Program</h2>
-          <p class="text-xs sm:text-sm text-slate-200 mt-1 max-w-xl font-['Inter']">
-            Share real, practical tech education with your network. When someone enrolls in the Standard Course using your referral link, you receive 25% commission straight to your UPI/Bank.
-          </p>
-        </div>
-        <div class="p-4 bg-white/10 rounded-2xl border border-white/20 text-center shrink-0">
-          <span class="text-xs text-slate-300 font-['Geist'] block">Total Available Balance</span>
-          <span class="text-3xl font-extrabold text-emerald-400 font-['Plus_Jakarta_Sans']" id="aff-available-balance">₹3,000</span>
-          <button onclick="requestAffiliateWithdrawal()" class="mt-2.5 w-full py-2 px-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl shadow-md transition-all">
-            Request Instant Payout
-          </button>
-        </div>
-      </div>
-
-      <!-- Referral Link Box -->
-      <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-        <label class="block text-xs font-bold text-slate-800 uppercase tracking-wider font-['Geist']">Your Unique Referral Link</label>
-        <div class="flex flex-col sm:flex-row items-center gap-3">
-          <div class="flex-1 w-full flex items-center bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 font-mono text-xs font-bold text-slate-800 overflow-x-auto">
-            <span id="affiliate-link-display">http://localhost:3000/enroll.html?ref=SF-PRANJIL-2026</span>
-          </div>
-          <button onclick="copyAffiliateLink()" class="w-full sm:w-auto px-6 py-3 bg-primary hover:bg-primary-container text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
-            <span class="material-symbols-outlined text-sm text-[#00ccf9]">content_copy</span>
-            <span>Copy Referral Link</span>
-          </button>
-        </div>
-        <p class="text-[11px] text-slate-500 font-['Inter']">Cookie duration: 60 days. Commission is credited within 24 hours of successful admission.</p>
-      </div>
-
-      <!-- KPI Metrics Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <span class="text-xs text-slate-500 font-['Geist'] block">Total Link Clicks</span>
-          <span class="text-2xl font-extrabold text-slate-900 font-['Plus_Jakarta_Sans']">148</span>
-        </div>
-        <div class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <span class="text-xs text-slate-500 font-['Geist'] block">Leads Generated</span>
-          <span class="text-2xl font-extrabold text-[#00677f] font-['Plus_Jakarta_Sans']">24</span>
-        </div>
-        <div class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <span class="text-xs text-slate-500 font-['Geist'] block">Paid Enrollments</span>
-          <span class="text-2xl font-extrabold text-emerald-600 font-['Plus_Jakarta_Sans']">6</span>
-        </div>
-        <div class="p-5 bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <span class="text-xs text-slate-500 font-['Geist'] block">Total Earned</span>
-          <span class="text-2xl font-extrabold text-primary font-['Plus_Jakarta_Sans']">₹4,500</span>
-        </div>
-      </div>
-
-      <!-- Bank Details & Payout History -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        <!-- Payout Bank / UPI Settings -->
-        <div class="lg:col-span-5 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
-          <h3 class="font-bold text-slate-900 text-sm font-['Plus_Jakarta_Sans'] flex items-center gap-2">
-            <span class="material-symbols-outlined text-emerald-600">account_balance</span>
-            <span>Bank & UPI Details for Payouts</span>
-          </h3>
-          <form onsubmit="saveBankDetails(event)" class="space-y-3 text-xs font-['Inter']">
             <div>
-              <label class="block font-semibold text-slate-700 mb-1">UPI ID (Fastest Transfer)</label>
-              <input type="text" id="bank-upi-id" value="pranjil@upi" required class="w-full p-2.5 rounded-lg border border-slate-300 text-slate-900">
+              <label class="block font-semibold text-slate-300 mb-1.5 text-left">Password *</label>
+              <input 
+                type="password" 
+                id="auth-password" 
+                required 
+                placeholder="••••••••••••" 
+                class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+              />
             </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">Bank Name</label>
-              <input type="text" id="bank-name-input" value="State Bank of India" required class="w-full p-2.5 rounded-lg border border-slate-300 text-slate-900">
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block font-semibold text-slate-700 mb-1">Account Number</label>
-                <input type="text" id="bank-acc-no" value="38291029482" required class="w-full p-2.5 rounded-lg border border-slate-300 text-slate-900">
-              </div>
-              <div>
-                <label class="block font-semibold text-slate-700 mb-1">IFSC Code</label>
-                <input type="text" id="bank-ifsc-code" value="SBIN0001234" required class="w-full p-2.5 rounded-lg border border-slate-300 text-slate-900 uppercase">
-              </div>
-            </div>
-            <button type="submit" class="w-full py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs rounded-xl transition-all">
-              Save Payout Account
+
+            <button type="submit" id="btn-submit-auth" class="w-full py-3.5 bg-[#00ccf9] hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-1.5">
+              <span class="material-symbols-outlined text-base">login</span>
+              <span>Verify & Enter Student Portal</span>
             </button>
           </form>
-        </div>
 
-        <!-- Payout History Table -->
-        <div class="lg:col-span-7 p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
-          <h3 class="font-bold text-slate-900 text-sm font-['Plus_Jakarta_Sans'] flex items-center gap-2">
-            <span class="material-symbols-outlined text-cyan-600">receipt_long</span>
-            <span>Payout History</span>
-          </h3>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs font-['Inter']">
-              <thead>
-                <tr class="border-b border-slate-200 text-slate-500 font-['Geist'] text-[11px]">
-                  <th class="pb-2">ID</th>
-                  <th class="pb-2">Date</th>
-                  <th class="pb-2">Amount</th>
-                  <th class="pb-2">Method</th>
-                  <th class="pb-2">Status</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-100 text-slate-800" id="affiliate-payouts-table-body">
-                <tr>
-                  <td class="py-2.5 font-mono font-bold">PAY-901</td>
-                  <td class="py-2.5 text-slate-500">2026-08-10</td>
-                  <td class="py-2.5 font-bold text-emerald-600">₹1,500</td>
-                  <td class="py-2.5">UPI (pranjil@upi)</td>
-                  <td class="py-2.5"><span class="badge-pill bg-emerald-100 text-emerald-800 text-[10px] font-bold">Paid</span></td>
-                </tr>
-                <tr>
-                  <td class="py-2.5 font-mono font-bold">PAY-902</td>
-                  <td class="py-2.5 text-slate-500">2026-08-16</td>
-                  <td class="py-2.5 font-bold text-emerald-600">₹3,000</td>
-                  <td class="py-2.5">UPI (pranjil@upi)</td>
-                  <td class="py-2.5"><span class="badge-pill bg-amber-100 text-amber-800 text-[10px] font-bold">Pending Verification</span></td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+            <a href="https://wa.me/919876543210?text=Namaste%20Skillsfy,%20I%20forgot%20my%20Student%20Portal%20password." target="_blank" class="hover:text-cyan-300">Forgot password? WhatsApp Support</a>
+            <a href="/enroll" class="text-cyan-400 font-bold hover:underline">New Admission →</a>
           </div>
         </div>
 
       </div>
+    </main>
 
-    </div>
-  </main>
-
-  <!-- ================= TAB 3: PROFILE & SECURITY ================= -->
-  <main id="tab-content-profile" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-1 hidden">
-    <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6">
-      
-      <div>
-        <h2 class="text-2xl font-bold text-primary font-['Plus_Jakarta_Sans']">Student Profile & Security Management</h2>
-        <p class="text-xs text-slate-500 font-['Inter'] mt-1">
-          Profile pictures update instantly. Changes to Official Name, Email, or Phone require OTP Verification & Skillsfy Team Approval to safeguard student academic certificates.
-        </p>
+    <!-- Bottom Legal Strip -->
+    <footer class="max-w-6xl mx-auto w-full pt-4 border-t border-slate-800 text-xs text-slate-400 font-['Geist'] flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
+      <p>© 2026 Skillsfy - Institute of Technology (Jabalpur Center)</p>
+      <div class="flex items-center gap-4 text-[11px]">
+        <a href="/about" class="hover:text-white">About Us</a>
+        <a href="/contact" class="hover:text-white">Contact</a>
+        <a href="/refund-policy" class="hover:text-white">Refund Policy</a>
+        <a href="/privacy-policy" class="hover:text-white">Privacy Policy</a>
+        <a href="/terms" class="hover:text-white">Terms</a>
+        <a href="/admin" class="text-slate-500 hover:text-slate-300">Admin</a>
       </div>
+    </footer>
 
-      <!-- Pending Approval Banner -->
-      <div id="pending-profile-request-alert" class="p-4 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-3">
-        <span class="material-symbols-outlined text-amber-600 text-xl mt-0.5">schedule</span>
-        <div class="text-xs">
-          <p class="font-bold text-amber-900">Profile Update Request Under Review</p>
-          <p class="text-amber-700 mt-0.5" id="pending-request-desc">
-            Your request to update contact phone number to +91 98765 43210 is pending Dean/Admin approval.
+  </div>
+
+  <!-- ================= AUTHENTICATED PORTAL CONTENT ================= -->
+  <div id="student-portal-view" class="hidden min-h-screen flex flex-col">
+    
+    <!-- TOP FROZEN NAVIGATION -->
+    <header class="sticky-header-frozen">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
+        
+        <a href="/" class="flex items-center gap-3">
+          <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-img object-contain" />
+        </a>
+
+        <!-- Portal Tabs Switcher -->
+        <div class="flex items-center gap-2 p-1 bg-slate-100 rounded-xl font-['Geist'] text-xs font-bold">
+          <button onclick="switchTab('learning')" id="tab-btn-learning" class="px-4 py-2 rounded-lg bg-primary text-white shadow-sm transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">school</span>
+            <span>My Learning</span>
+          </button>
+          <button onclick="switchTab('affiliate')" id="tab-btn-affiliate" class="px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm text-purple-600">stars</span>
+            <span>Ambassador Club</span>
+            <span class="badge-pill bg-purple-100 text-purple-800 text-[9px] font-bold">By Invite</span>
+          </button>
+          <button onclick="switchTab('profile')" id="tab-btn-profile" class="px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm text-cyan-600">manage_accounts</span>
+            <span>Profile & Security</span>
+          </button>
+        </div>
+
+        <!-- Student Profile & Logout Button -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2.5">
+            <img id="header-user-avatar" src="assets/logo-badge.png" alt="Learner Avatar" class="w-9 h-9 rounded-full object-cover border-2 border-cyan-500 bg-[#031636] p-0.5"/>
+            <div class="hidden sm:block text-left text-xs">
+              <p class="font-bold text-slate-900 leading-tight" id="header-user-name">Learner</p>
+              <p class="text-[10px] text-slate-500 font-['Geist']" id="header-user-email">learner@skillsfy.in</p>
+            </div>
+          </div>
+
+          <button onclick="handleStudentLogout()" class="px-3 py-1.5 bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 text-xs font-bold rounded-xl flex items-center gap-1 transition-colors">
+            <span class="material-symbols-outlined text-sm">logout</span>
+            <span class="hidden sm:inline">Logout</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- DASHBOARD HERO BANNER -->
+    <section class="bg-[#031636] text-white py-8 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <img id="dash-banner-avatar" src="assets/logo-badge.png" alt="Learner Profile" class="w-16 h-16 rounded-2xl object-cover border-2 border-cyan-400 shadow-md bg-[#031636] p-1"/>
+              <button onclick="document.getElementById('avatar-file-input').click()" class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#00ccf9] text-slate-950 flex items-center justify-center shadow-md hover:scale-110 transition-transform" title="Upload Custom Photo">
+                <span class="material-symbols-outlined text-xs font-bold">edit</span>
+              </button>
+              <input type="file" id="avatar-file-input" class="hidden" accept="image/*" onchange="handleAvatarUpload(event)">
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-0.5">
+                <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px]">Skillsfy Certified Learner</span>
+                <span class="text-xs font-['Geist'] text-slate-300" id="dash-student-roll">Roll No: SF-2026-LEARNER</span>
+              </div>
+              <h1 class="text-2xl sm:text-3xl font-extrabold font-['Plus_Jakarta_Sans']" id="dash-welcome-name">Welcome Back!</h1>
+              <p class="text-xs text-slate-300 font-['Inter'] mt-0.5" id="dash-course-subtitle">Skillsfy Standard Course: AI + Digital Business Masterclass</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="p-3 bg-white/10 rounded-xl border border-white/15 backdrop-blur-sm flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                <span class="material-symbols-outlined text-xl">local_fire_department</span>
+              </div>
+              <div>
+                <p class="text-[10px] text-slate-300 uppercase font-['Geist'] font-semibold">Learning Streak</p>
+                <p class="text-sm font-extrabold text-white font-['Plus_Jakarta_Sans']">14 Days 🔥</p>
+              </div>
+            </div>
+
+            <a href="/lms" class="btn-cyan px-4 py-3 rounded-xl font-bold text-xs shadow-lg flex items-center gap-1.5">
+              <span>Continue LMS</span>
+              <span class="material-symbols-outlined text-base">play_circle</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: MY LEARNING -->
+    <main id="tab-content-learning" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-1">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Enrolled Courses & LMS Access -->
+        <div class="lg:col-span-8 space-y-6">
+          
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-xl font-bold text-primary font-['Plus_Jakarta_Sans'] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#00677f]">school</span>
+                <span>Enrolled Programs</span>
+              </h2>
+              <a href="/courses" class="text-xs font-bold text-[#00677f] hover:underline">Explore More Courses</a>
+            </div>
+
+            <!-- Standard Course Card -->
+            <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
+              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <div class="w-14 h-14 rounded-xl bg-[#031636] text-white flex items-center justify-center font-bold text-lg shrink-0">
+                    <span class="material-symbols-outlined text-3xl text-cyan-400">smart_toy</span>
+                  </div>
+                  <div>
+                    <span class="badge-pill bg-cyan-100 text-cyan-800 text-[10px] font-bold">14 AI Modules</span>
+                    <h3 class="text-base font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Skillsfy Standard Course: AI + Digital Business Masterclass</h3>
+                    <p class="text-xs text-slate-500 font-['Geist']">Instructor: Pranjil Soni • Hinglish Cohort</p>
+                  </div>
+                </div>
+                
+                <a href="/lms" class="btn-primary py-2.5 px-5 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow shrink-0">
+                  <span>Open Video Player</span>
+                  <span class="material-symbols-outlined text-sm text-[#00ccf9]">play_arrow</span>
+                </a>
+              </div>
+
+              <!-- Progress bar -->
+              <div class="space-y-1.5 pt-3 border-t border-slate-100">
+                <div class="flex items-center justify-between text-xs font-['Geist']">
+                  <span class="text-slate-600 font-semibold">Course Progress</span>
+                  <span class="font-bold text-primary" id="dash-progress-percent">45% Completed</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                  <div id="dash-progress-bar" class="h-full bg-gradient-to-r from-cyan-500 to-[#031636] rounded-full" style="width: 45%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Curriculum Modules List -->
+          <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
+            <h3 class="text-base font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Syllabus & Module Lab Access</h3>
+            
+            <div class="space-y-2.5 text-xs font-['Inter']">
+              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center">01</span>
+                  <div>
+                    <p class="font-bold text-slate-900">Google AI Studio & LLM Fundamentals</p>
+                    <p class="text-slate-500 text-[11px]">5 Lessons • System Prompting & APIs</p>
+                  </div>
+                </div>
+                <span class="badge-pill bg-emerald-100 text-emerald-800 text-[10px] font-bold">Completed ✓</span>
+              </div>
+
+              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="w-7 h-7 rounded-lg bg-cyan-100 text-cyan-800 font-bold text-xs flex items-center justify-center">02</span>
+                  <div>
+                    <p class="font-bold text-slate-900">NotebookLM & Deep Research Synthesis</p>
+                    <p class="text-slate-500 text-[11px]">4 Lessons • Audio Podcasts & Source Grounding</p>
+                  </div>
+                </div>
+                <a href="/lms" class="text-cyan-700 font-bold hover:underline">Continue →</a>
+              </div>
+
+              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="w-7 h-7 rounded-lg bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center">03</span>
+                  <div>
+                    <p class="font-bold text-slate-900">Claude 3.5 & Full-Stack AI App Building</p>
+                    <p class="text-slate-500 text-[11px]">6 Lessons • Artifacts & Code Generation</p>
+                  </div>
+                </div>
+                <span class="badge-pill bg-slate-200 text-slate-600 text-[10px]">Up Next</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Certification & Mentor Desk -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Certificate Card -->
+          <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+            <div class="flex items-center gap-2 text-primary">
+              <span class="material-symbols-outlined text-2xl text-cyan-600">verified</span>
+              <h3 class="font-bold font-['Plus_Jakarta_Sans'] text-base">Institute Certificate</h3>
+            </div>
+            <p class="text-xs text-slate-600">Complete all 14 modules to unlock your cryptographically signed certificate with verifiable QR code.</p>
+            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-center">
+              <span class="text-xs font-mono font-bold text-slate-700 block" id="dash-cert-code">SKF-2026-PENDING</span>
+              <span class="text-[10px] text-slate-400">Verifiable at skillsfy.in/verify</span>
+            </div>
+            <a href="/verify" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl flex items-center justify-center gap-1 transition-colors">
+              <span>Open Certificate Registry</span>
+            </a>
+          </div>
+
+          <!-- Direct WhatsApp Mentor Desk -->
+          <div class="p-6 rounded-2xl bg-[#031636] text-white shadow-md space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-2xl text-emerald-400">support_agent</span>
+              <h3 class="font-bold font-['Plus_Jakarta_Sans'] text-base">Pranjil Soni Mentorship Desk</h3>
+            </div>
+            <p class="text-xs text-slate-300">Got stuck on an AI workflow or assignment? WhatsApp our academic team directly.</p>
+            <a href="https://wa.me/919876543210?text=Namaste%20Pranjil%20Sir,%20I%20am%20a%20Skillsfy%20enrolled%20student%20and%20need%20assignment%20help." target="_blank" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow transition-all">
+              <span class="material-symbols-outlined text-sm">chat</span>
+              <span>Ask on WhatsApp</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+    <!-- TAB 2: AMBASSADOR CLUB -->
+    <main id="tab-content-affiliate" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-1">
+      <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-md space-y-6 max-w-3xl mx-auto text-center">
+        <div class="w-16 h-16 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center mx-auto">
+          <span class="material-symbols-outlined text-3xl">stars</span>
+        </div>
+        <div>
+          <span class="badge-pill bg-purple-100 text-purple-800 text-xs font-bold uppercase">Exclusive Student Network</span>
+          <h2 class="text-2xl font-extrabold text-slate-900 font-['Plus_Jakarta_Sans'] mt-2">Skillsfy Ambassador Club</h2>
+          <p class="text-xs text-slate-600 max-w-md mx-auto mt-1">
+            Top performing students can apply to become official Skillsfy Campus Ambassadors. Earn ₹750 per successful cohort referral while empowering friends with AI skills.
           </p>
         </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-left text-xs space-y-2">
+          <p class="font-bold text-slate-900">Your Ambassador Status:</p>
+          <div class="flex items-center justify-between pt-1">
+            <span class="text-slate-600">Referral ID:</span>
+            <span class="font-mono font-bold text-primary" id="dash-ambassador-code">SF-STUDENT-2026</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-slate-600">Ambassador Status:</span>
+            <span class="badge-pill bg-amber-100 text-amber-800 text-[10px] font-bold">Active Learner Tier</span>
+          </div>
+        </div>
+
+        <a href="https://wa.me/919876543210?text=Namaste%20Skillsfy,%20I%20am%20an%20enrolled%20student%20and%20want%20to%20apply%20for%20the%20Ambassador%20Certification." target="_blank" class="px-6 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow inline-flex items-center gap-2">
+          <span>Apply for Ambassador Verification</span>
+        </a>
       </div>
+    </main>
 
-      <!-- Profile Edit Form -->
-      <form onsubmit="initiateProfileUpdateFlow(event)" class="space-y-4 text-xs font-['Inter']">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <!-- TAB 3: PROFILE -->
+    <main id="tab-content-profile" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-1">
+      <div class="max-w-2xl mx-auto p-8 rounded-3xl bg-white border border-slate-200 shadow-md space-y-6">
+        <h2 class="text-xl font-bold text-slate-900 font-['Plus_Jakarta_Sans'] pb-3 border-b border-slate-100">Student Profile & Security</h2>
+        
+        <div class="space-y-4 text-xs font-['Inter']">
           <div>
-            <label class="block font-semibold text-slate-700 mb-1">Full Name (On Certificate) *</label>
-            <input type="text" id="prof-name" required value="Pranjil Soni" class="w-full p-2.5 rounded-lg border border-slate-300 text-slate-900">
+            <label class="block font-semibold text-slate-700 mb-1">Full Name</label>
+            <input type="text" id="prof-name" disabled class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 font-bold"/>
           </div>
           <div>
-            <label class="block font-semibold text-slate-700 mb-1">Official Email Address *</label>
-            <input type="email" id="prof-email" required value="theskillsfy@gmail.com" class="w-full p-2.5 rounded-lg border border-slate-300 text-slate-900">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">WhatsApp / Phone Number *</label>
-            <input type="tel" id="prof-phone" required value="+91 0000000000" class="w-full p-2.5 rounded-lg border border-slate-300 text-slate-900">
+            <label class="block font-semibold text-slate-700 mb-1">Registered Email</label>
+            <input type="email" id="prof-email" disabled class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 font-mono"/>
           </div>
           <div>
-            <label class="block font-semibold text-slate-700 mb-1">Student Roll Number</label>
-            <input type="text" readonly value="SF-2026-8942" class="w-full p-2.5 rounded-lg border border-slate-200 bg-slate-100 text-slate-500 font-mono">
+            <label class="block font-semibold text-slate-700 mb-1">WhatsApp Phone</label>
+            <input type="text" id="prof-phone" disabled class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 font-mono"/>
           </div>
         </div>
 
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">Reason for Update *</label>
-          <textarea id="prof-reason" rows="2" placeholder="e.g. Updating phone number for class notifications" class="w-full p-2.5 rounded-lg border border-slate-300 text-slate-900"></textarea>
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+          <button onclick="handleStudentLogout()" class="px-4 py-2 bg-rose-100 hover:bg-rose-200 text-rose-800 font-bold text-xs rounded-xl transition-colors">
+            Sign Out of Portal
+          </button>
+          <a href="https://wa.me/919876543210?text=Namaste%20Skillsfy,%20I%20want%20to%20update%20my%20registered%20student%20profile%20details." target="_blank" class="text-xs text-cyan-800 font-bold hover:underline">
+            Request Profile Correction →
+          </a>
         </div>
-
-        <button type="submit" class="py-3 px-6 bg-primary hover:bg-primary-container text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center gap-2">
-          <span>Verify via OTP & Submit for Approval</span>
-          <span class="material-symbols-outlined text-base text-[#00ccf9]">security</span>
-        </button>
-      </form>
-
-    </div>
-  </main>
-
-  <!-- ================= OTP VERIFICATION MODAL ================= -->
-  <div id="otp-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
-    <div class="relative w-full max-w-md bg-white rounded-3xl shadow-2xl p-6 sm:p-8 modal-content-pop border border-slate-200 text-center font-['Inter']">
-      <button onclick="closeOTPModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700">
-        <span class="material-symbols-outlined text-2xl">close</span>
-      </button>
-
-      <div class="w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-800 flex items-center justify-center mx-auto mb-4">
-        <span class="material-symbols-outlined text-3xl">lock_clock</span>
       </div>
+    </main>
 
-      <h3 class="text-xl font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Enter Security OTP</h3>
-      <p class="text-xs text-slate-500 mt-1 mb-4">
-        We sent a 4-digit code to your registered WhatsApp number. <br>
-        <span class="font-bold text-cyan-700">(Demo Code: 4821)</span>
-      </p>
-
-      <form onsubmit="submitOTPVerification(event)" class="space-y-4">
-        <div class="flex justify-center gap-3">
-          <input type="text" maxlength="4" id="otp-input" value="4821" required placeholder="4821" class="w-40 text-center tracking-[0.5em] text-2xl font-bold font-mono p-2.5 rounded-xl border-2 border-cyan-500 focus:outline-none text-slate-900">
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-white pt-10 pb-6 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-white"/>
+          <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400 font-['Geist']">
+            <a href="/about" class="hover:text-white">About Us</a>
+            <a href="/contact" class="hover:text-white">Contact Desk</a>
+            <a href="/refund-policy" class="hover:text-white">Refund Policy</a>
+            <a href="/privacy-policy" class="hover:text-white">Privacy Policy</a>
+            <a href="/terms" class="hover:text-white">Terms of Service</a>
+            <a href="/admin" class="text-slate-600 hover:text-slate-400">Admin Portal</a>
+          </div>
         </div>
+        <div class="pt-4 border-t border-slate-800 text-center text-xs text-slate-500 font-['Geist']">
+          © 2026 Skillsfy - Institute of Technology (Jabalpur Flagship Center) • All rights reserved.
+        </div>
+      </div>
+    </footer>
 
-        <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-md transition-all">
-          Verify & Send Approval Request to Admin
-        </button>
-      </form>
-    </div>
   </div>
 
-  <!-- ================= STUDENT LOGIN / SWITCH MODAL ================= -->
-  <div id="student-login-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative">
-      <button onclick="closeStudentLoginModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-700">
-        <span class="material-symbols-outlined text-2xl">close</span>
-      </button>
-
-      <div class="w-12 h-12 rounded-2xl bg-[#031636] text-[#00ccf9] flex items-center justify-center mx-auto mb-4">
-        <span class="material-symbols-outlined text-3xl">account_circle</span>
-      </div>
-
-      <h3 class="text-xl font-bold text-center text-[#031636] font-['Plus_Jakarta_Sans']">Student Account Login</h3>
-      <p class="text-xs text-center text-slate-500 mt-1 mb-6">
-        Login with your registered Skillsfy account to view your enrolled courses, certificates, and affiliate stats.
-      </p>
-
-      <form onsubmit="handleStudentLogin(event)" class="space-y-4 text-xs font-['Inter']">
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">Registered Email *</label>
-          <input type="email" id="login-email" required placeholder="e.g. aman.verma@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-slate-900">
-        </div>
-
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">Password *</label>
-          <input type="password" id="login-password" required placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-slate-900">
-        </div>
-
-        <button type="submit" class="w-full py-3 bg-[#031636] hover:bg-[#1a2b4c] text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5">
-          <span class="material-symbols-outlined text-base text-[#00ccf9]">login</span>
-          <span>Login to Student Portal</span>
-        </button>
-      </form>
-
-      <div class="mt-4 pt-4 border-t border-slate-100 text-center text-xs text-slate-500">
-        New Student? <a href="enroll.html" class="font-bold text-[#00677f] hover:underline">Enroll / Register here</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
   <script>
-    function openStudentLoginModal() {
-      document.getElementById('student-login-modal').classList.remove('hidden');
+    function checkStudentSession() {
+      const student = getStudentProfile();
+      const loginGate = document.getElementById('student-login-gate');
+      const portalView = document.getElementById('student-portal-view');
+      const hasAuth = localStorage.getItem('skillsfy_student_auth') === 'true';
+
+      if (hasAuth && student && student.email) {
+        loginGate.classList.add('hidden');
+        portalView.classList.remove('hidden');
+        renderStudentData(student);
+      } else {
+        loginGate.classList.remove('hidden');
+        portalView.classList.add('hidden');
+      }
     }
 
-    function closeStudentLoginModal() {
-      document.getElementById('student-login-modal').classList.add('hidden');
+    function renderStudentData(s) {
+      document.getElementById('header-user-name').textContent = s.name;
+      document.getElementById('header-user-email').textContent = s.email;
+      document.getElementById('dash-welcome-name').textContent = `Welcome Back, ${s.name.split(' ')[0]}!`;
+      document.getElementById('dash-student-roll').textContent = `Roll No: SF-2026-${(s.name.split(' ')[0] || 'STU').toUpperCase()}`;
+      document.getElementById('dash-ambassador-code').textContent = `SF-${(s.name.split(' ')[0] || 'STU').toUpperCase()}-2026`;
+      
+      document.getElementById('prof-name').value = s.name;
+      document.getElementById('prof-email').value = s.email;
+      document.getElementById('prof-phone').value = s.phone || '+91 98765 43210';
     }
 
-    async function handleStudentLogin(e) {
+    async function handleStudentAuthLogin(e) {
       e.preventDefault();
-      const email = document.getElementById('login-email').value.trim();
-      const password = document.getElementById('login-password').value.trim();
+      const identifier = document.getElementById('auth-identifier').value.trim();
+      const password = document.getElementById('auth-password').value.trim();
 
-      if (!email) {
-        showToast('Please enter your email.', 'warning');
+      if (!identifier || !password) {
+        showToast('Please enter your Email/Roll No and Password.', 'warning');
         return;
       }
 
-      showToast('Authenticating with Skillsfy server...', 'info');
+      showToast('Authenticating student against Supabase Database...', 'info');
+
       try {
-        const res = await SkillsfyAPI.login(email, password);
-        closeStudentLoginModal();
-        const studentName = (res && res.student && res.student.name) ? res.student.name : (email.split('@')[0]);
-        showToast(`Welcome back, ${studentName}!`, 'success');
-        initDashboard();
+        const res = await SkillsfyAPI.login(identifier, password);
+        if (res && res.success) {
+          localStorage.setItem('skillsfy_student_auth', 'true');
+          showToast(`Welcome back, ${res.student.name}!`, 'success');
+          checkStudentSession();
+        } else {
+          showToast('Invalid credentials. If you are a new student, please Enroll.', 'error');
+        }
       } catch (err) {
-        const parsedName = email.split('@')[0];
-        const studentName = parsedName.charAt(0).toUpperCase() + parsedName.slice(1);
-        const profile = getStudentProfile();
-        profile.name = studentName;
-        profile.email = email;
-        saveStudentProfile(profile);
-        closeStudentLoginModal();
-        showToast(`Welcome back, ${studentName}!`, 'success');
-        initDashboard();
+        showToast('Login verification failed. Please try again.', 'error');
       }
     }
 
-    async function initDashboard() {
-      const student = getStudentProfile();
-      
-      // Update DOM with student name & info
-      if (document.getElementById('dash-welcome-name')) {
-        document.getElementById('dash-welcome-name').textContent = `Welcome Back, ${student.name.split(' ')[0]}!`;
-      }
-      if (document.getElementById('header-user-name')) {
-        document.getElementById('header-user-name').textContent = student.name;
-      }
-      if (document.getElementById('header-user-email')) {
-        document.getElementById('header-user-email').textContent = student.email;
-      }
-      if (document.getElementById('prof-name')) {
-        document.getElementById('prof-name').value = student.name;
-      }
-      if (document.getElementById('prof-email')) {
-        document.getElementById('prof-email').value = student.email;
-      }
-      if (document.getElementById('prof-phone')) {
-        document.getElementById('prof-phone').value = student.phone || '+91 9876543210';
-      }
-      if (document.getElementById('btn-login-label')) {
-        document.getElementById('btn-login-label').textContent = student.name ? student.name.split(' ')[0] : 'Login / Switch';
-      }
-      if (document.getElementById('affiliate-link-display')) {
-        const refCode = student.affiliateStats?.referralCode || `SF-${student.name.split(' ')[0].toUpperCase()}-2026`;
-        document.getElementById('affiliate-link-display').textContent = `http://localhost:3000/enroll.html?ref=${refCode}`;
-      }
-
-      // Try fetching real courses & certificates from live backend
-      try {
-        const myCoursesRes = await SkillsfyAPI.getMyCourses();
-        if (myCoursesRes.success && myCoursesRes.my_courses && myCoursesRes.my_courses.length > 0) {
-          console.log('Loaded real courses from backend:', myCoursesRes.my_courses);
-        }
-      } catch (e) {
-        // Fallback to local
-      }
+    function handleStudentLogout() {
+      localStorage.removeItem('skillsfy_student_auth');
+      localStorage.removeItem('skillsfy_token');
+      checkStudentSession();
+      showToast('Signed out of Student Portal.', 'info');
     }
 
     function switchTab(tab) {
-      document.getElementById('tab-content-learning').classList.add('hidden');
-      document.getElementById('tab-content-affiliate').classList.add('hidden');
-      document.getElementById('tab-content-profile').classList.add('hidden');
-
-      document.getElementById('tab-btn-learning').className = 'px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5';
-      document.getElementById('tab-btn-affiliate').className = 'px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5';
-      document.getElementById('tab-btn-profile').className = 'px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5';
-
-      if (tab === 'learning') {
-        document.getElementById('tab-content-learning').classList.remove('hidden');
-        document.getElementById('tab-btn-learning').className = 'px-4 py-2 rounded-lg bg-primary text-white shadow-sm transition-all flex items-center gap-1.5';
-      } else if (tab === 'affiliate') {
-        document.getElementById('tab-content-affiliate').classList.remove('hidden');
-        document.getElementById('tab-btn-affiliate').className = 'px-4 py-2 rounded-lg bg-primary text-white shadow-sm transition-all flex items-center gap-1.5';
-      } else if (tab === 'profile') {
-        document.getElementById('tab-content-profile').classList.remove('hidden');
-        document.getElementById('tab-btn-profile').className = 'px-4 py-2 rounded-lg bg-primary text-white shadow-sm transition-all flex items-center gap-1.5';
-      }
-    }
-
-    function copyAffiliateLink() {
-      const link = document.getElementById('affiliate-link-display').textContent;
-      navigator.clipboard.writeText(link).then(() => {
-        showToast('Referral link copied to clipboard! Share and earn 25% commission.', 'success');
+      const tabs = ['learning', 'affiliate', 'profile'];
+      tabs.forEach(t => {
+        const content = document.getElementById(`tab-content-${t}`);
+        const btn = document.getElementById(`tab-btn-${t}`);
+        if (content) content.classList.add('hidden');
+        if (btn) btn.className = 'px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5';
       });
-    }
 
-    function requestAffiliateWithdrawal() {
-      showToast('Payout request submitted to Skillsfy Finance Manager. Transferred within 24h to UPI.', 'success');
-    }
-
-    function saveBankDetails(e) {
-      e.preventDefault();
-      const upi = document.getElementById('bank-upi-id').value;
-      showToast(`Payout details updated for ${upi}!`, 'success');
-    }
-
-    function handleAvatarUpload(e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-          const newAvatar = event.target.result;
-          document.getElementById('dash-banner-avatar').src = newAvatar;
-          document.getElementById('header-user-avatar').src = newAvatar;
-          const student = getStudentProfile();
-          student.avatar = newAvatar;
-          saveStudentProfile(student);
-          showToast('Profile picture updated successfully!', 'success');
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    let pendingProfileData = null;
-
-    function initiateProfileUpdateFlow(e) {
-      e.preventDefault();
-      pendingProfileData = {
-        name: document.getElementById('prof-name').value,
-        email: document.getElementById('prof-email').value,
-        phone: document.getElementById('prof-phone').value,
-        reason: document.getElementById('prof-reason').value
-      };
-      document.getElementById('otp-modal').classList.remove('hidden');
-    }
-
-    function closeOTPModal() {
-      document.getElementById('otp-modal').classList.add('hidden');
-    }
-
-    function submitOTPVerification(e) {
-      e.preventDefault();
-      const code = document.getElementById('otp-input').value;
-      if (code === '4821' || code.length === 4) {
-        closeOTPModal();
-
-        const requests = getProfileRequests();
-        const newReq = {
-          id: `REQ-${Math.floor(300 + Math.random() * 700)}`,
-          studentId: "SF-2026-8942",
-          currentName: getStudentProfile().name,
-          requestedName: pendingProfileData.name,
-          currentEmail: getStudentProfile().email,
-          requestedEmail: pendingProfileData.email,
-          requestedPhone: pendingProfileData.phone,
-          reason: pendingProfileData.reason || "Student updated profile details",
-          otpVerified: true,
-          status: "Pending Approval",
-          date: new Date().toISOString().split('T')[0]
-        };
-        requests.unshift(newReq);
-        saveProfileRequests(requests);
-
-        document.getElementById('pending-profile-request-alert').classList.remove('hidden');
-        document.getElementById('pending-request-desc').textContent = `Your request to update details to ${pendingProfileData.name} (${pendingProfileData.phone}) is sent to the Skillsfy Admin Team.`;
-
-        showToast('OTP Verified! Profile change ticket sent to Admin for approval.', 'success');
-      } else {
-        showToast('Invalid OTP. Please enter 4821.', 'error');
-      }
+      const activeContent = document.getElementById(`tab-content-${tab}`);
+      const activeBtn = document.getElementById(`tab-btn-${tab}`);
+      if (activeContent) activeContent.classList.remove('hidden');
+      if (activeBtn) activeBtn.className = 'px-4 py-2 rounded-lg bg-primary text-white shadow-sm transition-all flex items-center gap-1.5 font-bold';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      initDashboard();
+      checkStudentSession();
     });
   </script>
 </body>
