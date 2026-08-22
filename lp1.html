@@ -457,7 +457,302 @@
           <span class="p-2.5 rounded-xl bg-black/50 border border-white/10">🏛️ Jabalpur Tech Campus</span>
           <span class="p-2.5 rounded-xl bg-black/50 border border-white/10">🚀 1,000+ Students Mentored</span>
           <span class="p-2.5 rounded-xl bg-black/50 border border-white/10">⭐ 4.9/5 Rating</span>
+    </div>
+  </section>
+
+  <!-- ================= 5. REAL CLIENT PROJECTS CAROUSEL (SWIPER ENGINE) ================= -->
+  <section class="py-16 md:py-24 bg-surface-charcoal/80 relative border-b border-border-glass overflow-hidden" id="case-study">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div class="space-y-2">
+          <span class="badge-pill bg-purple-950 text-purple-300 border border-purple-800 text-xs font-bold uppercase">
+            Real Client Case Studies
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-['Manrope']">
+            Projects Built & Monetized With <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">AI Pipelines</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-on-surface-variant max-w-xl">
+            Swipe or use arrow buttons to explore what you will be able to build and sell to clients after the 30 Aug session.
+          </p>
         </div>
+
+        <!-- Carousel Navigation Arrows -->
+        <div class="flex items-center gap-3">
+          <button onclick="prevProjectSlide()" class="w-11 h-11 rounded-2xl bg-slate-900 border border-slate-700 hover:border-cyan-400 text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-lg" aria-label="Previous Slide">
+            <span class="material-symbols-outlined text-lg">arrow_back</span>
+          </button>
+          <button onclick="nextProjectSlide()" class="w-11 h-11 rounded-2xl bg-slate-900 border border-slate-700 hover:border-cyan-400 text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-lg" aria-label="Next Slide">
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Swiper Track Container (Touch Draggable & Auto-play Pause on Hover) -->
+      <div 
+        id="projects-carousel-container" 
+        class="overflow-hidden cursor-grab active:cursor-grabbing select-none"
+        onmouseenter="pauseCarousel()" 
+        onmouseleave="resumeCarousel()"
+      >
+        <div 
+          id="projects-track" 
+          class="flex gap-6 transition-transform duration-500 ease-out"
+          style="transform: translateX(0px);"
+        >
+          
+          <!-- Slide 1 -->
+          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between space-y-4 hover:border-cyan-500/50 transition-all group">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-white/5">
+                <span class="badge-pill bg-cyan-950 text-cyan-300 text-[10px] font-bold">AI Automation SaaS</span>
+                <span class="text-emerald-400 font-mono font-bold text-xs bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-800">Deal: ₹45,000</span>
+              </div>
+              <h4 class="text-lg font-bold text-white font-['Manrope'] mt-3 group-hover:text-cyan-400 transition-colors">
+                Lead Capture CRM & Bot Engine
+              </h4>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed font-['Inter']">
+                Complete dynamic lead router with Supabase PostgreSQL cloud database, WhatsApp dispatch webhook, and custom Vercel hosting.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span>Stack: Stitch + Supabase</span>
+              <span class="text-cyan-400">Build: 2 Days</span>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between space-y-4 hover:border-purple-500/50 transition-all group">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-white/5">
+                <span class="badge-pill bg-purple-950 text-purple-300 text-[10px] font-bold">D2C E-Commerce Brand</span>
+                <span class="text-emerald-400 font-mono font-bold text-xs bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-800">Deal: ₹35,000</span>
+              </div>
+              <h4 class="text-lg font-bold text-white font-['Manrope'] mt-3 group-hover:text-purple-400 transition-colors">
+                High-Conversion Apparel Store
+              </h4>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed font-['Inter']">
+                Stunning cyber-glassmorphism storefront, Razorpay automated checkout, instant order SMS, and automated inventory sync.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span>Stack: Claude + Razorpay</span>
+              <span class="text-purple-400">Build: 3 Days</span>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between space-y-4 hover:border-emerald-500/50 transition-all group">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-white/5">
+                <span class="badge-pill bg-emerald-950 text-emerald-300 text-[10px] font-bold">EdTech Institute LMS</span>
+                <span class="text-emerald-400 font-mono font-bold text-xs bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-800">Deal: ₹60,000</span>
+              </div>
+              <h4 class="text-lg font-bold text-white font-['Manrope'] mt-3 group-hover:text-emerald-400 transition-colors">
+                Skillsfy Technology Learning Hub
+              </h4>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed font-['Inter']">
+                Student LMS player, passwordless roll-number auth, real-time video progress tracking, and cryptographically verified digital diplomas.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span>Stack: Full-Stack AI Engine</span>
+              <span class="text-emerald-400">Production Live</span>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-white/10 flex flex-col justify-between space-y-4 hover:border-amber-500/50 transition-all group">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-white/5">
+                <span class="badge-pill bg-amber-950 text-amber-300 text-[10px] font-bold">Real Estate Firm</span>
+                <span class="text-emerald-400 font-mono font-bold text-xs bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-800">Deal: ₹40,000</span>
+              </div>
+              <h4 class="text-lg font-bold text-white font-['Manrope'] mt-3 group-hover:text-amber-400 transition-colors">
+                Luxury Property Listing Portal
+              </h4>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed font-['Inter']">
+                Interactive property virtual tour player, lead qualification forms, map geolocation integration, and auto-callback scheduling.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
+              <span>Stack: Antigravity + Maps</span>
+              <span class="text-amber-400">Build: 2 Days</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Pagination Indicator Dots -->
+      <div class="flex items-center justify-center gap-2 mt-8" id="carousel-dots">
+        <button onclick="goToSlide(0)" class="w-8 h-2 rounded-full bg-cyan-400 transition-all"></button>
+        <button onclick="goToSlide(1)" class="w-2.5 h-2 rounded-full bg-slate-700 hover:bg-slate-500 transition-all"></button>
+        <button onclick="goToSlide(2)" class="w-2.5 h-2 rounded-full bg-slate-700 hover:bg-slate-500 transition-all"></button>
+        <button onclick="goToSlide(3)" class="w-2.5 h-2 rounded-full bg-slate-700 hover:bg-slate-500 transition-all"></button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 6. INTERACTIVE TOOL STACK SECTION ================= -->
+  <section class="py-16 md:py-24 bg-surface relative" id="tools">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="text-center mb-12 space-y-3">
+        <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-xs font-bold uppercase">
+          Master Modern Tooling
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-['Manrope']">
+          The 2026 AI Developer <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-primary">Power Stack</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-on-surface-variant max-w-xl mx-auto">
+          No obsolete coding theories. You will directly master the exact production tools used by modern elite builders.
+        </p>
+      </div>
+
+      <!-- Interactive Filter Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2.5 mb-10 text-xs font-['Inter']">
+        <button onclick="filterTools('all')" class="tool-filter-btn px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold transition-all shadow" data-category="all">
+          All Tools (10)
+        </button>
+        <button onclick="filterTools('ai')" class="tool-filter-btn px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white font-semibold transition-all" data-category="ai">
+          AI & Prompting
+        </button>
+        <button onclick="filterTools('frontend')" class="tool-filter-btn px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white font-semibold transition-all" data-category="frontend">
+          Frontend & UI
+        </button>
+        <button onclick="filterTools('backend')" class="tool-filter-btn px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white font-semibold transition-all" data-category="backend">
+          Backend & DB
+        </button>
+        <button onclick="filterTools('deploy')" class="tool-filter-btn px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white font-semibold transition-all" data-category="deploy">
+          Deploy & Client
+        </button>
+      </div>
+
+      <!-- Tool Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center font-['Inter'] text-xs">
+        
+        <div class="tool-item glass-card p-5 rounded-2xl border border-white/5 space-y-2 hover:border-cyan-500/40 transition-all" data-cat="ai">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mx-auto text-lg font-bold">🧠</div>
+          <p class="font-bold text-white">Claude 3.5 Sonnet</p>
+          <p class="text-[11px] text-slate-400">Pair Programmer</p>
+        </div>
+
+        <div class="tool-item glass-card p-5 rounded-2xl border border-white/5 space-y-2 hover:border-cyan-500/40 transition-all" data-cat="ai">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mx-auto text-lg font-bold">⚡</div>
+          <p class="font-bold text-white">Google Stitch</p>
+          <p class="text-[11px] text-slate-400">UI Generator</p>
+        </div>
+
+        <div class="tool-item glass-card p-5 rounded-2xl border border-white/5 space-y-2 hover:border-cyan-500/40 transition-all" data-cat="ai">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mx-auto text-lg font-bold">🤖</div>
+          <p class="font-bold text-white">Antigravity AGY</p>
+          <p class="text-[11px] text-slate-400">Autonomous Coding</p>
+        </div>
+
+        <div class="tool-item glass-card p-5 rounded-2xl border border-white/5 space-y-2 hover:border-cyan-500/40 transition-all" data-cat="frontend">
+          <div class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center mx-auto text-lg font-bold">🎨</div>
+          <p class="font-bold text-white">Tailwind CSS 3</p>
+          <p class="text-[11px] text-slate-400">Modern Layouts</p>
+        </div>
+
+        <div class="tool-item glass-card p-5 rounded-2xl border border-white/5 space-y-2 hover:border-cyan-500/40 transition-all" data-cat="frontend">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto text-lg font-bold">✨</div>
+          <p class="font-bold text-white">Glassmorphism UI</p>
+          <p class="text-[11px] text-slate-400">Dark Aesthetic</p>
+        </div>
+
+        <div class="tool-item glass-card p-5 rounded-2xl border border-white/5 space-y-2 hover:border-cyan-500/40 transition-all" data-cat="backend">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto text-lg font-bold">🐘</div>
+          <p class="font-bold text-white">Supabase Cloud</p>
+          <p class="text-[11px] text-slate-400">PostgreSQL DB</p>
+        </div>
+
+        <div class="tool-item glass-card p-5 rounded-2xl border border-white/5 space-y-2 hover:border-cyan-500/40 transition-all" data-cat="backend">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mx-auto text-lg font-bold">🛡️</div>
+          <p class="font-bold text-white">Supabase Auth</p>
+          <p class="text-[11px] text-slate-400">Secure Student Gate</p>
+        </div>
+
+        <div class="tool-item glass-card p-5 rounded-2xl border border-white/5 space-y-2 hover:border-cyan-500/40 transition-all" data-cat="deploy">
+          <div class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center mx-auto text-lg font-bold">🐙</div>
+          <p class="font-bold text-white">GitHub Pipelines</p>
+          <p class="text-[11px] text-slate-400">Version Control</p>
+        </div>
+
+        <div class="tool-item glass-card p-5 rounded-2xl border border-white/5 space-y-2 hover:border-cyan-500/40 transition-all" data-cat="deploy">
+          <div class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center mx-auto text-lg font-bold">▲</div>
+          <p class="font-bold text-white">Vercel Edge</p>
+          <p class="text-[11px] text-slate-400">Zero-Config Hosting</p>
+        </div>
+
+        <div class="tool-item glass-card p-5 rounded-2xl border border-white/5 space-y-2 hover:border-cyan-500/40 transition-all" data-cat="deploy">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto text-lg font-bold">💳</div>
+          <p class="font-bold text-white">Razorpay Payments</p>
+          <p class="text-[11px] text-slate-400">₹2,999 Checkout</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 7. INTERACTIVE FAQ ACCORDION ================= -->
+  <section class="py-16 md:py-24 bg-surface-charcoal/50 relative border-b border-border-glass" id="faq">
+    <div class="max-w-4xl mx-auto px-4 sm:px-8 space-y-10">
+      
+      <div class="text-center space-y-2">
+        <span class="badge-pill bg-primary/20 text-primary border border-primary/30 text-xs font-bold uppercase">
+          Got Questions?
+        </span>
+        <h2 class="text-3xl font-extrabold text-white font-['Manrope']">
+          Frequently Asked Questions
+        </h2>
+      </div>
+
+      <div class="space-y-4 font-['Inter'] text-xs">
+        
+        <div class="glass-card rounded-2xl border border-white/10 overflow-hidden">
+          <button onclick="toggleFAQ(1)" class="w-full p-5 text-left font-bold text-white flex items-center justify-between text-sm">
+            <span>Do I need prior coding or Computer Science background?</span>
+            <span class="material-symbols-outlined transition-transform duration-300" id="faq-icon-1">expand_more</span>
+          </button>
+          <div id="faq-answer-1" class="px-5 pb-5 text-slate-400 leading-relaxed hidden">
+            No! This workshop is designed from ground zero. You will learn how to articulate software logic in plain English and prompt AI models to write clean HTML, CSS, JavaScript, and backend SQL queries.
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl border border-white/10 overflow-hidden">
+          <button onclick="toggleFAQ(2)" class="w-full p-5 text-left font-bold text-white flex items-center justify-between text-sm">
+            <span>What if I miss the live session on 30 August?</span>
+            <span class="material-symbols-outlined transition-transform duration-300" id="faq-icon-2">expand_more</span>
+          </button>
+          <div id="faq-answer-2" class="px-5 pb-5 text-slate-400 leading-relaxed hidden">
+            All registered participants receive 100% full HD recording access within 2 hours of workshop completion, along with all downloadable prompt templates and GitHub starter code.
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl border border-white/10 overflow-hidden">
+          <button onclick="toggleFAQ(3)" class="w-full p-5 text-left font-bold text-white flex items-center justify-between text-sm">
+            <span>How does the client monetization phase work?</span>
+            <span class="material-symbols-outlined transition-transform duration-300" id="faq-icon-3">expand_more</span>
+          </button>
+          <div id="faq-answer-3" class="px-5 pb-5 text-slate-400 leading-relaxed hidden">
+            Pranjil Soni will reveal the exact cold outreach email & WhatsApp scripts, proposal breakdown, and how to pitch local businesses and Indian brands for ₹25,000 to ₹60,000 website projects.
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl border border-white/10 overflow-hidden">
+          <button onclick="toggleFAQ(4)" class="w-full p-5 text-left font-bold text-white flex items-center justify-between text-sm">
+            <span>Will my registration be stored securely?</span>
+            <span class="material-symbols-outlined transition-transform duration-300" id="faq-icon-4">expand_more</span>
+          </button>
+          <div id="faq-answer-4" class="px-5 pb-5 text-slate-400 leading-relaxed hidden">
+            Yes! Your details are stored directly in your dedicated Supabase Cloud table (<code>workshop_registrations</code>), and you receive an instant digital admission ticket and VIP WhatsApp group link.
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -728,8 +1023,6 @@
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
         document.getElementById('timer-days').textContent = String(days).padStart(2, '0');
         document.getElementById('timer-hours').textContent = String(hours).padStart(2, '0');
         document.getElementById('timer-mins').textContent = String(mins).padStart(2, '0');
@@ -738,6 +1031,122 @@
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    // ================= PROJECTS CAROUSEL (SWIPER ENGINE) =================
+    let currentSlide = 0;
+    const totalSlides = 4;
+    let carouselInterval = null;
+
+    function getSlideWidth() {
+      const track = document.getElementById('projects-track');
+      if (!track || !track.children[0]) return 400;
+      return track.children[0].offsetWidth + 24; // width + gap
+    }
+
+    function updateCarousel() {
+      const track = document.getElementById('projects-track');
+      if (!track) return;
+      const offset = currentSlide * getSlideWidth();
+      track.style.transform = `translateX(-${offset}px)`;
+
+      // Update dots
+      const dotsContainer = document.getElementById('carousel-dots');
+      if (dotsContainer) {
+        Array.from(dotsContainer.children).forEach((dot, idx) => {
+          if (idx === currentSlide) {
+            dot.className = 'w-8 h-2 rounded-full bg-cyan-400 transition-all';
+          } else {
+            dot.className = 'w-2.5 h-2 rounded-full bg-slate-700 hover:bg-slate-500 transition-all';
+          }
+        });
+      }
+    }
+
+    function nextProjectSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    function prevProjectSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    function goToSlide(idx) {
+      currentSlide = idx;
+      updateCarousel();
+    }
+
+    function startCarouselAutoPlay() {
+      carouselInterval = setInterval(nextProjectSlide, 4500);
+    }
+
+    function pauseCarousel() {
+      if (carouselInterval) clearInterval(carouselInterval);
+    }
+
+    function resumeCarousel() {
+      pauseCarousel();
+      startCarouselAutoPlay();
+    }
+    startCarouselAutoPlay();
+
+    // Touch & Swipe Support for Mobile
+    let startX = 0;
+    let endX = 0;
+    const carouselContainer = document.getElementById('projects-carousel-container');
+    if (carouselContainer) {
+      carouselContainer.addEventListener('touchstart', e => {
+        startX = e.touches[0].clientX;
+        pauseCarousel();
+      }, { passive: true });
+
+      carouselContainer.addEventListener('touchend', e => {
+        endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) nextProjectSlide();
+        if (endX - startX > 50) prevProjectSlide();
+        resumeCarousel();
+      }, { passive: true });
+    }
+
+    // ================= TOOL STACK FILTER =================
+    function filterTools(category) {
+      const items = document.querySelectorAll('.tool-item');
+      const buttons = document.querySelectorAll('.tool-filter-btn');
+
+      buttons.forEach(btn => {
+        if (btn.dataset.category === category) {
+          btn.className = 'tool-filter-btn px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold transition-all shadow';
+        } else {
+          btn.className = 'tool-filter-btn px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white font-semibold transition-all';
+        }
+      });
+
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.cat === category) {
+          item.style.display = 'block';
+          item.style.opacity = '1';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // ================= FAQ ACCORDION =================
+    function toggleFAQ(id) {
+      const answer = document.getElementById(`faq-answer-${id}`);
+      const icon = document.getElementById(`faq-icon-${id}`);
+      if (!answer) return;
+
+      const isHidden = answer.classList.contains('hidden');
+      document.querySelectorAll('[id^="faq-answer-"]').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('[id^="faq-icon-"]').forEach(i => i.textContent = 'expand_more');
+
+      if (isHidden) {
+        answer.classList.remove('hidden');
+        if (icon) icon.textContent = 'expand_less';
+      }
+    }
 
     // Workshop Registration to Supabase
     async function handleWorkshopRegistration(e) {
