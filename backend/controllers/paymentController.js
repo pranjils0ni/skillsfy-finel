@@ -190,18 +190,59 @@ async function verifyPayment(req, res) {
 
     console.log(`✅ Razorpay Payment Verified: Order=${razorpay_order_id}, Payment=${razorpay_payment_id}`);
 
-    // Record enrollment in Database / Supabase if available
+    // Record enrollment or workshop registration in Database / Supabase
     try {
       const dbClient = supabaseAdmin || supabase;
-      if (dbClient && (email || phone)) {
-        await dbClient.from('enrollments').insert([{
-          student_name: name || 'Student',
-          student_phone: phone || '',
-          course_title: course_title || 'Skillsfy Standard Course',
-          payment_gateway: 'Razorpay',
+      const isWorkshop = (req.body.type === 'workshop' || course_id === 'workshop-30-aug' || !!req.body.ticket_no);
+      const ticketNo = req.body.ticket_no || `SKF-WKSP-${Math.floor(10000 + Math.random() * 90000)}`;
+      const amountPaid = amount ? (amount > 1000 ? amount : amount) : (isWorkshop ? 149 : 2999);
+
+      if (dbClient) {
+        if (isWorkshop) {
+          // Insert into workshop_registrations
+          await dbClient.from('workshop_registrations').insert([{
+            ticket_no: ticketNo,
+            name: name || 'Student',
+            phone: phone || '',
+            email: email || '',
+            city: req.body.city || 'India',
+            goal: req.body.goal || 'AI Web Development',
+            workshop_date: '30 August 2026 (Live)',
+            status: 'Payment Verified',
+            payment_status: 'paid',
+            razorpay_payment_id: razorpay_payment_id,
+            razorpay_order_id: razorpay_order_id,
+            amount_paid: amountPaid,
+            coupon_code: req.body.coupon_code || null,
+            utm_source: 'skillsfy.in/lp1'
+          }]);
+        } else {
+          await dbClient.from('enrollments').insert([{
+            student_name: name || 'Student',
+            student_phone: phone || '',
+            course_title: course_title || 'Skillsfy Standard Course',
+            payment_gateway: 'Razorpay',
+            payment_id: razorpay_payment_id,
+            amount_paid_inr: amountPaid,
+            status: 'active'
+          }]);
+        }
+
+        // Also log in payments table
+        await dbClient.from('payments').insert([{
+          order_id: razorpay_order_id,
           payment_id: razorpay_payment_id,
-          amount_paid_inr: amount ? (amount > 1000 ? amount : amount) : 2999,
-          status: 'active'
+          amount: amountPaid,
+          currency: 'INR',
+          status: 'SUCCESS',
+          payer_email: email || '',
+          payer_phone: phone || '',
+          metadata: {
+            type: isWorkshop ? 'workshop' : 'course',
+            ticket_no: isWorkshop ? ticketNo : null,
+            course_id: course_id || 'workshop-30-aug',
+            coupon: req.body.coupon_code || null
+          }
         }]);
 
         // Also update enquiries CRM
@@ -209,7 +250,7 @@ async function verifyPayment(req, res) {
           name: name || 'Student',
           phone: phone || '',
           email: email || '',
-          course_interested: course_title || 'Skillsfy Standard Course',
+          course_interested: course_title || (isWorkshop ? 'AI Web Dev Live Masterclass (30 Aug)' : 'Skillsfy Standard Course'),
           status: 'Payment Verified',
           notes: `Razorpay Payment ID: ${razorpay_payment_id} | Order: ${razorpay_order_id}`
         }]);
@@ -224,11 +265,13 @@ async function verifyPayment(req, res) {
       message: 'Payment verified successfully. Welcome to Skillsfy Institute of Technology!',
       payment_id: razorpay_payment_id,
       order_id: razorpay_order_id,
+      ticket_no: req.body.ticket_no || `SKF-WKSP-${Math.floor(10000 + Math.random() * 90000)}`,
+      whatsapp_group: 'https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN',
       enrollment: {
         payment_id: razorpay_payment_id,
         order_id: razorpay_order_id,
-        course_id: course_id || 'standard-course',
-        course_title: course_title || 'Skillsfy Standard Course',
+        course_id: course_id || (req.body.type === 'workshop' ? 'workshop-30-aug' : 'standard-course'),
+        course_title: course_title || (req.body.type === 'workshop' ? 'AI Web Dev Live Masterclass (30 Aug)' : 'Skillsfy Standard Course'),
         status: 'paid'
       }
     });
