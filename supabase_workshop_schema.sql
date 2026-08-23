@@ -12,11 +12,19 @@ CREATE TABLE IF NOT EXISTS workshop_registrations (
   phone VARCHAR(50) NOT NULL,
   email VARCHAR(255) NOT NULL,
   city VARCHAR(100) DEFAULT 'India',
-  experience_level VARCHAR(100) DEFAULT 'Beginner (No coding)',
+  experience_level VARCHAR(100) DEFAULT 'Complete Beginner',
   goal VARCHAR(100) DEFAULT 'Freelance Client Projects',
   workshop_date VARCHAR(50) DEFAULT '30 August 2026 (Live)',
-  status VARCHAR(50) DEFAULT 'Seat Reserved', -- Seat Reserved, Attended, WhatsApp Added
-  utm_source VARCHAR(100) DEFAULT 'lp1.skillsfy.in',
+  status VARCHAR(50) DEFAULT 'Payment Pending', -- Payment Pending, Payment Verified, Payment Failed, Attended
+  payment_status VARCHAR(50) DEFAULT 'payment_pending', -- payment_pending, paid, payment_failed, payment_cancelled
+  razorpay_payment_id VARCHAR(100),
+  razorpay_order_id VARCHAR(100),
+  razorpay_signature VARCHAR(255),
+  amount_paid NUMERIC DEFAULT 149,
+  coupon_code VARCHAR(50),
+  paid_at TIMESTAMP WITH TIME ZONE,
+  utm_source VARCHAR(100) DEFAULT 'skillsfy.in/lp1',
+  notes TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
@@ -28,3 +36,6 @@ ON workshop_registrations FOR INSERT WITH CHECK (true);
 
 CREATE POLICY "Allow public read workshop_registrations" 
 ON workshop_registrations FOR SELECT USING (true);
+
+CREATE POLICY "Allow public update workshop_registrations" 
+ON workshop_registrations FOR UPDATE USING (true);
