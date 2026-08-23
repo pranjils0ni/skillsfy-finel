@@ -26,23 +26,28 @@ module.exports = async (req, res) => {
       key_secret: key_secret
     });
 
-    let { amount, currency = 'INR', receipt, notes = {}, course_id, course_title, name, email, phone } = req.body || {};
+    let { amount, currency = 'INR', receipt, notes = {}, course_id, course_title, name, email, phone, type, ticket_no, city, goal, coupon_code } = req.body || {};
 
     let amountInPaise = parseInt(amount, 10);
     if (isNaN(amountInPaise) || amountInPaise < 100) {
-      amountInPaise = 299900; // default ₹2,999 in paise
+      amountInPaise = (type === 'workshop' || course_id === 'workshop-30-aug') ? 14900 : 299900;
     }
 
     const orderOptions = {
       amount: amountInPaise,
       currency: currency.toUpperCase(),
-      receipt: receipt || `rcpt_${Date.now()}_${Math.floor(Math.random() * 1000)}`,
+      receipt: receipt || `rcpt_${type === 'workshop' ? 'wksp_' : ''}${Date.now()}_${Math.floor(Math.random() * 1000)}`,
       notes: {
+        type: type || (course_id === 'workshop-30-aug' ? 'workshop' : 'course'),
         course_id: course_id || 'standard-course',
-        course_title: course_title || 'Skillsfy Standard Course',
+        course_title: course_title || (type === 'workshop' ? 'AI Web Dev Live Masterclass (30 Aug)' : 'Skillsfy Standard Course'),
         student_name: name || '',
         student_email: email || '',
         student_phone: phone || '',
+        city: city || '',
+        goal: goal || '',
+        ticket_no: ticket_no || '',
+        coupon_code: coupon_code || '',
         institute: 'Skillsfy Institute of Technology',
         ...notes
       }
