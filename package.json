@@ -18,6 +18,7 @@
     "jsonwebtoken": "^9.0.2",
     "pdfkit": "^0.15.0",
     "qrcode": "^1.5.3",
+    "razorpay": "^2.9.8",
     "sql.js": "^1.14.2",
     "sqlite3": "^5.1.7"
   }
