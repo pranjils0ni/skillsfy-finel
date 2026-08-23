@@ -253,9 +253,8 @@
 
   <!-- Scripts -->
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/payment.js"></script>
+  <script src="js/data.js?v=20260823"></script>
+  <script src="js/app.js?v=20260823"></script>
   <script>
     // Read Course ID from URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -289,7 +288,6 @@
 
       if (phone.length >= 10 && phone !== lastCapturedPhone) {
         lastCapturedPhone = phone;
-        // Save to Supabase enquiries table immediately
         if (window.SkillsfyAPI && typeof SkillsfyAPI.saveEnquiry === 'function') {
           SkillsfyAPI.saveEnquiry({
             name: name || 'Interested Student',
@@ -345,35 +343,88 @@
         console.warn('Background sync note:', err);
       }
 
-      // 2. Launch Razorpay Standard Web Checkout Modal
-      SkillsfyPayment.checkout({
-        amount: price,
-        course_id: courseId,
-        course_title: courseTitle,
-        name: name,
-        email: email,
-        phone: phone,
-        onSuccess: function(verifyResult, razorpayResponse) {
-          showToast('Payment Verified! Redirecting to Student Dashboard...', 'success');
-          setTimeout(() => {
-            window.location.href = `/enrollment-success?payment_id=${razorpayResponse.razorpay_payment_id}&order_id=${razorpayResponse.razorpay_order_id}&course=${courseId}`;
-          }, 1200);
-        },
-        onFailure: function(error) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalHtml;
-          showToast(error.message || 'Payment could not be completed.', 'error');
-        },
-        onDismiss: function() {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalHtml;
-          showToast('Payment window closed.', 'info');
+      // 2. Launch Razorpay Standard Checkout Directly
+      try {
+        if (typeof Razorpay === 'undefined') {
+          showToast('Loading Razorpay SDK... please wait a moment.', 'info');
+          // Wait for script to load
+          await new Promise((resolve) => {
+            const script = document.createElement('script');
+            script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+            script.onload = () => resolve();
+            document.head.appendChild(script);
+          });
         }
-      });
+
+        const options = {
+          key: "rzp_test_TT66f0GZnK72DV",
+          amount: price * 100, // Amount in paise (299900 paise = ₹2,999)
+          currency: "INR",
+          name: "Skillsfy - Institute of Technology",
+          description: courseTitle,
+          image: "assets/logo-badge.png",
+          prefill: {
+            name: name,
+            email: email,
+            contact: phone
+          },
+          notes: {
+            course_id: courseId,
+            course_title: courseTitle,
+            campus: "Jabalpur Flagship Campus"
+          },
+          theme: {
+            color: "#031636"
+          },
+          modal: {
+            ondismiss: function() {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = originalHtml;
+              showToast('Payment window closed.', 'info');
+            }
+          },
+          handler: function(response) {
+            submitBtn.innerHTML = `<span>✓ Payment Verified!</span>`;
+            showToast('Payment Successful! Confirming admission...', 'success');
+            
+            // Save successful enrollment in background
+            if (window.SkillsfyAPI && typeof SkillsfyAPI.saveEnquiry === 'function') {
+              SkillsfyAPI.saveEnquiry({
+                name: name,
+                phone: phone,
+                email: email,
+                course_interested: courseTitle,
+                status: 'Payment Successful',
+                notes: `Razorpay Payment ID: ${response.razorpay_payment_id}`
+              }).catch(console.warn);
+            }
+
+            setTimeout(() => {
+              window.location.href = `/enrollment-success?payment_id=${response.razorpay_payment_id}&course=${encodeURIComponent(courseId)}`;
+            }, 1000);
+          }
+        };
+
+        const rzp = new Razorpay(options);
+
+        rzp.on('payment.failed', function(failureResponse) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalHtml;
+          const errDesc = failureResponse.error ? (failureResponse.error.description || failureResponse.error.reason) : 'Payment failed';
+          showToast(`Payment Failed: ${errDesc}`, 'error');
+        });
+
+        rzp.open();
+
+      } catch (err) {
+        console.error('Razorpay invocation error:', err);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHtml;
+        showToast('Could not open payment window. Please try again.', 'error');
+      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Set select option if courseParam matches
       const select = document.getElementById('course-select');
       for (let i = 0; i < select.options.length; i++) {
         if (select.options[i].value === courseParam) {
