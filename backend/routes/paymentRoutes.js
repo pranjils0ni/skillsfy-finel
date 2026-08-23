@@ -19,4 +19,8 @@ router.post('/payment/verify', paymentController.verifyPayment);
 router.get('/payment/key', paymentController.getPublicKey);
 router.get('/get-key', paymentController.getPublicKey);
 
+// 4. Razorpay Webhooks: POST /api/webhook or POST /api/payment/webhook
+router.post('/webhook', paymentController.handleWebhook);
+router.post('/payment/webhook', paymentController.handleWebhook);
+
 module.exports = router;
