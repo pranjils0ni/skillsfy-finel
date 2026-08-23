@@ -287,19 +287,84 @@ async function verifyPayment(req, res) {
 }
 
 /**
- * Public Key ID retrieval for frontend initialization
- * Endpoint: GET /api/payment/key
+ * STEP 4: RAZORPAY WEBHOOK (Idempotent backup payment capture)
+ * Endpoint: POST /api/payment/webhook or POST /api/webhook
  */
-function getPublicKey(req, res) {
-  const key_id = process.env.RAZORPAY_KEY_ID;
-  if (!key_id) {
-    return res.status(500).json({ success: false, message: 'Razorpay Key ID not configured.' });
+async function handleWebhook(req, res) {
+  try {
+    const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET || process.env.RAZORPAY_KEY_SECRET;
+    const razorpaySignature = req.headers['x-razorpay-signature'];
+
+    if (webhookSecret && razorpaySignature && req.body) {
+      const rawBody = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
+      const expectedSignature = crypto
+        .createHmac('sha256', webhookSecret)
+        .update(rawBody)
+        .digest('hex');
+
+      if (expectedSignature !== razorpaySignature) {
+        return res.status(400).json({ success: false, message: 'Invalid webhook signature' });
+      }
+    }
+
+    const event = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    const eventType = event.event;
+    const payload = event.payload?.payment?.entity || event.payload?.order?.entity;
+
+    if (!payload) {
+      return res.status(200).json({ success: true });
+    }
+
+    const paymentId = payload.id;
+    const orderId = payload.order_id;
+    const amountInr = payload.amount ? Math.round(payload.amount / 100) : 149;
+    const email = payload.email || payload.notes?.student_email || '';
+    const phone = payload.contact || payload.notes?.student_phone || '';
+    const ticketNo = payload.notes?.ticket_no;
+    const isWorkshop = (payload.notes?.type === 'workshop' || payload.notes?.course_id === 'workshop-30-aug' || !!ticketNo);
+
+    const dbClient = supabaseAdmin || supabase;
+    if (dbClient && (eventType === 'payment.captured' || eventType === 'order.paid')) {
+      if (isWorkshop) {
+        let updateQuery = orderId ? { razorpay_order_id: orderId } : (ticketNo ? { ticket_no: ticketNo } : { email: email });
+        await dbClient.from('workshop_registrations')
+          .update({
+            payment_status: 'paid',
+            status: 'Payment Verified',
+            razorpay_payment_id: paymentId,
+            amount_paid: amountInr,
+            paid_at: new Date().toISOString()
+          })
+          .match(updateQuery);
+      }
+
+      await dbClient.from('payments').insert([{
+        order_id: orderId || null,
+        payment_id: paymentId,
+        amount: amountInr,
+        currency: 'INR',
+        status: 'SUCCESS',
+        payer_email: email,
+        payer_phone: phone,
+        metadata: {
+          source: 'razorpay_webhook',
+          event: eventType,
+          ticket_no: ticketNo,
+          notes: payload.notes
+        }
+      }]);
+    }
+
+    return res.status(200).json({ success: true, message: 'Webhook processed successfully' });
+  } catch (err) {
+    console.error('Webhook error:', err);
+    return res.status(500).json({ success: false, message: err.message });
   }
-  return res.status(200).json({ success: true, key_id });
 }
 
 module.exports = {
   createOrder,
   verifyPayment,
-  getPublicKey
+  getPublicKey,
+  handleWebhook
 };
