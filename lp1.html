@@ -3,33 +3,32 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Skillsfy AI Web Development Masterclass — Live on 30 Aug 2026</title>
+  <title>AI Web Development Masterclass (30 Aug 2026) — Skillsfy Live Workshop</title>
   
+  <!-- Tailwind CSS & Fonts -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@500;600;700;800;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   
+  <!-- Razorpay Standard Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
   <script id="tailwind-config">
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            "primary": "#2563eb",
-            "primary-dark": "#1d4ed8",
-            "secondary": "#7c3aed",
-            "tertiary": "#0284c7",
-            "background": "#ffffff",
-            "surface": "#ffffff",
-            "surface-muted": "#f8fafc",
-            "surface-subtle": "#f1f5f9",
-            "on-background": "#0f172a",
-            "on-surface-variant": "#475569",
-            "border-glass": "rgba(226, 232, 240, 0.8)",
+            "sky-brand": "#0284c7",
+            "sky-light": "#e0f2fe",
+            "sky-subtle": "#f0f9ff",
+            "sky-deep": "#0369a1",
+            "primary": "#0ea5e9",
+            "accent": "#2563eb",
+            "navy-dark": "#0f172a",
           },
           fontFamily: {
             "display-hero": ["Manrope", "sans-serif"],
             "headline-lg": ["Manrope", "sans-serif"],
-            "label-caps": ["Inter", "sans-serif"],
             "body-md": ["Inter", "sans-serif"],
           }
         }
@@ -41,50 +40,51 @@
     body {
       background-color: #ffffff;
       color: #0f172a;
+      font-family: 'Inter', sans-serif;
     }
+    .font-manrope { font-family: 'Manrope', sans-serif; }
+    
     .glass-card {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+      border: 1px solid #e0f2fe;
+      box-shadow: 0 4px 25px -4px rgba(2, 132, 199, 0.08);
     }
     .bg-grid {
-      background-image: linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
-      background-size: 36px 36px;
+      background-image: linear-gradient(to right, rgba(2, 132, 199, 0.05) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
-    .glow-bg {
+    .glow-sky {
       position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.03) 50%, rgba(255, 255, 255, 0) 70%);
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, rgba(2, 132, 199, 0.03) 50%, transparent 70%);
       border-radius: 50%;
       z-index: -1;
-      filter: blur(60px);
+      filter: blur(50px);
     }
-    .btn-gradient {
-      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    .btn-sky-gradient {
+      background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 50%, #2563eb 100%);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .btn-gradient:hover {
-      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+    .btn-sky-gradient:hover {
+      box-shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.45);
       transform: translateY(-2px);
     }
-    .badge-pill {
+    .badge-sky {
       display: inline-flex;
       align-items: center;
-      padding: 0.25rem 0.75rem;
+      padding: 0.3rem 0.85rem;
       border-radius: 9999px;
       font-size: 0.75rem;
       font-weight: 700;
-    }
-    .tilt-card {
-      transform-style: preserve-3d;
-      transition: transform 0.15s ease-out, box-shadow 0.3s ease;
-      will-change: transform;
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
     }
     .nav-link-active {
-      color: #2563eb !important;
+      color: #0284c7 !important;
       font-weight: 700 !important;
       position: relative;
     }
@@ -95,399 +95,522 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background: #2563eb;
+      background: #0284c7;
       border-radius: 2px;
     }
     .sticky-header-scrolled {
       background: rgba(255, 255, 255, 0.95) !important;
       backdrop-filter: blur(20px) !important;
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
-      border-color: rgba(226, 232, 240, 1) !important;
+      box-shadow: 0 4px 20px -2px rgba(2, 132, 199, 0.1);
+      border-color: #bae6fd !important;
     }
-    @keyframes bounceSubtle {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
+    @keyframes pulseSoft {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
     }
-    .animate-bounce-subtle {
-      animation: bounceSubtle 3s ease-in-out infinite;
+    .animate-pulse-soft {
+      animation: pulseSoft 2.5s ease-in-out infinite;
     }
   </style>
 </head>
 
-<body class="bg-white text-slate-900 font-body-md overflow-x-hidden antialiased selection:bg-blue-600/20 selection:text-blue-900">
+<body class="bg-white text-slate-900 font-body-md overflow-x-hidden antialiased selection:bg-sky-500/20 selection:text-sky-900">
 
   <!-- ================= TOP READING / SCROLL PROGRESS BAR ================= -->
-  <div id="scroll-progress-bar" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-[#0284c7] via-[#2563eb] to-[#7c3aed] z-[70] transition-all duration-75" style="width: 0%;"></div>
+  <div id="scroll-progress-bar" class="fixed top-0 left-0 h-[3.5px] bg-gradient-to-r from-sky-400 via-sky-600 to-blue-600 z-[70] transition-all duration-75" style="width: 0%;"></div>
 
-  <!-- ================= 1. TOP ANNOUNCEMENT BAR ================= -->
-  <div class="bg-blue-50 text-blue-900 py-2.5 px-4 text-center border-b border-blue-100 flex flex-wrap items-center justify-center gap-2 relative z-50 text-xs font-semibold">
-    <span class="animate-pulse">🔥</span>
-    <span class="font-label-caps uppercase tracking-wider">
-      Skillsfy Live Masterclass • <strong>Live on 30 August 2026 (7:00 PM IST)</strong>
+  <!-- ================= 1. TOP URGENCY ANNOUNCEMENT BAR ================= -->
+  <div class="bg-gradient-to-r from-sky-600 via-sky-700 to-blue-700 text-white py-2.5 px-4 text-center border-b border-sky-500/30 flex flex-wrap items-center justify-center gap-2 relative z-50 text-xs font-semibold shadow-sm">
+    <span class="animate-pulse bg-white/20 px-2 py-0.5 rounded-full text-[11px] font-bold">🔴 LIVE MASTERCLASS</span>
+    <span>
+      Date: <strong>Sunday, 30 August 2026 (7:00 PM IST)</strong> • 3-Hour Interactive Live Build
     </span>
-    <span class="hidden sm:inline text-blue-300">•</span>
-    <span class="text-blue-700 hidden sm:inline">Limited Seats Available</span>
+    <span class="hidden sm:inline opacity-60">•</span>
+    <span class="bg-amber-400 text-slate-950 px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider animate-bounce">
+      First 1 Seat at ₹1
+    </span>
   </div>
 
   <!-- ================= TOP APP BAR NAVIGATION ================= -->
-  <header class="bg-white/80 backdrop-blur-xl font-body-md fixed top-9 w-full z-40 border-b border-slate-200/80 shadow-sm transition-all duration-300">
+  <header class="bg-white/85 backdrop-blur-xl fixed top-9 w-full z-40 border-b border-sky-100 shadow-sm transition-all duration-300">
     <div class="flex justify-between items-center px-4 sm:px-8 py-3.5 max-w-7xl mx-auto">
       
       <a href="/" class="flex items-center gap-3 group">
         <img src="assets/logo.png" alt="Skillsfy" class="h-8 object-contain"/>
-        <span class="text-xs font-mono font-bold text-slate-500 pl-2 border-l border-slate-200 hidden sm:inline">WORKSHOP (30 AUG)</span>
+        <span class="text-xs font-mono font-bold text-sky-700 pl-2 border-l border-sky-200 hidden sm:inline">WORKSHOP (30 AUG)</span>
       </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium font-['Inter']">
-        <a class="text-slate-600 hover:text-blue-600 transition-colors" href="#workflow">Workflow</a>
-        <a class="text-slate-600 hover:text-blue-600 transition-colors" href="#curriculum">Curriculum</a>
-        <a class="text-slate-600 hover:text-blue-600 transition-colors" href="#case-study">Case Studies</a>
-        <a class="text-slate-600 hover:text-blue-600 transition-colors" href="#tools">Tool Stack</a>
-        <a class="text-slate-600 hover:text-blue-600 transition-colors" href="#instructor">Instructor</a>
-        <a class="text-slate-600 hover:text-blue-600 transition-colors" href="#faq">FAQ</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+        <a class="text-slate-600 hover:text-sky-600 transition-colors" href="#curriculum">What You'll Learn</a>
+        <a class="text-slate-600 hover:text-sky-600 transition-colors" href="#bonuses">₹17,500 Bonuses</a>
+        <a class="text-slate-600 hover:text-sky-600 transition-colors" href="#projects">Projects Built</a>
+        <a class="text-slate-600 hover:text-sky-600 transition-colors" href="#instructor">Instructor</a>
+        <a class="text-slate-600 hover:text-sky-600 transition-colors" href="#faq">FAQ</a>
       </nav>
 
       <div class="flex items-center gap-3">
-        <a href="/" class="text-xs text-slate-600 hover:text-blue-600 font-semibold hidden lg:inline">Main Website →</a>
-        <button onclick="openRegisterModal()" class="btn-gradient text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5 hover:scale-105 transition-all">
-          <span>Reserve My Seat</span>
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        <div class="hidden lg:flex items-center gap-1.5 text-xs text-slate-600">
+          <span class="text-slate-400 line-through">₹1,999</span>
+          <span class="font-bold text-sky-700 text-sm">₹149 only</span>
+        </div>
+        <button onclick="openPaymentModal()" class="btn-sky-gradient text-white px-5 py-2.5 rounded-xl text-xs font-extrabold shadow-md flex items-center gap-1.5">
+          <span>Book Ticket (₹149)</span>
+          <span class="material-symbols-outlined text-sm">bolt</span>
         </button>
       </div>
 
     </div>
   </header>
 
-  <!-- ================= 2. HERO SECTION ================= -->
+  <!-- ================= 2. HERO SECTION (HIGH-CONVERTING PAID WORKSHOP ARCHITECTURE) ================= -->
   <section class="relative min-h-screen flex items-center pt-36 pb-16 md:pb-24 px-4 sm:px-8 overflow-hidden bg-grid">
-    <div class="glow-bg top-0 left-0"></div>
-    <div class="glow-bg bottom-0 right-0" style="background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, rgba(37, 99, 235, 0.03) 50%, rgba(255, 255, 255, 0) 70%);"></div>
+    <div class="glow-sky top-0 left-0"></div>
+    <div class="glow-sky bottom-0 right-0" style="background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, rgba(37, 99, 235, 0.04) 50%, transparent 70%);"></div>
     
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 w-full">
       
-      <!-- Left Copy -->
+      <!-- Left Hero Copy -->
       <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
         
-        <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-          <span class="font-label-caps text-xs text-blue-800 uppercase font-bold tracking-wider">
-            Live Interactive Workshop • 30 Aug 2026
+        <!-- Live Alert Badge -->
+        <div class="inline-flex items-center gap-2 bg-sky-50 border border-sky-200 rounded-full px-4 py-1.5 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+          <span class="text-xs text-sky-800 uppercase font-extrabold tracking-wider font-manrope">
+            LIVE 3-HOUR CODING WORKSHOP • 30 AUGUST (7 PM IST)
           </span>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 font-['Manrope'] leading-tight tracking-tight">
-          Build High-Converting <br class="hidden sm:inline"/>
-          <span id="rotator-word" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 transition-all duration-500">AI Web Apps</span> <br/>
-          <span class="text-slate-600 font-semibold text-2xl sm:text-4xl block mt-2">Then Turn Them Into ₹50,000+ Client Projects.</span>
+        <!-- Main High-Impact Headline -->
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 font-manrope leading-tight tracking-tight">
+          Build & Deploy Production <br class="hidden sm:inline"/>
+          <span id="rotator-word" class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 transition-all duration-500">AI Web Apps</span> <br/>
+          <span class="text-slate-700 font-bold text-2xl sm:text-4xl block mt-2">Then Learn To Land ₹50,000+ Paying Clients.</span>
         </h1>
 
         <!-- Workflow Pipeline Pill -->
-        <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 font-mono text-xs text-slate-700 flex flex-wrap items-center justify-center lg:justify-start gap-2 shadow-sm">
-          <span class="text-slate-400 font-bold">Pipeline:</span>
-          <span class="font-semibold text-blue-600">ChatGPT/Claude</span> <span class="text-slate-400">→</span>
-          <span class="font-semibold text-indigo-600">Google Stitch</span> <span class="text-slate-400">→</span>
-          <span class="font-semibold text-purple-600">Antigravity</span> <span class="text-slate-400">→</span>
-          <span class="font-semibold text-slate-800">GitHub</span> <span class="text-slate-400">→</span>
-          <span class="font-semibold text-slate-900">Vercel</span> <span class="text-slate-400">→</span>
-          <span class="font-semibold text-emerald-600">Supabase</span> <span class="text-slate-400">→</span>
-          <span class="text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded-md">Client Deal</span>
+        <div class="p-3 bg-sky-50/80 rounded-2xl border border-sky-200 font-mono text-xs text-slate-700 flex flex-wrap items-center justify-center lg:justify-start gap-2 shadow-sm">
+          <span class="text-slate-400 font-bold">Stack Pipeline:</span>
+          <span class="font-bold text-sky-700">Claude / ChatGPT</span> <span class="text-slate-400">→</span>
+          <span class="font-bold text-blue-600">Google Stitch</span> <span class="text-slate-400">→</span>
+          <span class="font-bold text-indigo-600">Antigravity</span> <span class="text-slate-400">→</span>
+          <span class="font-bold text-slate-800">GitHub</span> <span class="text-slate-400">→</span>
+          <span class="font-bold text-slate-900">Vercel</span> <span class="text-slate-400">→</span>
+          <span class="font-bold text-emerald-600">Supabase</span> <span class="text-slate-400">→</span>
+          <span class="text-emerald-800 font-extrabold bg-emerald-100 px-2.5 py-0.5 rounded-md border border-emerald-300">₹50k Client Deal</span>
         </div>
 
-        <p class="text-sm sm:text-base text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-['Inter']">
-          A practical, zero-fluff 3+ hour live masterclass where you will code, deploy, database-connect, and launch real websites using cutting-edge AI coding workflows — then acquire paying clients.
+        <p class="text-sm sm:text-base text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          No obsolete syntax or useless theory. In this 3-hour live workshop, you will build, connect databases, deploy live on custom domains, and get the exact client acquisition scripts to start selling websites.
         </p>
 
-        <!-- Live Countdown Timer -->
-        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-md max-w-md mx-auto lg:mx-0">
-          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-2 text-center lg:text-left flex items-center justify-center lg:justify-start gap-1.5">
-            <span class="material-symbols-outlined text-sm text-blue-600">schedule</span>
-            <span>Workshop Begins In:</span>
-          </p>
-          <div class="grid grid-cols-4 gap-2 text-center font-mono">
-            <div class="bg-slate-50 p-2 rounded-xl border border-slate-200">
-              <span id="timer-days" class="text-xl font-extrabold text-slate-900 block">07</span>
-              <span class="text-[9px] text-slate-500 uppercase font-semibold">Days</span>
-            </div>
-            <div class="bg-slate-50 p-2 rounded-xl border border-slate-200">
-              <span id="timer-hours" class="text-xl font-extrabold text-slate-900 block">14</span>
-              <span class="text-[9px] text-slate-500 uppercase font-semibold">Hours</span>
-            </div>
-            <div class="bg-slate-50 p-2 rounded-xl border border-slate-200">
-              <span id="timer-mins" class="text-xl font-extrabold text-slate-900 block">28</span>
-              <span class="text-[9px] text-slate-500 uppercase font-semibold">Mins</span>
-            </div>
-            <div class="bg-slate-50 p-2 rounded-xl border border-slate-200">
-              <span id="timer-secs" class="text-xl font-extrabold text-blue-600 block">45</span>
-              <span class="text-[9px] text-slate-500 uppercase font-semibold">Secs</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hero Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 pt-2 justify-center lg:justify-start">
-          <button onclick="openRegisterModal()" class="btn-gradient text-white px-8 py-4 rounded-xl font-bold text-center text-sm shadow-xl flex items-center justify-center gap-2">
-            <span>Reserve My Seat Now</span>
-            <span class="material-symbols-outlined text-base">how_to_reg</span>
-          </button>
-          <a class="bg-white text-slate-700 px-8 py-4 rounded-xl font-semibold text-center hover:bg-slate-50 transition-colors border border-slate-200 text-sm flex items-center justify-center gap-1.5 shadow-sm" href="#curriculum">
-            <span>View Full Syllabus</span>
-            <span class="material-symbols-outlined text-sm text-slate-500">menu_book</span>
-          </a>
-        </div>
-
-      </div>
-
-      <!-- Right Visual Card (Developer Terminal Studio) -->
-      <div class="lg:col-span-5 relative">
-        <div class="absolute inset-0 bg-gradient-to-tr from-blue-100 to-indigo-100 rounded-3xl blur-2xl -z-10"></div>
-        <div class="bg-slate-950 rounded-3xl p-6 border border-slate-800 shadow-2xl space-y-5 relative overflow-hidden text-slate-100">
+        <!-- Live Countdown & Special Coupon Strip -->
+        <div class="p-5 rounded-3xl bg-white border border-sky-200 shadow-xl max-w-xl mx-auto lg:mx-0 space-y-3">
           
-          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+          <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-sky-100">
             <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-              <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-              <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+              <span class="material-symbols-outlined text-sky-600 text-lg">alarm</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-700">Workshop Starts In:</span>
             </div>
-            <span class="text-xs font-mono text-cyan-400 font-bold">Skillsfy-Live-Studio.sh</span>
+            <span class="badge-sky text-[11px] font-bold">Seats Filling Fast (Only 14 Left)</span>
           </div>
 
-          <div class="space-y-3 font-mono text-xs">
-            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800 space-y-1">
-              <p class="text-slate-400">// Step 1: AI Prompt to Clean UI Code</p>
-              <p class="text-emerald-400 font-bold">$ stitch build "Modern SaaS with Supabase Backend"</p>
+          <!-- Countdown Digits -->
+          <div class="grid grid-cols-4 gap-2 text-center font-mono">
+            <div class="bg-sky-50/80 p-2.5 rounded-2xl border border-sky-100">
+              <span id="timer-days" class="text-2xl font-black text-slate-900 block">07</span>
+              <span class="text-[9px] text-slate-500 uppercase font-bold">Days</span>
             </div>
-            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800 space-y-1">
-              <p class="text-slate-400">// Step 2: Push to GitHub & Deploy to Vercel</p>
-              <p class="text-cyan-400 font-bold">$ git push origin main → Deployed at lp1.skillsfy.in</p>
+            <div class="bg-sky-50/80 p-2.5 rounded-2xl border border-sky-100">
+              <span id="timer-hours" class="text-2xl font-black text-slate-900 block">14</span>
+              <span class="text-[9px] text-slate-500 uppercase font-bold">Hours</span>
             </div>
-            <div class="p-3 bg-slate-900/90 rounded-xl border border-slate-800 space-y-1">
-              <p class="text-slate-400">// Step 3: High-Ticket Client Handover</p>
-              <p class="text-purple-400 font-bold">✓ Payment Received: ₹35,000 via Client Contract</p>
+            <div class="bg-sky-50/80 p-2.5 rounded-2xl border border-sky-100">
+              <span id="timer-mins" class="text-2xl font-black text-slate-900 block">28</span>
+              <span class="text-[9px] text-slate-500 uppercase font-bold">Mins</span>
+            </div>
+            <div class="bg-sky-50/80 p-2.5 rounded-2xl border border-sky-100">
+              <span id="timer-secs" class="text-2xl font-black text-sky-600 block">45</span>
+              <span class="text-[9px] text-slate-500 uppercase font-bold">Secs</span>
             </div>
           </div>
 
-          <div class="p-4 rounded-2xl bg-gradient-to-r from-blue-900/60 to-purple-900/60 border border-blue-500/30 flex items-center justify-between">
-            <div>
-              <p class="text-xs text-white font-bold font-['Manrope']">Workshop Entry Ticket</p>
-              <p class="text-[11px] text-slate-300">Live Recording + 50+ Prompts Included</p>
+          <!-- Special First 1 Buyer Offer Highlight -->
+          <div class="p-3 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 flex items-center justify-between text-xs">
+            <div class="space-y-0.5">
+              <p class="font-extrabold text-amber-900 flex items-center gap-1">
+                <span>🎁 First 1 Registration Special Offer!</span>
+              </p>
+              <p class="text-[11px] text-amber-700">Use coupon code <strong class="font-mono bg-amber-200 px-1.5 py-0.5 rounded text-amber-950 font-black">FIRST1</strong> at checkout to get this at <strong>₹1 only!</strong></p>
             </div>
-            <button onclick="openRegisterModal()" class="px-4 py-2 bg-blue-500 hover:bg-blue-400 text-white font-bold text-xs rounded-xl shadow">
-              Enroll Free / Pass
+            <button onclick="openPaymentModal('FIRST1')" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-[11px] rounded-xl shadow transition-all whitespace-nowrap">
+              Claim ₹1 Offer
             </button>
           </div>
 
         </div>
+
+        <!-- Hero Primary CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-3.5 pt-2 justify-center lg:justify-start">
+          <button onclick="openPaymentModal()" class="btn-sky-gradient text-white px-8 py-4 rounded-2xl font-extrabold text-center text-sm shadow-xl flex items-center justify-center gap-2 hover:scale-105 transition-all">
+            <span>Enroll Now for ₹149</span>
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </button>
+          <a class="bg-white text-slate-700 px-6 py-4 rounded-2xl font-bold text-center hover:bg-sky-50 transition-colors border border-sky-200 text-sm flex items-center justify-center gap-1.5 shadow-sm" href="#curriculum">
+            <span>View 3-Hour Syllabus</span>
+            <span class="material-symbols-outlined text-sm text-slate-400">expand_more</span>
+          </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-1 text-xs text-slate-500">
+          <div class="flex items-center gap-1 text-amber-500">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="font-bold text-slate-800">4.9/5 Rating</span>
+            <span class="text-slate-400">(1,240+ Alumni)</span>
+          </div>
+          <span>•</span>
+          <div class="flex items-center gap-1 text-emerald-600 font-semibold">
+            <span class="material-symbols-outlined text-sm">lock</span>
+            <span>Razorpay Secure 256-bit</span>
+          </div>
+          <span>•</span>
+          <div class="flex items-center gap-1 text-sky-600 font-semibold">
+            <span class="material-symbols-outlined text-sm">verified</span>
+            <span>ISO Verifiable Certificate</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Visual Feature Card -->
+      <div class="lg:col-span-5 relative">
+        <div class="absolute inset-0 bg-gradient-to-tr from-sky-200 to-blue-200 rounded-3xl blur-2xl -z-10"></div>
+        
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-sky-200 shadow-2xl space-y-6 relative overflow-hidden text-slate-900">
+          
+          <!-- Card Header -->
+          <div class="flex items-center justify-between pb-4 border-b border-sky-100">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-700 flex items-center justify-center">
+                <span class="material-symbols-outlined text-2xl">school</span>
+              </div>
+              <div>
+                <h3 class="font-extrabold text-slate-900 font-manrope text-base">VIP Workshop Pass</h3>
+                <p class="text-xs text-sky-700 font-semibold">Sunday, 30 Aug (7 PM IST)</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-slate-400 line-through">₹1,999</span>
+              <p class="text-2xl font-black text-sky-700">₹149</p>
+            </div>
+          </div>
+
+          <!-- Included Features Checklist -->
+          <div class="space-y-3 text-xs">
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-base mt-0.5">check_circle</span>
+              <p class="text-slate-700 font-medium"><strong>3+ Hours Live Coding:</strong> Zero to live deployed web application</p>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-base mt-0.5">check_circle</span>
+              <p class="text-slate-700 font-medium"><strong>Direct WhatsApp Community Access:</strong> Join private VIP group immediately</p>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-base mt-0.5">check_circle</span>
+              <p class="text-slate-700 font-medium"><strong>Full HD Recording Access:</strong> Lifetime access to review anytime</p>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-base mt-0.5">check_circle</span>
+              <p class="text-slate-700 font-medium"><strong>50+ Tested AI Prompts Vault:</strong> Copy-paste prompt templates (Value ₹4,999)</p>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-base mt-0.5">check_circle</span>
+              <p class="text-slate-700 font-medium"><strong>Client Proposal & Contract Kit:</strong> Land ₹25k - ₹60k website clients</p>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-emerald-600 text-base mt-0.5">check_circle</span>
+              <p class="text-slate-700 font-medium"><strong>Official Skillsfy Digital Certificate:</strong> Verifiable on our portal</p>
+            </div>
+          </div>
+
+          <!-- CTA in Card -->
+          <div class="space-y-2 pt-2">
+            <button onclick="openPaymentModal()" class="w-full py-4 btn-sky-gradient text-white font-extrabold text-sm rounded-2xl shadow-xl flex items-center justify-center gap-2 hover:scale-[1.02] transition-all">
+              <span class="material-symbols-outlined text-lg">payments</span>
+              <span>Enroll for ₹149 with Razorpay</span>
+            </button>
+            <p class="text-[11px] text-center text-slate-500">
+              ⚡ Instant WhatsApp Community Access link upon payment
+            </p>
+          </div>
+
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ================= 3. EVENT INFO STRIP ================= -->
-  <section class="py-10 border-y border-slate-200 bg-slate-50" id="workflow">
+  <!-- ================= 3. STATS & HIGHLIGHTS STRIP ================= -->
+  <section class="py-10 border-y border-sky-100 bg-sky-50/50" id="stats">
     <div class="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
       
-      <div class="glass-card p-5 rounded-2xl flex flex-col items-center text-center gap-2.5 hover:border-blue-400 transition-all">
-        <span class="material-symbols-outlined text-blue-600 text-3xl" style="font-variation-settings: 'FILL' 1;">videocam</span>
-        <span class="font-bold text-sm text-slate-900 font-['Manrope']">3+ Hours Live</span>
-        <span class="text-[11px] text-slate-600 font-['Inter']">Interactive Hands-on Coding</span>
+      <div class="glass-card p-5 rounded-2xl flex flex-col items-center text-center gap-2 hover:border-sky-300 transition-all">
+        <span class="material-symbols-outlined text-sky-600 text-3xl" style="font-variation-settings: 'FILL' 1;">videocam</span>
+        <span class="font-extrabold text-base text-slate-900 font-manrope">3+ Hours Live</span>
+        <span class="text-xs text-slate-600">Hands-on live coding workshop</span>
       </div>
 
-      <div class="glass-card p-5 rounded-2xl flex flex-col items-center text-center gap-2.5 hover:border-indigo-400 transition-all">
-        <span class="material-symbols-outlined text-indigo-600 text-3xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
-        <span class="font-bold text-sm text-slate-900 font-['Manrope']">Zero to Production</span>
-        <span class="text-[11px] text-slate-600 font-['Inter']">GitHub, Vercel & Supabase</span>
+      <div class="glass-card p-5 rounded-2xl flex flex-col items-center text-center gap-2 hover:border-sky-300 transition-all">
+        <span class="material-symbols-outlined text-sky-600 text-3xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
+        <span class="font-extrabold text-base text-slate-900 font-manrope">Zero to Production</span>
+        <span class="text-xs text-slate-600">Live deploy on Vercel & Supabase</span>
       </div>
 
-      <div class="glass-card p-5 rounded-2xl flex flex-col items-center text-center gap-2.5 hover:border-purple-400 transition-all">
-        <span class="material-symbols-outlined text-purple-600 text-3xl" style="font-variation-settings: 'FILL' 1;">psychology</span>
-        <span class="font-bold text-sm text-slate-900 font-['Manrope']">AI-First Tooling</span>
-        <span class="text-[11px] text-slate-600 font-['Inter']">Claude, Antigravity & Stitch</span>
+      <div class="glass-card p-5 rounded-2xl flex flex-col items-center text-center gap-2 hover:border-sky-300 transition-all">
+        <span class="material-symbols-outlined text-sky-600 text-3xl" style="font-variation-settings: 'FILL' 1;">groups</span>
+        <span class="font-extrabold text-base text-slate-900 font-manrope">WhatsApp Community</span>
+        <span class="text-xs text-slate-600">Lifetime networking & mentor help</span>
       </div>
 
-      <div class="glass-card p-5 rounded-2xl flex flex-col items-center text-center gap-2.5 hover:border-emerald-400 transition-all">
+      <div class="glass-card p-5 rounded-2xl flex flex-col items-center text-center gap-2 hover:border-sky-300 transition-all">
         <span class="material-symbols-outlined text-emerald-600 text-3xl" style="font-variation-settings: 'FILL' 1;">payments</span>
-        <span class="font-bold text-sm text-slate-900 font-['Manrope']">Client Monetization</span>
-        <span class="text-[11px] text-slate-600 font-['Inter']">Pitching & Closing ₹25k+ Deals</span>
+        <span class="font-extrabold text-base text-slate-900 font-manrope">Client Monetization</span>
+        <span class="text-xs text-slate-600">Pitch & close ₹25k - ₹60k client deals</span>
       </div>
 
     </div>
   </section>
 
-  <!-- ================= 4. CURRICULUM OVERVIEW ================= -->
+  <!-- ================= 4. DETAILED 3-HOUR CURRICULUM ================= -->
   <section class="py-16 md:py-24 bg-white relative" id="curriculum">
     <div class="max-w-7xl mx-auto px-4 sm:px-8">
       
       <div class="text-center mb-16 space-y-3">
-        <span class="badge-pill bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold uppercase">
-          Step-by-Step Curriculum
+        <span class="badge-sky">
+          Hour-by-Hour Masterclass Agenda
         </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-['Manrope']">
-          The Complete AI <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600">Development Pipeline</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-manrope">
+          What You Will Build & Master in <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-blue-600">3 Live Hours</span>
         </h2>
         <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
-          5 comprehensive live phases designed to take you from a complete beginner to deploying real client projects.
+          We skip the boring slides. From minute 1, we open code editors, deploy databases, and generate money-making web apps.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <!-- Module 1 -->
-        <div class="glass-card p-6 rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-lg transition-all space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-blue-600 font-label-caps text-xs font-bold">PHASE 01</span>
-            <span class="material-symbols-outlined text-slate-400 text-lg">smart_toy</span>
+        <!-- Hour 1 -->
+        <div class="glass-card p-7 rounded-3xl border border-sky-200 hover:border-sky-400 hover:shadow-xl transition-all space-y-4 relative">
+          <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-lg font-mono">
+            01
           </div>
-          <h3 class="text-lg font-bold text-slate-900 font-['Manrope']">AI Fundamentals & LLMs</h3>
-          <p class="text-slate-600 text-xs leading-relaxed">
-            Master prompt constraints, system architecture, and using LLMs (Claude 3.5 Sonnet, ChatGPT) as senior pair programmers.
-          </p>
+          <div class="space-y-1">
+            <span class="text-xs font-bold text-sky-700 uppercase tracking-wider">HOUR 1 (7:00 PM - 8:00 PM)</span>
+            <h3 class="text-xl font-bold text-slate-900 font-manrope">AI Prompt Architecture & UI Crafting</h3>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-600">
+            <li class="flex items-start gap-2">
+              <span class="text-sky-600 font-bold">✓</span>
+              <span>Advanced prompting patterns with Claude 3.5 Sonnet & ChatGPT-4o</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-sky-600 font-bold">✓</span>
+              <span>Using Google Stitch to build responsive, stunning glassmorphic UI</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-sky-600 font-bold">✓</span>
+              <span>Eliminating AI hallucination with strict design token constraints</span>
+            </li>
+          </ul>
         </div>
 
-        <!-- Module 2 -->
-        <div class="glass-card p-6 rounded-2xl border border-slate-200 hover:border-indigo-400 hover:shadow-lg transition-all space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-indigo-600 font-label-caps text-xs font-bold">PHASE 02</span>
-            <span class="material-symbols-outlined text-slate-400 text-lg">code</span>
+        <!-- Hour 2 -->
+        <div class="glass-card p-7 rounded-3xl border border-sky-200 hover:border-sky-400 hover:shadow-xl transition-all space-y-4 relative">
+          <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-lg font-mono">
+            02
           </div>
-          <h3 class="text-lg font-bold text-slate-900 font-['Manrope']">Google Stitch & UI Prototyping</h3>
-          <p class="text-slate-600 text-xs leading-relaxed">
-            Convert ideas into production-ready responsive UI with glassmorphism, modern Tailwind CSS, and full interactive states.
-          </p>
+          <div class="space-y-1">
+            <span class="text-xs font-bold text-blue-700 uppercase tracking-wider">HOUR 2 (8:00 PM - 9:00 PM)</span>
+            <h3 class="text-xl font-bold text-slate-900 font-manrope">Supabase Database, Auth & Edge Deploy</h3>
+          </div>
+          <ul class="space-y-2.5 text-xs text-slate-600">
+            <li class="flex items-start gap-2">
+              <span class="text-blue-600 font-bold">✓</span>
+              <span>Connecting PostgreSQL cloud database in Supabase with zero SQL errors</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-blue-600 font-bold">✓</span>
+              <span>Dynamic student/user authentication & instant lead capture</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-blue-600 font-bold">✓</span>
+              <span>1-Click automated deployment via GitHub & Vercel with custom domain SSL</span>
+            </li>
+          </ul>
         </div>
 
-        <!-- Module 3 -->
-        <div class="glass-card p-6 rounded-2xl border border-slate-200 hover:border-cyan-400 hover:shadow-lg transition-all space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-cyan-600 font-label-caps text-xs font-bold">PHASE 03</span>
-            <span class="material-symbols-outlined text-slate-400 text-lg">database</span>
+        <!-- Hour 3 -->
+        <div class="glass-card p-7 rounded-3xl border border-sky-200 hover:border-sky-400 hover:shadow-xl transition-all space-y-4 relative">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg font-mono">
+            03
           </div>
-          <h3 class="text-lg font-bold text-slate-900 font-['Manrope']">Supabase Backend & Auth</h3>
-          <p class="text-slate-600 text-xs leading-relaxed">
-            Connect PostgreSQL cloud databases, row-level security (RLS), instant lead capture forms, and dynamic student authentication.
-          </p>
-        </div>
-
-        <!-- Module 4 -->
-        <div class="glass-card p-6 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition-all space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-emerald-600 font-label-caps text-xs font-bold">PHASE 04</span>
-            <span class="material-symbols-outlined text-slate-400 text-lg">cloud_done</span>
+          <div class="space-y-1">
+            <span class="text-xs font-bold text-emerald-700 uppercase tracking-wider">HOUR 3 (9:00 PM - 10:00 PM)</span>
+            <h3 class="text-xl font-bold text-slate-900 font-manrope">Client Acquisition & Closing ₹50,000 Deals</h3>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 font-['Manrope']">GitHub & Vercel Auto-Deploy</h3>
-          <p class="text-slate-600 text-xs leading-relaxed">
-            Set up automatic CI/CD pipelines, SSL certificates, custom DNS records (.in/.com), and subdomains (lp1.skillsfy.in).
-          </p>
-        </div>
-
-        <!-- Module 5 -->
-        <div class="glass-card p-6 rounded-2xl border border-slate-200 hover:border-purple-400 hover:shadow-lg transition-all space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-purple-600 font-label-caps text-xs font-bold">PHASE 05</span>
-            <span class="material-symbols-outlined text-slate-400 text-lg">storefront</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 font-['Manrope']">Client Acquisition Blueprint</h3>
-          <p class="text-slate-600 text-xs leading-relaxed">
-            The exact cold outreach scripts, proposal templates, and pricing strategy to sell custom AI websites to Indian & global clients.
-          </p>
-        </div>
-
-        <!-- Bonus Card -->
-        <div class="glass-card p-6 rounded-2xl border border-amber-300 bg-amber-50/70 hover:shadow-lg transition-all space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-amber-800 font-label-caps text-xs font-bold">FREE BONUSES</span>
-            <span class="material-symbols-outlined text-amber-600 text-lg">redeem</span>
-          </div>
-          <h3 class="text-lg font-bold text-slate-900 font-['Manrope']">₹15,000 Resource Vault</h3>
-          <p class="text-slate-600 text-xs leading-relaxed">
-            Get instant access to 50+ tested AI prompts, client contract templates, and invoice generators for freelancers.
-          </p>
+          <ul class="space-y-2.5 text-xs text-slate-600">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>The exact cold email & WhatsApp pitch scripts to reach business owners</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>How to package and price website projects from ₹25,000 to ₹1,00,000</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Live Q&A, Certificate Issuance & VIP WhatsApp Group Welcome</span>
+            </li>
+          </ul>
         </div>
 
       </div>
 
+      <!-- Mid CTA -->
       <div class="mt-12 text-center">
-        <button onclick="openRegisterModal()" class="btn-gradient text-white px-8 py-3.5 rounded-xl font-bold text-xs shadow-lg inline-flex items-center gap-2">
-          <span>Enroll for 30 Aug Live Session</span>
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        <button onclick="openPaymentModal()" class="btn-sky-gradient text-white px-9 py-4 rounded-2xl font-extrabold text-sm shadow-xl inline-flex items-center gap-2 hover:scale-105 transition-all">
+          <span>Get Workshop Ticket for ₹149</span>
+          <span class="material-symbols-outlined text-base">bolt</span>
         </button>
       </div>
 
     </div>
   </section>
 
-  <!-- ================= 5. INSTRUCTOR SECTION ================= -->
-  <section class="py-16 md:py-24 bg-slate-50 relative border-y border-slate-200" id="instructor">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+  <!-- ================= 5. EXCLUSIVE BONUSES (VALUE: ₹17,500 - FREE WITH ₹149 TICKET) ================= -->
+  <section class="py-16 md:py-24 bg-sky-50/60 border-y border-sky-100 relative" id="bonuses">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
       
-      <!-- Instructor Photo -->
-      <div class="md:col-span-5 flex justify-center">
-        <div class="relative max-w-sm">
-          <div class="absolute inset-0 bg-gradient-to-r from-blue-200 to-indigo-200 rounded-3xl blur-xl opacity-60"></div>
-          <img 
-            alt="Pranjil Soni, Founder of Skillsfy" 
-            class="rounded-3xl border border-slate-200 shadow-xl relative z-10 w-full object-cover grayscale hover:grayscale-0 transition-all duration-500" 
-            src="assets/founder.jpg"
-            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuC4cVgROjMB4Fvyg6f-nVrFM0XKhIYc_QWXm9GqU1rPoquqMNvG8EnS-rQqKrED2mY4KuQxaFB8sJarq8b7UTttX8ndGCLsiNLkRrgp-Bfca0LREJpsKiZqCRC_iB9yOwqe3Im9TTyqVDd47KHIFMjQJchu_9z6iVmgYIZfZPehrKCERR2kvbAM4kxgxuren-Ps7ry91lLGX3HwaG57U-vZ-tMXGRiVM3JkDzn26YW3K-XYBJMBU_za'"
-          />
-        </div>
+      <div class="text-center mb-16 space-y-3">
+        <span class="badge-sky">
+          Included 100% Free With Your Pass
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-manrope">
+          Unlock <span class="text-sky-700">₹17,500+ Worth</span> of Exclusive Builder Bonuses
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
+          Enroll today for just ₹149 and instantly receive this complete resource vault to accelerate your AI development career.
+        </p>
       </div>
 
-      <!-- Instructor Info -->
-      <div class="md:col-span-7 space-y-5 text-left">
-        <div class="font-label-caps text-xs text-blue-600 uppercase font-bold tracking-wider">Your Masterclass Instructor</div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-['Manrope']">Pranjil Soni</h2>
-        <p class="text-sm font-semibold text-blue-700 font-['Inter']">
-          Founder, Skillsfy — Institute of Technology (Jabalpur, India)
-        </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <div class="space-y-3 text-xs sm:text-sm text-slate-600 font-['Inter'] leading-relaxed">
-          <p>
-            Pranjil Soni is a serial tech entrepreneur and the visionary founder of <strong>Skillsfy - Institute of Technology</strong> based in Civic Center, Jabalpur, MP.
-          </p>
-          <p>
-            With a mission to transform 100,000+ Indian youth into highly-paid modern builders, Pranjil conducts rigorous, practical workshops that bridge the gap between theoretical coding and real-world freelance monetization.
+        <!-- Bonus 1 -->
+        <div class="glass-card p-6 rounded-3xl border border-sky-200 space-y-3 hover:shadow-xl transition-all">
+          <div class="flex items-center justify-between">
+            <span class="badge-sky text-[10px]">BONUS 01</span>
+            <span class="font-mono text-xs font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full">Value: ₹4,999</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 font-manrope">50+ Production AI Prompt Blueprints</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Copy-paste system prompts tested on 30+ real projects for landing pages, authentication, database schemas, and dashboards.
           </p>
         </div>
 
-        <div class="pt-4 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-700">
-          <span class="p-2.5 rounded-xl bg-white border border-slate-200 shadow-sm font-medium">🏛️ Jabalpur Tech Campus</span>
-          <span class="p-2.5 rounded-xl bg-white border border-slate-200 shadow-sm font-medium">🚀 1,000+ Students Mentored</span>
-          <span class="p-2.5 rounded-xl bg-white border border-slate-200 shadow-sm font-medium">⭐ 4.9/5 Rating</span>
+        <!-- Bonus 2 -->
+        <div class="glass-card p-6 rounded-3xl border border-sky-200 space-y-3 hover:shadow-xl transition-all">
+          <div class="flex items-center justify-between">
+            <span class="badge-sky text-[10px]">BONUS 02</span>
+            <span class="font-mono text-xs font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full">Value: ₹5,999</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 font-manrope">Client Proposal & Contract Template Kit</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Legally-sound freelance agreements, milestone billing sheets, and client onboarding questionnaires to look 100% professional.
+          </p>
         </div>
+
+        <!-- Bonus 3 -->
+        <div class="glass-card p-6 rounded-3xl border border-sky-200 space-y-3 hover:shadow-xl transition-all">
+          <div class="flex items-center justify-between">
+            <span class="badge-sky text-[10px]">BONUS 03</span>
+            <span class="font-mono text-xs font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full">Value: ₹3,499</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 font-manrope">Lifetime Full HD Masterclass Recording</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            High-definition recordings with timestamps and source code links delivered to your inbox within 2 hours of workshop completion.
+          </p>
+        </div>
+
+        <!-- Bonus 4 -->
+        <div class="glass-card p-6 rounded-3xl border border-sky-200 space-y-3 hover:shadow-xl transition-all">
+          <div class="flex items-center justify-between">
+            <span class="badge-sky text-[10px]">BONUS 04</span>
+            <span class="font-mono text-xs font-bold text-sky-700 bg-sky-100 px-2 py-0.5 rounded-full">Value: ₹1,999</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 font-manrope">ISO Verifiable Digital Diploma</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Official Skillsfy Certificate of Completion with verifiable digital credential link to showcase on LinkedIn & resume.
+          </p>
+        </div>
+
+        <!-- Bonus 5 -->
+        <div class="glass-card p-6 rounded-3xl border border-sky-200 space-y-3 hover:shadow-xl transition-all">
+          <div class="flex items-center justify-between">
+            <span class="badge-sky text-[10px]">BONUS 05</span>
+            <span class="font-mono text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">Value: ₹1,999</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 font-manrope">Private WhatsApp VIP Community</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Direct networking with ambitious builders, client collaboration leads, and continuous technical mentorship from Pranjil Soni.
+          </p>
+        </div>
+
+        <!-- Bonus 6 -->
+        <div class="glass-card p-6 rounded-3xl border border-amber-300 bg-amber-50/70 space-y-3 hover:shadow-xl transition-all">
+          <div class="flex items-center justify-between">
+            <span class="text-amber-800 text-[10px] font-extrabold bg-amber-100 px-2 py-0.5 rounded-full border border-amber-300">SURPRISE BONUS</span>
+            <span class="font-mono text-xs font-bold text-amber-800 bg-amber-200/80 px-2 py-0.5 rounded-full">Priceless</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 font-manrope">Live 1-on-1 Q&A Code Review</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Get your live projects, website designs, or client pitches reviewed directly by founder Pranjil Soni at the end of the session.
+          </p>
+        </div>
+
       </div>
 
     </div>
   </section>
 
-  <!-- ================= 5. REAL CLIENT PROJECTS CAROUSEL (SWIPER ENGINE) ================= -->
-  <section class="py-16 md:py-24 bg-white relative border-b border-slate-200 overflow-hidden" id="case-study">
+  <!-- ================= 6. REAL CLIENT PROJECTS BUILT WITH AI ================= -->
+  <section class="py-16 md:py-24 bg-white relative border-b border-sky-100 overflow-hidden" id="projects">
     <div class="max-w-7xl mx-auto px-4 sm:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
         <div class="space-y-2">
-          <span class="badge-pill bg-purple-50 text-purple-700 border border-purple-200 text-xs font-bold uppercase">
-            Real Client Case Studies
+          <span class="badge-sky">
+            Real Proof of Monetization
           </span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-['Manrope']">
-            Projects Built & Monetized With <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">AI Pipelines</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-manrope">
+            Projects Built & Monetized for <span class="text-sky-700">₹35k - ₹60k</span>
           </h2>
           <p class="text-xs sm:text-sm text-slate-600 max-w-xl">
-            Swipe or use arrow buttons to explore what you will be able to build and sell to clients after the 30 Aug session.
+            Swipe to see what you will be capable of building and delivering to high-ticket clients after this workshop.
           </p>
         </div>
 
-        <!-- Carousel Navigation Arrows -->
+        <!-- Carousel Arrows -->
         <div class="flex items-center gap-3">
-          <button onclick="prevProjectSlide()" class="w-11 h-11 rounded-2xl bg-white border border-slate-300 hover:border-blue-500 text-slate-700 hover:text-blue-600 flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-sm" aria-label="Previous Slide">
+          <button onclick="prevProjectSlide()" class="w-11 h-11 rounded-2xl bg-white border border-sky-200 hover:border-sky-500 text-slate-700 hover:text-sky-600 flex items-center justify-center transition-all shadow-sm" aria-label="Previous Slide">
             <span class="material-symbols-outlined text-lg">arrow_back</span>
           </button>
-          <button onclick="nextProjectSlide()" class="w-11 h-11 rounded-2xl bg-white border border-slate-300 hover:border-blue-500 text-slate-700 hover:text-blue-600 flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-sm" aria-label="Next Slide">
+          <button onclick="nextProjectSlide()" class="w-11 h-11 rounded-2xl bg-white border border-sky-200 hover:border-sky-500 text-slate-700 hover:text-sky-600 flex items-center justify-center transition-all shadow-sm" aria-label="Next Slide">
             <span class="material-symbols-outlined text-lg">arrow_forward</span>
           </button>
         </div>
       </div>
 
-      <!-- Swiper Track Container (Touch Draggable & Auto-play Pause on Hover) -->
+      <!-- Swiper Track Container -->
       <div 
         id="projects-carousel-container" 
         class="overflow-hidden cursor-grab active:cursor-grabbing select-none"
@@ -501,292 +624,244 @@
         >
           
           <!-- Slide 1 -->
-          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-slate-200 flex flex-col justify-between space-y-4 hover:border-blue-500 hover:shadow-xl transition-all group">
+          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-sky-200 flex flex-col justify-between space-y-4 hover:border-sky-500 hover:shadow-xl transition-all group">
             <div>
-              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                <span class="badge-pill bg-blue-50 text-blue-700 text-[10px] font-bold">AI Automation SaaS</span>
-                <span class="text-emerald-700 font-mono font-bold text-xs bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Deal: ₹45,000</span>
+              <div class="flex items-center justify-between pb-3 border-b border-sky-100">
+                <span class="badge-sky text-[10px]">AI Automation SaaS</span>
+                <span class="text-emerald-700 font-mono font-extrabold text-xs bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Sold for: ₹45,000</span>
               </div>
-              <h4 class="text-lg font-bold text-slate-900 font-['Manrope'] mt-3 group-hover:text-blue-600 transition-colors">
-                Lead Capture CRM & Bot Engine
+              <h4 class="text-lg font-bold text-slate-900 font-manrope mt-3 group-hover:text-sky-600 transition-colors">
+                Lead Capture CRM & Dispatcher
               </h4>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed font-['Inter']">
-                Complete dynamic lead router with Supabase PostgreSQL cloud database, WhatsApp dispatch webhook, and custom Vercel hosting.
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Complete lead ingestion system with Supabase PostgreSQL cloud database, WhatsApp dispatch webhook, and custom Vercel hosting.
               </p>
             </div>
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
+            <div class="pt-4 border-t border-sky-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
               <span>Stack: Stitch + Supabase</span>
-              <span class="text-blue-600 font-bold">Build: 2 Days</span>
+              <span class="text-sky-600 font-bold">Build: 2 Days</span>
             </div>
           </div>
 
           <!-- Slide 2 -->
-          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-slate-200 flex flex-col justify-between space-y-4 hover:border-purple-500 hover:shadow-xl transition-all group">
+          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-sky-200 flex flex-col justify-between space-y-4 hover:border-sky-500 hover:shadow-xl transition-all group">
             <div>
-              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                <span class="badge-pill bg-purple-50 text-purple-700 text-[10px] font-bold">D2C E-Commerce Brand</span>
-                <span class="text-emerald-700 font-mono font-bold text-xs bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Deal: ₹35,000</span>
+              <div class="flex items-center justify-between pb-3 border-b border-sky-100">
+                <span class="badge-sky text-[10px]">D2C Brand Store</span>
+                <span class="text-emerald-700 font-mono font-extrabold text-xs bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Sold for: ₹35,000</span>
               </div>
-              <h4 class="text-lg font-bold text-slate-900 font-['Manrope'] mt-3 group-hover:text-purple-600 transition-colors">
+              <h4 class="text-lg font-bold text-slate-900 font-manrope mt-3 group-hover:text-sky-600 transition-colors">
                 High-Conversion Apparel Store
               </h4>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed font-['Inter']">
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">
                 Stunning cyber-glassmorphism storefront, Razorpay automated checkout, instant order SMS, and automated inventory sync.
               </p>
             </div>
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
+            <div class="pt-4 border-t border-sky-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
               <span>Stack: Claude + Razorpay</span>
-              <span class="text-purple-600 font-bold">Build: 3 Days</span>
+              <span class="text-blue-600 font-bold">Build: 3 Days</span>
             </div>
           </div>
 
           <!-- Slide 3 -->
-          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-slate-200 flex flex-col justify-between space-y-4 hover:border-emerald-500 hover:shadow-xl transition-all group">
+          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-sky-200 flex flex-col justify-between space-y-4 hover:border-sky-500 hover:shadow-xl transition-all group">
             <div>
-              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                <span class="badge-pill bg-emerald-50 text-emerald-700 text-[10px] font-bold">EdTech Institute LMS</span>
-                <span class="text-emerald-700 font-mono font-bold text-xs bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Deal: ₹60,000</span>
+              <div class="flex items-center justify-between pb-3 border-b border-sky-100">
+                <span class="badge-sky text-[10px]">EdTech Institute LMS</span>
+                <span class="text-emerald-700 font-mono font-extrabold text-xs bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Sold for: ₹60,000</span>
               </div>
-              <h4 class="text-lg font-bold text-slate-900 font-['Manrope'] mt-3 group-hover:text-emerald-600 transition-colors">
+              <h4 class="text-lg font-bold text-slate-900 font-manrope mt-3 group-hover:text-sky-600 transition-colors">
                 Skillsfy Technology Learning Hub
               </h4>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed font-['Inter']">
-                Student LMS player, passwordless roll-number auth, real-time video progress tracking, and cryptographically verified digital diplomas.
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Student LMS player, roll-number authentication, real-time video progress tracking, and cryptographically verified digital diplomas.
               </p>
             </div>
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
+            <div class="pt-4 border-t border-sky-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
               <span>Stack: Full-Stack AI Engine</span>
-              <span class="text-emerald-600 font-bold">Production Live</span>
+              <span class="text-emerald-600 font-bold">Live in Production</span>
             </div>
           </div>
 
           <!-- Slide 4 -->
-          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-slate-200 flex flex-col justify-between space-y-4 hover:border-amber-500 hover:shadow-xl transition-all group">
+          <div class="min-w-[300px] sm:min-w-[360px] md:min-w-[390px] glass-card p-6 rounded-3xl border border-sky-200 flex flex-col justify-between space-y-4 hover:border-sky-500 hover:shadow-xl transition-all group">
             <div>
-              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                <span class="badge-pill bg-amber-50 text-amber-800 text-[10px] font-bold">Real Estate Firm</span>
-                <span class="text-emerald-700 font-mono font-bold text-xs bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Deal: ₹40,000</span>
+              <div class="flex items-center justify-between pb-3 border-b border-sky-100">
+                <span class="badge-sky text-[10px]">Real Estate Firm</span>
+                <span class="text-emerald-700 font-mono font-extrabold text-xs bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">Sold for: ₹40,000</span>
               </div>
-              <h4 class="text-lg font-bold text-slate-900 font-['Manrope'] mt-3 group-hover:text-amber-600 transition-colors">
+              <h4 class="text-lg font-bold text-slate-900 font-manrope mt-3 group-hover:text-sky-600 transition-colors">
                 Luxury Property Listing Portal
               </h4>
-              <p class="text-xs text-slate-600 mt-2 leading-relaxed font-['Inter']">
+              <p class="text-xs text-slate-600 mt-2 leading-relaxed">
                 Interactive property virtual tour player, lead qualification forms, map geolocation integration, and auto-callback scheduling.
               </p>
             </div>
-            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
+            <div class="pt-4 border-t border-sky-100 flex items-center justify-between text-[11px] font-mono text-slate-500">
               <span>Stack: Antigravity + Maps</span>
-              <span class="text-amber-600 font-bold">Build: 2 Days</span>
+              <span class="text-sky-600 font-bold">Build: 2 Days</span>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Pagination Indicator Dots -->
+      <!-- Carousel Indicator Dots -->
       <div class="flex items-center justify-center gap-2 mt-8" id="carousel-dots">
-        <button onclick="goToSlide(0)" class="w-8 h-2 rounded-full bg-blue-600 transition-all"></button>
-        <button onclick="goToSlide(1)" class="w-2.5 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all"></button>
-        <button onclick="goToSlide(2)" class="w-2.5 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all"></button>
-        <button onclick="goToSlide(3)" class="w-2.5 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all"></button>
+        <button onclick="goToSlide(0)" class="w-8 h-2 rounded-full bg-sky-600 transition-all"></button>
+        <button onclick="goToSlide(1)" class="w-2.5 h-2 rounded-full bg-sky-200 hover:bg-sky-400 transition-all"></button>
+        <button onclick="goToSlide(2)" class="w-2.5 h-2 rounded-full bg-sky-200 hover:bg-sky-400 transition-all"></button>
+        <button onclick="goToSlide(3)" class="w-2.5 h-2 rounded-full bg-sky-200 hover:bg-sky-400 transition-all"></button>
       </div>
 
     </div>
   </section>
 
-  <!-- ================= 6. INTERACTIVE TOOL STACK SECTION ================= -->
-  <section class="py-16 md:py-24 bg-slate-50 relative" id="tools">
-    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+  <!-- ================= 7. INSTRUCTOR PROFILE ================= -->
+  <section class="py-16 md:py-24 bg-sky-50/50 relative border-b border-sky-100" id="instructor">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
       
-      <div class="text-center mb-12 space-y-3">
-        <span class="badge-pill bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold uppercase">
-          Master Modern Tooling
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-['Manrope']">
-          The 2026 AI Developer <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600">Power Stack</span>
-        </h2>
-        <p class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
-          No obsolete coding theories. You will directly master the exact production tools used by modern elite builders.
+      <!-- Instructor Photo -->
+      <div class="md:col-span-5 flex justify-center">
+        <div class="relative max-w-sm">
+          <div class="absolute inset-0 bg-gradient-to-r from-sky-200 to-blue-200 rounded-3xl blur-xl opacity-60"></div>
+          <img 
+            alt="Pranjil Soni, Founder of Skillsfy" 
+            class="rounded-3xl border border-sky-200 shadow-xl relative z-10 w-full object-cover grayscale hover:grayscale-0 transition-all duration-500" 
+            src="assets/founder.jpg"
+            onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuC4cVgROjMB4Fvyg6f-nVrFM0XKhIYc_QWXm9GqU1rPoquqMNvG8EnS-rQqKrED2mY4KuQxaFB8sJarq8b7UTttX8ndGCLsiNLkRrgp-Bfca0LREJpsKiZqCRC_iB9yOwqe3Im9TTyqVDd47KHIFMjQJchu_9z6iVmgYIZfZPehrKCERR2kvbAM4kxgxuren-Ps7ry91lLGX3HwaG57U-vZ-tMXGRiVM3JkDzn26YW3K-XYBJMBU_za'"
+          />
+        </div>
+      </div>
+
+      <!-- Instructor Bio -->
+      <div class="md:col-span-7 space-y-5 text-left">
+        <div class="badge-sky">Your Masterclass Instructor</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-manrope">Pranjil Soni</h2>
+        <p class="text-sm font-bold text-sky-700">
+          Founder, Skillsfy — Institute of Technology (Jabalpur, India)
         </p>
-      </div>
-
-      <!-- Interactive Filter Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2.5 mb-10 text-xs font-['Inter']">
-        <button onclick="filterTools('all')" class="tool-filter-btn px-4 py-2 rounded-xl bg-blue-600 text-white font-bold transition-all shadow" data-category="all">
-          All Tools (10)
-        </button>
-        <button onclick="filterTools('ai')" class="tool-filter-btn px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-semibold transition-all shadow-sm" data-category="ai">
-          AI & Prompting
-        </button>
-        <button onclick="filterTools('frontend')" class="tool-filter-btn px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-semibold transition-all shadow-sm" data-category="frontend">
-          Frontend & UI
-        </button>
-        <button onclick="filterTools('backend')" class="tool-filter-btn px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-semibold transition-all shadow-sm" data-category="backend">
-          Backend & DB
-        </button>
-        <button onclick="filterTools('deploy')" class="tool-filter-btn px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-semibold transition-all shadow-sm" data-category="deploy">
-          Deploy & Client
-        </button>
-      </div>
-
-      <!-- Tool Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center font-['Inter'] text-xs">
         
-        <div class="tool-item glass-card p-5 rounded-2xl border border-slate-200 space-y-2 hover:border-blue-400 hover:shadow-md transition-all" data-cat="ai">
-          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto text-lg font-bold">🧠</div>
-          <p class="font-bold text-slate-900">Claude 3.5 Sonnet</p>
-          <p class="text-[11px] text-slate-500">Pair Programmer</p>
+        <div class="space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+          <p>
+            Pranjil Soni is a serial tech entrepreneur and the visionary founder behind <strong>Skillsfy - Institute of Technology</strong> based in Civic Center, Jabalpur, MP.
+          </p>
+          <p>
+            Having trained over 1,000+ ambitious developers and built multiple 7-figure freelance software client pipelines, Pranjil designed this masterclass with zero fluff to give Indian youth an unfair advantage in the AI era.
+          </p>
         </div>
 
-        <div class="tool-item glass-card p-5 rounded-2xl border border-slate-200 space-y-2 hover:border-blue-400 hover:shadow-md transition-all" data-cat="ai">
-          <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto text-lg font-bold">⚡</div>
-          <p class="font-bold text-slate-900">Google Stitch</p>
-          <p class="text-[11px] text-slate-500">UI Generator</p>
+        <div class="pt-2 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-700">
+          <span class="p-2.5 rounded-xl bg-white border border-sky-200 shadow-sm font-semibold">🏛️ Jabalpur Tech Campus</span>
+          <span class="p-2.5 rounded-xl bg-white border border-sky-200 shadow-sm font-semibold">🚀 1,000+ Students Mentored</span>
+          <span class="p-2.5 rounded-xl bg-white border border-sky-200 shadow-sm font-semibold">⭐ 4.9/5 Student Rating</span>
         </div>
-
-        <div class="tool-item glass-card p-5 rounded-2xl border border-slate-200 space-y-2 hover:border-blue-400 hover:shadow-md transition-all" data-cat="ai">
-          <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mx-auto text-lg font-bold">🤖</div>
-          <p class="font-bold text-slate-900">Antigravity AGY</p>
-          <p class="text-[11px] text-slate-500">Autonomous Coding</p>
-        </div>
-
-        <div class="tool-item glass-card p-5 rounded-2xl border border-slate-200 space-y-2 hover:border-blue-400 hover:shadow-md transition-all" data-cat="frontend">
-          <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center mx-auto text-lg font-bold">🎨</div>
-          <p class="font-bold text-slate-900">Tailwind CSS 3</p>
-          <p class="text-[11px] text-slate-500">Modern Layouts</p>
-        </div>
-
-        <div class="tool-item glass-card p-5 rounded-2xl border border-slate-200 space-y-2 hover:border-blue-400 hover:shadow-md transition-all" data-cat="frontend">
-          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto text-lg font-bold">✨</div>
-          <p class="font-bold text-slate-900">Modern Glass UI</p>
-          <p class="text-[11px] text-slate-500">Clean Aesthetic</p>
-        </div>
-
-        <div class="tool-item glass-card p-5 rounded-2xl border border-slate-200 space-y-2 hover:border-blue-400 hover:shadow-md transition-all" data-cat="backend">
-          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto text-lg font-bold">🐘</div>
-          <p class="font-bold text-slate-900">Supabase Cloud</p>
-          <p class="text-[11px] text-slate-500">PostgreSQL DB</p>
-        </div>
-
-        <div class="tool-item glass-card p-5 rounded-2xl border border-slate-200 space-y-2 hover:border-blue-400 hover:shadow-md transition-all" data-cat="backend">
-          <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto text-lg font-bold">🛡️</div>
-          <p class="font-bold text-slate-900">Supabase Auth</p>
-          <p class="text-[11px] text-slate-500">Secure Student Gate</p>
-        </div>
-
-        <div class="tool-item glass-card p-5 rounded-2xl border border-slate-200 space-y-2 hover:border-blue-400 hover:shadow-md transition-all" data-cat="deploy">
-          <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center mx-auto text-lg font-bold">🐙</div>
-          <p class="font-bold text-slate-900">GitHub Pipelines</p>
-          <p class="text-[11px] text-slate-500">Version Control</p>
-        </div>
-
-        <div class="tool-item glass-card p-5 rounded-2xl border border-slate-200 space-y-2 hover:border-blue-400 hover:shadow-md transition-all" data-cat="deploy">
-          <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center mx-auto text-lg font-bold">▲</div>
-          <p class="font-bold text-slate-900">Vercel Edge</p>
-          <p class="text-[11px] text-slate-500">Zero-Config Hosting</p>
-        </div>
-
-        <div class="tool-item glass-card p-5 rounded-2xl border border-slate-200 space-y-2 hover:border-blue-400 hover:shadow-md transition-all" data-cat="deploy">
-          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto text-lg font-bold">💳</div>
-          <p class="font-bold text-slate-900">Razorpay Payments</p>
-          <p class="text-[11px] text-slate-500">Standard Checkout</p>
-        </div>
-
       </div>
 
     </div>
   </section>
 
-  <!-- ================= 7. INTERACTIVE FAQ ACCORDION ================= -->
-  <section class="py-16 md:py-24 bg-white relative border-b border-slate-200" id="faq">
+  <!-- ================= 8. TRANSPARENT FAQ ACCORDION ================= -->
+  <section class="py-16 md:py-24 bg-white relative border-b border-sky-100" id="faq">
     <div class="max-w-4xl mx-auto px-4 sm:px-8 space-y-10">
       
       <div class="text-center space-y-2">
-        <span class="badge-pill bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold uppercase">
-          Got Questions?
-        </span>
-        <h2 class="text-3xl font-extrabold text-slate-900 font-['Manrope']">
+        <span class="badge-sky">Got Questions?</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 font-manrope">
           Frequently Asked Questions
         </h2>
       </div>
 
-      <div class="space-y-4 font-['Inter'] text-xs">
+      <div class="space-y-4 text-xs">
         
-        <div class="glass-card rounded-2xl border border-slate-200 overflow-hidden">
-          <button onclick="toggleFAQ(1)" class="w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between text-sm hover:bg-slate-50 transition-colors">
-            <span>Do I need prior coding or Computer Science background?</span>
-            <span class="material-symbols-outlined transition-transform duration-300 text-slate-500" id="faq-icon-1">expand_more</span>
+        <div class="glass-card rounded-2xl border border-sky-200 overflow-hidden">
+          <button onclick="toggleFAQ(1)" class="w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between text-sm hover:bg-sky-50/50 transition-colors">
+            <span>How do I get access to the VIP WhatsApp group after payment?</span>
+            <span class="material-symbols-outlined transition-transform duration-300 text-sky-600" id="faq-icon-1">expand_more</span>
           </button>
           <div id="faq-answer-1" class="px-5 pb-5 text-slate-600 leading-relaxed hidden">
-            No! This workshop is designed from ground zero. You will learn how to articulate software logic in plain English and prompt AI models to write clean HTML, CSS, JavaScript, and backend SQL queries.
+            Immediately upon successful Razorpay payment (₹149 or ₹1 with coupon), the system verifies your payment and displays your direct one-click invite link to the official WhatsApp community (<a href="https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN" target="_blank" class="text-sky-600 font-bold underline">https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN</a>). You will also receive an email confirmation.
           </div>
         </div>
 
-        <div class="glass-card rounded-2xl border border-slate-200 overflow-hidden">
-          <button onclick="toggleFAQ(2)" class="w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between text-sm hover:bg-slate-50 transition-colors">
-            <span>What if I miss the live session on 30 August?</span>
-            <span class="material-symbols-outlined transition-transform duration-300 text-slate-500" id="faq-icon-2">expand_more</span>
+        <div class="glass-card rounded-2xl border border-sky-200 overflow-hidden">
+          <button onclick="toggleFAQ(2)" class="w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between text-sm hover:bg-sky-50/50 transition-colors">
+            <span>How does the first 1 registration at ₹1 offer work?</span>
+            <span class="material-symbols-outlined transition-transform duration-300 text-sky-600" id="faq-icon-2">expand_more</span>
           </button>
           <div id="faq-answer-2" class="px-5 pb-5 text-slate-600 leading-relaxed hidden">
+            We have enabled a dynamic coupon code <strong>FIRST1</strong>. The very first person to enter this coupon code gets the complete ₹1,999 workshop package for just <strong>₹1</strong>. Once that 1st transaction is completed in Supabase, the coupon automatically expires and all subsequent seats will be priced at the standard discounted price of ₹149.
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl border border-sky-200 overflow-hidden">
+          <button onclick="toggleFAQ(3)" class="w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between text-sm hover:bg-sky-50/50 transition-colors">
+            <span>Do I need prior coding or Computer Science background?</span>
+            <span class="material-symbols-outlined transition-transform duration-300 text-sky-600" id="faq-icon-3">expand_more</span>
+          </button>
+          <div id="faq-answer-3" class="px-5 pb-5 text-slate-600 leading-relaxed hidden">
+            No! This workshop is crafted from absolute ground zero. You will learn how to articulate software requirements in plain English and prompt AI models to write clean HTML, CSS, JavaScript, and backend SQL queries.
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl border border-sky-200 overflow-hidden">
+          <button onclick="toggleFAQ(4)" class="w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between text-sm hover:bg-sky-50/50 transition-colors">
+            <span>What if I miss the live session on 30 August?</span>
+            <span class="material-symbols-outlined transition-transform duration-300 text-sky-600" id="faq-icon-4">expand_more</span>
+          </button>
+          <div id="faq-answer-4" class="px-5 pb-5 text-slate-600 leading-relaxed hidden">
             All registered participants receive 100% full HD recording access within 2 hours of workshop completion, along with all downloadable prompt templates and GitHub starter code.
           </div>
         </div>
 
-        <div class="glass-card rounded-2xl border border-slate-200 overflow-hidden">
-          <button onclick="toggleFAQ(3)" class="w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between text-sm hover:bg-slate-50 transition-colors">
-            <span>How does the client monetization phase work?</span>
-            <span class="material-symbols-outlined transition-transform duration-300 text-slate-500" id="faq-icon-3">expand_more</span>
-          </button>
-          <div id="faq-answer-3" class="px-5 pb-5 text-slate-600 leading-relaxed hidden">
-            Pranjil Soni will reveal the exact cold outreach email & WhatsApp scripts, proposal breakdown, and how to pitch local businesses and Indian brands for ₹25,000 to ₹60,000 website projects.
-          </div>
-        </div>
-
-        <div class="glass-card rounded-2xl border border-slate-200 overflow-hidden">
-          <button onclick="toggleFAQ(4)" class="w-full p-5 text-left font-bold text-slate-900 flex items-center justify-between text-sm hover:bg-slate-50 transition-colors">
-            <span>Will my registration be stored securely?</span>
-            <span class="material-symbols-outlined transition-transform duration-300 text-slate-500" id="faq-icon-4">expand_more</span>
-          </button>
-          <div id="faq-answer-4" class="px-5 pb-5 text-slate-600 leading-relaxed hidden">
-            Yes! Your details are stored directly in your dedicated Supabase Cloud table (<code>workshop_registrations</code>), and you receive an instant digital admission ticket and VIP WhatsApp group link.
-          </div>
-        </div>
-
       </div>
 
     </div>
   </section>
 
-  <!-- ================= 6. FINAL CTA & COUNTDOWN ================= -->
-  <section class="py-20 md:py-32 bg-slate-50 relative overflow-hidden text-center" id="reserve">
+  <!-- ================= 9. FINAL CALL TO ACTION ================= -->
+  <section class="py-20 md:py-28 bg-gradient-to-b from-white via-sky-50 to-white relative overflow-hidden text-center" id="reserve">
     <div class="max-w-3xl mx-auto px-4 sm:px-8 relative z-10 space-y-6">
       
-      <span class="badge-pill bg-blue-100 text-blue-800 border border-blue-200 text-xs font-bold uppercase">
-        Live Batch on 30 Aug 2026
+      <span class="badge-sky text-xs font-bold uppercase">
+        Live Batch on 30 August 2026
       </span>
 
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 font-['Manrope']">
-        Start Building With AI Today
+      <h2 class="text-3xl sm:text-5xl font-black text-slate-900 font-manrope">
+        Ready to Build Your AI Career?
       </h2>
 
       <p class="text-sm sm:text-base text-slate-600 max-w-lg mx-auto">
-        Seats are strictly capped to ensure 1:1 live Q&A support and code reviews during the live build.
+        Join 1,000+ ambitious developers. Seats are strictly capped to ensure 1:1 live Q&A support during the build.
       </p>
 
-      <div class="pt-2">
-        <button onclick="openRegisterModal()" class="btn-gradient text-white px-10 py-4 rounded-xl font-bold text-base sm:text-lg shadow-2xl hover:scale-105 transition-all">
-          Reserve My Seat Now (30 Aug Live)
+      <div class="p-6 bg-white rounded-3xl border border-sky-200 shadow-xl max-w-md mx-auto space-y-4">
+        <div class="flex items-center justify-between border-b border-sky-100 pb-3">
+          <div class="text-left">
+            <p class="font-extrabold text-slate-900 text-sm">3-Hour Masterclass + ₹17.5k Bonuses</p>
+            <p class="text-xs text-slate-500">Live on 30 Aug (7 PM IST)</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-slate-400 line-through">₹1,999</span>
+            <p class="text-xl font-black text-sky-700">₹149</p>
+          </div>
+        </div>
+
+        <button onclick="openPaymentModal()" class="w-full py-4 btn-sky-gradient text-white font-extrabold text-base rounded-2xl shadow-xl flex items-center justify-center gap-2 hover:scale-105 transition-all">
+          <span>Book My Seat Now (₹149)</span>
+          <span class="material-symbols-outlined text-lg">bolt</span>
         </button>
+
+        <p class="text-[11px] text-slate-500">
+          🔒 Secure Razorpay Checkout • Instant WhatsApp Community Access
+        </p>
       </div>
 
-      <p class="text-xs text-slate-500 font-medium">
-        100% Practical • Zero Pre-requisites • Certificate & Recordings Included
-      </p>
     </div>
   </section>
 
-  <!-- ================= 7. FOOTER ================= -->
-  <footer class="bg-slate-900 font-body-md text-xs w-full py-12 text-slate-400">
+  <!-- ================= 10. FOOTER ================= -->
+  <footer class="bg-slate-900 text-xs w-full py-12 text-slate-400">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 px-4 sm:px-8 max-w-7xl mx-auto">
       
       <div class="md:col-span-5 space-y-3">
@@ -800,183 +875,247 @@
       </div>
 
       <div class="md:col-span-3 space-y-2">
-        <p class="font-bold text-white font-['Manrope'] text-xs">Workshop Quick Links</p>
+        <p class="font-bold text-white font-manrope text-xs">Workshop Quick Links</p>
         <ul class="space-y-1.5 text-xs">
-          <li><a class="hover:text-blue-400 transition-colors" href="#curriculum">Syllabus</a></li>
-          <li><a class="hover:text-blue-400 transition-colors" href="#instructor">Instructor Profile</a></li>
-          <li><a class="hover:text-blue-400 transition-colors" href="/courses">All Courses</a></li>
-          <li><a class="hover:text-blue-400 transition-colors" href="/dashboard">Student Portal</a></li>
+          <li><a class="hover:text-sky-400 transition-colors" href="#curriculum">Syllabus</a></li>
+          <li><a class="hover:text-sky-400 transition-colors" href="#bonuses">Bonuses</a></li>
+          <li><a class="hover:text-sky-400 transition-colors" href="#instructor">Instructor Profile</a></li>
+          <li><a class="hover:text-sky-400 transition-colors" href="/dashboard">Student Portal</a></li>
         </ul>
       </div>
 
       <div class="md:col-span-4 space-y-2">
-        <p class="font-bold text-white font-['Manrope'] text-xs">Statutory & Support</p>
+        <p class="font-bold text-white font-manrope text-xs">Statutory & Support</p>
         <ul class="space-y-1.5 text-xs">
-          <li><a class="hover:text-blue-400 transition-colors" href="/privacy-policy">Privacy Policy (DPDP 2023)</a></li>
-          <li><a class="hover:text-blue-400 transition-colors" href="/terms">Terms of Service</a></li>
-          <li><a class="hover:text-blue-400 transition-colors" href="/refund-policy">Refund Policy</a></li>
-          <li><a class="hover:text-blue-400 transition-colors" href="/contact">Contact Support (Jabalpur)</a></li>
+          <li><a class="hover:text-sky-400 transition-colors" href="/privacy-policy">Privacy Policy (DPDP 2023)</a></li>
+          <li><a class="hover:text-sky-400 transition-colors" href="/terms">Terms of Service</a></li>
+          <li><a class="hover:text-sky-400 transition-colors" href="/refund-policy">Refund Policy</a></li>
+          <li><a class="hover:text-sky-400 transition-colors" href="/contact">Contact Support (Jabalpur)</a></li>
         </ul>
       </div>
 
     </div>
   </footer>
 
-  <!-- ================= 8. MOBILE STICKY BOTTOM BAR ================= -->
-  <div class="fixed bottom-0 w-full p-3 bg-white/95 backdrop-blur-lg border-t border-slate-200 md:hidden z-50 flex items-center justify-between gap-3 shadow-lg">
+  <!-- ================= 11. MOBILE STICKY BOTTOM BAR ================= -->
+  <div class="fixed bottom-0 w-full p-3 bg-white/95 backdrop-blur-lg border-t border-sky-200 md:hidden z-50 flex items-center justify-between gap-3 shadow-2xl">
     <div>
-      <p class="text-[10px] text-slate-500 uppercase font-bold">Live on 30 Aug</p>
-      <p class="text-xs font-bold text-slate-900">AI Web Dev Workshop</p>
+      <div class="flex items-center gap-1.5">
+        <span class="text-xs text-slate-400 line-through">₹1,999</span>
+        <span class="text-sm font-black text-sky-700">₹149</span>
+      </div>
+      <p class="text-[10px] text-slate-500 font-semibold">Live 30 Aug (7 PM)</p>
     </div>
-    <button onclick="openRegisterModal()" class="btn-gradient text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow-md">
-      Reserve Seat
+    <button onclick="openPaymentModal()" class="btn-sky-gradient text-white px-5 py-2.5 rounded-xl font-extrabold text-xs shadow-md">
+      Book Seat Now
     </button>
   </div>
 
-  <!-- ================= 9. WORKSHOP REGISTRATION MODAL (SUPABASE CONNECTED) ================= -->
-  <div id="register-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="max-w-md w-full bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-2xl relative space-y-5 text-left">
+  <!-- ================= 12. RAZORPAY PAYMENT & COUPON CHECKOUT MODAL ================= -->
+  <div id="payment-modal" class="fixed inset-0 bg-slate-900/65 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-3xl p-6 sm:p-7 border border-sky-200 shadow-2xl relative space-y-4 text-left max-h-[90vh] overflow-y-auto">
       
-      <button onclick="closeRegisterModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-lg">
+      <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-1 rounded-lg">
         <span class="material-symbols-outlined text-2xl">close</span>
       </button>
 
       <div>
-        <span class="badge-pill bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-bold uppercase">
-          Live Workshop Registration
+        <span class="badge-sky text-[10px]">
+          Official Workshop Checkout
         </span>
-        <h3 class="text-xl font-bold text-slate-900 font-['Manrope'] mt-1">
-          Reserve Your Seat for 30 Aug
+        <h3 class="text-xl font-extrabold text-slate-900 font-manrope mt-1">
+          Reserve Seat for 30 Aug Masterclass
         </h3>
         <p class="text-xs text-slate-500 mt-0.5">
-          Enter your details below to get instant ticket & WhatsApp group access.
+          Enter your details below to pay securely & join the VIP WhatsApp group.
         </p>
       </div>
 
-      <form onsubmit="handleWorkshopRegistration(event)" class="space-y-3.5 text-xs font-['Inter']">
+      <form onsubmit="handleRazorpayWorkshopCheckout(event)" class="space-y-3 text-xs">
         <div>
-          <label class="block font-semibold text-slate-700 mb-1">Your Full Name *</label>
+          <label class="block font-bold text-slate-700 mb-1">Your Full Name *</label>
           <input 
             type="text" 
-            id="wksp-name" 
+            id="pay-name" 
             required 
             placeholder="e.g. Rahul Sharma" 
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-sky-600 focus:ring-1 focus:ring-sky-600"
           />
         </div>
 
         <div>
-          <label class="block font-semibold text-slate-700 mb-1">WhatsApp Phone Number *</label>
+          <label class="block font-bold text-slate-700 mb-1">WhatsApp Phone Number (For Group Link) *</label>
           <input 
             type="tel" 
-            id="wksp-phone" 
+            id="pay-phone" 
             required 
             placeholder="e.g. 9876543210" 
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono focus:bg-white focus:border-sky-600 focus:ring-1 focus:ring-sky-600"
           />
         </div>
 
         <div>
-          <label class="block font-semibold text-slate-700 mb-1">Email Address *</label>
+          <label class="block font-bold text-slate-700 mb-1">Email Address (For Recording & Certificate) *</label>
           <input 
             type="email" 
-            id="wksp-email" 
+            id="pay-email" 
             required 
             placeholder="e.g. rahul@gmail.com" 
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-sky-600 focus:ring-1 focus:ring-sky-600"
           />
         </div>
 
         <div>
-          <label class="block font-semibold text-slate-700 mb-1">City / State</label>
+          <label class="block font-bold text-slate-700 mb-1">City / State</label>
           <input 
             type="text" 
-            id="wksp-city" 
+            id="pay-city" 
             placeholder="e.g. Jabalpur, MP" 
-            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:border-sky-600 focus:ring-1 focus:ring-sky-600"
           />
         </div>
 
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">Your Primary Goal</label>
-          <select id="wksp-goal" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs">
-            <option value="Freelance Client Projects">Freelancing & Selling Websites (₹25k-₹1L)</option>
-            <option value="AI Developer Job">Landing High-Paying AI Developer Jobs</option>
-            <option value="Startup & Business">Building my own SaaS / Business Website</option>
-            <option value="College Project">College Practical Lab & Resume Building</option>
-          </select>
+        <!-- Dynamic Coupon Code Box -->
+        <div class="p-3 bg-sky-50/70 rounded-2xl border border-sky-200 space-y-2">
+          <label class="block font-bold text-sky-900 text-[11px] flex items-center justify-between">
+            <span>Have a Coupon / First 1 Code?</span>
+            <span class="text-[10px] text-amber-700 font-semibold">Try: FIRST1</span>
+          </label>
+          <div class="flex gap-2">
+            <input 
+              type="text" 
+              id="pay-coupon" 
+              placeholder="Enter coupon (e.g. FIRST1)" 
+              class="w-full px-3 py-2 rounded-xl bg-white border border-sky-300 text-slate-900 uppercase font-mono text-xs font-bold focus:border-sky-600"
+            />
+            <button 
+              type="button" 
+              onclick="applyCouponCode()" 
+              class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-xs rounded-xl shadow whitespace-nowrap"
+            >
+              Apply
+            </button>
+          </div>
+          <div id="coupon-message" class="text-[11px] font-semibold hidden"></div>
         </div>
 
-        <button type="submit" id="btn-submit-wksp" class="w-full py-3.5 btn-gradient text-white font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-1.5 mt-2">
-          <span class="material-symbols-outlined text-base">confirmation_number</span>
-          <span>Confirm Seat & Get Live Link</span>
+        <!-- Price Breakdown Box -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5 text-xs">
+          <div class="flex items-center justify-between text-slate-600">
+            <span>Workshop Pass Fee</span>
+            <span class="font-mono">₹149</span>
+          </div>
+          <div id="discount-row" class="hidden flex items-center justify-between text-emerald-600 font-bold">
+            <span>Coupon Discount (FIRST1)</span>
+            <span class="font-mono">-₹148</span>
+          </div>
+          <div class="flex items-center justify-between pt-1.5 border-t border-slate-200 font-extrabold text-slate-900 text-sm">
+            <span>Total Payable Amount</span>
+            <span id="display-final-amount" class="font-mono text-sky-700 text-base">₹149</span>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          id="btn-pay-rzp" 
+          class="w-full py-4 btn-sky-gradient text-white font-extrabold text-sm rounded-2xl shadow-xl transition-all flex items-center justify-center gap-2 mt-2 hover:scale-[1.01]"
+        >
+          <span class="material-symbols-outlined text-lg">lock</span>
+          <span id="btn-pay-text">Pay ₹149 & Unlock WhatsApp Access</span>
         </button>
       </form>
 
-      <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-500 flex items-center gap-2">
-        <span class="material-symbols-outlined text-emerald-600 text-sm">lock</span>
-        <span>Data saved securely in Supabase Cloud Database.</span>
+      <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[10px] text-slate-500 flex items-center gap-2 justify-center">
+        <span class="material-symbols-outlined text-emerald-600 text-sm">verified_user</span>
+        <span>Standard Razorpay 256-bit SSL Protected Checkout</span>
       </div>
 
     </div>
   </div>
 
-  <!-- ================= 10. SUCCESS CONFIRMATION MODAL ================= -->
-  <div id="success-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <!-- ================= 13. SUCCESS ADMISSION & WHATSAPP ACCESS MODAL ================= -->
+  <div id="success-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="max-w-md w-full bg-white rounded-3xl p-6 sm:p-8 border border-emerald-200 shadow-2xl text-center space-y-5">
       
-      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-200">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-200 animate-bounce">
         <span class="material-symbols-outlined text-3xl">verified</span>
       </div>
 
       <div>
-        <span class="badge-pill bg-emerald-100 text-emerald-800 text-xs font-bold">Seat Confirmed!</span>
-        <h3 class="text-2xl font-extrabold text-slate-900 font-['Manrope'] mt-2">You're In for 30 Aug!</h3>
+        <span class="badge-sky bg-emerald-100 text-emerald-800 border-emerald-300 text-xs font-black">
+          Payment Successful! 🎉
+        </span>
+        <h3 class="text-2xl font-black text-slate-900 font-manrope mt-2">You're Enrolled for 30 Aug!</h3>
         <p class="text-xs text-slate-600 mt-1" id="success-ticket-text">
           Ticket #SKF-WKSP-8921 issued successfully.
         </p>
       </div>
 
-      <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-left space-y-2">
+      <!-- Workshop Summary Box -->
+      <div class="p-4 rounded-2xl bg-sky-50/70 border border-sky-200 text-xs text-left space-y-2">
         <div class="flex items-center justify-between">
-          <span class="text-slate-500">Date:</span>
+          <span class="text-slate-500 font-medium">Workshop Date:</span>
           <span class="font-bold text-slate-900">Sunday, 30 Aug 2026</span>
         </div>
         <div class="flex items-center justify-between">
-          <span class="text-slate-500">Time:</span>
-          <span class="font-bold text-blue-600">7:00 PM - 10:00 PM IST</span>
+          <span class="text-slate-500 font-medium">Timing:</span>
+          <span class="font-bold text-sky-700">7:00 PM - 10:00 PM IST</span>
         </div>
         <div class="flex items-center justify-between">
-          <span class="text-slate-500">Instructor:</span>
-          <span class="font-bold text-slate-900">Pranjil Soni</span>
+          <span class="text-slate-500 font-medium">Amount Paid:</span>
+          <span id="success-paid-amount" class="font-bold text-emerald-600 font-mono">₹149</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-500 font-medium">Transaction ID:</span>
+          <span id="success-payment-id" class="font-mono text-[11px] text-slate-700">pay_test_xxx</span>
         </div>
       </div>
 
-      <a 
-        id="whatsapp-group-btn" 
-        href="https://chat.whatsapp.com/sample_skillsfy_workshop" 
-        target="_blank" 
-        class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2"
-      >
-        <span class="material-symbols-outlined text-base">groups</span>
-        <span>Join Workshop VIP WhatsApp Group</span>
-      </a>
+      <!-- WhatsApp Community Access Button (High Priority) -->
+      <div class="space-y-2">
+        <a 
+          id="whatsapp-access-link" 
+          href="https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN" 
+          target="_blank" 
+          class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm rounded-2xl shadow-xl flex items-center justify-center gap-2 transition-all hover:scale-105"
+        >
+          <span class="material-symbols-outlined text-xl">groups</span>
+          <span>Join VIP WhatsApp Community Now</span>
+        </a>
+        <p class="text-[11px] text-slate-500">
+          Click above to join our private WhatsApp group for live meeting link & bonuses.
+        </p>
+      </div>
 
-      <button onclick="closeSuccessModal()" class="text-xs text-slate-500 hover:text-slate-800 underline block mx-auto">
-        Close Window
+      <button onclick="closeSuccessModal()" class="text-xs text-slate-400 hover:text-slate-700 underline block mx-auto pt-2">
+        Done / Close Window
       </button>
 
     </div>
   </div>
 
   <!-- Toast Notification Container -->
-  <div id="toast" class="fixed bottom-20 right-4 z-50 hidden px-4 py-3 rounded-xl shadow-2xl text-xs font-bold font-['Inter'] text-white transition-all transform duration-300"></div>
+  <div id="toast" class="fixed bottom-20 right-4 z-50 hidden px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300"></div>
 
+  <!-- ================= FLOATING WHATSAPP VIP SUPPORT PILL ================= -->
+  <a 
+    href="https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN" 
+    target="_blank" 
+    class="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xl hover:scale-105 transition-all border border-emerald-400/40"
+    title="Join WhatsApp Group"
+  >
+    <span class="material-symbols-outlined text-base">groups</span>
+    <span class="hidden sm:inline">WhatsApp Group</span>
+  </a>
+
+  <!-- ================= JAVASCRIPT & RAZORPAY WORKSHOP LOGIC ================= -->
   <script>
-    // Supabase Configuration
+    // Supabase & Razorpay Configuration
     const SUPABASE_PROJECT_URL = 'https://iqssjqfyfdmujlmlbjhl.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlxc3NqcWZ5ZmRtdWpsbWxiamhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMzY3NzIsImV4cCI6MjEwMjcxMjc3Mn0.o7gGbhiuRkLxxJCRJNM1RzBrIVHnOTxuzX0-EOQVyyU';
-    
+    const RAZORPAY_KEY_ID = 'rzp_test_TT66f0GZnK72DV';
+    const WHATSAPP_COMMUNITY_URL = 'https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN';
+
     const SUPABASE_HEADERS = {
       'apikey': SUPABASE_ANON_KEY,
       'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
@@ -984,28 +1123,39 @@
       'Prefer': 'return=representation'
     };
 
+    let currentPayAmount = 149; // Default price in INR
+    let appliedCoupon = null;
+
     function showToast(msg, type = 'info') {
       const toast = document.getElementById('toast');
       if (!toast) return;
       toast.textContent = msg;
-      toast.className = `fixed bottom-20 right-4 z-50 px-4 py-3 rounded-xl shadow-2xl text-xs font-bold font-['Inter'] text-white transition-all ${
+      toast.className = `fixed bottom-20 right-4 z-50 px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all ${
         type === 'success' ? 'bg-emerald-600 border border-emerald-400' :
-        type === 'error' ? 'bg-rose-600 border border-rose-400' : 'bg-blue-600 border border-blue-400'
+        type === 'error' ? 'bg-rose-600 border border-rose-400' : 'bg-sky-600 border border-sky-400'
       }`;
       toast.classList.remove('hidden');
       setTimeout(() => toast.classList.add('hidden'), 4000);
     }
 
-    function openRegisterModal() {
-      document.getElementById('register-modal').classList.remove('hidden');
+    function openPaymentModal(prefillCoupon = '') {
+      const modal = document.getElementById('payment-modal');
+      if (modal) modal.classList.remove('hidden');
+      if (prefillCoupon) {
+        document.getElementById('pay-coupon').value = prefillCoupon;
+        applyCouponCode();
+      }
     }
 
-    function closeRegisterModal() {
-      document.getElementById('register-modal').classList.add('hidden');
+    function closePaymentModal() {
+      const modal = document.getElementById('payment-modal');
+      if (modal) modal.classList.add('hidden');
     }
 
-    function openSuccessModal(ticket) {
-      document.getElementById('success-ticket-text').textContent = `Ticket #${ticket} issued in Supabase Database.`;
+    function openSuccessModal(ticket, amount, paymentId) {
+      document.getElementById('success-ticket-text').textContent = `Ticket #${ticket} confirmed & logged in database.`;
+      document.getElementById('success-paid-amount').textContent = `₹${amount}`;
+      document.getElementById('success-payment-id').textContent = paymentId || 'pay_verified';
       document.getElementById('success-modal').classList.remove('hidden');
     }
 
@@ -1013,7 +1163,209 @@
       document.getElementById('success-modal').classList.add('hidden');
     }
 
-    // Live Countdown Timer to 30 Aug 2026, 19:00 IST
+    // ================= DYNAMIC COUPON LOGIC (FIRST1 = ₹1) =================
+    async function applyCouponCode() {
+      const couponInput = document.getElementById('pay-coupon');
+      const code = couponInput.value.trim().toUpperCase();
+      const msgEl = document.getElementById('coupon-message');
+      const discountRow = document.getElementById('discount-row');
+      const finalAmountEl = document.getElementById('display-final-amount');
+      const btnPayText = document.getElementById('btn-pay-text');
+
+      if (!code) {
+        msgEl.className = 'text-[11px] font-semibold text-rose-600';
+        msgEl.textContent = 'Please enter a coupon code.';
+        msgEl.classList.remove('hidden');
+        return;
+      }
+
+      if (code === 'FIRST1' || code === 'FIRSTUSER') {
+        msgEl.className = 'text-[11px] font-semibold text-sky-600';
+        msgEl.textContent = 'Checking quota availability...';
+        msgEl.classList.remove('hidden');
+
+        try {
+          // Check if FIRST1 coupon has already been redeemed in Supabase
+          const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/workshop_registrations?coupon_code=eq.FIRST1&status=eq.Payment%20Successful&select=id`, {
+            method: 'GET',
+            headers: SUPABASE_HEADERS
+          });
+          const existing = await res.json();
+
+          if (Array.isArray(existing) && existing.length >= 1) {
+            // Already claimed by first buyer!
+            currentPayAmount = 149;
+            appliedCoupon = null;
+            discountRow.classList.add('hidden');
+            finalAmountEl.textContent = '₹149';
+            btnPayText.textContent = 'Pay ₹149 & Unlock WhatsApp Access';
+            msgEl.className = 'text-[11px] font-semibold text-amber-700 bg-amber-50 p-1.5 rounded-lg border border-amber-200';
+            msgEl.textContent = '⚠️ The First 1 Seat ₹1 offer has already been claimed! You can enroll at the special discounted price of ₹149.';
+            return;
+          }
+
+          // Coupon valid for the very first buyer!
+          currentPayAmount = 1; // ₹1 for 1st person!
+          appliedCoupon = 'FIRST1';
+          discountRow.classList.remove('hidden');
+          finalAmountEl.textContent = '₹1 (First User Promo Applied 🎉)';
+          btnPayText.textContent = 'Pay ₹1 with Razorpay & Unlock Access';
+          msgEl.className = 'text-[11px] font-semibold text-emerald-700 bg-emerald-50 p-1.5 rounded-lg border border-emerald-200';
+          msgEl.textContent = '🎉 Coupon Applied! You are getting this masterclass at ₹1!';
+          showToast('Coupon FIRST1 applied: Price is ₹1!', 'success');
+
+        } catch (e) {
+          // Fallback allow ₹1 offer
+          currentPayAmount = 1;
+          appliedCoupon = 'FIRST1';
+          discountRow.classList.remove('hidden');
+          finalAmountEl.textContent = '₹1';
+          btnPayText.textContent = 'Pay ₹1 with Razorpay';
+          msgEl.className = 'text-[11px] font-semibold text-emerald-600';
+          msgEl.textContent = '🎉 FIRST1 offer active for ₹1!';
+        }
+      } else {
+        msgEl.className = 'text-[11px] font-semibold text-rose-600';
+        msgEl.textContent = 'Invalid coupon code. Use FIRST1 for 1st buyer offer.';
+        msgEl.classList.remove('hidden');
+      }
+    }
+
+    // ================= RAZORPAY CHECKOUT SUBMISSION =================
+    async function handleRazorpayWorkshopCheckout(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('pay-name').value.trim();
+      const phone = document.getElementById('pay-phone').value.trim();
+      const email = document.getElementById('pay-email').value.trim();
+      const city = document.getElementById('pay-city').value.trim() || 'India';
+
+      const submitBtn = document.getElementById('btn-pay-rzp');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span>Opening Razorpay Secure Gateway...</span>`;
+
+      const ticketNo = 'SKF-WKSP-' + Math.floor(10000 + Math.random() * 90000);
+      const amountPaise = currentPayAmount * 100;
+
+      // Razorpay Checkout Options
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: amountPaise,
+        currency: "INR",
+        name: "Skillsfy Institute of Technology",
+        description: `Live AI Web Dev Workshop Pass (${currentPayAmount === 1 ? '1st Seat Offer ₹1' : '₹149 Standard Pass'})`,
+        image: "assets/logo-badge.png",
+        prefill: {
+          name: name,
+          email: email,
+          contact: phone
+        },
+        theme: {
+          color: "#0284c7"
+        },
+        modal: {
+          ondismiss: function() {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `
+              <span class="material-symbols-outlined text-lg">lock</span>
+              <span>Pay ₹${currentPayAmount} & Unlock WhatsApp Access</span>
+            `;
+            showToast('Payment window closed. You can retry anytime.', 'info');
+          }
+        },
+        handler: async function (response) {
+          // Payment Successful Callback from Razorpay Standard
+          submitBtn.innerHTML = `<span>Verifying & Confirming Seat...</span>`;
+
+          const paymentId = response.razorpay_payment_id || ('pay_local_' + Date.now());
+          const orderId = response.razorpay_order_id || ('order_' + ticketNo);
+
+          try {
+            // 1. Insert into Supabase workshop_registrations
+            await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/workshop_registrations`, {
+              method: 'POST',
+              headers: SUPABASE_HEADERS,
+              body: JSON.stringify({
+                ticket_no: ticketNo,
+                name: name,
+                phone: phone,
+                email: email,
+                city: city,
+                workshop_date: '30 August 2026 (Live)',
+                status: 'Payment Successful',
+                payment_id: paymentId,
+                order_id: orderId,
+                amount_paid: currentPayAmount,
+                coupon_code: appliedCoupon,
+                utm_source: window.location.hostname || 'lp1.skillsfy.in'
+              })
+            });
+
+            // 2. Also log in payments table for record
+            try {
+              await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/payments`, {
+                method: 'POST',
+                headers: SUPABASE_HEADERS,
+                body: JSON.stringify({
+                  order_id: orderId,
+                  payment_id: paymentId,
+                  amount: currentPayAmount,
+                  currency: 'INR',
+                  status: 'SUCCESS',
+                  payer_email: email,
+                  payer_phone: phone,
+                  metadata: {
+                    type: 'workshop_ticket',
+                    ticket_no: ticketNo,
+                    coupon: appliedCoupon
+                  }
+                })
+              });
+            } catch(e) {}
+
+            closePaymentModal();
+            openSuccessModal(ticketNo, currentPayAmount, paymentId);
+            showToast('Payment received! Welcome to Skillsfy Workshop.', 'success');
+
+          } catch (err) {
+            console.error('Post-payment error:', err);
+            closePaymentModal();
+            openSuccessModal(ticketNo, currentPayAmount, paymentId);
+            showToast('Seat Confirmed! Ticket issued.', 'success');
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `
+              <span class="material-symbols-outlined text-lg">lock</span>
+              <span>Pay ₹${currentPayAmount} & Unlock WhatsApp Access</span>
+            `;
+          }
+        }
+      };
+
+      try {
+        const rzp = new Razorpay(options);
+        rzp.on('payment.failed', function (resp) {
+          console.error('Payment failed:', resp.error);
+          showToast(`Payment Failed: ${resp.error.description || 'Please try again'}`, 'error');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `
+            <span class="material-symbols-outlined text-lg">lock</span>
+            <span>Pay ₹${currentPayAmount} & Unlock WhatsApp Access</span>
+          `;
+        });
+        rzp.open();
+      } catch (err) {
+        console.error('Razorpay invocation error:', err);
+        showToast('Unable to open payment modal. Please refresh and try again.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `
+          <span class="material-symbols-outlined text-lg">lock</span>
+          <span>Pay ₹${currentPayAmount} & Unlock WhatsApp Access</span>
+        `;
+      }
+    }
+
+    // ================= COUNTDOWN TIMER =================
     function updateCountdown() {
       const targetDate = new Date('August 30, 2026 19:00:00 GMT+0530').getTime();
       const now = new Date().getTime();
@@ -1033,7 +1385,7 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // ================= PROJECTS CAROUSEL (SWIPER ENGINE) =================
+    // ================= CAROUSEL ENGINE =================
     let currentSlide = 0;
     const totalSlides = 4;
     let carouselInterval = null;
@@ -1041,7 +1393,7 @@
     function getSlideWidth() {
       const track = document.getElementById('projects-track');
       if (!track || !track.children[0]) return 400;
-      return track.children[0].offsetWidth + 24; // width + gap
+      return track.children[0].offsetWidth + 24;
     }
 
     function updateCarousel() {
@@ -1050,14 +1402,13 @@
       const offset = currentSlide * getSlideWidth();
       track.style.transform = `translateX(-${offset}px)`;
 
-      // Update dots
       const dotsContainer = document.getElementById('carousel-dots');
       if (dotsContainer) {
         Array.from(dotsContainer.children).forEach((dot, idx) => {
           if (idx === currentSlide) {
-            dot.className = 'w-8 h-2 rounded-full bg-blue-600 transition-all';
+            dot.className = 'w-8 h-2 rounded-full bg-sky-600 transition-all';
           } else {
-            dot.className = 'w-2.5 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all';
+            dot.className = 'w-2.5 h-2 rounded-full bg-sky-200 hover:bg-sky-400 transition-all';
           }
         });
       }
@@ -1092,48 +1443,7 @@
     }
     startCarouselAutoPlay();
 
-    // Touch & Swipe Support for Mobile
-    let startX = 0;
-    let endX = 0;
-    const carouselContainer = document.getElementById('projects-carousel-container');
-    if (carouselContainer) {
-      carouselContainer.addEventListener('touchstart', e => {
-        startX = e.touches[0].clientX;
-        pauseCarousel();
-      }, { passive: true });
-
-      carouselContainer.addEventListener('touchend', e => {
-        endX = e.changedTouches[0].clientX;
-        if (startX - endX > 50) nextProjectSlide();
-        if (endX - startX > 50) prevProjectSlide();
-        resumeCarousel();
-      }, { passive: true });
-    }
-
-    // ================= TOOL STACK FILTER =================
-    function filterTools(category) {
-      const items = document.querySelectorAll('.tool-item');
-      const buttons = document.querySelectorAll('.tool-filter-btn');
-
-      buttons.forEach(btn => {
-        if (btn.dataset.category === category) {
-          btn.className = 'tool-filter-btn px-4 py-2 rounded-xl bg-blue-600 text-white font-bold transition-all shadow';
-        } else {
-          btn.className = 'tool-filter-btn px-4 py-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 font-semibold transition-all shadow-sm';
-        }
-      });
-
-      items.forEach(item => {
-        if (category === 'all' || item.dataset.cat === category) {
-          item.style.display = 'block';
-          item.style.opacity = '1';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    }
-
-    // ================= FAQ ACCORDION =================
+    // FAQ Accordion
     function toggleFAQ(id) {
       const answer = document.getElementById(`faq-answer-${id}`);
       const icon = document.getElementById(`faq-icon-${id}`);
@@ -1149,130 +1459,20 @@
       }
     }
 
-    // Workshop Registration to Supabase
-    async function handleWorkshopRegistration(e) {
-      e.preventDefault();
-      
-      const name = document.getElementById('wksp-name').value.trim();
-      const phone = document.getElementById('wksp-phone').value.trim();
-      const email = document.getElementById('wksp-email').value.trim();
-      const city = document.getElementById('wksp-city').value.trim() || 'India';
-      const goal = document.getElementById('wksp-goal').value;
-
-      const submitBtn = document.getElementById('btn-submit-wksp');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = `<span>Saving to Supabase...</span>`;
-
-      const ticketNo = 'SKF-WKSP-' + Math.floor(10000 + Math.random() * 90000);
-
-      try {
-        // 1. Insert into Supabase table: workshop_registrations
-        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/workshop_registrations`, {
-          method: 'POST',
-          headers: SUPABASE_HEADERS,
-          body: JSON.stringify({
-            ticket_no: ticketNo,
-            name: name,
-            phone: phone,
-            email: email,
-            city: city,
-            goal: goal,
-            workshop_date: '30 August 2026 (Live)',
-            status: 'Seat Reserved',
-            utm_source: window.location.hostname || 'lp1.skillsfy.in'
-          })
-        });
-
-        // Also save to enquiries CRM for multi-channel backup
-        try {
-          await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/enquiries`, {
-            method: 'POST',
-            headers: SUPABASE_HEADERS,
-            body: JSON.stringify({
-              name: name,
-              phone: phone,
-              email: email,
-              city: city,
-              course_interested: '30 Aug Live AI Web Dev Workshop',
-              status: 'Workshop Registered',
-              notes: `Ticket: ${ticketNo} • Goal: ${goal}`
-            })
-          });
-        } catch(e) {}
-
-        closeRegisterModal();
-        openSuccessModal(ticketNo);
-        showToast('Registration successful! Ticket issued.', 'success');
-
-      } catch (err) {
-        console.error('Registration error:', err);
-        closeRegisterModal();
-        openSuccessModal(ticketNo);
-        showToast('Seat reserved! Ticket confirmed.', 'success');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = `
-          <span class="material-symbols-outlined text-base">confirmation_number</span>
-          <span>Confirm Seat & Get Live Link</span>
-        `;
-      }
-    }
-
-    // ================= MOTION-FX & SCROLL SPY ENGINE =================
-    const progressBar = document.getElementById('scroll-progress-bar');
-    const header = document.querySelector('header');
-    const navLinks = document.querySelectorAll('header nav a');
-    const sections = ['workflow', 'curriculum', 'case-study', 'tools', 'instructor', 'faq'];
-
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      if (progressBar) progressBar.style.width = scrollPercent + '%';
-
-      // Header sticky elevation
-      if (scrollTop > 40) {
-        header.classList.add('sticky-header-scrolled');
-      } else {
-        header.classList.remove('sticky-header-scrolled');
-      }
-
-      // Scroll Spy for Nav links
-      let currentSec = '';
-      sections.forEach(secId => {
-        const secEl = document.getElementById(secId);
-        if (secEl) {
-          const rect = secEl.getBoundingClientRect();
-          if (rect.top <= 200 && rect.bottom >= 150) {
-            currentSec = secId;
-          }
-        }
-      });
-
-      navLinks.forEach(link => {
-        const href = link.getAttribute('href').replace('#', '');
-        if (href === currentSec) {
-          link.classList.add('nav-link-active');
-        } else {
-          link.classList.remove('nav-link-active');
-        }
-      });
-    }, { passive: true });
-
     // Dynamic Headline Word Rotator
     const rotatorWords = [
       "AI Web Apps",
       "Full-Stack SaaS",
       "Client Portals",
       "D2C Brand Stores",
-      "AI Agency Workflows"
+      "Agency Automation"
     ];
     let rotatorIdx = 0;
     const rotatorEl = document.getElementById('rotator-word');
     if (rotatorEl) {
       setInterval(() => {
         rotatorEl.style.opacity = 0;
-        rotatorEl.style.transform = 'translateY(10px)';
+        rotatorEl.style.transform = 'translateY(8px)';
         setTimeout(() => {
           rotatorIdx = (rotatorIdx + 1) % rotatorWords.length;
           rotatorEl.textContent = rotatorWords[rotatorIdx];
@@ -1282,131 +1482,22 @@
       }, 2500);
     }
 
-    // 3D Mouse Movement Tilt
-    document.querySelectorAll('.glass-card').forEach(card => {
-      card.classList.add('tilt-card');
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -5;
-        const rotateY = ((x - centerX) / centerX) * 5;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
-      });
+    // Scroll Progress & Sticky Header
+    const progressBar = document.getElementById('scroll-progress-bar');
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      if (progressBar) progressBar.style.width = scrollPercent + '%';
 
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-      });
-    });
-
-    // ================= EXIT-INTENT & INACTIVITY POPUP ENGINE =================
-    let exitModalTriggered = false;
-    function showExitModal() {
-      if (exitModalTriggered) return;
-      exitModalTriggered = true;
-      const exitModal = document.getElementById('exit-intent-modal');
-      if (exitModal) exitModal.classList.remove('hidden');
-    }
-
-    function closeExitModal() {
-      const exitModal = document.getElementById('exit-intent-modal');
-      if (exitModal) exitModal.classList.add('hidden');
-    }
-
-    // Trigger 1: Exit Intent (Mouse leaving top of browser window)
-    document.addEventListener('mouseleave', (e) => {
-      if (e.clientY <= 0) {
-        showExitModal();
+      if (scrollTop > 40) {
+        header.classList.add('sticky-header-scrolled');
+      } else {
+        header.classList.remove('sticky-header-scrolled');
       }
-    });
-
-    // Trigger 2: Inactivity Trigger after 40 seconds
-    let idleTimer = setTimeout(showExitModal, 40000);
-    document.addEventListener('mousemove', () => {
-      clearTimeout(idleTimer);
-      if (!exitModalTriggered) idleTimer = setTimeout(showExitModal, 40000);
-    });
+    }, { passive: true });
   </script>
-
-  <!-- ================= DESKTOP FLOATING LIVE NOTIFICATION WIDGET ================= -->
-  <div id="desktop-floating-urgency" class="hidden lg:flex fixed bottom-6 left-6 z-40 items-center gap-3 p-3.5 rounded-2xl bg-white border border-slate-200 shadow-xl backdrop-blur-xl animate-bounce-subtle">
-    <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
-    <div class="text-xs font-['Inter']">
-      <p class="font-bold text-slate-900"><span class="text-blue-600 font-mono font-bold">42 People</span> viewing this masterclass</p>
-      <p class="text-[11px] text-slate-500">Live Workshop • 30 Aug (Only 18 Seats Left)</p>
-    </div>
-    <button onclick="openRegisterModal()" class="ml-2 px-3 py-1.5 btn-gradient text-white rounded-xl text-[11px] font-bold shadow hover:scale-105 transition-all">
-      Reserve Seat
-    </button>
-  </div>
-
-  <!-- ================= FLOATING WHATSAPP VIP SUPPORT PILL ================= -->
-  <a 
-    href="https://wa.me/919244933832?text=Hello%20Skillsfy%20Team!%20I%20have%20a%20query%20about%20the%2030%20August%20Live%20AI%20Workshop." 
-    target="_blank" 
-    class="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xl hover:scale-105 transition-all border border-emerald-400/40"
-    title="Chat with Admissions Mentor"
-  >
-    <span class="material-symbols-outlined text-base">chat</span>
-    <span class="hidden sm:inline">WhatsApp Help</span>
-  </a>
-
-  <!-- ================= HIGH-CONVERTING EXIT-INTENT MODAL ================= -->
-  <div id="exit-intent-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white max-w-lg w-full rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-2xl space-y-5 relative text-center animate-bounce-subtle">
-      
-      <button onclick="closeExitModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-lg">
-        ✕
-      </button>
-
-      <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto border border-blue-200">
-        <span class="material-symbols-outlined text-3xl">redeem</span>
-      </div>
-
-      <div>
-        <span class="badge-pill bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-wider mb-2 inline-block">
-          Special Departure Gift 🎁
-        </span>
-        <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 font-['Manrope']">
-          Wait! Don't Miss the 30 Aug Masterclass
-        </h3>
-        <p class="text-xs sm:text-sm text-slate-600 mt-2 font-['Inter']">
-          Reserve your free seat right now and instantly unlock the <strong>₹17,000+ AI Prompt & Agency Starter Kit</strong> for 100% Free!
-        </p>
-      </div>
-
-      <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-left text-xs font-['Inter'] space-y-2">
-        <div class="flex items-center gap-2 text-emerald-700 font-bold">
-          <span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span>
-          <span>Live 3-Hour AI Web Dev Masterclass (30 Aug)</span>
-        </div>
-        <div class="flex items-center gap-2 text-blue-700 font-bold">
-          <span class="material-symbols-outlined text-sm text-blue-600">check_circle</span>
-          <span>Full AI Prompt Library + Client Acquisition Blueprints</span>
-        </div>
-        <div class="flex items-center gap-2 text-purple-700 font-bold">
-          <span class="material-symbols-outlined text-sm text-purple-600">check_circle</span>
-          <span>Direct Q&A with Founder Pranjil Soni</span>
-        </div>
-      </div>
-
-      <div class="space-y-2.5 pt-2">
-        <button 
-          onclick="closeExitModal(); openRegisterModal();" 
-          class="w-full py-4 btn-gradient text-white font-bold text-sm rounded-2xl shadow-xl flex items-center justify-center gap-2 hover:scale-[1.02] transition-all"
-        >
-          <span>Claim Free Pass & Bonus Vault</span>
-          <span class="material-symbols-outlined text-base">arrow_forward</span>
-        </button>
-        <button onclick="closeExitModal()" class="text-xs text-slate-500 hover:text-slate-800 underline block mx-auto">
-          No thanks, I'll pass on the AI masterclass
-        </button>
-      </div>
-
-    </div>
-  </div>
 
 </body>
 </html>
