@@ -145,24 +145,25 @@
 
             <!-- Proceed Button -->
             <button type="submit" id="btn-proceed" class="w-full py-4 bg-[#031636] hover:bg-[#1a2b4c] text-white font-bold text-sm rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2">
-              <span>Continue to Secure Payment</span>
+              <span class="material-symbols-outlined text-base text-[#00ccf9]">lock</span>
+              <span id="btn-proceed-text">Pay ₹2,999 with Razorpay Standard Checkout</span>
               <span class="material-symbols-outlined text-base text-[#00ccf9]">arrow_forward</span>
             </button>
           </form>
 
-          <!-- Razorpay Official Container (Revealed after details) -->
-          <div id="razorpay-live-box" class="pt-5 border-t border-slate-200 space-y-4">
+          <!-- Razorpay Security Trust Badge -->
+          <div class="pt-5 border-t border-slate-200 space-y-3">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-slate-700">Official Razorpay Instant Gateway:</span>
-              <span class="badge-pill bg-emerald-100 text-emerald-800 text-[10px] font-bold">UPI / Cards / NetBanking</span>
+              <span class="text-xs font-bold text-slate-700">Official Razorpay Standard Gateway:</span>
+              <span class="badge-pill bg-emerald-100 text-emerald-800 text-[10px] font-bold">UPI / QR / Cards / NetBanking</span>
             </div>
 
-            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col items-center justify-center text-center gap-3">
-              <!-- Live Razorpay Form Button -->
-              <form id="razorpay-embed-form">
-                <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_TRhHuqKrOBK2ry" async> </script>
-              </form>
-              <p class="text-[11px] text-slate-500">Supports all Indian UPI Apps (GPay, PhonePe, Paytm), NetBanking & Debit/Credit Cards.</p>
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 flex items-center justify-between text-xs text-slate-600">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-600 text-lg">verified_user</span>
+                <span class="text-[11px]">256-Bit SSL Encrypted • Instant LMS Access Confirmation</span>
+              </div>
+              <span class="text-xs font-mono font-bold text-primary">₹2,999 INR</span>
             </div>
           </div>
 
@@ -251,8 +252,10 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/payment.js"></script>
   <script>
     // Read Course ID from URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -269,6 +272,11 @@
       document.getElementById('calc-discount').textContent = `-₹${discount.toLocaleString('en-IN')}`;
       document.getElementById('calc-total').textContent = `₹${price.toLocaleString('en-IN')}`;
       document.getElementById('summary-title').textContent = selectedOption.text.split('—')[0].trim();
+      
+      const btnText = document.getElementById('btn-proceed-text');
+      if (btnText) {
+        btnText.textContent = `Pay ₹${price.toLocaleString('en-IN')} with Razorpay Standard Checkout`;
+      }
     }
 
     // Auto-capture lead to Supabase in background
@@ -282,12 +290,14 @@
       if (phone.length >= 10 && phone !== lastCapturedPhone) {
         lastCapturedPhone = phone;
         // Save to Supabase enquiries table immediately
-        SkillsfyAPI.saveEnquiry({
-          name: name || 'Interested Student',
-          phone: phone,
-          email: email,
-          notes: `Checkout Initiated for ${courseTitle} (₹2,999)`
-        });
+        if (window.SkillsfyAPI && typeof SkillsfyAPI.saveEnquiry === 'function') {
+          SkillsfyAPI.saveEnquiry({
+            name: name || 'Interested Student',
+            phone: phone,
+            email: email,
+            notes: `Checkout Initiated for ${courseTitle}`
+          });
+        }
       }
     }
 
@@ -296,38 +306,70 @@
       const name = document.getElementById('student-name').value.trim();
       const phone = document.getElementById('student-phone').value.trim();
       const email = document.getElementById('student-email').value.trim();
-      const courseTitle = document.getElementById('course-select').options[document.getElementById('course-select').selectedIndex].text;
+      const select = document.getElementById('course-select');
+      const courseId = select.value;
+      const courseTitle = select.options[select.selectedIndex].text;
+      const price = parseInt(select.options[select.selectedIndex].getAttribute('data-price')) || 2999;
 
       if (!name || !phone || !email) {
-        showToast('Please fill Name, Phone, and Email.', 'warning');
+        showToast('Please fill Name, Phone, and Email to proceed.', 'warning');
         return;
       }
 
-      showToast('Registering student and initiating Razorpay Gateway...', 'info');
+      const submitBtn = document.getElementById('btn-proceed');
+      const originalHtml = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <span class="inline-block animate-spin mr-2">⟳</span>
+        <span>Opening Secure Razorpay Gateway...</span>
+      `;
 
-      // 1. Instant save to Supabase Students and Enquiries
+      // 1. Instant save to Supabase Students & Enquiries
       try {
-        await SkillsfyAPI.signup({
-          name: name,
-          email: email,
-          phone: phone,
-          password: 'Skillsfy@2026'
-        });
-        await SkillsfyAPI.saveEnquiry({
-          name: name,
-          phone: phone,
-          email: email,
-          notes: `Confirmed Checkout for ${courseTitle}`
-        });
+        if (window.SkillsfyAPI) {
+          SkillsfyAPI.signup({
+            name: name,
+            email: email,
+            phone: phone,
+            password: 'Skillsfy@2026'
+          }).catch(console.warn);
+
+          SkillsfyAPI.saveEnquiry({
+            name: name,
+            phone: phone,
+            email: email,
+            notes: `Proceeded to Razorpay for ${courseTitle} (₹${price})`
+          }).catch(console.warn);
+        }
       } catch (err) {
         console.warn('Background sync note:', err);
       }
 
-      showToast(`Student record saved! Click the Razorpay button below to complete payment.`, 'success');
-      
-      // Scroll to Razorpay button
-      const razorpayBox = document.getElementById('razorpay-live-box');
-      razorpayBox.scrollIntoView({ behavior: 'smooth' });
+      // 2. Launch Razorpay Standard Web Checkout Modal
+      SkillsfyPayment.checkout({
+        amount: price,
+        course_id: courseId,
+        course_title: courseTitle,
+        name: name,
+        email: email,
+        phone: phone,
+        onSuccess: function(verifyResult, razorpayResponse) {
+          showToast('Payment Verified! Redirecting to Student Dashboard...', 'success');
+          setTimeout(() => {
+            window.location.href = `/enrollment-success?payment_id=${razorpayResponse.razorpay_payment_id}&order_id=${razorpayResponse.razorpay_order_id}&course=${courseId}`;
+          }, 1200);
+        },
+        onFailure: function(error) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalHtml;
+          showToast(error.message || 'Payment could not be completed.', 'error');
+        },
+        onDismiss: function() {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalHtml;
+          showToast('Payment window closed.', 'info');
+        }
+      });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
