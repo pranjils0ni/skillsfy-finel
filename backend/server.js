@@ -24,6 +24,7 @@ const enrollmentRoutes = require('./routes/enrollmentRoutes');
 const certificateRoutes = require('./routes/certificateRoutes');
 const verifyRoutes = require('./routes/verifyRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 // Initialize Express App
 const app = express();
@@ -57,6 +58,7 @@ app.use('/api', enrollmentRoutes);
 app.use('/api/certificate', certificateRoutes);
 app.use('/api/verify', verifyRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api', paymentRoutes);
 
 // Health Check Endpoint
 app.get('/api/health', (req, res) => {
