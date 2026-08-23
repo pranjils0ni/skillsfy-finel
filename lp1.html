@@ -1724,7 +1724,6 @@
   <script>
     const SUPABASE_PROJECT_URL = 'https://iqssjqfyfdmujlmlbjhl.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlxc3NqcWZ5ZmRtdWpsbWxiamhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMzY3NzIsImV4cCI6MjEwMjcxMjc3Mn0.o7gGbhiuRkLxxJCRJNM1RzBrIVHnOTxuzX0-EOQVyyU';
-    const RAZORPAY_KEY_ID = 'rzp_test_TT66f0GZnK72DV';
 
     const SUPABASE_HEADERS = {
       'apikey': SUPABASE_ANON_KEY,
@@ -1933,8 +1932,9 @@
 
       const amountPaise = registeredLead.amount * 100;
       let serverOrderId = null;
+      let activeKeyId = null;
 
-      // 1. Create Razorpay order on server
+      // 1. Create Razorpay order on server (Retrieves order_id and live key_id)
       try {
         const orderRes = await fetch('/api/create-order', {
           method: 'POST',
@@ -1956,14 +1956,26 @@
         if (orderRes.ok) {
           const orderData = await orderRes.json();
           serverOrderId = orderData.order_id || orderData.id;
+          activeKeyId = orderData.key_id;
         }
       } catch (e) {
         console.warn('Server order fallback:', e.message);
       }
 
+      // Fetch public key if not returned
+      if (!activeKeyId) {
+        try {
+          const keyRes = await fetch('/api/payment/key');
+          if (keyRes.ok) {
+            const keyData = await keyRes.json();
+            activeKeyId = keyData.key_id;
+          }
+        } catch(e) {}
+      }
+
       // 2. Razorpay Standard Checkout Options
       const options = {
-        key: RAZORPAY_KEY_ID,
+        key: activeKeyId || 'rzp_test_TT66f0GZnK72DV',
         amount: amountPaise,
         currency: "INR",
         name: "Skillsfy Institute of Technology",
@@ -1994,7 +2006,7 @@
           }
         },
         handler: async function (response) {
-          // Callback after successful client payment
+          // Callback after successful payment
           payBtn.innerHTML = `<span>Verifying Payment Cryptographically...</span>`;
 
           const paymentId = response.razorpay_payment_id || ('pay_' + Date.now());
@@ -2103,22 +2115,28 @@
       document.getElementById('success-payment-id').textContent = paymentId || 'pay_verified';
       document.getElementById('success-name').textContent = name || 'Student';
 
-      // Inject the official WhatsApp link ONLY after payment verification
-      const groupLink = whatsappUrl || 'https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN';
       const container = document.getElementById('whatsapp-container');
-      container.innerHTML = `
-        <a 
-          href="${groupLink}" 
-          target="_blank" 
-          class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm rounded-2xl shadow-xl flex items-center justify-center gap-2 transition-all hover:scale-105"
-        >
-          <span class="material-symbols-outlined text-xl">groups</span>
-          <span>Join Official WhatsApp Community →</span>
-        </a>
-        <p class="text-[11px] text-slate-500">
-          Click above to join our private WhatsApp group for live meeting access & resources.
-        </p>
-      `;
+      if (whatsappUrl) {
+        container.innerHTML = `
+          <a 
+            href="${whatsappUrl}" 
+            target="_blank" 
+            class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm rounded-2xl shadow-xl flex items-center justify-center gap-2 transition-all hover:scale-105"
+          >
+            <span class="material-symbols-outlined text-xl">groups</span>
+            <span>Join Official VIP WhatsApp Community →</span>
+          </a>
+          <p class="text-[11px] text-slate-500">
+            Click above to join our private VIP WhatsApp community for live session access.
+          </p>
+        `;
+      } else {
+        container.innerHTML = `
+          <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs">
+            Payment recorded. Your access link is being generated...
+          </div>
+        `;
+      }
 
       document.getElementById('success-modal').classList.remove('hidden');
     }
