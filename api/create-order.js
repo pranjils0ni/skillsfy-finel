@@ -28,6 +28,45 @@ module.exports = async (req, res) => {
 
     let { amount, currency = 'INR', receipt, notes = {}, course_id, course_title, name, email, phone, type, ticket_no, city, goal, coupon_code } = req.body || {};
 
+    const SUPABASE_URL = process.env.SUPABASE_URL || 'https://iqssjqfyfdmujlmlbjhl.supabase.co';
+    const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlxc3NqcWZ5ZmRtdWpsbWxiamhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMzY3NzIsImV4cCI6MjEwMjcxMjc3Mn0.o7gGbhiuRkLxxJCRJNM1RzBrIVHnOTxuzX0-EOQVyyU';
+    const courseSlug = (type === 'workshop' || course_id === 'workshop-30-aug') ? 'workshop-30-aug' : (course_id || 'standard-course');
+
+    // 1. Server-side Seat Inventory Check (Overselling Prevention)
+    try {
+      const headers = { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` };
+      let totalSeats = courseSlug === 'workshop-30-aug' ? 150 : 50;
+      const cRes = await fetch(`${SUPABASE_URL}/rest/v1/courses?slug=eq.${courseSlug}&select=total_seats`, { headers });
+      if (cRes.ok) {
+        const cData = await cRes.json();
+        if (Array.isArray(cData) && cData.length > 0 && cData[0].total_seats) totalSeats = cData[0].total_seats;
+      }
+
+      let filledSeats = 0;
+      if (courseSlug === 'workshop-30-aug') {
+        const rRes = await fetch(`${SUPABASE_URL}/rest/v1/workshop_registrations?payment_status=eq.paid&select=id`, { headers });
+        if (rRes.ok) {
+          const rData = await rRes.json();
+          if (Array.isArray(rData)) filledSeats = rData.length;
+        }
+      } else {
+        const eRes = await fetch(`${SUPABASE_URL}/rest/v1/enrollments?course_slug=eq.${courseSlug}&status=eq.active&select=id`, { headers });
+        if (eRes.ok) {
+          const eData = await eRes.json();
+          if (Array.isArray(eData)) filledSeats = eData.length;
+        }
+      }
+
+      if (filledSeats >= totalSeats) {
+        return res.status(400).json({
+          success: false,
+          message: 'All seats for this batch are currently sold out.'
+        });
+      }
+    } catch (seatErr) {
+      console.warn('Seat verification notice:', seatErr.message);
+    }
+
     let amountInPaise = parseInt(amount, 10);
     if (isNaN(amountInPaise) || amountInPaise < 100) {
       amountInPaise = (type === 'workshop' || course_id === 'workshop-30-aug') ? 14900 : 299900;
