@@ -183,6 +183,10 @@
           <p class="text-xs text-slate-400">Every confirmed transaction with Razorpay Payment ID, student details, and ticket numbers.</p>
         </div>
         <div class="flex items-center gap-2">
+          <button onclick="exportPaymentsToCSV()" class="px-3 py-2 text-xs rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold border border-slate-700 flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-sm text-emerald-400">download</span>
+            <span>Export CSV</span>
+          </button>
           <input type="text" id="search-transactions" onkeyup="filterTransactionsTable()" placeholder="Search by name, phone, email, payment ID..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white w-72">
         </div>
       </div>
@@ -218,6 +222,10 @@
           <p class="text-xs text-slate-400">Live registrations, coupon usage, payment status, and instant WhatsApp follow-up triggers.</p>
         </div>
         <div class="flex items-center gap-2">
+          <button onclick="exportWorkshopToCSV()" class="px-3 py-2 text-xs rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold border border-slate-700 flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-sm text-sky-400">download</span>
+            <span>Export CSV</span>
+          </button>
           <select id="filter-workshop-status" onchange="filterWorkshopTable()" class="px-3 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white">
             <option value="all">All Statuses</option>
             <option value="paid">Paid & Verified Only</option>
@@ -331,6 +339,25 @@
     </div>
 
   </main>
+
+  <!-- ================= PAYMENT & STUDENT FULL DETAILS MODAL ================= -->
+  <div id="details-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-bold text-white font-['Plus_Jakarta_Sans'] flex items-center gap-2">
+          <span class="material-symbols-outlined text-cyan-400">badge</span>
+          <span>Official Registration & Transaction Record</span>
+        </h3>
+        <button onclick="closeDetailsModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <div id="details-modal-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
 
   <!-- Toast Notification Container -->
   <div id="admin-toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300"></div>
@@ -526,12 +553,19 @@
       }
 
       tbody.innerHTML = list.map(p => `
-        <tr class="hover:bg-slate-900/50 transition-colors">
-          <td class="py-3 font-mono font-bold text-cyan-400">${p.payment_id || 'N/A'}</td>
-          <td class="py-3 font-bold text-white">${p.student_name || 'Student'}</td>
+        <tr class="hover:bg-slate-800/60 transition-colors cursor-pointer group" onclick="openPaymentDetailsModal('${p.payment_id}')">
+          <td class="py-3 font-mono font-bold text-cyan-400">
+            <span class="group-hover:underline flex items-center gap-1">
+              <span>${p.payment_id || 'N/A'}</span>
+              <span class="material-symbols-outlined text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">open_in_new</span>
+            </span>
+          </td>
+          <td class="py-3 font-bold text-white">
+            <div>${p.student_name || 'Student'}</div>
+            <div class="text-[10px] text-slate-400 font-normal">${p.student_email || ''}</div>
+          </td>
           <td class="py-3 font-mono text-slate-300">
-            <div>${p.student_phone || ''}</div>
-            <div class="text-[10px] text-slate-500">${p.student_email || ''}</div>
+            ${p.student_phone || '-'}
           </td>
           <td class="py-3">
             <span class="badge-pill ${p.course_slug === 'workshop-30-aug' ? 'bg-sky-950 text-sky-300 border border-sky-800' : 'bg-indigo-950 text-indigo-300 border border-indigo-800'} text-[10px] font-bold">
@@ -545,12 +579,18 @@
             </span>
           </td>
           <td class="py-3 font-mono text-slate-400 text-[11px]">${p.created_at ? new Date(p.created_at).toLocaleString('en-IN') : 'Recent'}</td>
-          <td class="py-3 text-right">
-            ${p.student_phone ? `
-              <a href="https://wa.me/${p.student_phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(p.student_name || 'Student')},%20Skillsfy%20se%20Pranjil%20Soni%20here.%20Aapka%20payment%20verified%20hai." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px] inline-flex items-center gap-1">
-                <span>WhatsApp</span>
-              </a>
-            ` : '-'}
+          <td class="py-3 text-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1.5">
+              <button onclick="openPaymentDetailsModal('${p.payment_id}')" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[11px] inline-flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">info</span>
+                <span>Details</span>
+              </button>
+              ${p.student_phone ? `
+                <a href="https://wa.me/${p.student_phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(p.student_name || 'Student')},%20Skillsfy%20se%20Pranjil%20Soni%20here.%20Aapka%20Workshop%20Pass%20Payment%20Verified%20hai." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px] inline-flex items-center gap-1">
+                  <span>WhatsApp</span>
+                </a>
+              ` : ''}
+            </div>
           </td>
         </tr>
       `).join('');
@@ -562,7 +602,8 @@
         (p.payment_id && p.payment_id.toLowerCase().includes(q)) ||
         (p.student_name && p.student_name.toLowerCase().includes(q)) ||
         (p.student_phone && p.student_phone.includes(q)) ||
-        (p.student_email && p.student_email.toLowerCase().includes(q))
+        (p.student_email && p.student_email.toLowerCase().includes(q)) ||
+        (p.ticket_no && p.ticket_no.toLowerCase().includes(q))
       );
       renderTransactionsTable(filtered);
     }
@@ -585,13 +626,15 @@
       }
 
       tbody.innerHTML = list.map(w => `
-        <tr class="hover:bg-slate-900/50 transition-colors">
-          <td class="py-3 font-mono font-bold text-sky-400">${w.ticket_no || 'N/A'}</td>
+        <tr class="hover:bg-slate-800/60 transition-colors cursor-pointer group" onclick="openWorkshopDetailsModal('${w.ticket_no}')">
+          <td class="py-3 font-mono font-bold text-sky-400">
+            <span class="group-hover:underline">${w.ticket_no || 'N/A'}</span>
+          </td>
           <td class="py-3 font-bold text-white">${w.name}</td>
           <td class="py-3 font-mono text-cyan-300">${w.phone}</td>
           <td class="py-3 text-slate-400">${w.email}</td>
           <td class="py-3 text-slate-400">${w.city || 'India'}</td>
-          <td class="py-3 text-slate-400 truncate max-w-[120px]">${w.goal || 'Dev'}</td>
+          <td class="py-3 text-slate-400 truncate max-w-[120px]">${w.goal || 'AI Web Dev'}</td>
           <td class="py-3">
             <span class="px-2 py-0.5 rounded-md text-[10px] font-bold ${
               w.payment_status === 'paid' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' :
@@ -603,34 +646,258 @@
           </td>
           <td class="py-3 font-mono font-bold ${w.payment_status === 'paid' ? 'text-emerald-400' : 'text-slate-500'}">
             ₹${w.amount_paid || 149}
-            ${w.coupon_code ? `<span class="text-[9px] text-amber-400 block">${w.coupon_code}</span>` : ''}
+            ${w.coupon_code ? `<span class="text-[9px] text-amber-400 block font-mono font-bold">${w.coupon_code}</span>` : ''}
           </td>
-          <td class="py-3 text-right">
-            <a href="https://wa.me/${w.phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(w.name)},%20Skillsfy%20se%20Pranjil%20Soni%20here.%20Aapka%20Workshop%20Ticket%20${w.ticket_no}%20ready%20hai." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px] inline-flex items-center gap-1">
-              <span>Chat</span>
-            </a>
+          <td class="py-3 text-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1.5">
+              <button onclick="openWorkshopDetailsModal('${w.ticket_no}')" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[11px]">
+                Details
+              </button>
+              <a href="https://wa.me/${w.phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(w.name)},%20Skillsfy%20se%20Pranjil%20Soni%20here.%20Aapka%20Workshop%20Ticket%20${w.ticket_no}%20ready%20hai." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px] inline-flex items-center gap-1">
+                <span>WhatsApp</span>
+              </a>
+            </div>
           </td>
         </tr>
       `).join('');
     }
 
-    function filterWorkshopTable() {
-      const status = document.getElementById('filter-workshop-status').value;
-      const q = document.getElementById('search-workshop').value.toLowerCase();
-      
-      let filtered = allWorkshopRegs;
-      if (status !== 'all') {
-        filtered = filtered.filter(w => w.payment_status === status);
+    // ================= FULL DETAILS MODAL CONTROLLER =================
+    function openPaymentDetailsModal(paymentId) {
+      const payment = allPayments.find(p => p.payment_id === paymentId);
+      if (!payment) return;
+
+      // Find matching workshop reg or student if available
+      const matchingWorkshop = allWorkshopRegs.find(w => w.razorpay_payment_id === paymentId || (payment.ticket_no && w.ticket_no === payment.ticket_no));
+      const matchingStudent = allStudents.find(s => s.email === payment.student_email || s.phone === payment.student_phone);
+
+      const modal = document.getElementById('details-modal');
+      const content = document.getElementById('details-modal-content');
+      if (!modal || !content) return;
+
+      const dateFormatted = payment.created_at ? new Date(payment.created_at).toLocaleString('en-IN', {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }) : 'Recent Transaction';
+
+      content.innerHTML = `
+        <div class="space-y-6 text-left">
+          
+          <!-- Top Header Strip -->
+          <div class="flex items-start justify-between pb-4 border-b border-slate-800">
+            <div>
+              <span class="badge-pill bg-emerald-950 text-emerald-300 border border-emerald-800 text-xs font-bold">
+                ✓ VERIFIED TRANSACTION
+              </span>
+              <h3 class="text-xl font-black text-white font-['Plus_Jakarta_Sans'] mt-2">
+                ${payment.student_name || 'Student'}
+              </h3>
+              <p class="text-xs text-slate-400 font-mono mt-0.5">Payment ID: <strong class="text-cyan-400">${payment.payment_id}</strong></p>
+            </div>
+            <div class="text-right">
+              <span class="text-2xl font-black text-emerald-400 font-mono">₹${payment.amount}</span>
+              <span class="text-xs text-slate-500 block">INR (Paid via Razorpay)</span>
+            </div>
+          </div>
+
+          <!-- 2-Column Details Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            
+            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Student Profile</span>
+              <div class="flex justify-between"><span class="text-slate-400">Full Name:</span><span class="font-bold text-white">${payment.student_name || matchingWorkshop?.name || '-'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">WhatsApp / Phone:</span><span class="font-mono font-bold text-cyan-300">${payment.student_phone || matchingWorkshop?.phone || '-'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Email Address:</span><span class="text-slate-200">${payment.student_email || matchingWorkshop?.email || '-'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">City / State:</span><span class="text-slate-200">${matchingWorkshop?.city || matchingStudent?.city || 'India'}</span></div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Program & Enrollment</span>
+              <div class="flex justify-between"><span class="text-slate-400">Course / Event:</span><span class="font-bold text-indigo-300">${payment.course_slug === 'workshop-30-aug' ? 'AI Web Dev Workshop (30 Aug)' : 'Skillsfy Standard Course'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Ticket / Roll No:</span><span class="font-mono font-bold text-amber-300">${payment.ticket_no || matchingWorkshop?.ticket_no || matchingStudent?.roll_no || 'SKF-LP1-VERIFIED'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Coupon Used:</span><span class="font-mono text-emerald-400 font-bold">${payment.coupon_code || matchingWorkshop?.coupon_code || 'None'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Experience / Goal:</span><span class="text-slate-300 truncate max-w-[140px]">${matchingWorkshop?.goal || matchingWorkshop?.experience_level || 'AI Web Development'}</span></div>
+            </div>
+
+          </div>
+
+          <!-- Razorpay Technical Metadata Box -->
+          <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+            <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Gateway Technical Metadata</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-[11px]">
+              <div><span class="text-slate-500">Order ID:</span> <span class="text-slate-300">${payment.order_id || 'Direct Captured'}</span></div>
+              <div><span class="text-slate-500">Payment Status:</span> <span class="text-emerald-400 font-bold">${payment.status || 'PAID'}</span></div>
+              <div class="sm:col-span-2"><span class="text-slate-500">Paid At:</span> <span class="text-slate-300">${dateFormatted}</span></div>
+            </div>
+          </div>
+
+          <!-- Quick Direct Action Buttons -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            ${(payment.student_phone || matchingWorkshop?.phone) ? `
+              <a href="https://wa.me/${(payment.student_phone || matchingWorkshop?.phone).replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(payment.student_name || 'Student')},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here.%20Aapka%20AI%20Web%20Dev%20Workshop%20Ticket%20(${payment.ticket_no || matchingWorkshop?.ticket_no || 'Verified'})%20confirm%20ho%20gaya%20hai.%20VIP%20WhatsApp%20Group:%20https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN" target="_blank" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all">
+                <span class="material-symbols-outlined text-base">chat</span>
+                <span>Send WhatsApp VIP Link</span>
+              </a>
+            ` : ''}
+
+            ${(payment.student_email || matchingWorkshop?.email) ? `
+              <a href="mailto:${payment.student_email || matchingWorkshop?.email}?subject=Skillsfy%20Workshop%20Pass%20Confirmation%20-%20Ticket%20${payment.ticket_no || matchingWorkshop?.ticket_no}&body=Hello%20${encodeURIComponent(payment.student_name || 'Student')},%0A%0AYour%20payment%20of%20INR%20${payment.amount}%20for%20the%20AI%20Web%20Dev%20Live%20Masterclass%20(30%20Aug)%20is%20verified.%0APayment%20ID:%20${payment.payment_id}%0A%0AWelcome%20to%20Skillsfy!" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base">mail</span>
+                <span>Send Email</span>
+              </a>
+            ` : ''}
+
+            <button onclick="copyDetailsToClipboard('${payment.payment_id}', '${payment.student_name}', '${payment.student_phone}', '${payment.student_email}', '${payment.amount}')" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">content_copy</span>
+              <span>Copy Data</span>
+            </button>
+          </div>
+
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function openWorkshopDetailsModal(ticketNo) {
+      const w = allWorkshopRegs.find(item => item.ticket_no === ticketNo);
+      if (!w) return;
+
+      const modal = document.getElementById('details-modal');
+      const content = document.getElementById('details-modal-content');
+      if (!modal || !content) return;
+
+      content.innerHTML = `
+        <div class="space-y-6 text-left">
+          
+          <div class="flex items-start justify-between pb-4 border-b border-slate-800">
+            <div>
+              <span class="badge-pill ${w.payment_status === 'paid' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-amber-950 text-amber-300 border border-amber-800'} text-xs font-bold">
+                ${w.payment_status === 'paid' ? '✓ PAID WORKSHOP PASS' : '⏳ LEAD / PAYMENT PENDING'}
+              </span>
+              <h3 class="text-xl font-black text-white font-['Plus_Jakarta_Sans'] mt-2">
+                ${w.name}
+              </h3>
+              <p class="text-xs text-slate-400 font-mono mt-0.5">Ticket: <strong class="text-sky-400">${w.ticket_no}</strong></p>
+            </div>
+            <div class="text-right">
+              <span class="text-2xl font-black ${w.payment_status === 'paid' ? 'text-emerald-400' : 'text-slate-400'} font-mono">₹${w.amount_paid || 149}</span>
+              <span class="text-xs text-slate-500 block font-bold">${(w.payment_status || 'PENDING').toUpperCase()}</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Candidate Information</span>
+              <div class="flex justify-between"><span class="text-slate-400">Name:</span><span class="font-bold text-white">${w.name}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Phone:</span><span class="font-mono font-bold text-cyan-300">${w.phone}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Email:</span><span class="text-slate-200">${w.email}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">City:</span><span class="text-slate-200">${w.city || 'India'}</span></div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Registration Details</span>
+              <div class="flex justify-between"><span class="text-slate-400">Experience:</span><span class="text-slate-300">${w.experience_level || 'Beginner'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Primary Goal:</span><span class="text-slate-300">${w.goal || 'Freelance / Dev'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Coupon Used:</span><span class="font-mono text-amber-400 font-bold">${w.coupon_code || 'None'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Razorpay ID:</span><span class="font-mono text-cyan-400">${w.razorpay_payment_id || 'Pending'}</span></div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a href="https://wa.me/${w.phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(w.name)},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here.%20Aapka%2030%20Aug%20AI%20Workshop%20Ticket%20${w.ticket_no}%20ready%20hai." target="_blank" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all">
+              <span class="material-symbols-outlined text-base">chat</span>
+              <span>Chat on WhatsApp</span>
+            </a>
+
+            <button onclick="copyDetailsToClipboard('${w.ticket_no}', '${w.name}', '${w.phone}', '${w.email}', '${w.amount_paid}')" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">content_copy</span>
+              <span>Copy Data</span>
+            </button>
+          </div>
+
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeDetailsModal() {
+      const modal = document.getElementById('details-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function copyDetailsToClipboard(id, name, phone, email, amount) {
+      const text = `Skillsfy Record:\nID: ${id}\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nAmount: ₹${amount}`;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Details copied to clipboard!', 'success');
+      });
+    }
+
+    // ================= EXPORT TO CSV ENGINE =================
+    function exportPaymentsToCSV() {
+      if (!allPayments || allPayments.length === 0) {
+        showToast('No payment transactions to export.', 'error');
+        return;
       }
-      if (q) {
-        filtered = filtered.filter(w => 
-          (w.ticket_no && w.ticket_no.toLowerCase().includes(q)) ||
-          (w.name && w.name.toLowerCase().includes(q)) ||
-          (w.phone && w.phone.includes(q)) ||
-          (w.email && w.email.toLowerCase().includes(q))
-        );
+
+      const headers = ['Payment ID', 'Student Name', 'Phone', 'Email', 'Program', 'Amount (INR)', 'Status', 'Ticket No', 'Coupon Code', 'Date'];
+      const rows = allPayments.map(p => [
+        `"${p.payment_id || ''}"`,
+        `"${p.student_name || ''}"`,
+        `"${p.student_phone || ''}"`,
+        `"${p.student_email || ''}"`,
+        `"${p.course_slug || ''}"`,
+        `"${p.amount || ''}"`,
+        `"${p.status || ''}"`,
+        `"${p.ticket_no || ''}"`,
+        `"${p.coupon_code || ''}"`,
+        `"${p.created_at ? new Date(p.created_at).toLocaleString('en-IN') : ''}"`
+      ]);
+
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `skillsfy_payments_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('Exported payments CSV successfully!', 'success');
+    }
+
+    function exportWorkshopToCSV() {
+      if (!allWorkshopRegs || allWorkshopRegs.length === 0) {
+        showToast('No workshop registrations to export.', 'error');
+        return;
       }
-      renderWorkshopTable(filtered);
+
+      const headers = ['Ticket No', 'Name', 'Phone', 'Email', 'City', 'Experience', 'Goal', 'Status', 'Payment Status', 'Amount Paid', 'Razorpay Payment ID', 'Coupon', 'Registered At'];
+      const rows = allWorkshopRegs.map(w => [
+        `"${w.ticket_no || ''}"`,
+        `"${w.name || ''}"`,
+        `"${w.phone || ''}"`,
+        `"${w.email || ''}"`,
+        `"${w.city || ''}"`,
+        `"${w.experience_level || ''}"`,
+        `"${w.goal || ''}"`,
+        `"${w.status || ''}"`,
+        `"${w.payment_status || ''}"`,
+        `"${w.amount_paid || ''}"`,
+        `"${w.razorpay_payment_id || ''}"`,
+        `"${w.coupon_code || ''}"`,
+        `"${w.created_at ? new Date(w.created_at).toLocaleString('en-IN') : ''}"`
+      ]);
+
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `skillsfy_workshop_registrations_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('Exported workshop leads CSV successfully!', 'success');
     }
 
     // ================= RENDER ENROLLED STUDENTS =================
