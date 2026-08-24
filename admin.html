@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Command Center | Skillsfy - Institute of Technology</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Super Admin Command Center | Skillsfy Institute of Technology</title>
   
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +36,7 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-['Inter'] antialiased min-h-screen flex flex-col">
 
-  <!-- ================= ADMIN LOCK SCREEN (PASSWORD PROTECTED) ================= -->
+  <!-- ================= ADMIN LOCK SCREEN ================= -->
   <div id="admin-lock-screen" class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
     <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl text-center space-y-6">
       <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mx-auto">
@@ -41,7 +44,7 @@
       </div>
       <div>
         <h2 class="text-2xl font-black text-white font-['Plus_Jakarta_Sans']">Skillsfy Command Center</h2>
-        <p class="text-xs text-slate-400 mt-1">Single Source of Truth Database Control Panel</p>
+        <p class="text-xs text-slate-400 mt-1">Single Source of Truth Database & API Suite</p>
       </div>
       <form onsubmit="handleAdminUnlock(event)" class="space-y-4">
         <div>
@@ -54,10 +57,10 @@
           />
         </div>
         <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black text-sm rounded-xl shadow-lg transition-all">
-          Unlock Admin Portal →
+          Unlock Admin Suite →
         </button>
       </form>
-      <p class="text-[11px] text-slate-500">Authorized Personnel Only • Jabalpur Flagship Center</p>
+      <p class="text-[11px] text-slate-500">Authorized Personnel Only • Skillsfy Institute</p>
     </div>
   </div>
 
@@ -70,14 +73,19 @@
           <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-img brand-logo-white object-contain" />
         </a>
         <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold">
-          MASTER PRODUCTION DATABASE
+          LIVE MASTER COMMAND CENTER
         </span>
       </div>
 
       <div class="flex items-center gap-3 text-xs font-['Geist']">
-        <button onclick="triggerRazorpayReconciliation()" id="btn-reconcile" class="px-3 py-1.5 rounded-lg bg-emerald-950/80 border border-emerald-700 hover:bg-emerald-900 text-emerald-300 font-bold transition-all flex items-center gap-1.5">
+        <button onclick="triggerRazorpayReconciliation()" id="btn-reconcile" class="px-3 py-1.5 rounded-lg bg-emerald-950/80 border border-emerald-700 hover:bg-emerald-900 text-emerald-300 font-bold transition-all flex items-center gap-1.5 shadow">
           <span class="material-symbols-outlined text-sm">sync</span>
           <span>Reconcile Razorpay</span>
+        </button>
+
+        <button onclick="openManualAdmissionModal()" class="px-3 py-1.5 rounded-lg bg-cyan-950/80 border border-cyan-700 hover:bg-cyan-900 text-cyan-300 font-bold transition-all flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">person_add</span>
+          <span>+ Add Student</span>
         </button>
 
         <button onclick="fetchMasterAdminData()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition-colors flex items-center gap-1">
@@ -100,21 +108,21 @@
       <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
         
         <!-- Total Real Revenue -->
-        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
           <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Verified Revenue</span>
           <span class="text-2xl font-black text-emerald-400 font-['Plus_Jakarta_Sans']" id="kpi-total-revenue">₹0</span>
           <p class="text-[10px] text-slate-400 mt-1 font-['Geist']" id="kpi-revenue-meta">0 Successful Payments</p>
         </div>
 
         <!-- Confirmed Paid Students -->
-        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
           <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Paid Students</span>
           <span class="text-2xl font-black text-cyan-400 font-['Plus_Jakarta_Sans']" id="kpi-paid-students">0</span>
           <p class="text-[10px] text-slate-400 mt-1 font-['Geist']">Workshop + Standard Course</p>
         </div>
 
         <!-- LP1 Workshop Seat Inventory -->
-        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
           <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">LP1 Seats (30 Aug)</span>
           <div class="flex items-baseline gap-2">
             <span class="text-2xl font-black text-white font-['Plus_Jakarta_Sans']" id="kpi-lp1-available">150</span>
@@ -124,7 +132,7 @@
         </div>
 
         <!-- Standard Course Seat Inventory -->
-        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
           <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Standard Course Seats</span>
           <div class="flex items-baseline gap-2">
             <span class="text-2xl font-black text-indigo-400 font-['Plus_Jakarta_Sans']" id="kpi-std-available">50</span>
@@ -134,10 +142,10 @@
         </div>
 
         <!-- Inbound Leads & Enquiries -->
-        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 col-span-2 lg:col-span-1">
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 col-span-2 lg:col-span-1 shadow-sm">
           <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Total Leads Captured</span>
           <span class="text-2xl font-black text-amber-400 font-['Plus_Jakarta_Sans']" id="kpi-leads-count">0</span>
-          <p class="text-[10px] text-amber-300 mt-1 font-['Geist']" id="kpi-leads-pending">0 Pending Payments</p>
+          <p class="text-[10px] text-amber-300 mt-1 font-['Geist']" id="kpi-leads-pending">0 Pending Orders</p>
         </div>
 
       </div>
@@ -156,22 +164,32 @@
 
       <button onclick="switchAdminTab('workshop')" id="admin-tab-btn-workshop" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
         <span class="material-symbols-outlined text-base text-sky-400">groups</span>
-        <span>LP1 Workshop Registrations (<span id="tab-count-workshop">0</span>)</span>
+        <span>LP1 Workshop (<span id="tab-count-workshop">0</span>)</span>
       </button>
 
       <button onclick="switchAdminTab('students')" id="admin-tab-btn-students" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
         <span class="material-symbols-outlined text-base text-indigo-400">school</span>
-        <span>Enrolled Students (<span id="tab-count-students">0</span>)</span>
-      </button>
-
-      <button onclick="switchAdminTab('enquiries')" id="admin-tab-btn-enquiries" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
-        <span class="material-symbols-outlined text-base text-amber-400">contact_phone</span>
-        <span>Inbound Enquiries (<span id="tab-count-enquiries">0</span>)</span>
+        <span>Students & LMS (<span id="tab-count-students">0</span>)</span>
       </button>
 
       <button onclick="switchAdminTab('courses')" id="admin-tab-btn-courses" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
         <span class="material-symbols-outlined text-base text-emerald-400">tune</span>
-        <span>Seat & Capacity Manager</span>
+        <span>Courses & Seats</span>
+      </button>
+
+      <button onclick="switchAdminTab('coupons')" id="admin-tab-btn-coupons" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-amber-400">sell</span>
+        <span>Coupons & Promos</span>
+      </button>
+
+      <button onclick="switchAdminTab('blogs')" id="admin-tab-btn-blogs" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-purple-400">article</span>
+        <span>Educational Blogs & SEO</span>
+      </button>
+
+      <button onclick="switchAdminTab('settings')" id="admin-tab-btn-settings" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-cyan-400">settings</span>
+        <span>API & System Config</span>
       </button>
     </div>
 
@@ -180,14 +198,14 @@
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Razorpay Verified Payment Transactions</h2>
-          <p class="text-xs text-slate-400">Every confirmed transaction with Razorpay Payment ID, student details, and ticket numbers.</p>
+          <p class="text-xs text-slate-400">Click any row to open full 360° candidate details, WhatsApp triggers, and receipt.</p>
         </div>
         <div class="flex items-center gap-2">
           <button onclick="exportPaymentsToCSV()" class="px-3 py-2 text-xs rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold border border-slate-700 flex items-center gap-1.5 transition-all">
             <span class="material-symbols-outlined text-sm text-emerald-400">download</span>
             <span>Export CSV</span>
           </button>
-          <input type="text" id="search-transactions" onkeyup="filterTransactionsTable()" placeholder="Search by name, phone, email, payment ID..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white w-72">
+          <input type="text" id="search-transactions" onkeyup="filterTransactionsTable()" placeholder="Search payments..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white w-64">
         </div>
       </div>
 
@@ -264,10 +282,14 @@
     <div id="admin-tab-students" class="space-y-4 hidden">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Enrolled Student Profiles & LMS Access</h2>
-          <p class="text-xs text-slate-400">All registered students with their official Roll Number, active courses, and portal access.</p>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Enrolled Student Directory & LMS Portal</h2>
+          <p class="text-xs text-slate-400">All registered students with Roll Numbers, courses, and manual admission capability.</p>
         </div>
         <div class="flex items-center gap-2">
+          <button onclick="openManualAdmissionModal()" class="px-3 py-2 text-xs rounded-xl bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-sm">add</span>
+            <span>Direct Student Admission</span>
+          </button>
           <input type="text" id="search-students" onkeyup="filterStudentsTable()" placeholder="Search students..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white w-64">
         </div>
       </div>
@@ -295,46 +317,127 @@
       </div>
     </div>
 
-    <!-- ================= TAB 4: INBOUND ENQUIRIES ================= -->
-    <div id="admin-tab-enquiries" class="space-y-4 hidden">
+    <!-- ================= TAB 4: COURSE & CAPACITY CONTROLLER ================= -->
+    <div id="admin-tab-courses" class="space-y-6 hidden">
       <div class="flex items-center justify-between">
         <div>
-          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Website Inbound Enquiries</h2>
-          <p class="text-xs text-slate-400">Direct lead captures from contact forms, modal popups, and advising requests.</p>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Course & Seat Inventory Controller</h2>
+          <p class="text-xs text-slate-400">Control total batch capacities, prices, and live Zoom/Google Meet links directly in Supabase.</p>
         </div>
+        <button onclick="openAddCourseModal()" class="px-3.5 py-2 text-xs rounded-xl bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">add_circle</span>
+          <span>+ Create New Course</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="course-inventory-cards">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- ================= TAB 5: COUPONS & DISCOUNTS ================= -->
+    <div id="admin-tab-coupons" class="space-y-6 hidden">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Coupon Codes & Promo Discounts</h2>
+          <p class="text-xs text-slate-400">Create promo codes (like FIRST1 for ₹1, VIP50 for 50% discount) for instant checkout use.</p>
+        </div>
+        <button onclick="openAddCouponModal()" class="px-3.5 py-2 text-xs rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">add</span>
+          <span>+ Create New Coupon</span>
+        </button>
       </div>
 
       <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl overflow-x-auto">
         <table class="w-full text-left text-xs font-['Inter']">
           <thead>
             <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px] uppercase tracking-wider">
-              <th class="pb-3">Lead Code</th>
-              <th class="pb-3">Name</th>
-              <th class="pb-3">Phone</th>
-              <th class="pb-3">Email</th>
-              <th class="pb-3">Program Interested</th>
+              <th class="pb-3">Coupon Code</th>
+              <th class="pb-3">Discount Type</th>
+              <th class="pb-3">Discount Value</th>
+              <th class="pb-3">Applicable Course</th>
+              <th class="pb-3">Usage Limit</th>
+              <th class="pb-3">Times Used</th>
               <th class="pb-3">Status</th>
-              <th class="pb-3 text-right">WhatsApp Action</th>
+              <th class="pb-3 text-right">Action</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60" id="enquiries-table-body">
+          <tbody class="divide-y divide-slate-800/60" id="coupons-table-body">
             <tr>
-              <td colspan="7" class="py-8 text-center text-slate-500">Loading enquiries...</td>
+              <td colspan="8" class="py-8 text-center text-slate-500">Loading active coupons...</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- ================= TAB 5: SEAT & CAPACITY MANAGER ================= -->
-    <div id="admin-tab-courses" class="space-y-6 hidden">
-      <div>
-        <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Course & Seat Inventory Controller</h2>
-        <p class="text-xs text-slate-400">Control total batch seat capacities and tuition fees directly in Supabase without touching code.</p>
+    <!-- ================= TAB 6: BLOGS & SEO ARTICLES ================= -->
+    <div id="admin-tab-blogs" class="space-y-6 hidden">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Educational Articles & SEO Publisher</h2>
+          <p class="text-xs text-slate-400">Publish educational blogs and tutorials to index on Google Search and attract organic student leads.</p>
+        </div>
+        <button onclick="openAddBlogModal()" class="px-3.5 py-2 text-xs rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">post_add</span>
+          <span>+ Write New Blog Post</span>
+        </button>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="course-inventory-cards">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="blogs-cards-container">
         <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- ================= TAB 7: API & SYSTEM CONFIG ================= -->
+    <div id="admin-tab-settings" class="space-y-6 hidden">
+      <div>
+        <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Master API Keys & Global Settings</h2>
+        <p class="text-xs text-slate-400">Change WhatsApp VIP Links, contact info, Razorpay keys, and analytics IDs with 1 click.</p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 space-y-6 max-w-3xl">
+        <form onsubmit="handleSaveSystemConfig(event)" class="space-y-4 text-xs">
+          
+          <div>
+            <label class="block text-slate-300 font-bold mb-1">Official WhatsApp VIP Community Link:</label>
+            <input type="url" id="cfg-whatsapp" required placeholder="https://chat.whatsapp.com/..." class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-xs">
+            <p class="text-[10px] text-slate-500 mt-1">This link is dynamically unlocked for students upon successful Razorpay payment.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-slate-300 font-bold mb-1">Official Support Phone:</label>
+              <input type="text" id="cfg-phone" placeholder="+91 9691699530" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-xs">
+            </div>
+            <div>
+              <label class="block text-slate-300 font-bold mb-1">Official Support Email:</label>
+              <input type="email" id="cfg-email" placeholder="theskillsfy@gmail.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-xs">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-300 font-bold mb-1">Campus / Headquarters Address:</label>
+            <input type="text" id="cfg-address" placeholder="Civic Center, Jabalpur, MP - 482002" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-800">
+            <div>
+              <label class="block text-slate-300 font-bold mb-1">Google Analytics (GA4) ID:</label>
+              <input type="text" id="cfg-ga4" placeholder="G-SKILLSFY2026" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-xs">
+            </div>
+            <div>
+              <label class="block text-slate-300 font-bold mb-1">Meta (Facebook) Pixel ID:</label>
+              <input type="text" id="cfg-pixel" placeholder="PIXEL-SKF-8921" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-xs">
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <button type="submit" class="w-full py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs rounded-xl shadow-lg transition-all">
+              Save Global Settings & Publish Across Platform →
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 
@@ -359,6 +462,52 @@
     </div>
   </div>
 
+  <!-- ================= MANUAL STUDENT ADMISSION MODAL ================= -->
+  <div id="modal-manual-admission" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="max-w-lg w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-bold text-white font-['Plus_Jakarta_Sans']">Direct Student Admission</h3>
+        <button onclick="closeManualAdmissionModal()" class="text-slate-400 hover:text-white"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form onsubmit="handleDirectStudentAdmission(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1">Student Full Name:</label>
+          <input type="text" id="man-name" required placeholder="e.g. Rahul Sharma" class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-slate-400 mb-1">WhatsApp Phone:</label>
+            <input type="text" id="man-phone" required placeholder="9876543210" class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Email Address:</label>
+            <input type="email" id="man-email" required placeholder="rahul@gmail.com" class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-slate-400 mb-1">Program / Batch:</label>
+            <select id="man-course" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+              <option value="workshop-30-aug">AI Web Dev Workshop (₹149)</option>
+              <option value="standard-course">Skillsfy Standard Course (₹2,999)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Amount Paid (₹):</label>
+            <input type="number" id="man-amount" value="149" class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-emerald-400 font-bold font-mono">
+          </div>
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Payment Method / Note:</label>
+          <input type="text" id="man-note" placeholder="Direct UPI / Cash / Offline Batch" class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+        </div>
+        <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs rounded-xl shadow-lg transition-all mt-2">
+          Enroll Student & Generate Official Ticket →
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div id="admin-toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300"></div>
 
@@ -378,6 +527,8 @@
     let allStudents = [];
     let allEnquiries = [];
     let allCourses = [];
+    let allCoupons = [];
+    let allBlogs = [];
 
     function showToast(msg, type = 'info') {
       const toast = document.getElementById('admin-toast');
@@ -422,7 +573,7 @@
     }
 
     function switchAdminTab(tab) {
-      const tabs = ['transactions', 'workshop', 'students', 'enquiries', 'courses'];
+      const tabs = ['transactions', 'workshop', 'students', 'courses', 'coupons', 'blogs', 'settings'];
       tabs.forEach(t => {
         const tabEl = document.getElementById(`admin-tab-${t}`);
         const btnEl = document.getElementById(`admin-tab-btn-${t}`);
@@ -439,7 +590,7 @@
     // ================= FETCH ALL MASTER DATA FROM SUPABASE =================
     async function fetchMasterAdminData() {
       try {
-        // 1. Fetch Courses / Inventory
+        // 1. Fetch Courses
         const cRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/courses?select=*`, { headers: SUPABASE_HEADERS });
         if (cRes.ok) allCourses = await cRes.json();
 
@@ -455,16 +606,26 @@
         const sRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
         if (sRes.ok) allStudents = await sRes.json();
 
-        // 5. Fetch Enquiries
-        const eRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/enquiries?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
-        if (eRes.ok) allEnquiries = await eRes.json();
+        // 5. Fetch Coupons
+        try {
+          const cpRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/coupons?select=*`, { headers: SUPABASE_HEADERS });
+          if (cpRes.ok) allCoupons = await cpRes.json();
+        } catch(e) {}
+
+        // 6. Fetch Blogs
+        try {
+          const blRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/blogs?select=*`, { headers: SUPABASE_HEADERS });
+          if (blRes.ok) allBlogs = await blRes.json();
+        } catch(e) {}
 
         updateDashboardKPIs();
         renderTransactionsTable();
         renderWorkshopTable();
         renderStudentsTable();
-        renderEnquiriesTable();
         renderCourseInventory();
+        renderCouponsTable();
+        renderBlogsGrid();
+        loadSystemConfigForm();
 
       } catch (err) {
         console.error('Data fetch error:', err);
@@ -472,9 +633,8 @@
       }
     }
 
-    // ================= CALCULATE & RENDER REAL KPIS =================
+    // ================= CALCULATE REAL KPIS =================
     function updateDashboardKPIs() {
-      // 1. Total Verified Revenue (Sum of all paid payments + paid workshop regs)
       let totalRevenue = 0;
       const countedPaymentIds = new Set();
 
@@ -485,7 +645,6 @@
         }
       });
 
-      // Include workshop regs not already in payments table
       allWorkshopRegs.forEach(w => {
         if (w.payment_status === 'paid' && w.amount_paid) {
           if (!w.razorpay_payment_id || !countedPaymentIds.has(w.razorpay_payment_id)) {
@@ -499,7 +658,6 @@
       document.getElementById('kpi-revenue-meta').textContent = `${paidCount} Verified Transactions`;
       document.getElementById('kpi-paid-students').textContent = paidCount;
 
-      // 2. LP1 Workshop Seats (150 Total by default)
       const lp1Course = allCourses.find(c => c.slug === 'workshop-30-aug');
       const lp1TotalSeats = lp1Course ? parseInt(lp1Course.total_seats) : 150;
       const lp1PaidSeats = allWorkshopRegs.filter(w => w.payment_status === 'paid').length;
@@ -509,7 +667,6 @@
       document.getElementById('kpi-lp1-total').textContent = `/ ${lp1TotalSeats} Left`;
       document.getElementById('kpi-lp1-filled').textContent = `${lp1PaidSeats} Seats Filled (${Math.round((lp1PaidSeats/lp1TotalSeats)*100)}%)`;
 
-      // 3. Standard Course Seats (50 Total by default)
       const stdCourse = allCourses.find(c => c.slug === 'standard-course');
       const stdTotalSeats = stdCourse ? parseInt(stdCourse.total_seats) : 50;
       const stdPaidSeats = allStudents.filter(s => Array.isArray(s.enrolled_courses) && s.enrolled_courses.includes('standard-course')).length;
@@ -519,17 +676,13 @@
       document.getElementById('kpi-std-total').textContent = `/ ${stdTotalSeats} Left`;
       document.getElementById('kpi-std-filled').textContent = `${stdPaidSeats} Enrolled (₹2,999)`;
 
-      // 4. Inbound Leads
       const pendingWorkshop = allWorkshopRegs.filter(w => w.payment_status === 'payment_pending').length;
-      const totalLeads = allEnquiries.length + pendingWorkshop;
-      document.getElementById('kpi-leads-count').textContent = totalLeads;
+      document.getElementById('kpi-leads-count').textContent = allWorkshopRegs.length;
       document.getElementById('kpi-leads-pending').textContent = `${pendingWorkshop} Pending Workshop Orders`;
 
-      // Tab Counts
       document.getElementById('tab-count-payments').textContent = allPayments.length || paidCount;
       document.getElementById('tab-count-workshop').textContent = allWorkshopRegs.length;
       document.getElementById('tab-count-students').textContent = allStudents.length;
-      document.getElementById('tab-count-enquiries').textContent = allEnquiries.length;
     }
 
     // ================= RENDER TRANSACTIONS TABLE =================
@@ -581,9 +734,8 @@
           <td class="py-3 font-mono text-slate-400 text-[11px]">${p.created_at ? new Date(p.created_at).toLocaleString('en-IN') : 'Recent'}</td>
           <td class="py-3 text-right" onclick="event.stopPropagation()">
             <div class="flex items-center justify-end gap-1.5">
-              <button onclick="openPaymentDetailsModal('${p.payment_id}')" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[11px] inline-flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs">info</span>
-                <span>Details</span>
+              <button onclick="openPaymentDetailsModal('${p.payment_id}')" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[11px]">
+                Details
               </button>
               ${p.student_phone ? `
                 <a href="https://wa.me/${p.student_phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(p.student_name || 'Student')},%20Skillsfy%20se%20Pranjil%20Soni%20here.%20Aapka%20Workshop%20Pass%20Payment%20Verified%20hai." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px] inline-flex items-center gap-1">
@@ -662,12 +814,30 @@
       `).join('');
     }
 
-    // ================= FULL DETAILS MODAL CONTROLLER =================
+    function filterWorkshopTable() {
+      const status = document.getElementById('filter-workshop-status').value;
+      const q = document.getElementById('search-workshop').value.toLowerCase();
+      
+      let filtered = allWorkshopRegs;
+      if (status !== 'all') {
+        filtered = filtered.filter(w => w.payment_status === status);
+      }
+      if (q) {
+        filtered = filtered.filter(w => 
+          (w.ticket_no && w.ticket_no.toLowerCase().includes(q)) ||
+          (w.name && w.name.toLowerCase().includes(q)) ||
+          (w.phone && w.phone.includes(q)) ||
+          (w.email && w.email.toLowerCase().includes(q))
+        );
+      }
+      renderWorkshopTable(filtered);
+    }
+
+    // ================= FULL DETAILS MODAL =================
     function openPaymentDetailsModal(paymentId) {
       const payment = allPayments.find(p => p.payment_id === paymentId);
       if (!payment) return;
 
-      // Find matching workshop reg or student if available
       const matchingWorkshop = allWorkshopRegs.find(w => w.razorpay_payment_id === paymentId || (payment.ticket_no && w.ticket_no === payment.ticket_no));
       const matchingStudent = allStudents.find(s => s.email === payment.student_email || s.phone === payment.student_phone);
 
@@ -675,63 +845,46 @@
       const content = document.getElementById('details-modal-content');
       if (!modal || !content) return;
 
-      const dateFormatted = payment.created_at ? new Date(payment.created_at).toLocaleString('en-IN', {
-        dateStyle: 'full',
-        timeStyle: 'medium'
-      }) : 'Recent Transaction';
+      const dateFormatted = payment.created_at ? new Date(payment.created_at).toLocaleString('en-IN', { dateStyle: 'full', timeStyle: 'medium' }) : 'Recent';
 
       content.innerHTML = `
         <div class="space-y-6 text-left">
-          
-          <!-- Top Header Strip -->
           <div class="flex items-start justify-between pb-4 border-b border-slate-800">
             <div>
-              <span class="badge-pill bg-emerald-950 text-emerald-300 border border-emerald-800 text-xs font-bold">
-                ✓ VERIFIED TRANSACTION
-              </span>
-              <h3 class="text-xl font-black text-white font-['Plus_Jakarta_Sans'] mt-2">
-                ${payment.student_name || 'Student'}
-              </h3>
+              <span class="badge-pill bg-emerald-950 text-emerald-300 border border-emerald-800 text-xs font-bold">✓ VERIFIED TRANSACTION</span>
+              <h3 class="text-xl font-black text-white font-['Plus_Jakarta_Sans'] mt-2">${payment.student_name || 'Student'}</h3>
               <p class="text-xs text-slate-400 font-mono mt-0.5">Payment ID: <strong class="text-cyan-400">${payment.payment_id}</strong></p>
             </div>
             <div class="text-right">
               <span class="text-2xl font-black text-emerald-400 font-mono">₹${payment.amount}</span>
-              <span class="text-xs text-slate-500 block">INR (Paid via Razorpay)</span>
+              <span class="text-xs text-slate-500 block">INR (Razorpay Live)</span>
             </div>
           </div>
 
-          <!-- 2-Column Details Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-            
             <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
               <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Student Profile</span>
               <div class="flex justify-between"><span class="text-slate-400">Full Name:</span><span class="font-bold text-white">${payment.student_name || matchingWorkshop?.name || '-'}</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">WhatsApp / Phone:</span><span class="font-mono font-bold text-cyan-300">${payment.student_phone || matchingWorkshop?.phone || '-'}</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">Email Address:</span><span class="text-slate-200">${payment.student_email || matchingWorkshop?.email || '-'}</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">City / State:</span><span class="text-slate-200">${matchingWorkshop?.city || matchingStudent?.city || 'India'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Phone:</span><span class="font-mono font-bold text-cyan-300">${payment.student_phone || matchingWorkshop?.phone || '-'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Email:</span><span class="text-slate-200">${payment.student_email || matchingWorkshop?.email || '-'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">City:</span><span class="text-slate-200">${matchingWorkshop?.city || matchingStudent?.city || 'India'}</span></div>
             </div>
 
             <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
               <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Program & Enrollment</span>
-              <div class="flex justify-between"><span class="text-slate-400">Course / Event:</span><span class="font-bold text-indigo-300">${payment.course_slug === 'workshop-30-aug' ? 'AI Web Dev Workshop (30 Aug)' : 'Skillsfy Standard Course'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Program:</span><span class="font-bold text-indigo-300">${payment.course_slug === 'workshop-30-aug' ? 'AI Web Dev Workshop (30 Aug)' : 'Skillsfy Standard Course'}</span></div>
               <div class="flex justify-between"><span class="text-slate-400">Ticket / Roll No:</span><span class="font-mono font-bold text-amber-300">${payment.ticket_no || matchingWorkshop?.ticket_no || matchingStudent?.roll_no || 'SKF-LP1-VERIFIED'}</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">Coupon Used:</span><span class="font-mono text-emerald-400 font-bold">${payment.coupon_code || matchingWorkshop?.coupon_code || 'None'}</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">Experience / Goal:</span><span class="text-slate-300 truncate max-w-[140px]">${matchingWorkshop?.goal || matchingWorkshop?.experience_level || 'AI Web Development'}</span></div>
-            </div>
-
-          </div>
-
-          <!-- Razorpay Technical Metadata Box -->
-          <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
-            <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Gateway Technical Metadata</span>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-[11px]">
-              <div><span class="text-slate-500">Order ID:</span> <span class="text-slate-300">${payment.order_id || 'Direct Captured'}</span></div>
-              <div><span class="text-slate-500">Payment Status:</span> <span class="text-emerald-400 font-bold">${payment.status || 'PAID'}</span></div>
-              <div class="sm:col-span-2"><span class="text-slate-500">Paid At:</span> <span class="text-slate-300">${dateFormatted}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Coupon:</span><span class="font-mono text-emerald-400 font-bold">${payment.coupon_code || matchingWorkshop?.coupon_code || 'None'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Goal:</span><span class="text-slate-300 truncate max-w-[140px]">${matchingWorkshop?.goal || 'Web Development'}</span></div>
             </div>
           </div>
 
-          <!-- Quick Direct Action Buttons -->
+          <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2 text-xs font-mono text-[11px]">
+            <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Technical Receipt</span>
+            <div><span class="text-slate-500">Order ID:</span> <span class="text-slate-300">${payment.order_id || 'Direct'}</span></div>
+            <div><span class="text-slate-500">Timestamp:</span> <span class="text-slate-300">${dateFormatted}</span></div>
+          </div>
+
           <div class="flex flex-wrap items-center gap-3 pt-2">
             ${(payment.student_phone || matchingWorkshop?.phone) ? `
               <a href="https://wa.me/${(payment.student_phone || matchingWorkshop?.phone).replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(payment.student_name || 'Student')},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here.%20Aapka%20AI%20Web%20Dev%20Workshop%20Ticket%20(${payment.ticket_no || matchingWorkshop?.ticket_no || 'Verified'})%20confirm%20ho%20gaya%20hai.%20VIP%20WhatsApp%20Group:%20https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN" target="_blank" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all">
@@ -739,20 +892,11 @@
                 <span>Send WhatsApp VIP Link</span>
               </a>
             ` : ''}
-
-            ${(payment.student_email || matchingWorkshop?.email) ? `
-              <a href="mailto:${payment.student_email || matchingWorkshop?.email}?subject=Skillsfy%20Workshop%20Pass%20Confirmation%20-%20Ticket%20${payment.ticket_no || matchingWorkshop?.ticket_no}&body=Hello%20${encodeURIComponent(payment.student_name || 'Student')},%0A%0AYour%20payment%20of%20INR%20${payment.amount}%20for%20the%20AI%20Web%20Dev%20Live%20Masterclass%20(30%20Aug)%20is%20verified.%0APayment%20ID:%20${payment.payment_id}%0A%0AWelcome%20to%20Skillsfy!" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-base">mail</span>
-                <span>Send Email</span>
-              </a>
-            ` : ''}
-
             <button onclick="copyDetailsToClipboard('${payment.payment_id}', '${payment.student_name}', '${payment.student_phone}', '${payment.student_email}', '${payment.amount}')" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
               <span class="material-symbols-outlined text-base">content_copy</span>
-              <span>Copy Data</span>
+              <span>Copy</span>
             </button>
           </div>
-
         </div>
       `;
 
@@ -769,15 +913,12 @@
 
       content.innerHTML = `
         <div class="space-y-6 text-left">
-          
           <div class="flex items-start justify-between pb-4 border-b border-slate-800">
             <div>
               <span class="badge-pill ${w.payment_status === 'paid' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-amber-950 text-amber-300 border border-amber-800'} text-xs font-bold">
                 ${w.payment_status === 'paid' ? '✓ PAID WORKSHOP PASS' : '⏳ LEAD / PAYMENT PENDING'}
               </span>
-              <h3 class="text-xl font-black text-white font-['Plus_Jakarta_Sans'] mt-2">
-                ${w.name}
-              </h3>
+              <h3 class="text-xl font-black text-white font-['Plus_Jakarta_Sans'] mt-2">${w.name}</h3>
               <p class="text-xs text-slate-400 font-mono mt-0.5">Ticket: <strong class="text-sky-400">${w.ticket_no}</strong></p>
             </div>
             <div class="text-right">
@@ -798,7 +939,7 @@
             <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
               <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Registration Details</span>
               <div class="flex justify-between"><span class="text-slate-400">Experience:</span><span class="text-slate-300">${w.experience_level || 'Beginner'}</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">Primary Goal:</span><span class="text-slate-300">${w.goal || 'Freelance / Dev'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Primary Goal:</span><span class="text-slate-300">${w.goal || 'Freelance'}</span></div>
               <div class="flex justify-between"><span class="text-slate-400">Coupon Used:</span><span class="font-mono text-amber-400 font-bold">${w.coupon_code || 'None'}</span></div>
               <div class="flex justify-between"><span class="text-slate-400">Razorpay ID:</span><span class="font-mono text-cyan-400">${w.razorpay_payment_id || 'Pending'}</span></div>
             </div>
@@ -809,13 +950,7 @@
               <span class="material-symbols-outlined text-base">chat</span>
               <span>Chat on WhatsApp</span>
             </a>
-
-            <button onclick="copyDetailsToClipboard('${w.ticket_no}', '${w.name}', '${w.phone}', '${w.email}', '${w.amount_paid}')" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-base">content_copy</span>
-              <span>Copy Data</span>
-            </button>
           </div>
-
         </div>
       `;
 
@@ -834,7 +969,363 @@
       });
     }
 
-    // ================= EXPORT TO CSV ENGINE =================
+    // ================= MANUAL DIRECT STUDENT ADMISSION =================
+    function openManualAdmissionModal() {
+      document.getElementById('modal-manual-admission').classList.remove('hidden');
+    }
+
+    function closeManualAdmissionModal() {
+      document.getElementById('modal-manual-admission').classList.add('hidden');
+    }
+
+    async function handleDirectStudentAdmission(e) {
+      e.preventDefault();
+      const name = document.getElementById('man-name').value.trim();
+      const phone = document.getElementById('man-phone').value.trim();
+      const email = document.getElementById('man-email').value.trim();
+      const courseSlug = document.getElementById('man-course').value;
+      const amount = parseFloat(document.getElementById('man-amount').value) || 149;
+      const note = document.getElementById('man-note').value.trim() || 'Manual Admin Admission';
+
+      const isWorkshop = (courseSlug === 'workshop-30-aug');
+      const ticketNo = isWorkshop ? `SKF-LP1-${Math.floor(100000 + Math.random()*900000)}` : `SKF-STD-${Math.floor(100000 + Math.random()*900000)}`;
+      const paymentId = `pay_manual_${Date.now().toString().slice(-6)}`;
+
+      try {
+        // 1. Insert into payments
+        await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/payments`, {
+          method: 'POST',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            payment_id: paymentId,
+            student_name: name,
+            student_email: email,
+            student_phone: phone,
+            course_slug: courseSlug,
+            amount: amount,
+            status: 'paid',
+            ticket_no: ticketNo,
+            metadata: { note, admitted_by: 'Admin' }
+          })
+        });
+
+        // 2. Insert into workshop_registrations if workshop
+        if (isWorkshop) {
+          await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/workshop_registrations`, {
+            method: 'POST',
+            headers: SUPABASE_HEADERS,
+            body: JSON.stringify({
+              ticket_no: ticketNo,
+              name: name,
+              phone: phone,
+              email: email,
+              city: 'Direct Admission',
+              status: 'Payment Verified',
+              payment_status: 'paid',
+              razorpay_payment_id: paymentId,
+              amount_paid: amount,
+              paid_at: new Date().toISOString(),
+              notes: note
+            })
+          });
+        }
+
+        // 3. Insert Student
+        const rollNo = `SF-2026-${Math.floor(1000 + Math.random()*9000)}`;
+        await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students`, {
+          method: 'POST',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            roll_no: rollNo,
+            name: name,
+            email: email,
+            phone: phone,
+            enrolled_courses: [courseSlug],
+            status: 'active'
+          })
+        });
+
+        closeManualAdmissionModal();
+        showToast(`✓ Enrolled! Ticket ${ticketNo} generated for ${name}`, 'success');
+        fetchMasterAdminData();
+
+      } catch (err) {
+        showToast('Error admitting student: ' + err.message, 'error');
+      }
+    }
+
+    // ================= RENDER STUDENTS TABLE =================
+    function renderStudentsTable(list = allStudents) {
+      const tbody = document.getElementById('students-table-body');
+      if (!tbody) return;
+
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="py-12 text-center text-slate-500">
+              <span class="material-symbols-outlined text-3xl text-slate-600 block">school</span>
+              <p class="font-bold text-slate-400">No student profiles registered yet.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = list.map(s => `
+        <tr class="hover:bg-slate-900/50 transition-colors">
+          <td class="py-3 font-mono font-bold text-indigo-400">${s.roll_no || 'SF-2026'}</td>
+          <td class="py-3 font-bold text-white">${s.name}</td>
+          <td class="py-3 text-slate-400">${s.email}</td>
+          <td class="py-3 font-mono text-cyan-300">${s.phone}</td>
+          <td class="py-3 text-slate-400">${s.city || 'Jabalpur'}</td>
+          <td class="py-3">
+            <span class="badge-pill bg-slate-800 text-slate-300 text-[10px]">
+              ${Array.isArray(s.enrolled_courses) ? s.enrolled_courses.join(', ') : 'Standard Course'}
+            </span>
+          </td>
+          <td class="py-3 font-mono text-slate-400 text-[11px]">${s.created_at ? new Date(s.created_at).toLocaleDateString('en-IN') : 'Recent'}</td>
+          <td class="py-3 text-right">
+            <span class="px-2 py-0.5 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800 text-[10px] font-bold">
+              ACTIVE
+            </span>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function filterStudentsTable() {
+      const q = document.getElementById('search-students').value.toLowerCase();
+      const filtered = allStudents.filter(s => 
+        (s.name && s.name.toLowerCase().includes(q)) ||
+        (s.email && s.email.toLowerCase().includes(q)) ||
+        (s.phone && s.phone.includes(q)) ||
+        (s.roll_no && s.roll_no.toLowerCase().includes(q))
+      );
+      renderStudentsTable(filtered);
+    }
+
+    // ================= RENDER COURSE CONTROLLERS =================
+    function renderCourseInventory() {
+      const container = document.getElementById('course-inventory-cards');
+      if (!container) return;
+
+      const coursesList = allCourses.length > 0 ? allCourses : [
+        { slug: 'workshop-30-aug', title: 'AI Web Dev Live Masterclass (30 Aug 2026)', total_seats: 150, price_inr: 149 },
+        { slug: 'standard-course', title: 'Skillsfy Standard Course: AI + Digital Business', total_seats: 50, price_inr: 2999 }
+      ];
+
+      container.innerHTML = coursesList.map(c => `
+        <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="badge-pill ${c.slug === 'workshop-30-aug' ? 'bg-sky-950 text-sky-300 border border-sky-800' : 'bg-indigo-950 text-indigo-300 border border-indigo-800'} text-[10px] font-bold">
+              ${c.slug}
+            </span>
+            <span class="text-xs text-emerald-400 font-bold">● Active in Production</span>
+          </div>
+
+          <h3 class="text-lg font-bold text-white font-['Plus_Jakarta_Sans']">${c.title}</h3>
+
+          <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-800 text-xs">
+            <div>
+              <label class="block text-slate-400 mb-1">Total Capacity (Seats):</label>
+              <input 
+                type="number" 
+                id="seat-input-${c.slug}" 
+                value="${c.total_seats || (c.slug === 'workshop-30-aug' ? 150 : 50)}" 
+                class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white font-bold"
+              />
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Tuition Fee (₹ INR):</label>
+              <input 
+                type="number" 
+                id="price-input-${c.slug}" 
+                value="${c.price_inr || (c.slug === 'workshop-30-aug' ? 149 : 2999)}" 
+                class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-emerald-400 font-bold"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-400 mb-1 text-xs">Live Meeting / VIP Group Link:</label>
+            <input 
+              type="text" 
+              id="meeting-input-${c.slug}" 
+              value="${c.meeting_link || 'https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN'}" 
+              class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-slate-300 text-xs font-mono"
+            />
+          </div>
+
+          <button onclick="saveCourseConfig('${c.slug}')" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs rounded-xl shadow transition-all">
+            Save Seat & Price Settings to Supabase →
+          </button>
+        </div>
+      `).join('');
+    }
+
+    async function saveCourseConfig(slug) {
+      const seats = parseInt(document.getElementById(`seat-input-${slug}`).value, 10);
+      const price = parseFloat(document.getElementById(`price-input-${slug}`).value);
+      const meetingLink = document.getElementById(`meeting-input-${slug}`).value.trim();
+
+      try {
+        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/courses?slug=eq.${slug}`, {
+          method: 'PATCH',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            total_seats: seats,
+            price_inr: price,
+            meeting_link: meetingLink,
+            updated_at: new Date().toISOString()
+          })
+        });
+
+        if (res.ok) {
+          showToast(`Seat, Price & Link config for ${slug} updated!`, 'success');
+          fetchMasterAdminData();
+        }
+      } catch (e) {
+        showToast('Error saving course config: ' + e.message, 'error');
+      }
+    }
+
+    // ================= RENDER COUPONS TABLE =================
+    function renderCouponsTable() {
+      const tbody = document.getElementById('coupons-table-body');
+      if (!tbody) return;
+
+      if (!allCoupons || allCoupons.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="py-8 text-center text-slate-500">No promo coupons active. Click "+ Create New Coupon" above.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = allCoupons.map(cp => `
+        <tr class="hover:bg-slate-900/50">
+          <td class="py-3 font-mono font-bold text-amber-400">${cp.code}</td>
+          <td class="py-3 text-slate-300">${cp.discount_type || 'fixed_price'}</td>
+          <td class="py-3 font-mono font-bold text-emerald-400">₹${cp.discount_value}</td>
+          <td class="py-3 text-slate-400">${cp.course_slug || 'All'}</td>
+          <td class="py-3 font-mono text-slate-300">${cp.max_uses || 100}</td>
+          <td class="py-3 font-mono text-cyan-300">${cp.times_used || 0}</td>
+          <td class="py-3"><span class="badge-pill bg-emerald-950 text-emerald-300 text-[10px]">Active</span></td>
+          <td class="py-3 text-right">
+            <button onclick="deleteCoupon('${cp.id}')" class="px-2 py-1 bg-rose-950 text-rose-300 hover:bg-rose-900 rounded-lg text-[10px] font-bold">
+              Delete
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // ================= RENDER BLOGS GRID =================
+    function renderBlogsGrid() {
+      const container = document.getElementById('blogs-cards-container');
+      if (!container) return;
+
+      if (!allBlogs || allBlogs.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-3 py-12 text-center text-slate-500">
+            <span class="material-symbols-outlined text-4xl text-slate-600 block">article</span>
+            <p class="font-bold text-slate-400 mt-2">No educational blogs published yet.</p>
+            <p class="text-xs text-slate-500">Publish articles to boost your Google Search SEO ranking.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = allBlogs.map(b => `
+        <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+          <span class="badge-pill bg-purple-950 text-purple-300 border border-purple-800 text-[10px] font-bold">${b.category}</span>
+          <h4 class="text-base font-bold text-white font-['Plus_Jakarta_Sans']">${b.title}</h4>
+          <p class="text-xs text-slate-400 line-clamp-2">${b.summary || ''}</p>
+          <div class="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>${b.read_time || '5 min read'}</span>
+            <span class="text-emerald-400 font-bold">Published</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ================= SYSTEM CONFIGURATION CONTROLLER =================
+    async function loadSystemConfigForm() {
+      try {
+        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/system_config?id=eq.global_settings&select=*`, { headers: SUPABASE_HEADERS });
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            const cfg = data[0];
+            if (document.getElementById('cfg-whatsapp')) document.getElementById('cfg-whatsapp').value = cfg.whatsapp_vip_link || 'https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN';
+            if (document.getElementById('cfg-phone')) document.getElementById('cfg-phone').value = cfg.contact_phone || '+91 9691699530';
+            if (document.getElementById('cfg-email')) document.getElementById('cfg-email').value = cfg.contact_email || 'theskillsfy@gmail.com';
+            if (document.getElementById('cfg-address')) document.getElementById('cfg-address').value = cfg.institute_address || 'Civic Center, Jabalpur, MP - 482002';
+            if (document.getElementById('cfg-ga4')) document.getElementById('cfg-ga4').value = cfg.ga4_id || '';
+            if (document.getElementById('cfg-pixel')) document.getElementById('cfg-pixel').value = cfg.meta_pixel_id || '';
+          }
+        }
+      } catch (e) {}
+    }
+
+    async function handleSaveSystemConfig(e) {
+      e.preventDefault();
+      const whatsapp = document.getElementById('cfg-whatsapp').value.trim();
+      const phone = document.getElementById('cfg-phone').value.trim();
+      const email = document.getElementById('cfg-email').value.trim();
+      const address = document.getElementById('cfg-address').value.trim();
+      const ga4 = document.getElementById('cfg-ga4').value.trim();
+      const pixel = document.getElementById('cfg-pixel').value.trim();
+
+      try {
+        await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/system_config?id=eq.global_settings`, {
+          method: 'PATCH',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            whatsapp_vip_link: whatsapp,
+            contact_phone: phone,
+            contact_email: email,
+            institute_address: address,
+            ga4_id: ga4,
+            meta_pixel_id: pixel,
+            updated_at: new Date().toISOString()
+          })
+        });
+
+        showToast('✓ Global platform settings & WhatsApp VIP link saved to Supabase!', 'success');
+      } catch (err) {
+        showToast('Error saving settings: ' + err.message, 'error');
+      }
+    }
+
+    // ================= TRIGGER RAZORPAY AUTO-RECONCILIATION =================
+    async function triggerRazorpayReconciliation() {
+      const btn = document.getElementById('btn-reconcile');
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined text-sm animate-spin">refresh</span><span>Syncing Razorpay...</span>`;
+
+      try {
+        const res = await fetch('/api/sync-reconcile', { method: 'POST' });
+        const data = await res.json();
+
+        if (data.success) {
+          showToast(`✓ Reconciled! ${data.newly_reconciled_count} payments synced from Razorpay into Supabase.`, 'success');
+          fetchMasterAdminData();
+        } else {
+          showToast(`Notice: ${data.message || 'Unable to reconcile'}`, 'info');
+        }
+      } catch (err) {
+        console.warn('Reconciliation call:', err);
+        showToast('Reconciliation complete. Refreshing dashboard...', 'info');
+        fetchMasterAdminData();
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = `<span class="material-symbols-outlined text-sm">sync</span><span>Reconcile Razorpay</span>`;
+    }
+
+    // ================= EXPORT TO CSV =================
     function exportPaymentsToCSV() {
       if (!allPayments || allPayments.length === 0) {
         showToast('No payment transactions to export.', 'error');
@@ -898,196 +1389,6 @@
       link.click();
       document.body.removeChild(link);
       showToast('Exported workshop leads CSV successfully!', 'success');
-    }
-
-    // ================= RENDER ENROLLED STUDENTS =================
-    function renderStudentsTable(list = allStudents) {
-      const tbody = document.getElementById('students-table-body');
-      if (!tbody) return;
-
-      if (!list || list.length === 0) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="8" class="py-12 text-center text-slate-500">
-              <span class="material-symbols-outlined text-3xl text-slate-600 block">school</span>
-              <p class="font-bold text-slate-400">No student profiles registered yet.</p>
-            </td>
-          </tr>
-        `;
-        return;
-      }
-
-      tbody.innerHTML = list.map(s => `
-        <tr class="hover:bg-slate-900/50 transition-colors">
-          <td class="py-3 font-mono font-bold text-indigo-400">${s.roll_no || 'SF-2026'}</td>
-          <td class="py-3 font-bold text-white">${s.name}</td>
-          <td class="py-3 text-slate-400">${s.email}</td>
-          <td class="py-3 font-mono text-cyan-300">${s.phone}</td>
-          <td class="py-3 text-slate-400">${s.city || 'Jabalpur'}</td>
-          <td class="py-3">
-            <span class="badge-pill bg-slate-800 text-slate-300 text-[10px]">
-              ${Array.isArray(s.enrolled_courses) ? s.enrolled_courses.join(', ') : 'Standard Course'}
-            </span>
-          </td>
-          <td class="py-3 font-mono text-slate-400 text-[11px]">${s.created_at ? new Date(s.created_at).toLocaleDateString('en-IN') : 'Recent'}</td>
-          <td class="py-3 text-right">
-            <span class="px-2 py-0.5 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800 text-[10px] font-bold">
-              ACTIVE
-            </span>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function filterStudentsTable() {
-      const q = document.getElementById('search-students').value.toLowerCase();
-      const filtered = allStudents.filter(s => 
-        (s.name && s.name.toLowerCase().includes(q)) ||
-        (s.email && s.email.toLowerCase().includes(q)) ||
-        (s.phone && s.phone.includes(q)) ||
-        (s.roll_no && s.roll_no.toLowerCase().includes(q))
-      );
-      renderStudentsTable(filtered);
-    }
-
-    // ================= RENDER INBOUND ENQUIRIES =================
-    function renderEnquiriesTable() {
-      const tbody = document.getElementById('enquiries-table-body');
-      if (!tbody) return;
-
-      if (!allEnquiries || allEnquiries.length === 0) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="7" class="py-12 text-center text-slate-500">
-              <span class="material-symbols-outlined text-3xl text-slate-600 block">contact_phone</span>
-              <p class="font-bold text-slate-400">No inbound enquiries yet.</p>
-            </td>
-          </tr>
-        `;
-        return;
-      }
-
-      tbody.innerHTML = allEnquiries.map(e => `
-        <tr class="hover:bg-slate-900/50">
-          <td class="py-3 font-mono text-amber-400">${e.lead_code || 'LEAD'}</td>
-          <td class="py-3 font-bold text-white">${e.name}</td>
-          <td class="py-3 font-mono text-cyan-300">${e.phone}</td>
-          <td class="py-3 text-slate-400">${e.email || '-'}</td>
-          <td class="py-3 text-slate-300">${e.course_interested || 'Standard Course'}</td>
-          <td class="py-3"><span class="badge-pill bg-amber-950 text-amber-300 text-[10px]">${e.status || 'New'}</span></td>
-          <td class="py-3 text-right">
-            <a href="https://wa.me/${e.phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(e.name)},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px]">
-              WhatsApp
-            </a>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    // ================= RENDER COURSE & SEAT INVENTORY CARDS =================
-    function renderCourseInventory() {
-      const container = document.getElementById('course-inventory-cards');
-      if (!container) return;
-
-      const coursesList = allCourses.length > 0 ? allCourses : [
-        { slug: 'workshop-30-aug', title: 'AI Web Dev Live Masterclass (30 Aug 2026)', total_seats: 150, price_inr: 149 },
-        { slug: 'standard-course', title: 'Skillsfy Standard Course: AI + Digital Business', total_seats: 50, price_inr: 2999 }
-      ];
-
-      container.innerHTML = coursesList.map(c => `
-        <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
-          <div class="flex items-center justify-between">
-            <span class="badge-pill ${c.slug === 'workshop-30-aug' ? 'bg-sky-950 text-sky-300 border border-sky-800' : 'bg-indigo-950 text-indigo-300 border border-indigo-800'} text-[10px] font-bold">
-              ${c.slug}
-            </span>
-            <span class="text-xs text-emerald-400 font-bold">● Active in Production</span>
-          </div>
-
-          <h3 class="text-lg font-bold text-white font-['Plus_Jakarta_Sans']">${c.title}</h3>
-
-          <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-800 text-xs">
-            <div>
-              <label class="block text-slate-400 mb-1">Total Capacity (Seats):</label>
-              <input 
-                type="number" 
-                id="seat-input-${c.slug}" 
-                value="${c.total_seats || (c.slug === 'workshop-30-aug' ? 150 : 50)}" 
-                class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white font-bold"
-              />
-            </div>
-            <div>
-              <label class="block text-slate-400 mb-1">Tuition Price (₹ INR):</label>
-              <input 
-                type="number" 
-                id="price-input-${c.slug}" 
-                value="${c.price_inr || (c.slug === 'workshop-30-aug' ? 149 : 2999)}" 
-                class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-emerald-400 font-bold"
-              />
-            </div>
-          </div>
-
-          <button onclick="saveCourseConfig('${c.slug}')" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs rounded-xl shadow transition-all">
-            Save Seat & Price Settings to Supabase →
-          </button>
-        </div>
-      `).join('');
-    }
-
-    async function saveCourseConfig(slug) {
-      const seats = parseInt(document.getElementById(`seat-input-${slug}`).value, 10);
-      const price = parseFloat(document.getElementById(`price-input-${slug}`).value);
-
-      if (isNaN(seats) || isNaN(price)) {
-        showToast('Please enter valid numeric values.', 'error');
-        return;
-      }
-
-      try {
-        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/courses?slug=eq.${slug}`, {
-          method: 'PATCH',
-          headers: SUPABASE_HEADERS,
-          body: JSON.stringify({
-            total_seats: seats,
-            price_inr: price,
-            updated_at: new Date().toISOString()
-          })
-        });
-
-        if (res.ok) {
-          showToast(`Seat & Price config for ${slug} saved to Supabase!`, 'success');
-          fetchMasterAdminData();
-        } else {
-          showToast('Failed to update Supabase. Check RLS policies.', 'error');
-        }
-      } catch (e) {
-        showToast('Error saving settings: ' + e.message, 'error');
-      }
-    }
-
-    // ================= TRIGGER RAZORPAY AUTO-RECONCILIATION =================
-    async function triggerRazorpayReconciliation() {
-      const btn = document.getElementById('btn-reconcile');
-      btn.disabled = true;
-      btn.innerHTML = `<span class="material-symbols-outlined text-sm animate-spin">refresh</span><span>Syncing Razorpay...</span>`;
-
-      try {
-        const res = await fetch('/api/sync-reconcile', { method: 'POST' });
-        const data = await res.json();
-
-        if (data.success) {
-          showToast(`✓ Reconciled! ${data.newly_reconciled_count} payments synced from Razorpay into Supabase.`, 'success');
-          fetchMasterAdminData();
-        } else {
-          showToast(`Notice: ${data.message || 'Unable to reconcile'}`, 'info');
-        }
-      } catch (err) {
-        console.warn('Reconciliation call:', err);
-        showToast('Reconciliation complete. Refreshing dashboard...', 'info');
-        fetchMasterAdminData();
-      }
-
-      btn.disabled = false;
-      btn.innerHTML = `<span class="material-symbols-outlined text-sm">sync</span><span>Reconcile Razorpay</span>`;
     }
 
     document.addEventListener('DOMContentLoaded', () => {
