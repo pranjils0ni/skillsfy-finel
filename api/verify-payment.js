@@ -60,67 +60,129 @@ module.exports = async (req, res) => {
     }
 
     const isWorkshop = (type === 'workshop' || course_id === 'workshop-30-aug' || !!ticket_no);
-    const finalTicket = ticket_no || `SKF-WKSP-${Math.floor(10000 + Math.random() * 90000)}`;
+    const courseSlug = isWorkshop ? 'workshop-30-aug' : (course_id || 'standard-course');
+    const courseTitle = course_title || (isWorkshop ? 'AI Web Dev Live Masterclass (30 Aug 2026)' : 'Skillsfy Standard Course');
+    const ticketSuffix = Math.floor(100000 + Math.random() * 900000);
+    const finalTicket = ticket_no || (isWorkshop ? `SKF-LP1-${ticketSuffix}` : `SKF-STD-${ticketSuffix}`);
     const finalAmount = amount || (isWorkshop ? 149 : 2999);
 
-    // Update Supabase Database if Supabase URL / Key configured
+    // Update Supabase Database
     const SUPABASE_URL = process.env.SUPABASE_URL || 'https://iqssjqfyfdmujlmlbjhl.supabase.co';
     const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlxc3NqcWZ5ZmRtdWpsbWxiamhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMzY3NzIsImV4cCI6MjEwMjcxMjc3Mn0.o7gGbhiuRkLxxJCRJNM1RzBrIVHnOTxuzX0-EOQVyyU';
 
+    const headers = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation'
+    };
+
     try {
       if (isWorkshop) {
-        // Upsert/Insert into workshop_registrations
-        await fetch(`${SUPABASE_URL}/rest/v1/workshop_registrations`, {
-          method: 'POST',
-          headers: {
-            'apikey': SUPABASE_KEY,
-            'Authorization': `Bearer ${SUPABASE_KEY}`,
-            'Content-Type': 'application/json',
-            'Prefer': 'return=representation'
-          },
-          body: JSON.stringify({
-            ticket_no: finalTicket,
-            name: name || 'Student',
-            phone: phone || '',
-            email: email || '',
-            city: city || 'India',
-            goal: goal || 'AI Web Development',
-            workshop_date: '30 August 2026 (Live)',
-            status: 'Payment Verified',
-            payment_status: 'paid',
-            razorpay_payment_id: razorpay_payment_id,
-            razorpay_order_id: razorpay_order_id || null,
-            amount_paid: finalAmount,
-            coupon_code: coupon_code || null,
-            utm_source: 'skillsfy.in/lp1'
-          })
-        });
+        // 1. Check if lead was pre-saved by ticket_no or email/phone
+        const existingRes = await fetch(`${SUPABASE_URL}/rest/v1/workshop_registrations?or=(ticket_no.eq.${encodeURIComponent(finalTicket)},razorpay_payment_id.eq.${encodeURIComponent(razorpay_payment_id)})&select=id`, { headers });
+        const existingData = await existingRes.json();
+
+        if (Array.isArray(existingData) && existingData.length > 0) {
+          // Update existing lead record to paid
+          await fetch(`${SUPABASE_URL}/rest/v1/workshop_registrations?id=eq.${existingData[0].id}`, {
+            method: 'PATCH',
+            headers,
+            body: JSON.stringify({
+              status: 'Payment Verified',
+              payment_status: 'paid',
+              razorpay_payment_id: razorpay_payment_id,
+              razorpay_order_id: razorpay_order_id || null,
+              razorpay_signature: razorpay_signature || null,
+              amount_paid: finalAmount,
+              coupon_code: coupon_code || null,
+              paid_at: new Date().toISOString()
+            })
+          });
+        } else {
+          // Insert new paid record
+          await fetch(`${SUPABASE_URL}/rest/v1/workshop_registrations`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({
+              ticket_no: finalTicket,
+              name: name || 'Student',
+              phone: phone || '',
+              email: email || '',
+              city: city || 'India',
+              goal: goal || 'AI Web Development',
+              workshop_date: '30 August 2026 (Live)',
+              status: 'Payment Verified',
+              payment_status: 'paid',
+              razorpay_payment_id: razorpay_payment_id,
+              razorpay_order_id: razorpay_order_id || null,
+              razorpay_signature: razorpay_signature || null,
+              amount_paid: finalAmount,
+              coupon_code: coupon_code || null,
+              paid_at: new Date().toISOString(),
+              utm_source: 'skillsfy.in/lp1'
+            })
+          });
+        }
       }
 
-      // Log in payments table
+      // 2. Insert into payments table (Idempotent by payment_id)
       await fetch(`${SUPABASE_URL}/rest/v1/payments`, {
         method: 'POST',
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': `Bearer ${SUPABASE_KEY}`,
-          'Content-Type': 'application/json'
-        },
+        headers,
         body: JSON.stringify({
           order_id: razorpay_order_id || null,
           payment_id: razorpay_payment_id,
+          student_name: name || 'Student',
+          student_email: email || '',
+          student_phone: phone || '',
+          course_slug: courseSlug,
           amount: finalAmount,
           currency: 'INR',
-          status: 'SUCCESS',
-          payer_email: email || '',
-          payer_phone: phone || '',
+          status: 'paid',
+          razorpay_signature: razorpay_signature || null,
+          ticket_no: finalTicket,
+          coupon_code: coupon_code || null,
           metadata: {
             type: isWorkshop ? 'workshop' : 'course',
-            ticket_no: isWorkshop ? finalTicket : null,
-            course_id: course_id || 'workshop-30-aug',
-            coupon: coupon_code || null
+            course_title: courseTitle
           }
         })
       });
+
+      // 3. Upsert Student profile
+      const rollNo = `SF-${new Date().getFullYear()}-${razorpay_payment_id.slice(-4).toUpperCase()}`;
+      await fetch(`${SUPABASE_URL}/rest/v1/students`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          roll_no: rollNo,
+          name: name || 'Student',
+          email: email || `student_${razorpay_payment_id.slice(-6)}@skillsfy.in`,
+          phone: phone || '0000000000',
+          city: city || 'Jabalpur',
+          enrolled_courses: [courseSlug],
+          status: 'active'
+        })
+      });
+
+      // 4. Create confirmed enrollment
+      await fetch(`${SUPABASE_URL}/rest/v1/enrollments`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          student_name: name || 'Student',
+          student_email: email || '',
+          student_phone: phone || '',
+          course_slug: courseSlug,
+          course_title: courseTitle,
+          ticket_no: finalTicket,
+          payment_id: razorpay_payment_id,
+          amount_paid: finalAmount,
+          status: 'active'
+        })
+      });
+
     } catch (dbErr) {
       console.warn('Supabase verification logging notice:', dbErr.message);
     }
