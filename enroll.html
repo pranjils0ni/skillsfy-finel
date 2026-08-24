@@ -343,11 +343,10 @@
         console.warn('Background sync note:', err);
       }
 
-      // 2. Launch Razorpay Standard Checkout Directly
+      // 2. Launch Razorpay Standard Checkout Dynamically
       try {
         if (typeof Razorpay === 'undefined') {
           showToast('Loading Razorpay SDK... please wait a moment.', 'info');
-          // Wait for script to load
           await new Promise((resolve) => {
             const script = document.createElement('script');
             script.src = 'https://checkout.razorpay.com/v1/checkout.js';
@@ -356,13 +355,53 @@
           });
         }
 
+        const amountPaise = price * 100;
+        let serverOrderId = null;
+        let activeKeyId = null;
+
+        // Fetch dynamic Razorpay Live Order & Key from backend
+        try {
+          const orderRes = await fetch('/api/create-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              amount: amountPaise,
+              type: 'course',
+              course_id: courseId,
+              course_title: courseTitle,
+              name: name,
+              email: email,
+              phone: phone
+            })
+          });
+
+          if (orderRes.ok) {
+            const orderData = await orderRes.json();
+            serverOrderId = orderData.order_id || orderData.id;
+            activeKeyId = orderData.key_id;
+          }
+        } catch (e) {
+          console.warn('Backend order fallback:', e);
+        }
+
+        if (!activeKeyId) {
+          try {
+            const keyRes = await fetch('/api/payment/key');
+            if (keyRes.ok) {
+              const keyData = await keyRes.json();
+              activeKeyId = keyData.key_id;
+            }
+          } catch(e) {}
+        }
+
         const options = {
-          key: "rzp_test_TT66f0GZnK72DV",
-          amount: price * 100, // Amount in paise (299900 paise = ₹2,999)
+          key: activeKeyId || "rzp_test_TT66f0GZnK72DV",
+          amount: amountPaise,
           currency: "INR",
           name: "Skillsfy - Institute of Technology",
           description: courseTitle,
           image: "assets/logo-badge.png",
+          order_id: serverOrderId || undefined,
           prefill: {
             name: name,
             email: email,
@@ -383,9 +422,35 @@
               showToast('Payment window closed.', 'info');
             }
           },
-          handler: function(response) {
+          handler: async function(response) {
             submitBtn.innerHTML = `<span>✓ Payment Verified!</span>`;
             showToast('Payment Successful! Confirming admission...', 'success');
+
+            const paymentId = response.razorpay_payment_id;
+            const orderId = response.razorpay_order_id || serverOrderId;
+            const signature = response.razorpay_signature;
+
+            // Server-side verification
+            try {
+              await fetch('/api/verify-payment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  razorpay_order_id: orderId,
+                  razorpay_payment_id: paymentId,
+                  razorpay_signature: signature,
+                  type: 'course',
+                  course_id: courseId,
+                  course_title: courseTitle,
+                  name: name,
+                  email: email,
+                  phone: phone,
+                  amount: price
+                })
+              });
+            } catch (vErr) {
+              console.warn('Verification call:', vErr);
+            }
             
             // Save successful enrollment in background
             if (window.SkillsfyAPI && typeof SkillsfyAPI.saveEnquiry === 'function') {
@@ -395,12 +460,12 @@
                 email: email,
                 course_interested: courseTitle,
                 status: 'Payment Successful',
-                notes: `Razorpay Payment ID: ${response.razorpay_payment_id}`
+                notes: `Razorpay Payment ID: ${paymentId}`
               }).catch(console.warn);
             }
 
             setTimeout(() => {
-              window.location.href = `/enrollment-success?payment_id=${response.razorpay_payment_id}&course=${encodeURIComponent(courseId)}`;
+              window.location.href = `/enrollment-success?payment_id=${paymentId}&course=${encodeURIComponent(courseId)}`;
             }, 1000);
           }
         };
