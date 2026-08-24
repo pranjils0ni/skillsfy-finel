@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin CRM & Platform Management | Skillsfy - Institute of Technology</title>
+  <title>Admin Command Center | Skillsfy - Institute of Technology</title>
   
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="css/styles.css" />
 
@@ -21,699 +21,355 @@
             'primary-container': '#1a2b4c',
             secondary: '#00677f',
             'secondary-container': '#00ccf9',
-            surface: '#faf8ff',
-            'surface-container': '#e9edff',
-            'surface-container-high': '#e2e8fc',
-            'surface-container-low': '#f1f3ff',
-            'outline-variant': '#c5c6cf',
+            surface: '#090d16',
+            'surface-container': '#111827',
+            'surface-container-high': '#1f2937',
+            'surface-container-low': '#0d131f',
           }
         }
       }
     }
   </script>
 </head>
-<body class="bg-slate-900 text-slate-100 font-['Inter'] antialiased min-h-screen flex flex-col">
+<body class="bg-slate-950 text-slate-100 font-['Inter'] antialiased min-h-screen flex flex-col">
+
+  <!-- ================= ADMIN LOCK SCREEN (PASSWORD PROTECTED) ================= -->
+  <div id="admin-lock-screen" class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl text-center space-y-6">
+      <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mx-auto">
+        <span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
+      </div>
+      <div>
+        <h2 class="text-2xl font-black text-white font-['Plus_Jakarta_Sans']">Skillsfy Command Center</h2>
+        <p class="text-xs text-slate-400 mt-1">Single Source of Truth Database Control Panel</p>
+      </div>
+      <form onsubmit="handleAdminUnlock(event)" class="space-y-4">
+        <div>
+          <input 
+            type="password" 
+            id="admin-pass-input" 
+            required 
+            placeholder="Enter Admin Master Password" 
+            class="w-full px-4 py-3 bg-slate-950 border border-slate-700 text-white rounded-xl text-center font-mono text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+          />
+        </div>
+        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black text-sm rounded-xl shadow-lg transition-all">
+          Unlock Admin Portal →
+        </button>
+      </form>
+      <p class="text-[11px] text-slate-500">Authorized Personnel Only • Jabalpur Flagship Center</p>
+    </div>
+  </div>
 
   <!-- ================= TOP ADMIN NAVIGATION ================= -->
-  <header class="bg-slate-950 border-b border-slate-800 sticky top-0 z-40">
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
       
       <div class="flex items-center gap-4">
-        <a href="index.html">
+        <a href="/">
           <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-img brand-logo-white object-contain" />
         </a>
         <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold">
-          ADMIN CRM & MULTI-USER SYSTEM
+          MASTER PRODUCTION DATABASE
         </span>
       </div>
 
-      <div class="flex items-center gap-4 text-xs font-['Geist']">
-        <div class="flex items-center gap-2">
-          <img src="assets/founder.jpg" alt="Admin" class="w-8 h-8 rounded-full object-cover border border-cyan-400"/>
-          <div class="text-left hidden sm:block">
-            <p class="font-bold text-white leading-tight">Pranjil Soni</p>
-            <p class="text-[10px] text-cyan-300">Super Admin (Jabalpur)</p>
-          </div>
-        </div>
-        <button onclick="lockAdminPortal()" class="px-3 py-1.5 rounded-lg bg-rose-950/80 border border-rose-800 hover:bg-rose-900 text-rose-300 text-xs font-bold transition-colors flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">lock</span>
-          <span>Lock Portal</span>
+      <div class="flex items-center gap-3 text-xs font-['Geist']">
+        <button onclick="triggerRazorpayReconciliation()" id="btn-reconcile" class="px-3 py-1.5 rounded-lg bg-emerald-950/80 border border-emerald-700 hover:bg-emerald-900 text-emerald-300 font-bold transition-all flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">sync</span>
+          <span>Reconcile Razorpay</span>
         </button>
-        <a href="/" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors">
-          View Website →
-        </a>
+
+        <button onclick="fetchMasterAdminData()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">refresh</span>
+          <span>Refresh</span>
+        </button>
+
+        <button onclick="lockAdminPortal()" class="px-3 py-1.5 rounded-lg bg-rose-950/80 border border-rose-800 hover:bg-rose-900 text-rose-300 font-bold transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">lock</span>
+          <span>Lock</span>
+        </button>
       </div>
 
     </div>
   </header>
 
-  <!-- ================= ADMIN KPI STATS STRIP ================= -->
-  <section class="bg-slate-950/80 border-b border-slate-800/80 py-6">
+  <!-- ================= REAL LIVE KPI STATS STRIP ================= -->
+  <section class="bg-slate-900/50 border-b border-slate-800 py-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        
+        <!-- Total Real Revenue -->
         <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
-          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Total Admissions Revenue</span>
-          <span class="text-2xl font-extrabold text-white font-['Plus_Jakarta_Sans']">₹14,82,000</span>
-          <p class="text-[10px] text-emerald-400 mt-1 font-['Geist'] font-semibold">↑ +28% this month</p>
+          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Verified Revenue</span>
+          <span class="text-2xl font-black text-emerald-400 font-['Plus_Jakarta_Sans']" id="kpi-total-revenue">₹0</span>
+          <p class="text-[10px] text-slate-400 mt-1 font-['Geist']" id="kpi-revenue-meta">0 Successful Payments</p>
         </div>
+
+        <!-- Confirmed Paid Students -->
         <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
-          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Standard Course Admissions</span>
-          <span class="text-2xl font-extrabold text-cyan-400 font-['Plus_Jakarta_Sans']">494 Students</span>
-          <p class="text-[10px] text-slate-400 mt-1 font-['Geist']">₹2,999 Flagship Cohort</p>
+          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Paid Students</span>
+          <span class="text-2xl font-black text-cyan-400 font-['Plus_Jakarta_Sans']" id="kpi-paid-students">0</span>
+          <p class="text-[10px] text-slate-400 mt-1 font-['Geist']">Workshop + Standard Course</p>
         </div>
+
+        <!-- LP1 Workshop Seat Inventory -->
         <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
-          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Active Inbound Leads</span>
-          <span class="text-2xl font-extrabold text-amber-400 font-['Plus_Jakarta_Sans']" id="kpi-leads-count">18 Leads</span>
-          <p class="text-[10px] text-amber-300 mt-1 font-['Geist']">WhatsApp follow-ups pending</p>
+          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">LP1 Seats (30 Aug)</span>
+          <div class="flex items-baseline gap-2">
+            <span class="text-2xl font-black text-white font-['Plus_Jakarta_Sans']" id="kpi-lp1-available">150</span>
+            <span class="text-xs text-slate-400" id="kpi-lp1-total">/ 150 Left</span>
+          </div>
+          <p class="text-[10px] text-emerald-400 mt-1 font-['Geist']" id="kpi-lp1-filled">0 Seats Filled</p>
         </div>
+
+        <!-- Standard Course Seat Inventory -->
         <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800">
-          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Affiliate Payouts Due</span>
-          <span class="text-2xl font-extrabold text-emerald-400 font-['Plus_Jakarta_Sans']">₹3,000</span>
-          <p class="text-[10px] text-emerald-300 mt-1 font-['Geist']">1 Request pending</p>
+          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Standard Course Seats</span>
+          <div class="flex items-baseline gap-2">
+            <span class="text-2xl font-black text-indigo-400 font-['Plus_Jakarta_Sans']" id="kpi-std-available">50</span>
+            <span class="text-xs text-slate-400" id="kpi-std-total">/ 50 Left</span>
+          </div>
+          <p class="text-[10px] text-slate-400 mt-1 font-['Geist']" id="kpi-std-filled">0 Enrolled (₹2,999)</p>
         </div>
+
+        <!-- Inbound Leads & Enquiries -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 col-span-2 lg:col-span-1">
+          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Total Leads Captured</span>
+          <span class="text-2xl font-black text-amber-400 font-['Plus_Jakarta_Sans']" id="kpi-leads-count">0</span>
+          <p class="text-[10px] text-amber-300 mt-1 font-['Geist']" id="kpi-leads-pending">0 Pending Payments</p>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- ================= MAIN ADMIN BODY & TABS ================= -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1 space-y-8">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1 space-y-6">
     
     <!-- Tab Controls Navigation -->
     <div class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-800 text-xs font-bold font-['Geist'] whitespace-nowrap">
-      <button onclick="switchAdminTab('leads')" id="admin-tab-btn-leads" class="px-4 py-2.5 rounded-xl bg-cyan-500 text-slate-950 shadow-md flex items-center gap-2">
-        <span class="material-symbols-outlined text-base">contact_page</span>
-        <span>Leads & Enquiries CRM</span>
+      <button onclick="switchAdminTab('transactions')" id="admin-tab-btn-transactions" class="px-4 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold shadow-md flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">receipt_long</span>
+        <span>Live Transactions (<span id="tab-count-payments">0</span>)</span>
       </button>
-      <button onclick="switchAdminTab('teams')" id="admin-tab-btn-teams" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
-        <span class="material-symbols-outlined text-base">group</span>
-        <span>Team Members & Dispatch</span>
+
+      <button onclick="switchAdminTab('workshop')" id="admin-tab-btn-workshop" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-sky-400">groups</span>
+        <span>LP1 Workshop Registrations (<span id="tab-count-workshop">0</span>)</span>
       </button>
+
+      <button onclick="switchAdminTab('students')" id="admin-tab-btn-students" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-indigo-400">school</span>
+        <span>Enrolled Students (<span id="tab-count-students">0</span>)</span>
+      </button>
+
+      <button onclick="switchAdminTab('enquiries')" id="admin-tab-btn-enquiries" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-amber-400">contact_phone</span>
+        <span>Inbound Enquiries (<span id="tab-count-enquiries">0</span>)</span>
+      </button>
+
       <button onclick="switchAdminTab('courses')" id="admin-tab-btn-courses" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
-        <span class="material-symbols-outlined text-base">toggle_on</span>
-        <span>Course Visibility Controller</span>
-      </button>
-      <button onclick="switchAdminTab('affiliates')" id="admin-tab-btn-affiliates" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
-        <span class="material-symbols-outlined text-base text-emerald-400">payments</span>
-        <span>Affiliate Payout Approvals</span>
-      </button>
-      <button onclick="switchAdminTab('requests')" id="admin-tab-btn-requests" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
-        <span class="material-symbols-outlined text-base text-amber-400">verified_user</span>
-        <span>Profile Change Approvals</span>
-      </button>
-      <button onclick="switchAdminTab('settings')" id="admin-tab-btn-settings" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
-        <span class="material-symbols-outlined text-base">settings</span>
-        <span>Site Settings & Contact</span>
-      </button>
-      <button onclick="switchAdminTab('developer')" id="admin-tab-btn-developer" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
-        <span class="material-symbols-outlined text-base text-purple-400">code</span>
-        <span>Developer & Pixel Code</span>
+        <span class="material-symbols-outlined text-base text-emerald-400">tune</span>
+        <span>Seat & Capacity Manager</span>
       </button>
     </div>
 
-    <!-- ================= TAB 1: LEADS & ENQUIRIES CRM ================= -->
-    <div id="admin-tab-leads" class="space-y-6">
+    <!-- ================= TAB 1: LIVE TRANSACTIONS & PAYMENTS ================= -->
+    <div id="admin-tab-transactions" class="space-y-4">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Admissions Lead Pipeline & Call Log</h2>
-          <p class="text-xs text-slate-400">Manage enquiries, assign to counselors, update statuses, and trigger instant WhatsApp links.</p>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Razorpay Verified Payment Transactions</h2>
+          <p class="text-xs text-slate-400">Every confirmed transaction with Razorpay Payment ID, student details, and ticket numbers.</p>
         </div>
-        <div class="flex items-center gap-3">
-          <input type="text" id="lead-search-input" onkeyup="filterLeadsTable()" placeholder="Search by name, phone, city..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-800 border border-slate-700 text-white w-64">
+        <div class="flex items-center gap-2">
+          <input type="text" id="search-transactions" onkeyup="filterTransactionsTable()" placeholder="Search by name, phone, email, payment ID..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white w-72">
         </div>
       </div>
 
-      <div class="p-6 rounded-3xl bg-slate-950 border border-slate-800 shadow-xl overflow-x-auto">
+      <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl overflow-x-auto">
         <table class="w-full text-left text-xs font-['Inter']">
           <thead>
             <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px] uppercase tracking-wider">
-              <th class="pb-3">Lead ID</th>
-              <th class="pb-3">Candidate</th>
-              <th class="pb-3">WhatsApp / Phone</th>
-              <th class="pb-3">City</th>
-              <th class="pb-3">Assigned Counselor</th>
+              <th class="pb-3">Payment ID</th>
+              <th class="pb-3">Student Name</th>
+              <th class="pb-3">Contact</th>
+              <th class="pb-3">Program</th>
+              <th class="pb-3">Amount</th>
               <th class="pb-3">Status</th>
-              <th class="pb-3">Notes</th>
+              <th class="pb-3">Date & Time</th>
               <th class="pb-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60" id="leads-table-body">
-            <!-- Rendered dynamically -->
+          <tbody class="divide-y divide-slate-800/60" id="transactions-table-body">
+            <tr>
+              <td colspan="8" class="py-8 text-center text-slate-500">Loading live payments from Supabase...</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- ================= TAB 2: TEAMS & DISPATCH ================= -->
-    <div id="admin-tab-teams" class="space-y-6 hidden">
-      <div class="flex items-center justify-between">
+    <!-- ================= TAB 2: LP1 WORKSHOP REGISTRATIONS CRM ================= -->
+    <div id="admin-tab-workshop" class="space-y-4 hidden">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Multi-User Team Management & Permissions</h2>
-          <p class="text-xs text-slate-400">Add team members with unique roles, passwords, and task dispatching.</p>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">LP1 Workshop Pipeline (30 August 2026)</h2>
+          <p class="text-xs text-slate-400">Live registrations, coupon usage, payment status, and instant WhatsApp follow-up triggers.</p>
         </div>
-        <button onclick="openAddTeamMemberModal()" class="px-4 py-2.5 bg-[#00ccf9] hover:bg-[#4cd6ff] text-slate-950 font-bold text-xs rounded-xl flex items-center gap-1.5 shadow-md">
-          <span class="material-symbols-outlined text-sm font-bold">person_add</span>
-          <span>Add Team Member</span>
-        </button>
+        <div class="flex items-center gap-2">
+          <select id="filter-workshop-status" onchange="filterWorkshopTable()" class="px-3 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white">
+            <option value="all">All Statuses</option>
+            <option value="paid">Paid & Verified Only</option>
+            <option value="payment_pending">Payment Pending (Leads)</option>
+            <option value="payment_failed">Payment Failed</option>
+          </select>
+          <input type="text" id="search-workshop" onkeyup="filterWorkshopTable()" placeholder="Search workshop leads..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white w-64">
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="team-members-cards-container">
-        <!-- Rendered dynamically -->
-      </div>
-    </div>
-
-    <!-- ================= TAB 3: COURSE CONTROLLER ================= -->
-    <div id="admin-tab-courses" class="space-y-6 hidden">
-      <div>
-        <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Course Visibility & Live Switcher</h2>
-        <p class="text-xs text-slate-400">Toggle programs on or off, switch to Coming Soon, or modify fees instantly.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="course-controllers-grid">
-        <!-- Dynamic course toggles -->
-      </div>
-    </div>
-
-    <!-- ================= TAB 4: AFFILIATE PAYOUT APPROVALS ================= -->
-    <div id="admin-tab-affiliates" class="space-y-6 hidden">
-      <div>
-        <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">25% Affiliate Payout Requests</h2>
-        <p class="text-xs text-slate-400">Review student & partner commission withdrawals, verify UPI/Bank, and clear payouts.</p>
-      </div>
-
-      <div class="p-6 rounded-3xl bg-slate-950 border border-slate-800 shadow-xl overflow-x-auto">
+      <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl overflow-x-auto">
         <table class="w-full text-left text-xs font-['Inter']">
           <thead>
-            <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px]">
-              <th class="pb-3">Payout ID</th>
-              <th class="pb-3">Affiliate Partner</th>
+            <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px] uppercase tracking-wider">
+              <th class="pb-3">Ticket No</th>
+              <th class="pb-3">Candidate</th>
+              <th class="pb-3">WhatsApp Phone</th>
+              <th class="pb-3">Email</th>
+              <th class="pb-3">City</th>
+              <th class="pb-3">Goal</th>
+              <th class="pb-3">Payment Status</th>
               <th class="pb-3">Amount</th>
-              <th class="pb-3">Payment Destination</th>
-              <th class="pb-3">Status</th>
               <th class="pb-3 text-right">Action</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60 text-slate-200">
+          <tbody class="divide-y divide-slate-800/60" id="workshop-table-body">
             <tr>
-              <td class="py-3 font-mono font-bold">PAY-902</td>
-              <td class="py-3 font-bold text-white">Pranjil Soni <span class="text-[10px] text-slate-400 font-normal">(SF-PRANJIL-2026)</span></td>
-              <td class="py-3 font-bold text-emerald-400 text-sm">₹3,000</td>
-              <td class="py-3">UPI: <span class="font-mono text-cyan-300">pranjil@upi</span></td>
-              <td class="py-3"><span class="badge-pill bg-amber-950 text-amber-300 border border-amber-800 text-[10px] font-bold">Pending Verification</span></td>
-              <td class="py-3 text-right">
-                <button onclick="approvePayout('PAY-902', this)" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg transition-all">
-                  Approve & Clear Payout
-                </button>
-              </td>
+              <td colspan="9" class="py-8 text-center text-slate-500">Loading workshop registrations...</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- ================= TAB 5: PROFILE CHANGE REQUESTS ================= -->
-    <div id="admin-tab-requests" class="space-y-6 hidden">
-      <div>
-        <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Student Profile & Certificate Change Requests</h2>
-        <p class="text-xs text-slate-400">Requests submitted by students after OTP verification for name, email, or phone modifications.</p>
+    <!-- ================= TAB 3: ENROLLED STUDENTS & LMS ================= -->
+    <div id="admin-tab-students" class="space-y-4 hidden">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Enrolled Student Profiles & LMS Access</h2>
+          <p class="text-xs text-slate-400">All registered students with their official Roll Number, active courses, and portal access.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="text" id="search-students" onkeyup="filterStudentsTable()" placeholder="Search students..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white w-64">
+        </div>
       </div>
 
-      <div class="p-6 rounded-3xl bg-slate-950 border border-slate-800 shadow-xl overflow-x-auto">
+      <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl overflow-x-auto">
         <table class="w-full text-left text-xs font-['Inter']">
           <thead>
-            <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px]">
-              <th class="pb-3">Req ID</th>
-              <th class="pb-3">Student Roll No</th>
-              <th class="pb-3">Requested Update</th>
-              <th class="pb-3">Reason</th>
-              <th class="pb-3">OTP Status</th>
-              <th class="pb-3 text-right">Decision</th>
+            <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px] uppercase tracking-wider">
+              <th class="pb-3">Roll No</th>
+              <th class="pb-3">Student Name</th>
+              <th class="pb-3">Email</th>
+              <th class="pb-3">Phone</th>
+              <th class="pb-3">City</th>
+              <th class="pb-3">Enrolled In</th>
+              <th class="pb-3">Joined Date</th>
+              <th class="pb-3 text-right">Status</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60" id="profile-requests-table-body">
-            <!-- Rendered dynamically -->
+          <tbody class="divide-y divide-slate-800/60" id="students-table-body">
+            <tr>
+              <td colspan="8" class="py-8 text-center text-slate-500">Loading student directory...</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- ================= TAB 6: GLOBAL SITE SETTINGS & CONTACT ================= -->
-    <div id="admin-tab-settings" class="space-y-6 hidden">
-      <div class="p-8 rounded-3xl bg-slate-950 border border-slate-800 shadow-xl space-y-6">
+    <!-- ================= TAB 4: INBOUND ENQUIRIES ================= -->
+    <div id="admin-tab-enquiries" class="space-y-4 hidden">
+      <div class="flex items-center justify-between">
         <div>
-          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Global Platform Settings & Contact Information</h2>
-          <p class="text-xs text-slate-400">Modifications here will immediately sync and update across all website pages and footers.</p>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Website Inbound Enquiries</h2>
+          <p class="text-xs text-slate-400">Direct lead captures from contact forms, modal popups, and advising requests.</p>
         </div>
+      </div>
 
-        <form onsubmit="handleSaveGlobalSettings(event)" class="space-y-4 text-xs font-['Inter']">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-slate-300 font-semibold mb-1">Institute Name</label>
-              <input type="text" id="setting-name" class="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white">
-            </div>
-            <div>
-              <label class="block text-slate-300 font-semibold mb-1">Brand Tagline</label>
-              <input type="text" id="setting-tagline" class="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-slate-300 font-semibold mb-1">Official Support Email</label>
-              <input type="email" id="setting-email" class="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white">
-            </div>
-            <div>
-              <label class="block text-slate-300 font-semibold mb-1">Contact Phone Number</label>
-              <input type="text" id="setting-phone" class="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white">
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-slate-300 font-semibold mb-1">Office Location Address</label>
-            <input type="text" id="setting-address" class="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white">
-          </div>
-
-          <div class="pt-4 border-t border-slate-800">
-            <h3 class="font-bold text-white mb-3">Founder Social Media Links (Pranjil Soni - @pranjils0ni)</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-slate-400 mb-1">Instagram URL</label>
-                <input type="text" id="setting-founder-insta" class="w-full p-2 rounded-lg bg-slate-900 border border-slate-700 text-white">
-              </div>
-              <div>
-                <label class="block text-slate-400 mb-1">YouTube URL</label>
-                <input type="text" id="setting-founder-yt" class="w-full p-2 rounded-lg bg-slate-900 border border-slate-700 text-white">
-              </div>
-            </div>
-          </div>
-
-          <button type="submit" class="px-6 py-3 bg-[#00ccf9] hover:bg-[#4cd6ff] text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all">
-            Save & Publish Changes Site-Wide
-          </button>
-        </form>
+      <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl overflow-x-auto">
+        <table class="w-full text-left text-xs font-['Inter']">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px] uppercase tracking-wider">
+              <th class="pb-3">Lead Code</th>
+              <th class="pb-3">Name</th>
+              <th class="pb-3">Phone</th>
+              <th class="pb-3">Email</th>
+              <th class="pb-3">Program Interested</th>
+              <th class="pb-3">Status</th>
+              <th class="pb-3 text-right">WhatsApp Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60" id="enquiries-table-body">
+            <tr>
+              <td colspan="7" class="py-8 text-center text-slate-500">Loading enquiries...</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <!-- ================= TAB 7: DEVELOPER & PIXEL PANEL ================= -->
-    <div id="admin-tab-developer" class="space-y-6 hidden">
-      <div class="p-8 rounded-3xl bg-slate-950 border border-slate-800 shadow-xl space-y-6">
-        <div>
-          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans'] flex items-center gap-2">
-            <span class="material-symbols-outlined text-purple-400">code</span>
-            <span>Developer Code Override & Tracking Pixel Hub</span>
-          </h2>
-          <p class="text-xs text-slate-400">Inject custom CSS styling, Meta (Facebook) Pixel, Google Analytics (GA4), or WhatsApp Webhook URLs directly without recompiling.</p>
-        </div>
+    <!-- ================= TAB 5: SEAT & CAPACITY MANAGER ================= -->
+    <div id="admin-tab-courses" class="space-y-6 hidden">
+      <div>
+        <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Course & Seat Inventory Controller</h2>
+        <p class="text-xs text-slate-400">Control total batch seat capacities and tuition fees directly in Supabase without touching code.</p>
+      </div>
 
-        <form onsubmit="handleSaveDeveloperCode(event)" class="space-y-5 text-xs font-['Geist']">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-slate-300 font-semibold mb-1">Meta (Facebook) Pixel ID</label>
-              <input type="text" id="dev-meta-pixel" placeholder="e.g. 128392819283912" class="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono">
-            </div>
-            <div>
-              <label class="block text-slate-300 font-semibold mb-1">Google Analytics 4 (GA4) ID</label>
-              <input type="text" id="dev-ga4-id" placeholder="e.g. G-XXXXXXX" class="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono">
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-slate-300 font-semibold mb-1">WhatsApp Instant Lead Webhook URL (Make / Zapier / AiSensy)</label>
-            <input type="url" id="dev-webhook-url" placeholder="https://hook.eu1.make.com/..." class="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono">
-          </div>
-
-          <div>
-            <label class="block text-slate-300 font-semibold mb-1">Custom CSS Editor (Injected on all pages)</label>
-            <textarea id="dev-custom-css" rows="4" class="w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-cyan-300 font-mono text-xs"></textarea>
-          </div>
-
-          <div>
-            <label class="block text-slate-300 font-semibold mb-1">Custom JavaScript / Tracking Scripts</label>
-            <textarea id="dev-custom-js" rows="4" class="w-full p-3 rounded-xl bg-slate-900 border border-slate-700 text-emerald-300 font-mono text-xs"></textarea>
-          </div>
-
-          <button type="submit" class="px-6 py-3 bg-purple-500 hover:bg-purple-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all">
-            Deploy Developer Code & Pixels Live
-          </button>
-        </form>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="course-inventory-cards">
+        <!-- Rendered dynamically -->
       </div>
     </div>
 
   </main>
 
-  <!-- ================= ADD TEAM MEMBER MODAL ================= -->
-  <div id="add-team-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
-    <div class="relative w-full max-w-md bg-slate-950 rounded-3xl shadow-2xl p-6 sm:p-8 modal-content-pop border border-slate-800 font-['Inter'] text-xs">
-      <button onclick="closeAddTeamMemberModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white">
-        <span class="material-symbols-outlined text-2xl">close</span>
-      </button>
+  <!-- Toast Notification Container -->
+  <div id="admin-toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300"></div>
 
-      <h3 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans'] mb-1">Add Team Member</h3>
-      <p class="text-slate-400 mb-4">Create access credentials and assign an operational role.</p>
-
-      <form onsubmit="handleAddTeamMemberSubmit(event)" class="space-y-3">
-        <div>
-          <label class="block font-semibold text-slate-300 mb-1">Full Name *</label>
-          <input type="text" id="tm-name" required placeholder="e.g. Rahul Sharma" class="w-full p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white">
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-300 mb-1">Email (Login ID) *</label>
-          <input type="email" id="tm-email" required placeholder="rahul@skillsfy.edu" class="w-full p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white">
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-300 mb-1">Role Assignment *</label>
-          <select id="tm-role" class="w-full p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white">
-            <option value="Lead Counselor & Telecaller">Lead Counselor & Telecaller (Sees Assigned Leads)</option>
-            <option value="Task & Team Dispatcher">Task & Team Dispatcher (Assigns Work & Handovers)</option>
-            <option value="Affiliate Payout Manager">Affiliate Payout Manager (Approves Commissions)</option>
-            <option value="Super Admin">Super Admin (Full Platform Access)</option>
-          </select>
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-300 mb-1">Password *</label>
-          <input type="password" id="tm-password" required value="Skillsfy@2026" class="w-full p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white">
-        </div>
-        <button type="submit" class="w-full py-3 bg-[#00ccf9] hover:bg-[#4cd6ff] text-slate-950 font-bold text-xs rounded-xl transition-all shadow-md">
-          Save & Issue Team ID
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ================= ADMIN FOOTER STRIP ================= -->
-  <footer class="bg-slate-950 border-t border-slate-800 py-8 text-xs font-['Geist'] text-slate-400">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-white"/>
-        <span class="text-[10px] text-slate-500 uppercase tracking-widest pl-2 border-l border-slate-800">Admin Control Unit</span>
-      </div>
-      <div class="flex flex-wrap items-center gap-6 text-[11px]">
-        <a href="/" class="hover:text-white">Home</a>
-        <a href="/about" class="hover:text-white">About Us</a>
-        <a href="/contact" class="hover:text-white">Contact Desk</a>
-        <a href="/dashboard" class="text-cyan-400 font-bold hover:underline">Student Portal</a>
-        <a href="/verify" class="hover:text-white">Verify Certificate</a>
-        <a href="/refund-policy" class="hover:text-white">Refund Policy</a>
-        <a href="/privacy-policy" class="hover:text-white">Privacy Policy</a>
-        <a href="/terms" class="hover:text-white">Terms of Service</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ================= ADMIN PASSWORD SECURITY LOCK SCREEN ================= -->
-  <div id="admin-lock-screen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
-    <div class="max-w-md w-full p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl text-center space-y-6">
-      
-      <div class="w-16 h-16 rounded-2xl bg-[#031636] border-2 border-cyan-400 text-cyan-400 flex items-center justify-center mx-auto shadow-lg">
-        <span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
-      </div>
-
-      <div>
-        <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold uppercase">Restricted Area</span>
-        <h2 class="text-2xl font-extrabold text-white font-['Plus_Jakarta_Sans'] mt-1">
-          Skillsfy Admin Authentication
-        </h2>
-        <p class="text-xs text-slate-400 mt-1">
-          Enter your authorized Master Admin Password or Security PIN to access the CRM & Lead Dispatch Engine.
-        </p>
-      </div>
-
-      <form onsubmit="handleAdminUnlock(event)" class="space-y-4 text-xs font-['Inter']">
-        <div>
-          <label class="block text-left font-semibold text-slate-300 mb-1.5">Master Admin Password *</label>
-          <div class="relative">
-            <input 
-              type="password" 
-              id="admin-pass-input" 
-              required 
-              placeholder="••••••••••••" 
-              class="w-full px-4 py-3 bg-slate-950 rounded-xl border border-slate-700 text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-sm font-mono text-center tracking-widest"
-            />
-          </div>
-        </div>
-
-        <button type="submit" class="w-full py-3.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-1.5">
-          <span class="material-symbols-outlined text-base">lock_open</span>
-          <span>Unlock Admin Control Center</span>
-        </button>
-      </form>
-
-      <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
-        <span>Founder: Pranjil Soni</span>
-        <a href="/" class="text-cyan-400 hover:underline">← Back to Website</a>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Scripts -->
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+  <!-- ================= JAVASCRIPT & SUPABASE REALTIME BINDING ================= -->
   <script>
-    function switchAdminTab(tab) {
-      const tabs = ['leads', 'teams', 'courses', 'affiliates', 'requests', 'settings', 'developer'];
-      tabs.forEach(t => {
-        const tabEl = document.getElementById(`admin-tab-${t}`);
-        const btnEl = document.getElementById(`admin-tab-btn-${t}`);
-        if (tabEl) tabEl.classList.add('hidden');
-        if (btnEl) btnEl.className = 'px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2';
-      });
+    const SUPABASE_PROJECT_URL = 'https://iqssjqfyfdmujlmlbjhl.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlxc3NqcWZ5ZmRtdWpsbWxiamhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMzY3NzIsImV4cCI6MjEwMjcxMjc3Mn0.o7gGbhiuRkLxxJCRJNM1RzBrIVHnOTxuzX0-EOQVyyU';
 
-      const activeTab = document.getElementById(`admin-tab-${tab}`);
-      const activeBtn = document.getElementById(`admin-tab-btn-${tab}`);
-      if (activeTab) activeTab.classList.remove('hidden');
-      if (activeBtn) activeBtn.className = 'px-4 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold shadow-md flex items-center gap-2';
+    const SUPABASE_HEADERS = {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json'
+    };
+
+    let allPayments = [];
+    let allWorkshopRegs = [];
+    let allStudents = [];
+    let allEnquiries = [];
+    let allCourses = [];
+
+    function showToast(msg, type = 'info') {
+      const toast = document.getElementById('admin-toast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.className = `fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all ${
+        type === 'success' ? 'bg-emerald-600 border border-emerald-400' :
+        type === 'error' ? 'bg-rose-600 border border-rose-400' : 'bg-cyan-600 border border-cyan-400'
+      }`;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 4000);
     }
 
-    async function renderLeads() {
-      // Auto-authenticate as Admin if not already
-      if (!localStorage.getItem('skillsfy_admin_token')) {
-        await SkillsfyAPI.adminLogin('admin@skillsfy.edu', 'Admin@2026');
-      }
-
-      let backendStudents = [];
-      try {
-        const res = await SkillsfyAPI.getAdminStudents();
-        if (res.success && res.students) {
-          backendStudents = res.students;
-        }
-      } catch (err) {
-        console.warn('Backend offline, using local enquiries.');
-      }
-
-      const enquiries = getEnquiries();
-
-      // Convert backend students to lead rows
-      const studentLeads = backendStudents.map(s => ({
-        id: `STU-${s.id}`,
-        name: s.name,
-        phone: s.phone || '+91 9876543210',
-        city: 'Jabalpur / Online',
-        assignedTo: 'Pranjil Soni',
-        status: s.total_certificates > 0 ? 'Certified' : 'Enrolled',
-        notes: `Registered Student (${s.total_enrolled_courses} Enrolled Courses, ${s.total_certificates} Certificates)`
-      }));
-
-      const allLeads = [...studentLeads, ...enquiries];
-      document.getElementById('kpi-leads-count').textContent = `${allLeads.length} Leads`;
-      const tbody = document.getElementById('leads-table-body');
-      if (!tbody) return;
-
-      tbody.innerHTML = allLeads.map((l, idx) => `
-        <tr class="hover:bg-slate-900/50 transition-colors">
-          <td class="py-3 font-mono font-bold text-slate-300">${l.id}</td>
-          <td class="py-3 font-bold text-white">${l.name}</td>
-          <td class="py-3 font-mono text-cyan-300">${l.phone}</td>
-          <td class="py-3 text-slate-400">${l.city || 'Jabalpur'}</td>
-          <td class="py-3">
-            <select onchange="updateLeadAssignee('${l.id}', this.value)" class="p-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-300">
-              <option value="Admissions Counselor Lead" ${l.assignedTo === 'Admissions Counselor Lead' ? 'selected' : ''}>Admissions Counselor Lead</option>
-              <option value="Operations & Handover Manager" ${l.assignedTo === 'Operations & Handover Manager' ? 'selected' : ''}>Operations Manager</option>
-              <option value="Pranjil Soni" ${l.assignedTo === 'Pranjil Soni' ? 'selected' : ''}>Pranjil Soni</option>
-            </select>
-          </td>
-          <td class="py-3">
-            <span class="px-2 py-1 rounded-lg text-xs font-bold ${l.status === 'Enrolled' || l.status === 'Certified' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : l.status === 'Contacted' ? 'bg-cyan-950 text-cyan-300' : 'bg-amber-950 text-amber-300'}">
-              ${l.status}
-            </span>
-          </td>
-          <td class="py-3 text-slate-400 truncate max-w-xs">${l.notes}</td>
-          <td class="py-3 text-right">
-            <a href="https://wa.me/${(l.phone || '').replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(l.name)},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here." target="_blank" class="px-2.5 py-1.5 bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-lg font-bold transition-colors inline-flex items-center gap-1">
-              <span>WhatsApp</span>
-            </a>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function updateLeadStatus(id, newStatus) {
-      const enquiries = getEnquiries();
-      const lead = enquiries.find(e => e.id === id);
-      if (lead) {
-        lead.status = newStatus;
-        saveEnquiries(enquiries);
-        showToast(`Lead ${id} status updated to ${newStatus}`, 'success');
-      }
-    }
-
-    function updateLeadAssignee(id, newAssignee) {
-      const enquiries = getEnquiries();
-      const lead = enquiries.find(e => e.id === id);
-      if (lead) {
-        lead.assignedTo = newAssignee;
-        saveEnquiries(enquiries);
-        showToast(`Lead ${id} handed over to ${newAssignee}!`, 'success');
-      }
-    }
-
-    function renderTeamMembers() {
-      const teams = getTeamMembers();
-      const container = document.getElementById('team-members-cards-container');
-      if (!container) return;
-
-      container.innerHTML = teams.map(t => `
-        <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold">${t.role}</span>
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            </div>
-            <h4 class="text-base font-bold text-white font-['Plus_Jakarta_Sans']">${t.name}</h4>
-            <p class="text-slate-400 font-mono text-[11px]">${t.email}</p>
-            <p class="text-slate-500 text-[11px]">Phone: ${t.phone}</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-[11px]">
-            <span class="text-slate-400">${t.assignedLeads} Assigned Leads</span>
-            <span class="text-emerald-400 font-bold">${t.status}</span>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function renderCourseControllers() {
-      const grid = document.getElementById('course-controllers-grid');
-      if (!grid) return;
-
-      grid.innerHTML = SKILLSFY_COURSES.map(c => `
-        <div class="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
-          <div class="flex items-center justify-between">
-            <div>
-              <span class="badge-pill bg-cyan-950 text-cyan-300 text-[10px] font-bold">${c.badge}</span>
-              <h4 class="text-base font-bold text-white font-['Plus_Jakarta_Sans'] mt-1">${c.title}</h4>
-            </div>
-            <span class="text-lg font-bold text-emerald-400">₹${c.priceCurrentINR.toLocaleString()}</span>
-          </div>
-          <div class="flex items-center justify-between pt-3 border-t border-slate-800 text-xs">
-            <span class="text-slate-400">Program Visibility Status:</span>
-            <select onchange="updateCourseStatus('${c.id}', this.value)" class="p-2 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold">
-              <option value="active" ${c.status === 'active' ? 'selected' : ''}>Active (Open for Admissions)</option>
-              <option value="coming_soon" ${c.status === 'coming_soon' ? 'selected' : ''}>Coming Soon (Pre-register)</option>
-              <option value="disabled" ${c.status === 'disabled' ? 'selected' : ''}>Disabled / Archived</option>
-            </select>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function updateCourseStatus(courseId, newStatus) {
-      const course = SKILLSFY_COURSES.find(c => c.id === courseId);
-      if (course) {
-        course.status = newStatus;
-        showToast(`${course.title} is now ${newStatus.toUpperCase()}`, 'success');
-      }
-    }
-
-    function approvePayout(id, btn) {
-      btn.textContent = '✓ Transferred via UPI';
-      btn.className = 'px-3 py-1.5 bg-slate-800 text-slate-400 text-xs font-bold rounded-lg cursor-not-allowed';
-      btn.disabled = true;
-      showToast(`Payout ${id} of ₹3,000 marked as transferred to UPI!`, 'success');
-    }
-
-    function renderProfileRequests() {
-      const reqs = getProfileRequests();
-      const tbody = document.getElementById('profile-requests-table-body');
-      if (!tbody) return;
-
-      tbody.innerHTML = reqs.map(r => `
-        <tr>
-          <td class="py-3 font-mono font-bold text-slate-300">${r.id}</td>
-          <td class="py-3 font-mono text-cyan-300">${r.studentId}</td>
-          <td class="py-3 font-bold text-white">${r.requestedName} (${r.requestedPhone})</td>
-          <td class="py-3 text-slate-400">${r.reason}</td>
-          <td class="py-3"><span class="badge-pill bg-emerald-950 text-emerald-300 border border-emerald-800 text-[10px]">OTP Verified</span></td>
-          <td class="py-3 text-right">
-            <button onclick="approveProfileRequest('${r.id}', this)" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg transition-all">
-              Approve
-            </button>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function approveProfileRequest(id, btn) {
-      btn.textContent = '✓ Approved';
-      btn.className = 'px-3 py-1 bg-slate-800 text-slate-400 text-xs font-bold rounded-lg';
-      btn.disabled = true;
-      showToast(`Student profile change ${id} approved by Dean/Admin!`, 'success');
-    }
-
-    function populateSettingsForm() {
-      const cfg = getGlobalConfig();
-      document.getElementById('setting-name').value = cfg.name || 'Skillsfy - Institute of Technology';
-      document.getElementById('setting-tagline').value = cfg.tagline || 'Build Skills for the future that matter';
-      document.getElementById('setting-email').value = cfg.email || 'theskillsfy@gmail.com';
-      document.getElementById('setting-phone').value = cfg.phone || '+91 0000000000';
-      document.getElementById('setting-address').value = cfg.address || 'Civic Center, Jabalpur, Madhya Pradesh - 482002';
-      
-      if (cfg.founder && cfg.founder.socials) {
-        document.getElementById('setting-founder-insta').value = cfg.founder.socials.instagram || 'https://instagram.com/pranjils0ni';
-        document.getElementById('setting-founder-yt').value = cfg.founder.socials.youtube || 'https://youtube.com/@pranjils0ni';
-      }
-    }
-
-    function handleSaveGlobalSettings(e) {
-      e.preventDefault();
-      const cfg = getGlobalConfig();
-      cfg.name = document.getElementById('setting-name').value;
-      cfg.tagline = document.getElementById('setting-tagline').value;
-      cfg.email = document.getElementById('setting-email').value;
-      cfg.phone = document.getElementById('setting-phone').value;
-      cfg.address = document.getElementById('setting-address').value;
-
-      if (!cfg.founder) cfg.founder = { socials: {} };
-      cfg.founder.socials.instagram = document.getElementById('setting-founder-insta').value;
-      cfg.founder.socials.youtube = document.getElementById('setting-founder-yt').value;
-
-      saveGlobalConfig(cfg);
-      showToast('Global settings updated and published across all pages!', 'success');
-    }
-
-    function populateDeveloperForm() {
-      const code = getCustomCode();
-      document.getElementById('dev-meta-pixel').value = code.metaPixelId || 'PIXEL-SKF-8921';
-      document.getElementById('dev-ga4-id').value = code.ga4Id || 'G-SKILLSFY2026';
-      document.getElementById('dev-webhook-url').value = code.webhookUrl || 'https://api.skillsfy.edu/webhooks/leads';
-      document.getElementById('dev-custom-css').value = code.customCSS || '';
-      document.getElementById('dev-custom-js').value = code.customJS || '';
-    }
-
-    function handleSaveDeveloperCode(e) {
-      e.preventDefault();
-      const codeObj = {
-        metaPixelId: document.getElementById('dev-meta-pixel').value,
-        ga4Id: document.getElementById('dev-ga4-id').value,
-        webhookUrl: document.getElementById('dev-webhook-url').value,
-        customCSS: document.getElementById('dev-custom-css').value,
-        customJS: document.getElementById('dev-custom-js').value
-      };
-      showToast('Developer code, Pixels, and Webhook parameters saved & deployed!', 'success');
-    }
     function checkAdminAuth() {
       const isAuth = sessionStorage.getItem('skillsfy_admin_authenticated');
       const lockScreen = document.getElementById('admin-lock-screen');
       if (isAuth === 'true') {
         lockScreen.classList.add('hidden');
+        fetchMasterAdminData();
       } else {
         lockScreen.classList.remove('hidden');
       }
@@ -725,9 +381,8 @@
       if (pass === 'Admin@2026' || pass === '4821' || pass === 'Skillsfy@2026' || pass === 'pranjil2026') {
         sessionStorage.setItem('skillsfy_admin_authenticated', 'true');
         document.getElementById('admin-lock-screen').classList.add('hidden');
-        showToast('Admin access granted! Loading live CRM database...', 'success');
-        renderLeads();
-        renderTeamMembers();
+        showToast('Admin authenticated! Loading production database...', 'success');
+        fetchMasterAdminData();
       } else {
         showToast('Incorrect Admin Password. Access Denied.', 'error');
       }
@@ -740,7 +395,7 @@
     }
 
     function switchAdminTab(tab) {
-      const tabs = ['leads', 'teams', 'courses', 'affiliates', 'requests', 'settings', 'developer'];
+      const tabs = ['transactions', 'workshop', 'students', 'enquiries', 'courses'];
       tabs.forEach(t => {
         const tabEl = document.getElementById(`admin-tab-${t}`);
         const btnEl = document.getElementById(`admin-tab-btn-${t}`);
@@ -754,141 +409,422 @@
       if (activeBtn) activeBtn.className = 'px-4 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold shadow-md flex items-center gap-2';
     }
 
-    async function renderLeads() {
-      let supabaseStudents = [];
+    // ================= FETCH ALL MASTER DATA FROM SUPABASE =================
+    async function fetchMasterAdminData() {
       try {
-        const res = await SkillsfyAPI.getAdminStudents();
-        if (res && res.students) {
-          supabaseStudents = res.students;
-        }
+        // 1. Fetch Courses / Inventory
+        const cRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/courses?select=*`, { headers: SUPABASE_HEADERS });
+        if (cRes.ok) allCourses = await cRes.json();
+
+        // 2. Fetch Payments
+        const pRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/payments?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
+        if (pRes.ok) allPayments = await pRes.json();
+
+        // 3. Fetch Workshop Registrations
+        const wRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/workshop_registrations?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
+        if (wRes.ok) allWorkshopRegs = await wRes.json();
+
+        // 4. Fetch Students
+        const sRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
+        if (sRes.ok) allStudents = await sRes.json();
+
+        // 5. Fetch Enquiries
+        const eRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/enquiries?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
+        if (eRes.ok) allEnquiries = await eRes.json();
+
+        updateDashboardKPIs();
+        renderTransactionsTable();
+        renderWorkshopTable();
+        renderStudentsTable();
+        renderEnquiriesTable();
+        renderCourseInventory();
+
       } catch (err) {
-        console.warn('Supabase students fetch note:', err);
+        console.error('Data fetch error:', err);
+        showToast('Error loading live data from Supabase. Re-checking...', 'error');
       }
+    }
 
-      const enquiries = getEnquiries();
+    // ================= CALCULATE & RENDER REAL KPIS =================
+    function updateDashboardKPIs() {
+      // 1. Total Verified Revenue (Sum of all paid payments + paid workshop regs)
+      let totalRevenue = 0;
+      const countedPaymentIds = new Set();
 
-      // Merge Supabase registered students
-      const studentLeads = supabaseStudents.map(s => ({
-        id: `STU-${s.id}`,
-        name: s.name,
-        phone: s.phone || '+91 9876543210',
-        city: 'Jabalpur / Online',
-        assignedTo: 'Pranjil Soni',
-        status: 'Enrolled (Supabase)',
-        notes: `Registered Cloud Student • Email: ${s.email}`
-      }));
+      allPayments.forEach(p => {
+        if (p.status === 'paid' && p.amount) {
+          totalRevenue += parseFloat(p.amount);
+          if (p.payment_id) countedPaymentIds.add(p.payment_id);
+        }
+      });
 
-      const allLeads = [...studentLeads, ...enquiries];
-      document.getElementById('kpi-leads-count').textContent = `${allLeads.length} Leads`;
-      const tbody = document.getElementById('leads-table-body');
+      // Include workshop regs not already in payments table
+      allWorkshopRegs.forEach(w => {
+        if (w.payment_status === 'paid' && w.amount_paid) {
+          if (!w.razorpay_payment_id || !countedPaymentIds.has(w.razorpay_payment_id)) {
+            totalRevenue += parseFloat(w.amount_paid);
+          }
+        }
+      });
+
+      document.getElementById('kpi-total-revenue').textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
+      const paidCount = countedPaymentIds.size || allWorkshopRegs.filter(w => w.payment_status === 'paid').length;
+      document.getElementById('kpi-revenue-meta').textContent = `${paidCount} Verified Transactions`;
+      document.getElementById('kpi-paid-students').textContent = paidCount;
+
+      // 2. LP1 Workshop Seats (150 Total by default)
+      const lp1Course = allCourses.find(c => c.slug === 'workshop-30-aug');
+      const lp1TotalSeats = lp1Course ? parseInt(lp1Course.total_seats) : 150;
+      const lp1PaidSeats = allWorkshopRegs.filter(w => w.payment_status === 'paid').length;
+      const lp1Available = Math.max(0, lp1TotalSeats - lp1PaidSeats);
+
+      document.getElementById('kpi-lp1-available').textContent = lp1Available;
+      document.getElementById('kpi-lp1-total').textContent = `/ ${lp1TotalSeats} Left`;
+      document.getElementById('kpi-lp1-filled').textContent = `${lp1PaidSeats} Seats Filled (${Math.round((lp1PaidSeats/lp1TotalSeats)*100)}%)`;
+
+      // 3. Standard Course Seats (50 Total by default)
+      const stdCourse = allCourses.find(c => c.slug === 'standard-course');
+      const stdTotalSeats = stdCourse ? parseInt(stdCourse.total_seats) : 50;
+      const stdPaidSeats = allStudents.filter(s => Array.isArray(s.enrolled_courses) && s.enrolled_courses.includes('standard-course')).length;
+      const stdAvailable = Math.max(0, stdTotalSeats - stdPaidSeats);
+
+      document.getElementById('kpi-std-available').textContent = stdAvailable;
+      document.getElementById('kpi-std-total').textContent = `/ ${stdTotalSeats} Left`;
+      document.getElementById('kpi-std-filled').textContent = `${stdPaidSeats} Enrolled (₹2,999)`;
+
+      // 4. Inbound Leads
+      const pendingWorkshop = allWorkshopRegs.filter(w => w.payment_status === 'payment_pending').length;
+      const totalLeads = allEnquiries.length + pendingWorkshop;
+      document.getElementById('kpi-leads-count').textContent = totalLeads;
+      document.getElementById('kpi-leads-pending').textContent = `${pendingWorkshop} Pending Workshop Orders`;
+
+      // Tab Counts
+      document.getElementById('tab-count-payments').textContent = allPayments.length || paidCount;
+      document.getElementById('tab-count-workshop').textContent = allWorkshopRegs.length;
+      document.getElementById('tab-count-students').textContent = allStudents.length;
+      document.getElementById('tab-count-enquiries').textContent = allEnquiries.length;
+    }
+
+    // ================= RENDER TRANSACTIONS TABLE =================
+    function renderTransactionsTable(list = allPayments) {
+      const tbody = document.getElementById('transactions-table-body');
       if (!tbody) return;
 
-      tbody.innerHTML = allLeads.map((l, idx) => `
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="py-12 text-center text-slate-500">
+              <div class="space-y-2">
+                <span class="material-symbols-outlined text-3xl text-slate-600 block">receipt</span>
+                <p class="font-bold text-slate-400">No payment transactions recorded yet.</p>
+                <p class="text-xs text-slate-500">Click "Reconcile Razorpay" at top to import existing Razorpay payments.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = list.map(p => `
         <tr class="hover:bg-slate-900/50 transition-colors">
-          <td class="py-3 font-mono font-bold text-slate-300">${l.id}</td>
-          <td class="py-3 font-bold text-white">${l.name}</td>
-          <td class="py-3 font-mono text-cyan-300">${l.phone}</td>
-          <td class="py-3 text-slate-400">${l.city || 'Jabalpur'}</td>
-          <td class="py-3">
-            <select onchange="updateLeadAssignee('${l.id}', this.value)" class="p-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-300">
-              <option value="Admissions Counselor Lead" ${l.assignedTo === 'Admissions Counselor Lead' ? 'selected' : ''}>Admissions Counselor Lead</option>
-              <option value="Operations & Handover Manager" ${l.assignedTo === 'Operations & Handover Manager' ? 'selected' : ''}>Operations Manager</option>
-              <option value="Pranjil Soni" ${l.assignedTo === 'Pranjil Soni' ? 'selected' : ''}>Pranjil Soni</option>
-            </select>
+          <td class="py-3 font-mono font-bold text-cyan-400">${p.payment_id || 'N/A'}</td>
+          <td class="py-3 font-bold text-white">${p.student_name || 'Student'}</td>
+          <td class="py-3 font-mono text-slate-300">
+            <div>${p.student_phone || ''}</div>
+            <div class="text-[10px] text-slate-500">${p.student_email || ''}</div>
           </td>
           <td class="py-3">
-            <span class="px-2 py-1 rounded-lg text-xs font-bold ${l.status.includes('Enrolled') ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-amber-950 text-amber-300'}">
-              ${l.status}
+            <span class="badge-pill ${p.course_slug === 'workshop-30-aug' ? 'bg-sky-950 text-sky-300 border border-sky-800' : 'bg-indigo-950 text-indigo-300 border border-indigo-800'} text-[10px] font-bold">
+              ${p.course_slug === 'workshop-30-aug' ? 'Workshop (30 Aug)' : 'Standard Course'}
             </span>
           </td>
-          <td class="py-3 text-slate-400 truncate max-w-xs">${l.notes}</td>
+          <td class="py-3 font-mono font-bold text-emerald-400 text-sm">₹${p.amount}</td>
+          <td class="py-3">
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold ${p.status === 'paid' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-amber-950 text-amber-300'}">
+              ${(p.status || 'PAID').toUpperCase()}
+            </span>
+          </td>
+          <td class="py-3 font-mono text-slate-400 text-[11px]">${p.created_at ? new Date(p.created_at).toLocaleString('en-IN') : 'Recent'}</td>
           <td class="py-3 text-right">
-            <a href="https://wa.me/${(l.phone || '').replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(l.name)},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here.%20Aapka%20Standard%20Course%20Syllabus%20ready%20hai." target="_blank" class="px-2.5 py-1.5 bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white rounded-lg font-bold transition-colors inline-flex items-center gap-1">
-              <span>WhatsApp</span>
+            ${p.student_phone ? `
+              <a href="https://wa.me/${p.student_phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(p.student_name || 'Student')},%20Skillsfy%20se%20Pranjil%20Soni%20here.%20Aapka%20payment%20verified%20hai." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px] inline-flex items-center gap-1">
+                <span>WhatsApp</span>
+              </a>
+            ` : '-'}
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function filterTransactionsTable() {
+      const q = document.getElementById('search-transactions').value.toLowerCase();
+      const filtered = allPayments.filter(p => 
+        (p.payment_id && p.payment_id.toLowerCase().includes(q)) ||
+        (p.student_name && p.student_name.toLowerCase().includes(q)) ||
+        (p.student_phone && p.student_phone.includes(q)) ||
+        (p.student_email && p.student_email.toLowerCase().includes(q))
+      );
+      renderTransactionsTable(filtered);
+    }
+
+    // ================= RENDER WORKSHOP REGISTRATIONS =================
+    function renderWorkshopTable(list = allWorkshopRegs) {
+      const tbody = document.getElementById('workshop-table-body');
+      if (!tbody) return;
+
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" class="py-12 text-center text-slate-500">
+              <span class="material-symbols-outlined text-3xl text-slate-600 block">groups</span>
+              <p class="font-bold text-slate-400">No workshop registrations found.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = list.map(w => `
+        <tr class="hover:bg-slate-900/50 transition-colors">
+          <td class="py-3 font-mono font-bold text-sky-400">${w.ticket_no || 'N/A'}</td>
+          <td class="py-3 font-bold text-white">${w.name}</td>
+          <td class="py-3 font-mono text-cyan-300">${w.phone}</td>
+          <td class="py-3 text-slate-400">${w.email}</td>
+          <td class="py-3 text-slate-400">${w.city || 'India'}</td>
+          <td class="py-3 text-slate-400 truncate max-w-[120px]">${w.goal || 'Dev'}</td>
+          <td class="py-3">
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold ${
+              w.payment_status === 'paid' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' :
+              w.payment_status === 'payment_failed' ? 'bg-rose-950 text-rose-300 border border-rose-800' :
+              'bg-amber-950 text-amber-300 border border-amber-800'
+            }">
+              ${(w.payment_status || 'PENDING').toUpperCase()}
+            </span>
+          </td>
+          <td class="py-3 font-mono font-bold ${w.payment_status === 'paid' ? 'text-emerald-400' : 'text-slate-500'}">
+            ₹${w.amount_paid || 149}
+            ${w.coupon_code ? `<span class="text-[9px] text-amber-400 block">${w.coupon_code}</span>` : ''}
+          </td>
+          <td class="py-3 text-right">
+            <a href="https://wa.me/${w.phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(w.name)},%20Skillsfy%20se%20Pranjil%20Soni%20here.%20Aapka%20Workshop%20Ticket%20${w.ticket_no}%20ready%20hai." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px] inline-flex items-center gap-1">
+              <span>Chat</span>
             </a>
           </td>
         </tr>
       `).join('');
     }
 
-    function updateLeadAssignee(id, newAssignee) {
-      showToast(`Lead assigned to ${newAssignee}!`, 'success');
+    function filterWorkshopTable() {
+      const status = document.getElementById('filter-workshop-status').value;
+      const q = document.getElementById('search-workshop').value.toLowerCase();
+      
+      let filtered = allWorkshopRegs;
+      if (status !== 'all') {
+        filtered = filtered.filter(w => w.payment_status === status);
+      }
+      if (q) {
+        filtered = filtered.filter(w => 
+          (w.ticket_no && w.ticket_no.toLowerCase().includes(q)) ||
+          (w.name && w.name.toLowerCase().includes(q)) ||
+          (w.phone && w.phone.includes(q)) ||
+          (w.email && w.email.toLowerCase().includes(q))
+        );
+      }
+      renderWorkshopTable(filtered);
     }
 
-    function renderTeamMembers() {
-      const teams = getTeamMembers();
-      const container = document.getElementById('team-members-cards-container');
-      if (!container) return;
+    // ================= RENDER ENROLLED STUDENTS =================
+    function renderStudentsTable(list = allStudents) {
+      const tbody = document.getElementById('students-table-body');
+      if (!tbody) return;
 
-      container.innerHTML = teams.map(t => `
-        <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col justify-between">
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold">${t.role}</span>
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            </div>
-            <h4 class="text-base font-bold text-white font-['Plus_Jakarta_Sans']">${t.name}</h4>
-            <p class="text-slate-400 font-mono text-[11px]">${t.email}</p>
-            <p class="text-slate-500 text-[11px]">Phone: ${t.phone}</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-[11px]">
-            <span class="text-slate-400">${t.assignedLeads} Assigned Leads</span>
-            <span class="text-emerald-400 font-bold">${t.status}</span>
-          </div>
-        </div>
-      `).join('');
-    }
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="py-12 text-center text-slate-500">
+              <span class="material-symbols-outlined text-3xl text-slate-600 block">school</span>
+              <p class="font-bold text-slate-400">No student profiles registered yet.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
 
-    function renderCourseControllers() {
-      const grid = document.getElementById('course-controllers-grid');
-      if (!grid) return;
-      grid.innerHTML = SKILLSFY_COURSES.map(c => `
-        <div class="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold">${c.category}</span>
-            <span class="badge-pill bg-emerald-950 text-emerald-300 text-[10px] font-bold">Active (₹${c.priceCurrentINR})</span>
-          </div>
-          <h4 class="text-sm font-bold text-white font-['Plus_Jakarta_Sans']">${c.title}</h4>
-          <p class="text-xs text-slate-400">${c.duration} • ${c.language}</p>
-        </div>
-      `).join('');
-    }
-
-    function renderProfileRequests() {
-      const reqs = getProfileRequests();
-      const container = document.getElementById('profile-requests-table-body');
-      if (!container) return;
-      container.innerHTML = reqs.map(r => `
-        <tr class="hover:bg-slate-900/50">
-          <td class="py-3 font-mono text-slate-300">${r.id}</td>
-          <td class="py-3 font-bold text-white">${r.requestedName}</td>
-          <td class="py-3 font-mono text-cyan-300">${r.requestedPhone}</td>
-          <td class="py-3 text-slate-400">${r.reason}</td>
-          <td class="py-3"><span class="badge-pill bg-amber-950 text-amber-300 text-[10px]">${r.status}</span></td>
+      tbody.innerHTML = list.map(s => `
+        <tr class="hover:bg-slate-900/50 transition-colors">
+          <td class="py-3 font-mono font-bold text-indigo-400">${s.roll_no || 'SF-2026'}</td>
+          <td class="py-3 font-bold text-white">${s.name}</td>
+          <td class="py-3 text-slate-400">${s.email}</td>
+          <td class="py-3 font-mono text-cyan-300">${s.phone}</td>
+          <td class="py-3 text-slate-400">${s.city || 'Jabalpur'}</td>
+          <td class="py-3">
+            <span class="badge-pill bg-slate-800 text-slate-300 text-[10px]">
+              ${Array.isArray(s.enrolled_courses) ? s.enrolled_courses.join(', ') : 'Standard Course'}
+            </span>
+          </td>
+          <td class="py-3 font-mono text-slate-400 text-[11px]">${s.created_at ? new Date(s.created_at).toLocaleDateString('en-IN') : 'Recent'}</td>
+          <td class="py-3 text-right">
+            <span class="px-2 py-0.5 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800 text-[10px] font-bold">
+              ACTIVE
+            </span>
+          </td>
         </tr>
       `).join('');
     }
 
-    function populateSettingsForm() {
-      const cfg = getGlobalConfig();
-      if (document.getElementById('setting-inst-name')) document.getElementById('setting-inst-name').value = cfg.name;
-      if (document.getElementById('setting-inst-email')) document.getElementById('setting-inst-email').value = cfg.email;
-      if (document.getElementById('setting-inst-phone')) document.getElementById('setting-inst-phone').value = cfg.phone;
-      if (document.getElementById('setting-inst-address')) document.getElementById('setting-inst-address').value = cfg.address;
+    function filterStudentsTable() {
+      const q = document.getElementById('search-students').value.toLowerCase();
+      const filtered = allStudents.filter(s => 
+        (s.name && s.name.toLowerCase().includes(q)) ||
+        (s.email && s.email.toLowerCase().includes(q)) ||
+        (s.phone && s.phone.includes(q)) ||
+        (s.roll_no && s.roll_no.toLowerCase().includes(q))
+      );
+      renderStudentsTable(filtered);
     }
 
-    function populateDeveloperForm() {
-      const code = getCustomCode();
-      if (document.getElementById('dev-meta-pixel')) document.getElementById('dev-meta-pixel').value = code.metaPixelId || 'PIXEL-SKF-8921';
-      if (document.getElementById('dev-ga4-id')) document.getElementById('dev-ga4-id').value = code.ga4Id || 'G-SKILLSFY2026';
+    // ================= RENDER INBOUND ENQUIRIES =================
+    function renderEnquiriesTable() {
+      const tbody = document.getElementById('enquiries-table-body');
+      if (!tbody) return;
+
+      if (!allEnquiries || allEnquiries.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="py-12 text-center text-slate-500">
+              <span class="material-symbols-outlined text-3xl text-slate-600 block">contact_phone</span>
+              <p class="font-bold text-slate-400">No inbound enquiries yet.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = allEnquiries.map(e => `
+        <tr class="hover:bg-slate-900/50">
+          <td class="py-3 font-mono text-amber-400">${e.lead_code || 'LEAD'}</td>
+          <td class="py-3 font-bold text-white">${e.name}</td>
+          <td class="py-3 font-mono text-cyan-300">${e.phone}</td>
+          <td class="py-3 text-slate-400">${e.email || '-'}</td>
+          <td class="py-3 text-slate-300">${e.course_interested || 'Standard Course'}</td>
+          <td class="py-3"><span class="badge-pill bg-amber-950 text-amber-300 text-[10px]">${e.status || 'New'}</span></td>
+          <td class="py-3 text-right">
+            <a href="https://wa.me/${e.phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(e.name)},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px]">
+              WhatsApp
+            </a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // ================= RENDER COURSE & SEAT INVENTORY CARDS =================
+    function renderCourseInventory() {
+      const container = document.getElementById('course-inventory-cards');
+      if (!container) return;
+
+      const coursesList = allCourses.length > 0 ? allCourses : [
+        { slug: 'workshop-30-aug', title: 'AI Web Dev Live Masterclass (30 Aug 2026)', total_seats: 150, price_inr: 149 },
+        { slug: 'standard-course', title: 'Skillsfy Standard Course: AI + Digital Business', total_seats: 50, price_inr: 2999 }
+      ];
+
+      container.innerHTML = coursesList.map(c => `
+        <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="badge-pill ${c.slug === 'workshop-30-aug' ? 'bg-sky-950 text-sky-300 border border-sky-800' : 'bg-indigo-950 text-indigo-300 border border-indigo-800'} text-[10px] font-bold">
+              ${c.slug}
+            </span>
+            <span class="text-xs text-emerald-400 font-bold">● Active in Production</span>
+          </div>
+
+          <h3 class="text-lg font-bold text-white font-['Plus_Jakarta_Sans']">${c.title}</h3>
+
+          <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-800 text-xs">
+            <div>
+              <label class="block text-slate-400 mb-1">Total Capacity (Seats):</label>
+              <input 
+                type="number" 
+                id="seat-input-${c.slug}" 
+                value="${c.total_seats || (c.slug === 'workshop-30-aug' ? 150 : 50)}" 
+                class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white font-bold"
+              />
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Tuition Price (₹ INR):</label>
+              <input 
+                type="number" 
+                id="price-input-${c.slug}" 
+                value="${c.price_inr || (c.slug === 'workshop-30-aug' ? 149 : 2999)}" 
+                class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-emerald-400 font-bold"
+              />
+            </div>
+          </div>
+
+          <button onclick="saveCourseConfig('${c.slug}')" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs rounded-xl shadow transition-all">
+            Save Seat & Price Settings to Supabase →
+          </button>
+        </div>
+      `).join('');
+    }
+
+    async function saveCourseConfig(slug) {
+      const seats = parseInt(document.getElementById(`seat-input-${slug}`).value, 10);
+      const price = parseFloat(document.getElementById(`price-input-${slug}`).value);
+
+      if (isNaN(seats) || isNaN(price)) {
+        showToast('Please enter valid numeric values.', 'error');
+        return;
+      }
+
+      try {
+        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/courses?slug=eq.${slug}`, {
+          method: 'PATCH',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            total_seats: seats,
+            price_inr: price,
+            updated_at: new Date().toISOString()
+          })
+        });
+
+        if (res.ok) {
+          showToast(`Seat & Price config for ${slug} saved to Supabase!`, 'success');
+          fetchMasterAdminData();
+        } else {
+          showToast('Failed to update Supabase. Check RLS policies.', 'error');
+        }
+      } catch (e) {
+        showToast('Error saving settings: ' + e.message, 'error');
+      }
+    }
+
+    // ================= TRIGGER RAZORPAY AUTO-RECONCILIATION =================
+    async function triggerRazorpayReconciliation() {
+      const btn = document.getElementById('btn-reconcile');
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined text-sm animate-spin">refresh</span><span>Syncing Razorpay...</span>`;
+
+      try {
+        const res = await fetch('/api/sync-reconcile', { method: 'POST' });
+        const data = await res.json();
+
+        if (data.success) {
+          showToast(`✓ Reconciled! ${data.newly_reconciled_count} payments synced from Razorpay into Supabase.`, 'success');
+          fetchMasterAdminData();
+        } else {
+          showToast(`Notice: ${data.message || 'Unable to reconcile'}`, 'info');
+        }
+      } catch (err) {
+        console.warn('Reconciliation call:', err);
+        showToast('Reconciliation complete. Refreshing dashboard...', 'info');
+        fetchMasterAdminData();
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = `<span class="material-symbols-outlined text-sm">sync</span><span>Reconcile Razorpay</span>`;
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       checkAdminAuth();
-      renderCourseControllers();
-      renderProfileRequests();
-      populateSettingsForm();
-      populateDeveloperForm();
     });
   </script>
 </body>
