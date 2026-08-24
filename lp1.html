@@ -1743,7 +1743,7 @@
         </span>
         <h3 class="text-2xl font-black text-slate-900 font-manrope mt-2">You're Enrolled for 30 Aug!</h3>
         <p class="text-xs text-slate-600 mt-1" id="success-ticket-text">
-          Ticket #SKF-WKSP-8921 confirmed.
+          Ticket Confirmed & Verified.
         </p>
       </div>
 
@@ -1767,7 +1767,7 @@
         </div>
         <div class="flex items-center justify-between">
           <span class="text-slate-500 font-medium">Payment ID:</span>
-          <span id="success-payment-id" class="font-mono text-[11px] text-slate-700">pay_verified</span>
+          <span id="success-payment-id" class="font-mono text-[11px] text-slate-700">Verified</span>
         </div>
       </div>
 
@@ -1936,7 +1936,7 @@
         }
       } catch (err) {}
 
-      const ticketNo = 'SKF-WKSP-' + Math.floor(10000 + Math.random() * 90000);
+      const ticketNo = 'SKF-LP1-' + Math.floor(100000 + Math.random() * 900000);
       registeredLead = {
         ticket_no: ticketNo,
         name: name,
@@ -2023,6 +2023,14 @@
           const orderData = await orderRes.json();
           serverOrderId = orderData.order_id || orderData.id;
           activeKeyId = orderData.key_id;
+        } else {
+          const errData = await orderRes.json();
+          if (errData.message && errData.message.includes('sold out')) {
+            showToast('Sorry! All seats for this batch are sold out.', 'error');
+            payBtn.disabled = false;
+            payBtn.innerHTML = `<span>Batch Sold Out</span>`;
+            return;
+          }
         }
       } catch (e) {
         console.warn('Server order fallback:', e.message);
@@ -2136,6 +2144,7 @@
           closeCheckoutModal();
           openVerifiedSuccessModal(registeredLead.ticket_no, registeredLead.amount, paymentId, registeredLead.name, verifiedWhatsAppUrl);
           showToast('Payment verified successfully! Welcome to the Masterclass.', 'success');
+          loadRealSeatInventory();
         }
       };
 
@@ -2176,9 +2185,9 @@
 
     // ================= STEP 3: UNLOCK VERIFIED WHATSAPP ACCESS ONLY =================
     function openVerifiedSuccessModal(ticket, amount, paymentId, name, whatsappUrl) {
-      document.getElementById('success-ticket-text').textContent = `Ticket #${ticket} confirmed & cryptographically verified.`;
+      document.getElementById('success-ticket-text').textContent = `Official Ticket #${ticket} Confirmed & Verified.`;
       document.getElementById('success-paid-amount').textContent = `₹${amount}`;
-      document.getElementById('success-payment-id').textContent = paymentId || 'pay_verified';
+      document.getElementById('success-payment-id').textContent = paymentId || 'Verified';
       document.getElementById('success-name').textContent = name || 'Student';
 
       const container = document.getElementById('whatsapp-container');
@@ -2206,6 +2215,35 @@
 
       document.getElementById('success-modal').classList.remove('hidden');
     }
+
+    // ================= REAL DATABASE SEAT INVENTORY SYNC =================
+    async function loadRealSeatInventory() {
+      try {
+        const res = await fetch('/api/seats?course=workshop-30-aug');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.success) {
+            const available = data.available_seats;
+            const total = data.total_seats || 150;
+            const filled = data.filled_seats || 0;
+
+            const seatEls = document.querySelectorAll('.dynamic-seat-count');
+            seatEls.forEach(el => el.textContent = `${available} Seats Left`);
+
+            if (data.is_sold_out) {
+              const ctaBtns = document.querySelectorAll('.btn-reserve-trigger');
+              ctaBtns.forEach(b => {
+                b.disabled = true;
+                b.innerHTML = `<span>Batch Sold Out (${filled}/${total})</span>`;
+              });
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Real seat inventory sync:', e.message);
+      }
+    }
+    loadRealSeatInventory();
 
     // ================= LIVE COUNTDOWN TIMER =================
     function updateCountdown() {
