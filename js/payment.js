@@ -61,7 +61,7 @@ const SkillsfyPayment = {
     }
 
     let orderId = null;
-    let keyId = this.DEFAULT_KEY_ID;
+    let keyId = null;
     const amountInPaise = Math.round(amount * 100);
 
     // 2. Try creating backend order if serverless route is live
@@ -89,8 +89,20 @@ const SkillsfyPayment = {
         }
       }
     } catch (orderErr) {
-      console.warn('Backend order generation fallback to standard client mode:', orderErr);
+      console.warn('Backend order generation note:', orderErr);
     }
+
+    if (!keyId) {
+      try {
+        const keyRes = await fetch('/api/payment/key');
+        if (keyRes.ok) {
+          const keyData = await keyRes.json();
+          keyId = keyData.key_id;
+        }
+      } catch(e) {}
+    }
+
+    if (!keyId) keyId = 'rzp_test_TT66f0GZnK72DV';
 
     // 3. Configure Standard Checkout Options
     const options = {
