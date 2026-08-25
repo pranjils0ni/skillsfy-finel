@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skillsfy Insights — Stories. Strategies. Lessons.</title>
+  <meta name="description" content="India's builder knowledge platform. Deep research, business model breakdowns, founder journeys, and actionable lessons for entrepreneurs and ambitious professionals." />
+  
+  <!-- OpenGraph Meta Tags for Authority -->
+  <meta property="og:title" content="Skillsfy Insights — Stories. Strategies. Lessons." />
+  <meta property="og:description" content="Deep business research, founder playbooks, and strategic lessons from India's greatest builders." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://insights.skillsfy.in" />
+  <meta property="og:image" content="https://skillsfy.in/assets/logo.png" />
+
+  <!-- Tailwind CSS & Editorial Typography Fonts -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: "#0a1128",
+              amber: "#d97706",
+              gold: "#f59e0b",
+              sky: "#0284c7",
+              card: "#ffffff",
+              canvas: "#fbfaf8",
+              border: "#e7e5e4"
+            }
+          },
+          fontFamily: {
+            serif: ["Newsreader", "Georgia", "serif"],
+            sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+            body: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #fbfaf8;
+      color: #1c1917;
+      font-family: 'Inter', sans-serif;
+    }
+    .font-serif-headline {
+      font-family: 'Newsreader', Georgia, serif;
+    }
+    .editorial-border {
+      border-color: #e7e5e4;
+    }
+    .hover-lift {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hover-lift:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+    }
+    .reading-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #d97706, #0284c7);
+      width: 0%;
+      z-index: 100;
+      transition: width 0.1s ease-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-100 selection:text-amber-900">
+
+  <div id="reading-bar" class="reading-progress-bar"></div>
+
+  <!-- ================= TOP EDITORIAL MASTHEAD ================= -->
+  <header class="bg-white border-b editorial-border sticky top-0 z-40">
+    <!-- Top Utility Strip -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 border-b border-stone-100 flex items-center justify-between text-[11px] font-medium text-stone-500">
+      <div class="flex items-center gap-3">
+        <span>Edition: <strong class="text-stone-900 font-semibold">India & Emerging Markets</strong></span>
+        <span class="hidden sm:inline">•</span>
+        <span id="current-date" class="hidden sm:inline">Sunday, 25 August 2026</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#newsletter" class="hover:text-amber-700 transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-xs text-amber-600">mail</span>
+          <span>Skillsfy Brief (Newsletter)</span>
+        </a>
+        <span>•</span>
+        <a href="/" class="text-sky-700 hover:text-sky-900 font-bold flex items-center gap-1">
+          <span>Main Campus</span>
+          <span class="material-symbols-outlined text-xs">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      
+      <!-- Brand Logo & Positioning -->
+      <div class="flex items-center gap-4">
+        <a href="insights.html" class="flex items-baseline gap-2.5 group">
+          <span class="font-serif-headline text-2xl sm:text-3xl font-bold tracking-tight text-stone-950 group-hover:text-amber-700 transition-colors">
+            SKILLSFY <span class="font-sans text-xs uppercase tracking-widest px-2 py-0.5 rounded bg-stone-900 text-amber-400 font-bold ml-1">INSIGHTS</span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Center Category Navigation -->
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold text-stone-600">
+        <button onclick="filterCategory('All')" class="category-nav-btn text-stone-950 font-bold border-b-2 border-stone-950 pb-0.5">All Stories</button>
+        <button onclick="filterCategory('Business Strategy')" class="category-nav-btn hover:text-stone-950 transition-colors">Business Models</button>
+        <button onclick="filterCategory('Startups & Scale')" class="category-nav-btn hover:text-stone-950 transition-colors">Startups & Scale</button>
+        <button onclick="filterCategory('Leadership & Culture')" class="category-nav-btn hover:text-stone-950 transition-colors">Founders & Culture</button>
+        <a href="#founders-section" class="hover:text-stone-950 transition-colors">Founders Index</a>
+        <a href="#companies-section" class="hover:text-stone-950 transition-colors">Companies</a>
+      </nav>
+
+      <!-- Right Action & Multi-Entity Search -->
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <input 
+            type="text" 
+            id="global-search-input"
+            onkeyup="handleLiveSearch(this.value)"
+            placeholder="Search founders, companies..." 
+            class="pl-8 pr-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs w-36 sm:w-56 focus:w-64 transition-all focus:bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-400 text-stone-900 placeholder:text-stone-400"
+          />
+          <span class="material-symbols-outlined absolute left-2.5 top-2 text-stone-400 text-sm">search</span>
+          
+          <!-- Search Dropdown Results Container -->
+          <div id="search-results-dropdown" class="absolute right-0 top-10 w-80 bg-white border editorial-border rounded-2xl shadow-2xl p-3 z-50 hidden max-h-96 overflow-y-auto space-y-2">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <a href="/" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold transition-all shadow-sm hover:scale-105">
+          <span>Skillsfy Courses</span>
+          <span class="material-symbols-outlined text-xs text-amber-400">arrow_forward</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= EDITORIAL MOTTO BAR ================= -->
+  <div class="bg-stone-100 border-b editorial-border py-2 text-center text-xs font-serif italic text-stone-600">
+    <span>"We study the people and businesses building what comes next — and turn their journeys into lessons you can use."</span>
+  </div>
+
+  <!-- ================= MAIN EDITORIAL BODY ================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16 flex-1 w-full">
+    
+    <!-- ================= 1. HERO LEAD STORY & SIDE PANEL ================= -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left: Featured Lead Story (8 Columns) -->
+      <div id="hero-lead-container" class="lg:col-span-8 space-y-4">
+        <!-- Rendered dynamically from INSIGHTS_DATA -->
+      </div>
+
+      <!-- Right: Trending Now & Quick Insights (4 Columns) -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="p-6 rounded-3xl bg-white border editorial-border shadow-sm space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b editorial-border">
+            <span class="text-xs font-bold uppercase tracking-wider text-stone-500 font-sans flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+              <span>Trending Research</span>
+            </span>
+            <span class="text-[10px] font-mono text-stone-400">UPDATED HOURLY</span>
+          </div>
+
+          <div class="space-y-4 divide-y divide-stone-100" id="trending-stories-list">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Latest Business Podcast Widget -->
+        <div class="p-6 rounded-3xl bg-stone-900 text-white shadow-xl space-y-4">
+          <span class="badge-pill bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-500/30">
+            🎙️ SKILLSFY AUDIO ESSAY
+          </span>
+          <h4 class="font-serif-headline text-lg font-bold leading-snug">
+            Why Profitability Is the Ultimate Distribution Moat in 2026
+          </h4>
+          <p class="text-xs text-stone-400 leading-relaxed">
+            A 15-minute executive synthesis analyzing balance sheets across India's top bootstrapped tech enterprises.
+          </p>
+          <div class="pt-2 flex items-center justify-between text-xs">
+            <span class="text-stone-400 font-mono">15 Min Listen</span>
+            <button onclick="openStoryModal('zerodha-growth-breakdown')" class="text-amber-400 font-bold hover:text-amber-300 flex items-center gap-1">
+              <span>Read Teardown</span>
+              <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= 2. PEOPLE WHO BUILT SOMETHING REMARKABLE ================= -->
+    <section id="founders-section" class="space-y-6 pt-4 border-t editorial-border">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-700 font-sans">Builder Directory</span>
+          <h2 class="font-serif-headline text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
+            People Who Built Something Remarkable
+          </h2>
+          <p class="text-xs text-stone-500 mt-1">Explore detailed founder journeys, chronological timelines, tactical decisions, and failures overcome.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4" id="founders-grid">
+        <!-- Rendered dynamically from INSIGHTS_DATA.founders -->
+      </div>
+    </section>
+
+    <!-- ================= 3. HOW INDIA'S BEST COMPANIES MAKE MONEY ================= -->
+    <section id="companies-section" class="space-y-6 pt-4 border-t editorial-border">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-sans">Business Intelligence</span>
+          <h2 class="font-serif-headline text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
+            How India's Best Companies Make Money
+          </h2>
+          <p class="text-xs text-stone-500 mt-1">Unbundled business model teardowns, unit economics, customer acquisition, and competitive moats.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" id="companies-grid">
+        <!-- Rendered dynamically from INSIGHTS_DATA.companies -->
+      </div>
+    </section>
+
+    <!-- ================= 4. WHAT WE LEARNED (TACTICAL PLAYBOOK) ================= -->
+    <section class="p-8 sm:p-12 rounded-3xl bg-stone-900 text-white shadow-2xl space-y-8">
+      <div class="max-w-3xl space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-400 font-sans">Recurring Master Property</span>
+        <h2 class="font-serif-headline text-3xl sm:text-4xl font-bold">
+          7 Tactical Lessons From India's Most Resilient Builders
+        </h2>
+        <p class="text-xs sm:text-sm text-stone-400">
+          Synthesized from over 150+ hours of founder interviews, financial filings, and post-mortems.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-xs text-stone-300">
+        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
+          <span class="text-amber-400 font-mono font-bold text-sm">01.</span>
+          <h4 class="font-bold text-white text-sm">Distribution Moats Compound</h4>
+          <p class="text-stone-400">Paid marketing only works while the credit card is swiping. Educational content and developer APIs create permanent traffic.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
+          <span class="text-amber-400 font-mono font-bold text-sm">02.</span>
+          <h4 class="font-bold text-white text-sm">Lean Teams Protect Speed</h4>
+          <p class="text-stone-400">Zerodha generated ₹2,000 Cr profit with 120 engineers. Adding headcount before product-market fit creates coordination friction.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
+          <span class="text-amber-400 font-mono font-bold text-sm">03.</span>
+          <h4 class="font-bold text-white text-sm">Own the Entire Tech Stack</h4>
+          <p class="text-stone-400">Zoho owns its data centers, compilers, and hardware layers, achieving 85%+ gross profit margins while competitors pay cloud bills.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
+          <span class="text-amber-400 font-mono font-bold text-sm">04.</span>
+          <h4 class="font-bold text-white text-sm">Hyperlocal Density Over Breadth</h4>
+          <p class="text-stone-400">Quick commerce only works when you dominate a 2 km cluster with 1,000 orders/day before expanding into new cities.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
+          <span class="text-amber-400 font-mono font-bold text-sm">05.</span>
+          <h4 class="font-bold text-white text-sm">Never Sell On Commissions</h4>
+          <p class="text-stone-400">If your team makes money by pushing transactions, they will inevitably sacrifice long-term client trust for short-term quotas.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
+          <span class="text-amber-400 font-mono font-bold text-sm">06.</span>
+          <h4 class="font-bold text-white text-sm">Age & Background Are Irrelevant</h4>
+          <p class="text-stone-400">Falguni Nayar started Nykaa at age 50; Ritesh Agarwal started OYO at age 19. Conviction and execution consistency beat pedigree.</p>
+        </div>
+      </div>
+
+      <!-- Contextual High-Trust Course Card -->
+      <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-950/40 via-stone-800 to-sky-950/40 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="text-[10px] font-mono text-amber-400 uppercase font-bold tracking-wider">TURN STRATEGY INTO SKILL</span>
+          <h4 class="text-base font-bold text-white">Want to build, deploy & sell high-margin AI web projects?</h4>
+          <p class="text-xs text-stone-300">Join the live hands-on Skillsfy AI Web Development masterclass.</p>
+        </div>
+        <a href="/lp1" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-black text-xs shadow-lg transition-all whitespace-nowrap">
+          Explore Live Program (₹149) →
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= 5. SKILLSFY BRIEF (NEWSLETTER STRIP) ================= -->
+    <section id="newsletter" class="p-8 sm:p-12 rounded-3xl bg-white border editorial-border text-center space-y-4 max-w-3xl mx-auto shadow-sm">
+      <span class="badge-pill bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-black">
+        WEEKLY INTELLECTUAL DOSSIER
+      </span>
+      <h3 class="font-serif-headline text-3xl font-bold text-stone-900">
+        Skillsfy Brief
+      </h3>
+      <p class="text-xs sm:text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
+        <strong>5 minutes. 5 ideas. One better business decision.</strong> Delivered to India's top founders, developers, and operators every Sunday morning.
+      </p>
+
+      <form onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto pt-2">
+        <input 
+          type="email" 
+          id="newsletter-email"
+          required 
+          placeholder="Enter your work email address..." 
+          class="px-4 py-3 rounded-xl bg-stone-50 border editorial-border text-xs flex-1 text-stone-900 focus:bg-white focus:border-amber-600 focus:ring-1 focus:ring-amber-600"
+        />
+        <button type="submit" class="px-6 py-3 bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold rounded-xl transition-all shadow">
+          Join Free →
+        </button>
+      </form>
+      <p class="text-[10px] text-stone-400">Zero spam. Strictly high-signal business research. Unsubscribe anytime.</p>
+    </section>
+
+  </main>
+
+  <!-- ================= MASTER ARTICLE READER MODAL (5-QUESTION FRAMEWORK) ================= -->
+  <div id="story-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
+    <div class="max-w-3xl w-full bg-white border editorial-border rounded-3xl p-6 sm:p-10 shadow-2xl max-h-[92vh] overflow-y-auto space-y-8 text-left">
+      
+      <!-- Close Bar -->
+      <div class="flex items-center justify-between border-b editorial-border pb-4">
+        <span class="text-xs font-mono font-bold text-stone-400 uppercase tracking-wider">SKILLSFY INSIGHTS RESEARCH DOSSIER</span>
+        <button onclick="closeStoryModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <!-- Story Dynamic Content Container -->
+      <div id="story-modal-content" class="space-y-6">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= FOUNDER KNOWLEDGE PROFILE MODAL ================= -->
+  <div id="founder-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
+    <div class="max-w-2xl w-full bg-white border editorial-border rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto space-y-6 text-left">
+      <div class="flex items-center justify-between border-b editorial-border pb-3">
+        <span class="text-xs font-mono font-bold text-amber-700 uppercase tracking-wider">BUILDER DOSSIER</span>
+        <button onclick="closeFounderModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <div id="founder-modal-content" class="space-y-6">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= COMPANY INTELLIGENCE DOSSIER MODAL ================= -->
+  <div id="company-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
+    <div class="max-w-2xl w-full bg-white border editorial-border rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto space-y-6 text-left">
+      <div class="flex items-center justify-between border-b editorial-border pb-3">
+        <span class="text-xs font-mono font-bold text-sky-700 uppercase tracking-wider">ENTERPRISE INTELLIGENCE</span>
+        <button onclick="closeCompanyModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <div id="company-modal-content" class="space-y-6">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300"></div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t editorial-border py-12 mt-16 text-stone-500 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b editorial-border pb-8">
+        <div>
+          <span class="font-serif-headline text-2xl font-bold text-stone-950">SKILLSFY INSIGHTS</span>
+          <p class="text-xs text-stone-400 mt-0.5">Stories. Strategies. Lessons. — An independent media initiative by Skillsfy Institute of Technology.</p>
+        </div>
+        <div class="flex items-center gap-4 text-xs font-semibold text-stone-600">
+          <a href="/" class="hover:text-stone-950">Campus</a>
+          <a href="/courses.html" class="hover:text-stone-950">Programs</a>
+          <a href="/about.html" class="hover:text-stone-950">Mission</a>
+          <a href="/contact.html" class="hover:text-stone-950">Editorial Contact</a>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-stone-400">
+        <p>© 2026 Skillsfy Institute of Technology. All research, case studies, and editorial breakdowns are curated for educational purposes.</p>
+        <p>Built with Next-Gen Modular Architecture • Ready for Firebase & Scalable Cloud</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT DATA ENGINE & RENDERING ================= -->
+  <script src="js/insights-data.js"></script>
+  <script>
+    let activeCategory = 'All';
+
+    function showToast(msg, type = 'info') {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.className = `fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all ${
+        type === 'success' ? 'bg-emerald-600' : 'bg-stone-900'
+      }`;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 3500);
+    }
+
+    // ================= RENDER HERO & STORIES =================
+    function renderEditorialStories() {
+      const heroContainer = document.getElementById('hero-lead-container');
+      const trendingContainer = document.getElementById('trending-stories-list');
+      if (!heroContainer || !window.INSIGHTS_DATA) return;
+
+      const stories = window.INSIGHTS_DATA.stories;
+      const featured = stories.find(s => s.featured) || stories[0];
+
+      // 1. Render Hero Lead Story
+      heroContainer.innerHTML = `
+        <article onclick="openStoryModal('${featured.id}')" class="group cursor-pointer p-6 sm:p-8 rounded-3xl bg-white border editorial-border shadow-sm hover-lift space-y-4">
+          <div class="relative overflow-hidden rounded-2xl aspect-[16/9] sm:aspect-[21/9]">
+            <img src="${featured.coverImage}" alt="${featured.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute top-3 left-3 flex items-center gap-2">
+              <span class="badge-pill bg-stone-900 text-amber-400 text-[10px] font-bold uppercase tracking-wider">
+                FEATURED RESEARCH
+              </span>
+              <span class="badge-pill bg-white/90 backdrop-blur-md text-stone-800 text-[10px] font-bold">
+                ✓ FACT CHECKED
+              </span>
+            </div>
+          </div>
+
+          <div class="space-y-2.5">
+            <div class="flex items-center gap-2 text-xs text-stone-500 font-medium">
+              <span class="text-amber-700 font-bold uppercase tracking-wider">${featured.category}</span>
+              <span>•</span>
+              <span>${featured.readTime}</span>
+              <span>•</span>
+              <span>${featured.date}</span>
+            </div>
+
+            <h2 class="font-serif-headline text-2xl sm:text-4xl font-bold text-stone-950 leading-tight group-hover:text-amber-800 transition-colors">
+              ${featured.title}
+            </h2>
+
+            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed line-clamp-3">
+              ${featured.subtitle}
+            </p>
+          </div>
+
+          <div class="pt-2 flex items-center justify-between border-t editorial-border text-xs text-stone-500">
+            <span class="font-semibold text-stone-950">Read Complete 5-Question Breakdown →</span>
+            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </article>
+      `;
+
+      // 2. Render Side Rail Trending List
+      if (trendingContainer) {
+        const trendingList = stories.filter(s => s.id !== featured.id);
+        trendingContainer.innerHTML = trendingList.map((s, idx) => `
+          <div onclick="openStoryModal('${s.id}')" class="pt-3 first:pt-0 cursor-pointer group space-y-1">
+            <div class="flex items-center gap-2 text-[11px] text-stone-400 font-mono">
+              <span class="font-bold text-amber-600">#0${idx + 1}</span>
+              <span>${s.category}</span>
+              <span>•</span>
+              <span>${s.readTime}</span>
+            </div>
+            <h4 class="font-serif-headline text-sm font-bold text-stone-900 group-hover:text-amber-800 transition-colors line-clamp-2">
+              ${s.title}
+            </h4>
+          </div>
+        `).join('');
+      }
+    }
+
+    // ================= RENDER FOUNDERS DIRECTORY =================
+    function renderFoundersGrid() {
+      const container = document.getElementById('founders-grid');
+      if (!container || !window.INSIGHTS_DATA) return;
+
+      container.innerHTML = window.INSIGHTS_DATA.founders.map(f => `
+        <div onclick="openFounderModal('${f.id}')" class="group cursor-pointer p-4 rounded-2xl bg-white border editorial-border hover-lift text-left space-y-3">
+          <div class="aspect-square rounded-xl overflow-hidden bg-stone-100">
+            <img src="${f.photo}" alt="${f.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div>
+            <span class="badge-pill bg-stone-100 text-stone-700 text-[10px] font-bold">${f.company}</span>
+            <h4 class="font-serif-headline text-base font-bold text-stone-950 mt-1 group-hover:text-amber-700 transition-colors">${f.name}</h4>
+            <p class="text-[11px] text-stone-500 line-clamp-2 mt-0.5">${f.bio}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ================= RENDER COMPANIES DIRECTORY =================
+    function renderCompaniesGrid() {
+      const container = document.getElementById('companies-grid');
+      if (!container || !window.INSIGHTS_DATA) return;
+
+      container.innerHTML = window.INSIGHTS_DATA.companies.map(c => `
+        <div onclick="openCompanyModal('${c.id}')" class="group cursor-pointer p-5 rounded-2xl bg-white border editorial-border hover-lift space-y-3 text-left">
+          <div class="flex items-center justify-between">
+            <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200 text-[10px] font-bold">${c.industry}</span>
+            <span class="text-[10px] font-mono text-stone-400">Est. ${c.founded}</span>
+          </div>
+          <div>
+            <h4 class="font-serif-headline text-lg font-bold text-stone-950 group-hover:text-sky-700 transition-colors">${c.name}</h4>
+            <p class="text-xs text-stone-500 line-clamp-2 mt-1">${c.tagline}</p>
+          </div>
+          <div class="pt-2 border-t editorial-border text-[11px] text-stone-400 font-mono flex items-center justify-between">
+            <span>${c.fundingStage}</span>
+            <span class="font-bold text-stone-800">Explore Moat →</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ================= OPEN 5-QUESTION ARTICLE MODAL =================
+    function openStoryModal(storyId) {
+      const story = window.INSIGHTS_DATA.stories.find(s => s.id === storyId);
+      if (!story) return;
+
+      const modal = document.getElementById('story-modal');
+      const content = document.getElementById('story-modal-content');
+      if (!modal || !content) return;
+
+      const sec = story.sections;
+
+      content.innerHTML = `
+        <div class="space-y-6">
+          
+          <!-- Article Header Strip -->
+          <div class="space-y-3 pb-4 border-b editorial-border">
+            <div class="flex items-center gap-2 text-xs font-semibold text-stone-500">
+              <span class="text-amber-700 font-bold uppercase">${story.category}</span>
+              <span>•</span>
+              <span>${story.readTime}</span>
+              <span>•</span>
+              <span>${story.date}</span>
+              <span class="ml-auto badge-pill bg-emerald-100 text-emerald-800 text-[10px] font-bold">✓ VERIFIED CITATION</span>
+            </div>
+
+            <h1 class="font-serif-headline text-3xl sm:text-4xl font-bold text-stone-950 leading-tight">
+              ${story.title}
+            </h1>
+            <p class="text-sm sm:text-base text-stone-600 italic font-serif leading-relaxed">
+              ${story.subtitle}
+            </p>
+          </div>
+
+          <!-- Hero Media -->
+          <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow">
+            <img src="${story.coverImage}" alt="${story.title}" class="w-full h-full object-cover" />
+          </div>
+
+          <!-- 📌 TL;DR Summary Box -->
+          <div class="p-6 rounded-2xl bg-stone-100 border border-stone-200 space-y-3 text-xs">
+            <span class="font-bold text-stone-900 uppercase tracking-wider text-[11px] block font-sans">📌 Executive Summary (TL;DR)</span>
+            <ul class="space-y-1.5 list-disc list-inside text-stone-700 leading-relaxed">
+              ${story.tldr.map(t => `<li>${t}</li>`).join('')}
+            </ul>
+          </div>
+
+          <!-- 1. What Happened -->
+          <div class="space-y-2">
+            <h3 class="font-serif-headline text-xl font-bold text-stone-950 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-stone-900 text-amber-400 font-sans text-xs flex items-center justify-center">1</span>
+              <span>What Happened? (The Origin Narrative)</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed whitespace-pre-line">${sec.whatHappened}</p>
+          </div>
+
+          <!-- 2. Why Did It Happen -->
+          <div class="space-y-2">
+            <h3 class="font-serif-headline text-xl font-bold text-stone-950 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-stone-900 text-amber-400 font-sans text-xs flex items-center justify-center">2</span>
+              <span>Why Did It Happen? (Market Structural Inefficiencies)</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed whitespace-pre-line">${sec.whyItHappened}</p>
+          </div>
+
+          <!-- 3. What Worked -->
+          <div class="space-y-2">
+            <h3 class="font-serif-headline text-xl font-bold text-stone-950 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-stone-900 text-amber-400 font-sans text-xs flex items-center justify-center">3</span>
+              <span>What Actually Worked? (Strategic Moats)</span>
+            </h3>
+            <div class="text-xs sm:text-sm text-stone-700 leading-relaxed whitespace-pre-line">${sec.whatWorked}</div>
+          </div>
+
+          <!-- 4. What Failed / Mistakes -->
+          <div class="space-y-2">
+            <h3 class="font-serif-headline text-xl font-bold text-stone-950 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-stone-900 text-amber-400 font-sans text-xs flex items-center justify-center">4</span>
+              <span>What Failed & Glitches Overcome?</span>
+            </h3>
+            <div class="text-xs sm:text-sm text-stone-700 leading-relaxed whitespace-pre-line">${sec.whatFailed}</div>
+          </div>
+
+          <!-- 💡 Single Contextual Soft Course CTA Card -->
+          <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="space-y-1 text-xs">
+              <span class="badge-pill bg-amber-200 text-amber-900 font-bold text-[10px]">APPLY THIS SKILL</span>
+              <h4 class="font-bold text-stone-900 text-sm">${story.relatedCourse.title}</h4>
+              <p class="text-stone-600">Turn these architectural & business principles into real code and client projects.</p>
+            </div>
+            <a href="/lp1" target="_blank" class="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-black text-xs shadow transition-all whitespace-nowrap">
+              ${story.relatedCourse.ctaText}
+            </a>
+          </div>
+
+          <!-- 5. What Can We Learn -->
+          <div class="space-y-3">
+            <h3 class="font-serif-headline text-xl font-bold text-stone-950 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-stone-900 text-amber-400 font-sans text-xs flex items-center justify-center">5</span>
+              <span>What Can We Learn? (5 Builder Takeaways)</span>
+            </h3>
+            <div class="grid grid-cols-1 gap-2 text-xs">
+              ${sec.lessonsLearned.map(l => `
+                <div class="p-3.5 rounded-xl bg-stone-50 border editorial-border text-stone-800 leading-relaxed">
+                  ${l}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Primary & Secondary Sources -->
+          <div class="p-4 rounded-xl bg-stone-100 border editorial-border text-xs space-y-1 font-mono text-[11px] text-stone-600">
+            <span class="font-bold text-stone-800 block font-sans">Verified Sources & Citations:</span>
+            ${sec.sources.map(s => `
+              <div>• ${s.title} — <strong class="text-stone-700">${s.publisher}</strong></div>
+            `).join('')}
+          </div>
+
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeStoryModal() {
+      const modal = document.getElementById('story-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // ================= OPEN FOUNDER PROFILE MODAL =================
+    function openFounderModal(founderId) {
+      const f = window.INSIGHTS_DATA.founders.find(item => item.id === founderId);
+      if (!f) return;
+
+      const modal = document.getElementById('founder-modal');
+      const content = document.getElementById('founder-modal-content');
+      if (!modal || !content) return;
+
+      content.innerHTML = `
+        <div class="space-y-6 text-left">
+          
+          <div class="flex items-center gap-4 pb-4 border-b editorial-border">
+            <img src="${f.photo}" alt="${f.name}" class="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl object-cover shadow" />
+            <div>
+              <span class="badge-pill bg-stone-100 text-stone-800 text-[10px] font-bold">${f.industry}</span>
+              <h3 class="font-serif-headline text-2xl font-bold text-stone-950 mt-1">${f.name}</h3>
+              <p class="text-xs text-stone-500 font-semibold">${f.title}</p>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-stone-700 leading-relaxed italic font-serif">"${f.bio}"</p>
+
+          <!-- Timeline -->
+          <div class="space-y-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-stone-500 font-sans block">Chronological Timeline</span>
+            <div class="space-y-2 text-xs border-l-2 border-amber-500/50 pl-3">
+              ${f.timeline.map(t => `
+                <div>
+                  <strong class="font-mono text-amber-800 block">${t.year}</strong>
+                  <p class="text-stone-600">${t.event}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Key Lessons -->
+          <div class="space-y-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-stone-500 font-sans block">Extracted Leadership Lessons</span>
+            <ul class="space-y-1.5 list-disc list-inside text-xs text-stone-700">
+              ${f.lessons.map(l => `<li>${l}</li>`).join('')}
+            </ul>
+          </div>
+
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeFounderModal() {
+      const modal = document.getElementById('founder-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // ================= OPEN COMPANY DOSSIER MODAL =================
+    function openCompanyModal(companyId) {
+      const c = window.INSIGHTS_DATA.companies.find(item => item.id === companyId);
+      if (!c) return;
+
+      const modal = document.getElementById('company-modal');
+      const content = document.getElementById('company-modal-content');
+      if (!modal || !content) return;
+
+      content.innerHTML = `
+        <div class="space-y-6 text-left">
+          
+          <div class="flex items-center justify-between pb-4 border-b editorial-border">
+            <div>
+              <span class="badge-pill bg-sky-100 text-sky-800 text-[10px] font-bold">${c.industry}</span>
+              <h3 class="font-serif-headline text-2xl font-bold text-stone-950 mt-1">${c.name}</h3>
+              <p class="text-xs text-stone-500">${c.tagline}</p>
+            </div>
+            <span class="text-xs font-mono text-stone-400">Founded ${c.founded}</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-xl bg-stone-50 border editorial-border space-y-1">
+              <span class="font-bold text-stone-500 uppercase text-[10px] block">Business Model</span>
+              <p class="text-stone-800 font-medium">${c.businessModel}</p>
+            </div>
+            <div class="p-4 rounded-xl bg-stone-50 border editorial-border space-y-1">
+              <span class="font-bold text-stone-500 uppercase text-[10px] block">Funding & Valuation</span>
+              <p class="text-stone-800 font-medium">${c.fundingStage} (${c.valuation})</p>
+            </div>
+          </div>
+
+          <div class="space-y-1 text-xs">
+            <span class="font-bold text-stone-500 uppercase text-[10px] block">Revenue Model Breakdown</span>
+            <p class="text-stone-700 leading-relaxed">${c.revenueModel}</p>
+          </div>
+
+          <div class="space-y-1 text-xs">
+            <span class="font-bold text-stone-500 uppercase text-[10px] block">Defensible Moat</span>
+            <p class="text-stone-700 leading-relaxed">${c.moat}</p>
+          </div>
+
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeCompanyModal() {
+      const modal = document.getElementById('company-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // ================= MULTI-ENTITY LIVE SEARCH =================
+    function handleLiveSearch(query) {
+      const dropdown = document.getElementById('search-results-dropdown');
+      if (!dropdown) return;
+
+      const q = (query || '').trim().toLowerCase();
+      if (q.length < 2) {
+        dropdown.classList.add('hidden');
+        return;
+      }
+
+      const matchStories = window.INSIGHTS_DATA.stories.filter(s => s.title.toLowerCase().includes(q) || s.category.toLowerCase().includes(q));
+      const matchFounders = window.INSIGHTS_DATA.founders.filter(f => f.name.toLowerCase().includes(q) || f.company.toLowerCase().includes(q));
+      const matchCompanies = window.INSIGHTS_DATA.companies.filter(c => c.name.toLowerCase().includes(q) || c.industry.toLowerCase().includes(q));
+
+      if (matchStories.length === 0 && matchFounders.length === 0 && matchCompanies.length === 0) {
+        dropdown.innerHTML = `<p class="text-xs text-stone-400 text-center py-2">No matching knowledge entities found.</p>`;
+        dropdown.classList.remove('hidden');
+        return;
+      }
+
+      let html = '';
+      if (matchStories.length > 0) {
+        html += `<span class="text-[10px] font-bold uppercase text-stone-400 block px-1">Research Stories</span>`;
+        html += matchStories.map(s => `
+          <div onclick="openStoryModal('${s.id}'); document.getElementById('search-results-dropdown').classList.add('hidden')" class="p-2 hover:bg-stone-50 rounded-xl cursor-pointer text-xs font-semibold text-stone-900">
+            ${s.title}
+          </div>
+        `).join('');
+      }
+
+      if (matchFounders.length > 0) {
+        html += `<span class="text-[10px] font-bold uppercase text-amber-700 block px-1 pt-2">Founders & Builders</span>`;
+        html += matchFounders.map(f => `
+          <div onclick="openFounderModal('${f.id}'); document.getElementById('search-results-dropdown').classList.add('hidden')" class="p-2 hover:bg-stone-50 rounded-xl cursor-pointer text-xs font-bold text-stone-900 flex items-center justify-between">
+            <span>${f.name}</span>
+            <span class="text-[10px] font-normal text-stone-400">${f.company}</span>
+          </div>
+        `).join('');
+      }
+
+      if (matchCompanies.length > 0) {
+        html += `<span class="text-[10px] font-bold uppercase text-sky-700 block px-1 pt-2">Companies</span>`;
+        html += matchCompanies.map(c => `
+          <div onclick="openCompanyModal('${c.id}'); document.getElementById('search-results-dropdown').classList.add('hidden')" class="p-2 hover:bg-stone-50 rounded-xl cursor-pointer text-xs font-bold text-stone-900 flex items-center justify-between">
+            <span>${c.name}</span>
+            <span class="text-[10px] font-normal text-stone-400">${c.industry}</span>
+          </div>
+        `).join('');
+      }
+
+      dropdown.innerHTML = html;
+      dropdown.classList.remove('hidden');
+    }
+
+    // ================= NEWSLETTER SUBMIT =================
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('newsletter-email').value;
+      showToast(`✓ Subscribed ${email} to the Skillsfy Brief!`, 'success');
+      document.getElementById('newsletter-email').value = '';
+    }
+
+    // ================= READING PROGRESS BAR =================
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const bar = document.getElementById('reading-bar');
+      if (bar) bar.style.width = scrolled + '%';
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderEditorialStories();
+      renderFoundersGrid();
+      renderCompaniesGrid();
+    });
+  </script>
+</body>
+</html>
