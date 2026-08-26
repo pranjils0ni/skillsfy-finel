@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Skillsfy Insights — Stories. Strategies. Lessons.</title>
-  <meta name="description" content="India's builder knowledge platform. Deep research, business model breakdowns, founder journeys, and actionable lessons for entrepreneurs and ambitious professionals." />
+  <meta name="description" content="India's premier business media & knowledge platform. Deep research, business model breakdowns, founder journeys, and actionable lessons from remarkable builders." />
   
   <!-- OpenGraph Meta Tags for Authority -->
   <meta property="og:title" content="Skillsfy Insights — Stories. Strategies. Lessons." />
@@ -13,11 +13,13 @@
   <meta property="og:url" content="https://insights.skillsfy.in" />
   <meta property="og:image" content="https://skillsfy.in/assets/logo.png" />
 
-  <!-- Tailwind CSS & Editorial Typography Fonts -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
+  
+  <!-- Google Fonts: Playfair Display & Inter (per DESIGN.md specification) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   
   <script>
@@ -25,20 +27,20 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              navy: "#0a1128",
-              amber: "#d97706",
-              gold: "#f59e0b",
-              sky: "#0284c7",
-              card: "#ffffff",
-              canvas: "#fbfaf8",
-              border: "#e7e5e4"
-            }
+            'surface-paper': '#FAF9F8',
+            'surface-white': '#FFFFFF',
+            'text-primary': '#1A1A1A',
+            'text-secondary': '#71717A',
+            'border-subtle': '#E5E7EB',
+            'accent-teal': '#0E7490',
+            'accent-teal-dark': '#006781',
+            'accent-teal-light': '#F0FDFA',
+            'accent-gold': '#D97706',
           },
           fontFamily: {
-            serif: ["Newsreader", "Georgia", "serif"],
-            sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
-            body: ["Inter", "sans-serif"]
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['Inter', '-apple-system', 'sans-serif'],
+            body: ['Inter', '-apple-system', 'sans-serif'],
           }
         }
       }
@@ -47,102 +49,137 @@
 
   <style>
     body {
-      background-color: #fbfaf8;
-      color: #1c1917;
+      background-color: #FAF9F8;
+      color: #1A1A1A;
       font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
+    
     .font-serif-headline {
-      font-family: 'Newsreader', Georgia, serif;
+      font-family: 'Playfair Display', Georgia, serif;
     }
+    
     .editorial-border {
-      border-color: #e7e5e4;
+      border-color: #E5E7EB;
     }
-    .hover-lift {
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .hover-lift:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
-    }
+    
     .reading-progress-bar {
       position: fixed;
       top: 0;
       left: 0;
       height: 3px;
-      background: linear-gradient(90deg, #d97706, #0284c7);
+      background: #0E7490;
       width: 0%;
       z-index: 100;
       transition: width 0.1s ease-out;
     }
+
+    .editorial-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 4px;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+    .editorial-card:hover {
+      border-color: #0E7490;
+      transform: translateY(-2px);
+    }
+
+    .label-caps {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .pull-quote {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 20px;
+      line-height: 32px;
+      border-left: 3px solid #0E7490;
+      padding-left: 20px;
+      color: #1A1A1A;
+      font-style: italic;
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-amber-100 selection:text-amber-900">
+<body class="min-h-screen flex flex-col antialiased selection:bg-teal-50 selection:text-teal-900">
 
+  <!-- Sticky Top Reading Progress Bar -->
   <div id="reading-bar" class="reading-progress-bar"></div>
 
-  <!-- ================= TOP EDITORIAL MASTHEAD ================= -->
-  <header class="bg-white border-b editorial-border sticky top-0 z-40">
-    <!-- Top Utility Strip -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 border-b border-stone-100 flex items-center justify-between text-[11px] font-medium text-stone-500">
+  <!-- ================= 6. GLOBAL HEADER ================= -->
+  <header class="bg-surface-white border-b border-subtle sticky top-0 z-40">
+    <!-- Top Utility Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 border-b border-subtle flex items-center justify-between text-[11px] font-medium text-text-secondary">
       <div class="flex items-center gap-3">
-        <span>Edition: <strong class="text-stone-900 font-semibold">India & Emerging Markets</strong></span>
+        <span>Edition: <strong class="text-text-primary font-semibold">India & Emerging Markets</strong></span>
         <span class="hidden sm:inline">•</span>
-        <span id="current-date" class="hidden sm:inline">Sunday, 25 August 2026</span>
+        <span id="current-date" class="hidden sm:inline">Wednesday, 26 August 2026</span>
       </div>
       <div class="flex items-center gap-4">
-        <a href="#newsletter" class="hover:text-amber-700 transition-colors flex items-center gap-1">
-          <span class="material-symbols-outlined text-xs text-amber-600">mail</span>
-          <span>Skillsfy Brief (Newsletter)</span>
+        <a href="#newsletter" class="hover:text-accent-teal transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-xs text-accent-teal">mail</span>
+          <span>Skillsfy Brief</span>
         </a>
         <span>•</span>
-        <a href="/" class="text-sky-700 hover:text-sky-900 font-bold flex items-center gap-1">
+        <a href="/" class="text-text-primary hover:text-accent-teal font-semibold flex items-center gap-1">
           <span>Main Campus</span>
           <span class="material-symbols-outlined text-xs">arrow_forward</span>
         </a>
       </div>
     </div>
 
-    <!-- Main Navigation Bar -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+    <!-- Main Editorial Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
       
-      <!-- Brand Logo & Positioning -->
+      <!-- Brand Logo / Wordmark -->
       <div class="flex items-center gap-4">
-        <a href="insights.html" class="flex items-baseline gap-2.5 group">
-          <span class="font-serif-headline text-2xl sm:text-3xl font-bold tracking-tight text-stone-950 group-hover:text-amber-700 transition-colors">
-            SKILLSFY <span class="font-sans text-xs uppercase tracking-widest px-2 py-0.5 rounded bg-stone-900 text-amber-400 font-bold ml-1">INSIGHTS</span>
+        <a href="insights.html" class="flex items-baseline gap-2 group">
+          <span class="font-serif-headline text-2xl sm:text-3xl font-bold tracking-tight text-text-primary group-hover:text-accent-teal transition-colors">
+            SKILLSFY <span class="font-sans text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-sm bg-text-primary text-white font-bold ml-1">INSIGHTS</span>
           </span>
         </a>
       </div>
 
-      <!-- Center Category Navigation -->
-      <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold text-stone-600">
-        <button onclick="filterCategory('All')" class="category-nav-btn text-stone-950 font-bold border-b-2 border-stone-950 pb-0.5">All Stories</button>
-        <button onclick="filterCategory('Business Strategy')" class="category-nav-btn hover:text-stone-950 transition-colors">Business Models</button>
-        <button onclick="filterCategory('Startups & Scale')" class="category-nav-btn hover:text-stone-950 transition-colors">Startups & Scale</button>
-        <button onclick="filterCategory('Leadership & Culture')" class="category-nav-btn hover:text-stone-950 transition-colors">Founders & Culture</button>
-        <a href="#founders-section" class="hover:text-stone-950 transition-colors">Founders Index</a>
-        <a href="#companies-section" class="hover:text-stone-950 transition-colors">Companies</a>
+      <!-- Desktop Center Categories -->
+      <nav class="hidden xl:flex items-center gap-6 text-xs font-medium text-text-secondary">
+        <button onclick="filterCategory('All')" class="category-nav-btn text-text-primary font-bold border-b-2 border-text-primary pb-0.5">Stories</button>
+        <a href="#founders-section" class="hover:text-text-primary transition-colors">Founders</a>
+        <a href="#companies-section" class="hover:text-text-primary transition-colors">Companies</a>
+        <button onclick="filterCategory('Business Strategy')" class="category-nav-btn hover:text-text-primary transition-colors">Business</button>
+        <button onclick="filterCategory('Startups & Scale')" class="category-nav-btn hover:text-text-primary transition-colors">Startups</button>
+        <button onclick="filterCategory('Leadership & Culture')" class="category-nav-btn hover:text-text-primary transition-colors">Leadership</button>
+        <a href="#podcast-section" class="hover:text-text-primary transition-colors">Listen</a>
+        <a href="#video-section" class="hover:text-text-primary transition-colors">Watch</a>
       </nav>
 
-      <!-- Right Action & Multi-Entity Search -->
+      <!-- Right Utility Actions & Multi-Entity Search -->
       <div class="flex items-center gap-3">
+        <!-- Search Trigger / Input -->
         <div class="relative">
           <input 
             type="text" 
             id="global-search-input"
             onkeyup="handleLiveSearch(this.value)"
             placeholder="Search founders, companies..." 
-            class="pl-8 pr-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-xs w-36 sm:w-56 focus:w-64 transition-all focus:bg-white focus:border-stone-400 focus:ring-1 focus:ring-stone-400 text-stone-900 placeholder:text-stone-400"
+            class="pl-8 pr-3 py-1.5 rounded-sm bg-stone-50 border border-subtle text-xs w-36 sm:w-56 focus:w-64 transition-all focus:bg-white focus:border-accent-teal focus:ring-1 focus:ring-accent-teal text-text-primary placeholder:text-stone-400"
           />
-          <span class="material-symbols-outlined absolute left-2.5 top-2 text-stone-400 text-sm">search</span>
+          <span class="material-symbols-outlined absolute left-2 top-2 text-stone-400 text-sm">search</span>
           
           <!-- Search Dropdown Results Container -->
-          <div id="search-results-dropdown" class="absolute right-0 top-10 w-80 bg-white border editorial-border rounded-2xl shadow-2xl p-3 z-50 hidden max-h-96 overflow-y-auto space-y-2">
+          <div id="search-results-dropdown" class="absolute right-0 top-10 w-80 bg-white border border-subtle rounded-sm shadow-xl p-3 z-50 hidden max-h-96 overflow-y-auto space-y-2 text-left">
             <!-- Rendered dynamically -->
           </div>
         </div>
 
-        <a href="/" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold transition-all shadow-sm hover:scale-105">
+        <a href="#newsletter" class="hidden sm:inline-flex px-3.5 py-1.5 rounded-sm border border-subtle text-xs font-semibold text-text-primary hover:bg-stone-50 transition-colors">
+          Subscribe
+        </a>
+
+        <a href="/" class="hidden md:inline-flex items-center gap-1 px-4 py-1.5 rounded-sm bg-text-primary hover:bg-stone-800 text-white text-xs font-bold transition-all">
           <span>Skillsfy Courses</span>
           <span class="material-symbols-outlined text-xs text-amber-400">arrow_forward</span>
         </a>
@@ -152,53 +189,50 @@
   </header>
 
   <!-- ================= EDITORIAL MOTTO BAR ================= -->
-  <div class="bg-stone-100 border-b editorial-border py-2 text-center text-xs font-serif italic text-stone-600">
-    <span>"We study the people and businesses building what comes next — and turn their journeys into lessons you can use."</span>
+  <div class="bg-surface-paper border-b border-subtle py-2 text-center text-xs font-serif italic text-text-secondary">
+    <span>"We don't just tell you who succeeded. We study how they built it, what worked, what failed, and what you can learn from it."</span>
   </div>
 
-  <!-- ================= MAIN EDITORIAL BODY ================= -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16 flex-1 w-full">
+  <!-- ================= 7. HOMEPAGE MASTER BODY ================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20 flex-1 w-full">
     
-    <!-- ================= 1. HERO LEAD STORY & SIDE PANEL ================= -->
+    <!-- ================= SECTION 01 — HERO / FEATURED STORY ================= -->
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- Left: Featured Lead Story (8 Columns) -->
-      <div id="hero-lead-container" class="lg:col-span-8 space-y-4">
+      <!-- Left / Main: Featured Lead Story (8 Columns) -->
+      <div id="hero-lead-container" class="lg:col-span-8 space-y-6">
         <!-- Rendered dynamically from INSIGHTS_DATA -->
       </div>
 
-      <!-- Right: Trending Now & Quick Insights (4 Columns) -->
+      <!-- Right: Beside Featured Stories (4 Columns) -->
       <div class="lg:col-span-4 space-y-6">
-        <div class="p-6 rounded-3xl bg-white border editorial-border shadow-sm space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b editorial-border">
-            <span class="text-xs font-bold uppercase tracking-wider text-stone-500 font-sans flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-              <span>Trending Research</span>
+        <div class="p-6 editorial-card space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-subtle">
+            <span class="label-caps text-accent-teal flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-accent-teal"></span>
+              <span>Featured Analyses</span>
             </span>
-            <span class="text-[10px] font-mono text-stone-400">UPDATED HOURLY</span>
+            <span class="text-[10px] font-mono text-text-secondary">CURATED</span>
           </div>
 
-          <div class="space-y-4 divide-y divide-stone-100" id="trending-stories-list">
+          <div class="space-y-4 divide-y divide-subtle" id="side-featured-stories">
             <!-- Rendered dynamically -->
           </div>
         </div>
 
-        <!-- Latest Business Podcast Widget -->
-        <div class="p-6 rounded-3xl bg-stone-900 text-white shadow-xl space-y-4">
-          <span class="badge-pill bg-amber-500/20 text-amber-300 text-[10px] font-bold border border-amber-500/30">
-            🎙️ SKILLSFY AUDIO ESSAY
-          </span>
+        <!-- Latest Audio Essay Teaser -->
+        <div class="p-6 bg-text-primary text-white rounded-sm space-y-3">
+          <span class="label-caps text-amber-400">🎙️ SKILLSFY FOUNDER STORIES</span>
           <h4 class="font-serif-headline text-lg font-bold leading-snug">
-            Why Profitability Is the Ultimate Distribution Moat in 2026
+            Capital Discipline as the Ultimate Distribution Moat
           </h4>
-          <p class="text-xs text-stone-400 leading-relaxed">
-            A 15-minute executive synthesis analyzing balance sheets across India's top bootstrapped tech enterprises.
+          <p class="text-xs text-stone-300 leading-relaxed font-body">
+            A 48-minute executive teardown with Nikhil Kamath on building scalable companies with zero debt.
           </p>
           <div class="pt-2 flex items-center justify-between text-xs">
-            <span class="text-stone-400 font-mono">15 Min Listen</span>
-            <button onclick="openStoryModal('zerodha-growth-breakdown')" class="text-amber-400 font-bold hover:text-amber-300 flex items-center gap-1">
-              <span>Read Teardown</span>
-              <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            <span class="text-stone-400 font-mono">Episode 01 · 48 mins</span>
+            <button onclick="openStoryModal('zerodha-growth-breakdown')" class="text-amber-400 hover:underline font-semibold flex items-center gap-1">
+              <span>Read Teardown →</span>
             </button>
           </div>
         </div>
@@ -206,108 +240,214 @@
 
     </section>
 
-    <!-- ================= 2. PEOPLE WHO BUILT SOMETHING REMARKABLE ================= -->
-    <section id="founders-section" class="space-y-6 pt-4 border-t editorial-border">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+    <!-- ================= SECTION 02 — 8. TRENDING NOW ================= -->
+    <section class="space-y-6 pt-6 border-t border-subtle">
+      <div class="flex items-center justify-between">
         <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-amber-700 font-sans">Builder Directory</span>
-          <h2 class="font-serif-headline text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
-            People Who Built Something Remarkable
-          </h2>
-          <p class="text-xs text-stone-500 mt-1">Explore detailed founder journeys, chronological timelines, tactical decisions, and failures overcome.</p>
+          <span class="label-caps text-accent-teal">Real-Time Reading Velocity</span>
+          <h2 class="font-serif-headline text-2xl sm:text-3xl font-bold text-text-primary mt-1">Trending Now</h2>
+        </div>
+        <span class="text-xs text-text-secondary font-mono">UPDATED HOURLY</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="trending-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- ================= SECTION 03 — 9. LATEST STORIES ================= -->
+    <section class="space-y-6 pt-6 border-t border-subtle">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="label-caps text-text-secondary">Editorial Archive</span>
+          <h2 class="font-serif-headline text-2xl sm:text-3xl font-bold text-text-primary mt-1">Latest Stories</h2>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4" id="founders-grid">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" id="latest-stories-section">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- ================= SECTION 04 — 10. FOUNDER STORIES ================= -->
+    <section id="founders-section" class="space-y-6 pt-6 border-t border-subtle">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="label-caps text-accent-teal">Builder Directory</span>
+          <h2 class="font-serif-headline text-2xl sm:text-3xl font-bold text-text-primary mt-1">
+            People Who Built Something Remarkable
+          </h2>
+          <p class="text-xs text-text-secondary mt-1 font-body">
+            Stories, decisions and lessons from the founders shaping businesses in India and beyond.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="founders-grid">
         <!-- Rendered dynamically from INSIGHTS_DATA.founders -->
       </div>
     </section>
 
-    <!-- ================= 3. HOW INDIA'S BEST COMPANIES MAKE MONEY ================= -->
-    <section id="companies-section" class="space-y-6 pt-4 border-t editorial-border">
+    <!-- ================= SECTION 05 — 13. BUSINESS BREAKDOWNS ================= -->
+    <section id="companies-section" class="space-y-6 pt-6 border-t border-subtle">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
         <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 font-sans">Business Intelligence</span>
-          <h2 class="font-serif-headline text-2xl sm:text-3xl font-bold text-stone-900 mt-1">
-            How India's Best Companies Make Money
+          <span class="label-caps text-accent-teal">Company Intelligence</span>
+          <h2 class="font-serif-headline text-2xl sm:text-3xl font-bold text-text-primary mt-1">
+            Business Breakdowns
           </h2>
-          <p class="text-xs text-stone-500 mt-1">Unbundled business model teardowns, unit economics, customer acquisition, and competitive moats.</p>
+          <p class="text-xs text-text-secondary mt-1 font-body">
+            Explain how interesting companies actually work: business models, distribution, revenue, and defensible moats.
+          </p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" id="companies-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="companies-grid">
         <!-- Rendered dynamically from INSIGHTS_DATA.companies -->
       </div>
     </section>
 
-    <!-- ================= 4. WHAT WE LEARNED (TACTICAL PLAYBOOK) ================= -->
-    <section class="p-8 sm:p-12 rounded-3xl bg-stone-900 text-white shadow-2xl space-y-8">
+    <!-- ================= SECTION 06 — 14. WHAT WE LEARNED ================= -->
+    <section class="p-8 sm:p-12 editorial-card bg-surface-white space-y-8">
       <div class="max-w-3xl space-y-2">
-        <span class="text-xs font-bold uppercase tracking-wider text-amber-400 font-sans">Recurring Master Property</span>
-        <h2 class="font-serif-headline text-3xl sm:text-4xl font-bold">
-          7 Tactical Lessons From India's Most Resilient Builders
+        <span class="label-caps text-accent-teal">Signature Editorial Property</span>
+        <h2 class="font-serif-headline text-3xl sm:text-4xl font-bold text-text-primary">
+          What We Learned
         </h2>
-        <p class="text-xs sm:text-sm text-stone-400">
-          Synthesized from over 150+ hours of founder interviews, financial filings, and post-mortems.
+        <p class="text-xs sm:text-sm text-text-secondary font-body">
+          The lessons hidden inside the journeys of remarkable businesses, extracted from verified operational case studies.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-xs text-stone-300">
-        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
-          <span class="text-amber-400 font-mono font-bold text-sm">01.</span>
-          <h4 class="font-bold text-white text-sm">Distribution Moats Compound</h4>
-          <p class="text-stone-400">Paid marketing only works while the credit card is swiping. Educational content and developer APIs create permanent traffic.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-xs font-body">
+        
+        <div class="p-5 border border-subtle rounded-sm space-y-2 hover:border-accent-teal transition-colors">
+          <span class="font-serif-headline text-2xl font-bold text-accent-teal block">01</span>
+          <h4 class="font-serif-headline text-base font-bold text-text-primary">Distribution Can Matter More Than Product</h4>
+          <p class="text-text-secondary leading-relaxed">Paid ads stop working when capital runs out. Educational content (Varsity) and developer APIs build permanent organic distribution.</p>
         </div>
-        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
-          <span class="text-amber-400 font-mono font-bold text-sm">02.</span>
-          <h4 class="font-bold text-white text-sm">Lean Teams Protect Speed</h4>
-          <p class="text-stone-400">Zerodha generated ₹2,000 Cr profit with 120 engineers. Adding headcount before product-market fit creates coordination friction.</p>
-        </div>
-        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
-          <span class="text-amber-400 font-mono font-bold text-sm">03.</span>
-          <h4 class="font-bold text-white text-sm">Own the Entire Tech Stack</h4>
-          <p class="text-stone-400">Zoho owns its data centers, compilers, and hardware layers, achieving 85%+ gross profit margins while competitors pay cloud bills.</p>
-        </div>
-        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
-          <span class="text-amber-400 font-mono font-bold text-sm">04.</span>
-          <h4 class="font-bold text-white text-sm">Hyperlocal Density Over Breadth</h4>
-          <p class="text-stone-400">Quick commerce only works when you dominate a 2 km cluster with 1,000 orders/day before expanding into new cities.</p>
-        </div>
-        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
-          <span class="text-amber-400 font-mono font-bold text-sm">05.</span>
-          <h4 class="font-bold text-white text-sm">Never Sell On Commissions</h4>
-          <p class="text-stone-400">If your team makes money by pushing transactions, they will inevitably sacrifice long-term client trust for short-term quotas.</p>
-        </div>
-        <div class="p-5 rounded-2xl bg-stone-800/70 border border-stone-700 space-y-2">
-          <span class="text-amber-400 font-mono font-bold text-sm">06.</span>
-          <h4 class="font-bold text-white text-sm">Age & Background Are Irrelevant</h4>
-          <p class="text-stone-400">Falguni Nayar started Nykaa at age 50; Ritesh Agarwal started OYO at age 19. Conviction and execution consistency beat pedigree.</p>
-        </div>
-      </div>
 
-      <!-- Contextual High-Trust Course Card -->
-      <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-950/40 via-stone-800 to-sky-950/40 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="space-y-1">
-          <span class="text-[10px] font-mono text-amber-400 uppercase font-bold tracking-wider">TURN STRATEGY INTO SKILL</span>
-          <h4 class="text-base font-bold text-white">Want to build, deploy & sell high-margin AI web projects?</h4>
-          <p class="text-xs text-stone-300">Join the live hands-on Skillsfy AI Web Development masterclass.</p>
+        <div class="p-5 border border-subtle rounded-sm space-y-2 hover:border-accent-teal transition-colors">
+          <span class="font-serif-headline text-2xl font-bold text-accent-teal block">02</span>
+          <h4 class="font-serif-headline text-base font-bold text-text-primary">Start With a Painful Problem</h4>
+          <p class="text-text-secondary leading-relaxed">Zerodha started because active day traders lost 20-40% of their profits to percentage brokerage commissions. Removing the barrier created instant PMF.</p>
         </div>
-        <a href="/lp1" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-black text-xs shadow-lg transition-all whitespace-nowrap">
-          Explore Live Program (₹149) →
-        </a>
+
+        <div class="p-5 border border-subtle rounded-sm space-y-2 hover:border-accent-teal transition-colors">
+          <span class="font-serif-headline text-2xl font-bold text-accent-teal block">03</span>
+          <h4 class="font-serif-headline text-base font-bold text-text-primary">Capital Changes Strategy</h4>
+          <p class="text-text-secondary leading-relaxed">VC funding forces quarterly speed and cash-burn; bootstrapping forces ruthless unit economics, high gross margins, and deep R&D ownership.</p>
+        </div>
+
+        <div class="p-5 border border-subtle rounded-sm space-y-2 hover:border-accent-teal transition-colors">
+          <span class="font-serif-headline text-2xl font-bold text-accent-teal block">04</span>
+          <h4 class="font-serif-headline text-base font-bold text-text-primary">Speed Has Trade-offs</h4>
+          <p class="text-text-secondary leading-relaxed">Scaling physical dark stores or hotels too quickly before achieving unit-level contribution profitability burns capital unnecessarily.</p>
+        </div>
+
+        <div class="p-5 border border-subtle rounded-sm space-y-2 hover:border-accent-teal transition-colors">
+          <span class="font-serif-headline text-2xl font-bold text-accent-teal block">05</span>
+          <h4 class="font-serif-headline text-base font-bold text-text-primary">Founder Psychology Matters</h4>
+          <p class="text-text-secondary leading-relaxed">Staying calm during black-swan events and communicating transparent post-mortems with customers creates multi-generational loyalty.</p>
+        </div>
+
+        <div class="p-5 border border-subtle rounded-sm space-y-2 hover:border-accent-teal transition-colors">
+          <span class="font-serif-headline text-2xl font-bold text-accent-teal block">06</span>
+          <h4 class="font-serif-headline text-base font-bold text-text-primary">Own the Entire Tech Stack</h4>
+          <p class="text-text-secondary leading-relaxed">Zoho builds its own compilers, servers, and AI models, generating 85%+ gross profit margins while competitors pay heavy cloud rents.</p>
+        </div>
+
       </div>
     </section>
 
-    <!-- ================= 5. SKILLSFY BRIEF (NEWSLETTER STRIP) ================= -->
-    <section id="newsletter" class="p-8 sm:p-12 rounded-3xl bg-white border editorial-border text-center space-y-4 max-w-3xl mx-auto shadow-sm">
-      <span class="badge-pill bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-black">
-        WEEKLY INTELLECTUAL DOSSIER
-      </span>
-      <h3 class="font-serif-headline text-3xl font-bold text-stone-900">
-        Skillsfy Brief
+    <!-- ================= SECTION 07 — 15. DEEP DIVES ================= -->
+    <section class="space-y-6 pt-6 border-t border-subtle">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="label-caps text-accent-teal">Macro Research</span>
+          <h2 class="font-serif-headline text-2xl sm:text-3xl font-bold text-text-primary mt-1">Deep Dives</h2>
+        </div>
+      </div>
+
+      <div class="editorial-card p-6 sm:p-10 bg-white grid grid-cols-1 lg:grid-cols-12 gap-8 items-center cursor-pointer" onclick="openStoryModal('zomato-blinkit-turnaround')">
+        <div class="lg:col-span-7 space-y-4 text-left">
+          <div class="flex items-center gap-2 text-xs text-text-secondary font-mono">
+            <span class="text-accent-teal font-bold uppercase">8 SECTIONS</span>
+            <span>•</span>
+            <span>18 MIN READ</span>
+            <span>•</span>
+            <span>RESEARCH DOSSIER</span>
+          </div>
+          <h3 class="font-serif-headline text-2xl sm:text-4xl font-bold text-text-primary leading-tight hover:text-accent-teal transition-colors">
+            The Rise of India's Quick Commerce Economy
+          </h3>
+          <p class="text-xs sm:text-sm text-text-secondary leading-relaxed font-body">
+            How 10-minute grocery delivery apps rewrote urban consumer behavior, crushed traditional FMCG retail pipelines, and triggered an 800-store micro-warehouse gold rush across 50 Indian cities.
+          </p>
+          <div class="pt-2">
+            <span class="inline-flex items-center gap-1 text-xs font-bold text-text-primary hover:underline">
+              <span>Read Full Research Dossier</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </span>
+          </div>
+        </div>
+        <div class="lg:col-span-5 rounded-sm overflow-hidden aspect-[16/10] bg-stone-100">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80" alt="Quick Commerce" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 08 — 16. WATCH (VIDEO) & 17. LISTEN (PODCAST) ================= -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-6 border-t border-subtle">
+      
+      <!-- Video Section -->
+      <div id="video-section" class="space-y-4">
+        <div>
+          <span class="label-caps text-accent-teal">Watch</span>
+          <h2 class="font-serif-headline text-2xl font-bold text-text-primary mt-1">Video Breakdowns</h2>
+        </div>
+        <div class="space-y-4" id="video-cards-container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Podcast Section -->
+      <div id="podcast-section" class="space-y-4">
+        <div>
+          <span class="label-caps text-accent-teal">Listen</span>
+          <h2 class="font-serif-headline text-2xl font-bold text-text-primary mt-1">Skillsfy Founder Stories</h2>
+        </div>
+        <div class="space-y-4" id="podcast-cards-container">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= SECTION 09 — 19. TURN INSIGHT INTO SKILL ================= -->
+    <section class="p-8 sm:p-12 editorial-card bg-accent-teal-light border-teal-200 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="space-y-2 max-w-2xl text-left">
+        <span class="label-caps text-accent-teal font-bold">TURN INSIGHT INTO SKILL</span>
+        <h3 class="font-serif-headline text-2xl sm:text-3xl font-bold text-text-primary">
+          You just learned how remarkable founders build systems. Now build the skills yourself.
+        </h3>
+        <p class="text-xs sm:text-sm text-text-secondary leading-relaxed font-body">
+          Explore Skillsfy's intensive live programs in Full-Stack AI Engineering, Digital Product Systems, and Modern Platform Architecture.
+        </p>
+      </div>
+      <a href="/lp1" target="_blank" class="px-6 py-3.5 bg-text-primary hover:bg-stone-800 text-white text-xs font-bold rounded-sm transition-all whitespace-nowrap shadow-sm hover:scale-105">
+        Explore Skillsfy Programs →
+      </a>
+    </section>
+
+    <!-- ================= SECTION 10 — 18. NEWSLETTER SECTION ================= -->
+    <section id="newsletter" class="p-8 sm:p-12 editorial-card bg-surface-white text-center space-y-4 max-w-3xl mx-auto">
+      <span class="label-caps text-accent-teal">WEEKLY INTELLECTUAL BRIEFING</span>
+      <h3 class="font-serif-headline text-3xl font-bold text-text-primary">
+        5 Minutes. 5 Ideas. One Better Business Decision.
       </h3>
-      <p class="text-xs sm:text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
-        <strong>5 minutes. 5 ideas. One better business decision.</strong> Delivered to India's top founders, developers, and operators every Sunday morning.
+      <p class="text-xs sm:text-sm text-text-secondary max-w-md mx-auto leading-relaxed font-body">
+        A weekly curated briefing of founder playbooks, business teardowns, interesting companies, and practical lessons. Delivered every Sunday morning.
       </p>
 
       <form onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto pt-2">
@@ -315,31 +455,31 @@
           type="email" 
           id="newsletter-email"
           required 
-          placeholder="Enter your work email address..." 
-          class="px-4 py-3 rounded-xl bg-stone-50 border editorial-border text-xs flex-1 text-stone-900 focus:bg-white focus:border-amber-600 focus:ring-1 focus:ring-amber-600"
+          placeholder="Enter your email address..." 
+          class="px-4 py-2.5 rounded-sm bg-stone-50 border border-subtle text-xs flex-1 text-text-primary focus:bg-white focus:border-accent-teal focus:ring-1 focus:ring-accent-teal placeholder:text-stone-400"
         />
-        <button type="submit" class="px-6 py-3 bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold rounded-xl transition-all shadow">
-          Join Free →
+        <button type="submit" class="px-6 py-2.5 bg-text-primary hover:bg-stone-800 text-white text-xs font-bold rounded-sm transition-all">
+          Subscribe Free →
         </button>
       </form>
-      <p class="text-[10px] text-stone-400">Zero spam. Strictly high-signal business research. Unsubscribe anytime.</p>
+      <p class="text-[10px] text-text-secondary font-mono">Zero spam. Pure editorial business research. Unsubscribe anytime.</p>
     </section>
 
   </main>
 
-  <!-- ================= MASTER ARTICLE READER MODAL (5-QUESTION FRAMEWORK) ================= -->
-  <div id="story-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
-    <div class="max-w-3xl w-full bg-white border editorial-border rounded-3xl p-6 sm:p-10 shadow-2xl max-h-[92vh] overflow-y-auto space-y-8 text-left">
+  <!-- ================= 20. MASTER ARTICLE READER MODAL (5-QUESTION FRAMEWORK) ================= -->
+  <div id="story-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-6 hidden">
+    <div class="max-w-3xl w-full bg-white border border-subtle rounded-sm p-6 sm:p-12 shadow-2xl max-h-[92vh] overflow-y-auto space-y-8 text-left">
       
-      <!-- Close Bar -->
-      <div class="flex items-center justify-between border-b editorial-border pb-4">
-        <span class="text-xs font-mono font-bold text-stone-400 uppercase tracking-wider">SKILLSFY INSIGHTS RESEARCH DOSSIER</span>
-        <button onclick="closeStoryModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center transition-colors">
-          <span class="material-symbols-outlined text-lg">close</span>
+      <!-- Top Modal Bar -->
+      <div class="flex items-center justify-between border-b border-subtle pb-4">
+        <span class="label-caps text-text-secondary">SKILLSFY INSIGHTS · RESEARCH DOSSIER</span>
+        <button onclick="closeStoryModal()" class="w-8 h-8 rounded-sm bg-stone-100 hover:bg-stone-200 text-text-primary flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-base">close</span>
         </button>
       </div>
 
-      <!-- Story Dynamic Content Container -->
+      <!-- Story Dynamic Content -->
       <div id="story-modal-content" class="space-y-6">
         <!-- Rendered dynamically -->
       </div>
@@ -347,13 +487,13 @@
     </div>
   </div>
 
-  <!-- ================= FOUNDER KNOWLEDGE PROFILE MODAL ================= -->
-  <div id="founder-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
-    <div class="max-w-2xl w-full bg-white border editorial-border rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto space-y-6 text-left">
-      <div class="flex items-center justify-between border-b editorial-border pb-3">
-        <span class="text-xs font-mono font-bold text-amber-700 uppercase tracking-wider">BUILDER DOSSIER</span>
-        <button onclick="closeFounderModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center">
-          <span class="material-symbols-outlined text-lg">close</span>
+  <!-- ================= 11. FOUNDER PROFILE MODAL ================= -->
+  <div id="founder-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-6 hidden">
+    <div class="max-w-2xl w-full bg-white border border-subtle rounded-sm p-6 sm:p-10 shadow-2xl max-h-[90vh] overflow-y-auto space-y-6 text-left">
+      <div class="flex items-center justify-between border-b border-subtle pb-3">
+        <span class="label-caps text-accent-teal">BUILDER DOSSIER</span>
+        <button onclick="closeFounderModal()" class="w-8 h-8 rounded-sm bg-stone-100 hover:bg-stone-200 text-text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-base">close</span>
         </button>
       </div>
 
@@ -363,13 +503,13 @@
     </div>
   </div>
 
-  <!-- ================= COMPANY INTELLIGENCE DOSSIER MODAL ================= -->
-  <div id="company-modal" class="fixed inset-0 bg-stone-950/80 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
-    <div class="max-w-2xl w-full bg-white border editorial-border rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto space-y-6 text-left">
-      <div class="flex items-center justify-between border-b editorial-border pb-3">
-        <span class="text-xs font-mono font-bold text-sky-700 uppercase tracking-wider">ENTERPRISE INTELLIGENCE</span>
-        <button onclick="closeCompanyModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center">
-          <span class="material-symbols-outlined text-lg">close</span>
+  <!-- ================= 12. COMPANY PROFILE MODAL ================= -->
+  <div id="company-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-6 hidden">
+    <div class="max-w-2xl w-full bg-white border border-subtle rounded-sm p-6 sm:p-10 shadow-2xl max-h-[90vh] overflow-y-auto space-y-6 text-left">
+      <div class="flex items-center justify-between border-b border-subtle pb-3">
+        <span class="label-caps text-accent-teal">ENTERPRISE INTELLIGENCE</span>
+        <button onclick="closeCompanyModal()" class="w-8 h-8 rounded-sm bg-stone-100 hover:bg-stone-200 text-text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-base">close</span>
         </button>
       </div>
 
@@ -380,158 +520,277 @@
   </div>
 
   <!-- Toast Notification Container -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300"></div>
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-sm shadow-xl text-xs font-bold text-white transition-all transform duration-300"></div>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="bg-white border-t editorial-border py-12 mt-16 text-stone-500 text-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b editorial-border pb-8">
-        <div>
-          <span class="font-serif-headline text-2xl font-bold text-stone-950">SKILLSFY INSIGHTS</span>
-          <p class="text-xs text-stone-400 mt-0.5">Stories. Strategies. Lessons. — An independent media initiative by Skillsfy Institute of Technology.</p>
+  <!-- ================= 29. GLOBAL FOOTER ================= -->
+  <footer class="bg-white border-t border-subtle py-14 mt-20 text-text-secondary text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      
+      <!-- 4 Columns Footer -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-subtle">
+        
+        <!-- Col 1: Brand -->
+        <div class="space-y-3">
+          <span class="font-serif-headline text-2xl font-bold text-text-primary">SKILLSFY INSIGHTS</span>
+          <p class="text-xs text-text-secondary leading-relaxed font-body">
+            Stories. Strategies. Lessons. — An authoritative business media initiative by Skillsfy Institute of Technology studying remarkable builders.
+          </p>
         </div>
-        <div class="flex items-center gap-4 text-xs font-semibold text-stone-600">
-          <a href="/" class="hover:text-stone-950">Campus</a>
-          <a href="/courses.html" class="hover:text-stone-950">Programs</a>
-          <a href="/about.html" class="hover:text-stone-950">Mission</a>
-          <a href="/contact.html" class="hover:text-stone-950">Editorial Contact</a>
+
+        <!-- Col 2: Explore -->
+        <div class="space-y-2 font-body">
+          <span class="label-caps text-text-primary block">Explore</span>
+          <ul class="space-y-1.5 text-text-secondary">
+            <li><a href="#founders-section" class="hover:text-text-primary">Founder Stories</a></li>
+            <li><a href="#companies-section" class="hover:text-text-primary">Company Dossiers</a></li>
+            <li><a href="#companies-section" class="hover:text-text-primary">Business Breakdowns</a></li>
+            <li><a href="#trending-grid" class="hover:text-text-primary">Deep Dives</a></li>
+          </ul>
         </div>
+
+        <!-- Col 3: Topics -->
+        <div class="space-y-2 font-body">
+          <span class="label-caps text-text-primary block">Topics</span>
+          <ul class="space-y-1.5 text-text-secondary">
+            <li><button onclick="filterCategory('Business Strategy')" class="hover:text-text-primary">Business Strategy</button></li>
+            <li><button onclick="filterCategory('Startups & Scale')" class="hover:text-text-primary">Startups & Scale</button></li>
+            <li><button onclick="filterCategory('Leadership & Culture')" class="hover:text-text-primary">Leadership & Culture</button></li>
+            <li><a href="/" class="hover:text-text-primary">Skillsfy Live Cohorts</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: More & Editorial -->
+        <div class="space-y-2 font-body">
+          <span class="label-caps text-text-primary block">More</span>
+          <ul class="space-y-1.5 text-text-secondary">
+            <li><a href="#podcast-section" class="hover:text-text-primary">Founder Stories Podcast</a></li>
+            <li><a href="#video-section" class="hover:text-text-primary">Video Essays</a></li>
+            <li><a href="#newsletter" class="hover:text-text-primary">Skillsfy Brief (Newsletter)</a></li>
+            <li><a href="/about.html" class="hover:text-text-primary">Editorial Policy</a></li>
+          </ul>
+        </div>
+
       </div>
 
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-stone-400">
-        <p>© 2026 Skillsfy Institute of Technology. All research, case studies, and editorial breakdowns are curated for educational purposes.</p>
-        <p>Built with Next-Gen Modular Architecture • Ready for Firebase & Scalable Cloud</p>
+      <!-- Bottom Credits -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-text-secondary">
+        <p>© 2026 Skillsfy Institute of Technology. All research, case studies, and editorial breakdowns are curated for educational insight.</p>
+        <p>Built with Intelligent Minimalism • Ready for Firebase Firestore Integration</p>
       </div>
+
     </div>
   </footer>
 
-  <!-- ================= JAVASCRIPT DATA ENGINE & RENDERING ================= -->
+  <!-- ================= JAVASCRIPT ENGINE ================= -->
   <script src="js/insights-data.js"></script>
   <script>
-    let activeCategory = 'All';
+    let currentCategoryFilter = 'All';
 
     function showToast(msg, type = 'info') {
       const toast = document.getElementById('toast');
       if (!toast) return;
       toast.textContent = msg;
-      toast.className = `fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all ${
-        type === 'success' ? 'bg-emerald-600' : 'bg-stone-900'
+      toast.className = `fixed bottom-6 right-6 z-50 px-4 py-3 rounded-sm shadow-xl text-xs font-bold text-white transition-all ${
+        type === 'success' ? 'bg-emerald-700' : 'bg-stone-900'
       }`;
       toast.classList.remove('hidden');
       setTimeout(() => toast.classList.add('hidden'), 3500);
     }
 
-    // ================= RENDER HERO & STORIES =================
-    function renderEditorialStories() {
-      const heroContainer = document.getElementById('hero-lead-container');
-      const trendingContainer = document.getElementById('trending-stories-list');
-      if (!heroContainer || !window.INSIGHTS_DATA) return;
+    // ================= RENDER HOMEPAGE CONTENT =================
+    function renderHomepageContent() {
+      if (!window.INSIGHTS_DATA) return;
 
       const stories = window.INSIGHTS_DATA.stories;
       const featured = stories.find(s => s.featured) || stories[0];
+      const sideStories = stories.filter(s => s.id !== featured.id);
 
       // 1. Render Hero Lead Story
-      heroContainer.innerHTML = `
-        <article onclick="openStoryModal('${featured.id}')" class="group cursor-pointer p-6 sm:p-8 rounded-3xl bg-white border editorial-border shadow-sm hover-lift space-y-4">
-          <div class="relative overflow-hidden rounded-2xl aspect-[16/9] sm:aspect-[21/9]">
-            <img src="${featured.coverImage}" alt="${featured.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute top-3 left-3 flex items-center gap-2">
-              <span class="badge-pill bg-stone-900 text-amber-400 text-[10px] font-bold uppercase tracking-wider">
-                FEATURED RESEARCH
-              </span>
-              <span class="badge-pill bg-white/90 backdrop-blur-md text-stone-800 text-[10px] font-bold">
-                ✓ FACT CHECKED
-              </span>
-            </div>
-          </div>
-
-          <div class="space-y-2.5">
-            <div class="flex items-center gap-2 text-xs text-stone-500 font-medium">
-              <span class="text-amber-700 font-bold uppercase tracking-wider">${featured.category}</span>
-              <span>•</span>
-              <span>${featured.readTime}</span>
-              <span>•</span>
-              <span>${featured.date}</span>
+      const heroContainer = document.getElementById('hero-lead-container');
+      if (heroContainer) {
+        heroContainer.innerHTML = `
+          <article onclick="openStoryModal('${featured.id}')" class="editorial-card p-6 sm:p-8 space-y-4 cursor-pointer text-left">
+            <div class="relative overflow-hidden aspect-[16/9] bg-stone-100 rounded-sm">
+              <img src="${featured.coverImage}" alt="${featured.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+              <div class="absolute top-3 left-3 flex items-center gap-2">
+                <span class="label-caps bg-text-primary text-white px-2 py-0.5 rounded-sm">FEATURED STORY</span>
+                <span class="label-caps bg-white/90 text-text-primary px-2 py-0.5 rounded-sm">✓ FACT CHECKED</span>
+              </div>
             </div>
 
-            <h2 class="font-serif-headline text-2xl sm:text-4xl font-bold text-stone-950 leading-tight group-hover:text-amber-800 transition-colors">
-              ${featured.title}
-            </h2>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2 text-xs text-text-secondary font-medium">
+                <span class="text-accent-teal font-semibold label-caps">${featured.category}</span>
+                <span>•</span>
+                <span>${featured.readTime}</span>
+                <span>•</span>
+                <span>${featured.date}</span>
+              </div>
 
-            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed line-clamp-3">
-              ${featured.subtitle}
-            </p>
-          </div>
+              <h1 class="font-serif-headline text-2xl sm:text-4xl font-bold text-text-primary leading-tight hover:text-accent-teal transition-colors">
+                ${featured.title}
+              </h1>
 
-          <div class="pt-2 flex items-center justify-between border-t editorial-border text-xs text-stone-500">
-            <span class="font-semibold text-stone-950">Read Complete 5-Question Breakdown →</span>
-            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
-          </div>
-        </article>
-      `;
+              <p class="text-xs sm:text-sm text-text-secondary leading-relaxed font-body line-clamp-3">
+                ${featured.subtitle}
+              </p>
+            </div>
 
-      // 2. Render Side Rail Trending List
-      if (trendingContainer) {
-        const trendingList = stories.filter(s => s.id !== featured.id);
-        trendingContainer.innerHTML = trendingList.map((s, idx) => `
-          <div onclick="openStoryModal('${s.id}')" class="pt-3 first:pt-0 cursor-pointer group space-y-1">
-            <div class="flex items-center gap-2 text-[11px] text-stone-400 font-mono">
-              <span class="font-bold text-amber-600">#0${idx + 1}</span>
-              <span>${s.category}</span>
+            <div class="pt-3 border-t border-subtle flex items-center justify-between text-xs font-semibold text-text-primary">
+              <span>Read Story →</span>
+              <span class="text-text-secondary font-mono">${featured.author}</span>
+            </div>
+          </article>
+        `;
+      }
+
+      // 2. Render Side Featured Stories
+      const sideContainer = document.getElementById('side-featured-stories');
+      if (sideContainer) {
+        sideContainer.innerHTML = sideStories.map((s, idx) => `
+          <div onclick="openStoryModal('${s.id}')" class="pt-3 first:pt-0 cursor-pointer space-y-1.5 text-left">
+            <div class="flex items-center gap-2 text-[10px] text-text-secondary font-mono">
+              <span class="font-bold text-accent-teal">#0${idx + 1}</span>
+              <span class="uppercase">${s.category}</span>
               <span>•</span>
               <span>${s.readTime}</span>
             </div>
-            <h4 class="font-serif-headline text-sm font-bold text-stone-900 group-hover:text-amber-800 transition-colors line-clamp-2">
+            <h4 class="font-serif-headline text-sm font-bold text-text-primary hover:text-accent-teal transition-colors line-clamp-2">
               ${s.title}
             </h4>
           </div>
         `).join('');
       }
+
+      // 3. Render Trending Grid
+      const trendingContainer = document.getElementById('trending-grid');
+      if (trendingContainer) {
+        trendingContainer.innerHTML = stories.map((s, idx) => `
+          <div onclick="openStoryModal('${s.id}')" class="editorial-card p-5 cursor-pointer space-y-3 text-left">
+            <div class="aspect-[16/10] overflow-hidden rounded-sm bg-stone-100">
+              <img src="${s.coverImage}" alt="${s.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between text-[11px] text-text-secondary">
+                <span class="label-caps text-accent-teal">${s.category}</span>
+                <span class="font-mono">${s.readTime}</span>
+              </div>
+              <h3 class="font-serif-headline text-base font-bold text-text-primary hover:text-accent-teal transition-colors line-clamp-2">
+                ${s.title}
+              </h3>
+              <p class="text-xs text-text-secondary line-clamp-2 font-body">${s.subtitle}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // 4. Render Latest Stories (Magazine Layout)
+      const latestContainer = document.getElementById('latest-stories-section');
+      if (latestContainer) {
+        latestContainer.innerHTML = `
+          <div class="lg:col-span-7 editorial-card p-6 cursor-pointer space-y-3 text-left" onclick="openStoryModal('${stories[0].id}')">
+            <div class="aspect-[16/10] overflow-hidden rounded-sm bg-stone-100">
+              <img src="${stories[0].coverImage}" alt="${stories[0].title}" class="w-full h-full object-cover" />
+            </div>
+            <span class="label-caps text-accent-teal">${stories[0].category} · ${stories[0].readTime}</span>
+            <h3 class="font-serif-headline text-2xl font-bold text-text-primary hover:text-accent-teal transition-colors">${stories[0].title}</h3>
+            <p class="text-xs text-text-secondary font-body line-clamp-3">${stories[0].subtitle}</p>
+          </div>
+
+          <div class="lg:col-span-5 space-y-4 text-left">
+            ${stories.slice(1).map(s => `
+              <div onclick="openStoryModal('${s.id}')" class="editorial-card p-4 cursor-pointer space-y-1.5">
+                <div class="flex items-center justify-between text-[10px] text-text-secondary font-mono">
+                  <span class="label-caps text-accent-teal">${s.category}</span>
+                  <span>${s.readTime}</span>
+                </div>
+                <h4 class="font-serif-headline text-base font-bold text-text-primary hover:text-accent-teal transition-colors">${s.title}</h4>
+                <p class="text-xs text-text-secondary font-body line-clamp-2">${s.subtitle}</p>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      // 5. Render Founders Grid
+      const foundersContainer = document.getElementById('founders-grid');
+      if (foundersContainer) {
+        foundersContainer.innerHTML = window.INSIGHTS_DATA.founders.map(f => `
+          <div onclick="openFounderModal('${f.id}')" class="editorial-card p-5 cursor-pointer space-y-3 text-left">
+            <div class="aspect-square rounded-sm overflow-hidden bg-stone-100">
+              <img src="${f.portrait}" alt="${f.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div>
+              <span class="label-caps text-accent-teal">${f.industry}</span>
+              <h4 class="font-serif-headline text-lg font-bold text-text-primary mt-1 hover:text-accent-teal transition-colors">${f.name}</h4>
+              <p class="text-xs font-semibold text-text-secondary">${f.role}, ${f.company}</p>
+              <p class="text-xs text-text-secondary line-clamp-2 mt-1.5 font-body">${f.shortBio}</p>
+            </div>
+            <div class="pt-2 border-t border-subtle text-xs font-bold text-text-primary flex items-center justify-between">
+              <span>View Profile →</span>
+              <span class="text-text-secondary font-mono text-[10px]">${f.location.split(',')[0]}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // 6. Render Companies Grid
+      const companiesContainer = document.getElementById('companies-grid');
+      if (companiesContainer) {
+        companiesContainer.innerHTML = window.INSIGHTS_DATA.companies.map(c => `
+          <div onclick="openCompanyModal('${c.id}')" class="editorial-card p-5 cursor-pointer space-y-3 text-left">
+            <div class="flex items-center justify-between">
+              <span class="label-caps text-accent-teal">${c.industry}</span>
+              <span class="text-[10px] font-mono text-text-secondary">Est. ${c.founded}</span>
+            </div>
+            <div>
+              <h4 class="font-serif-headline text-xl font-bold text-text-primary hover:text-accent-teal transition-colors">${c.name}</h4>
+              <p class="text-xs text-text-secondary font-body line-clamp-2 mt-1">${c.tagline}</p>
+            </div>
+            <div class="pt-2 border-t border-subtle text-[11px] text-text-secondary font-mono flex items-center justify-between">
+              <span>${c.fundingStage}</span>
+              <span class="font-bold text-text-primary">Explore Breakdown →</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // 7. Render Video & Podcast Cards
+      const videoContainer = document.getElementById('video-cards-container');
+      if (videoContainer) {
+        videoContainer.innerHTML = window.INSIGHTS_DATA.videos.map(v => `
+          <div onclick="openStoryModal('zerodha-growth-breakdown')" class="editorial-card p-4 cursor-pointer flex gap-4 items-center text-left">
+            <div class="w-32 aspect-video rounded-sm overflow-hidden bg-stone-100 flex-shrink-0 relative">
+              <img src="${v.thumbnail}" alt="${v.title}" class="w-full h-full object-cover" />
+              <span class="absolute bottom-1 right-1 bg-black/80 text-white text-[9px] font-mono px-1 rounded-sm">${v.duration}</span>
+            </div>
+            <div class="space-y-1">
+              <span class="label-caps text-accent-teal">${v.category}</span>
+              <h4 class="font-serif-headline text-sm font-bold text-text-primary hover:text-accent-teal transition-colors">${v.title}</h4>
+              <p class="text-xs text-text-secondary">Feat. ${v.founder}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const podcastContainer = document.getElementById('podcast-cards-container');
+      if (podcastContainer) {
+        podcastContainer.innerHTML = window.INSIGHTS_DATA.podcasts.map(p => `
+          <div onclick="openStoryModal('zerodha-growth-breakdown')" class="editorial-card p-4 cursor-pointer flex gap-4 items-center text-left">
+            <div class="w-16 h-16 rounded-sm overflow-hidden bg-stone-100 flex-shrink-0">
+              <img src="${p.artwork}" alt="${p.title}" class="w-full h-full object-cover" />
+            </div>
+            <div class="space-y-1">
+              <span class="label-caps text-accent-teal">${p.duration}</span>
+              <h4 class="font-serif-headline text-sm font-bold text-text-primary hover:text-accent-teal transition-colors line-clamp-1">${p.title}</h4>
+              <p class="text-xs text-text-secondary">${p.guest}</p>
+            </div>
+          </div>
+        `).join('');
+      }
     }
 
-    // ================= RENDER FOUNDERS DIRECTORY =================
-    function renderFoundersGrid() {
-      const container = document.getElementById('founders-grid');
-      if (!container || !window.INSIGHTS_DATA) return;
-
-      container.innerHTML = window.INSIGHTS_DATA.founders.map(f => `
-        <div onclick="openFounderModal('${f.id}')" class="group cursor-pointer p-4 rounded-2xl bg-white border editorial-border hover-lift text-left space-y-3">
-          <div class="aspect-square rounded-xl overflow-hidden bg-stone-100">
-            <img src="${f.photo}" alt="${f.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div>
-            <span class="badge-pill bg-stone-100 text-stone-700 text-[10px] font-bold">${f.company}</span>
-            <h4 class="font-serif-headline text-base font-bold text-stone-950 mt-1 group-hover:text-amber-700 transition-colors">${f.name}</h4>
-            <p class="text-[11px] text-stone-500 line-clamp-2 mt-0.5">${f.bio}</p>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // ================= RENDER COMPANIES DIRECTORY =================
-    function renderCompaniesGrid() {
-      const container = document.getElementById('companies-grid');
-      if (!container || !window.INSIGHTS_DATA) return;
-
-      container.innerHTML = window.INSIGHTS_DATA.companies.map(c => `
-        <div onclick="openCompanyModal('${c.id}')" class="group cursor-pointer p-5 rounded-2xl bg-white border editorial-border hover-lift space-y-3 text-left">
-          <div class="flex items-center justify-between">
-            <span class="badge-pill bg-sky-50 text-sky-800 border border-sky-200 text-[10px] font-bold">${c.industry}</span>
-            <span class="text-[10px] font-mono text-stone-400">Est. ${c.founded}</span>
-          </div>
-          <div>
-            <h4 class="font-serif-headline text-lg font-bold text-stone-950 group-hover:text-sky-700 transition-colors">${c.name}</h4>
-            <p class="text-xs text-stone-500 line-clamp-2 mt-1">${c.tagline}</p>
-          </div>
-          <div class="pt-2 border-t editorial-border text-[11px] text-stone-400 font-mono flex items-center justify-between">
-            <span>${c.fundingStage}</span>
-            <span class="font-bold text-stone-800">Explore Moat →</span>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // ================= OPEN 5-QUESTION ARTICLE MODAL =================
+    // ================= 20. OPEN MASTER ARTICLE READER MODAL =================
     function openStoryModal(storyId) {
       const story = window.INSIGHTS_DATA.stories.find(s => s.id === storyId);
       if (!story) return;
@@ -543,112 +802,126 @@
       const sec = story.sections;
 
       content.innerHTML = `
-        <div class="space-y-6">
+        <article class="space-y-8">
           
-          <!-- Article Header Strip -->
-          <div class="space-y-3 pb-4 border-b editorial-border">
-            <div class="flex items-center gap-2 text-xs font-semibold text-stone-500">
-              <span class="text-amber-700 font-bold uppercase">${story.category}</span>
+          <!-- Article Top Header -->
+          <div class="space-y-3 pb-4 border-b border-subtle text-left">
+            <div class="flex items-center gap-2 text-xs text-text-secondary font-medium">
+              <span class="text-accent-teal font-semibold label-caps">${story.category}</span>
               <span>•</span>
               <span>${story.readTime}</span>
               <span>•</span>
-              <span>${story.date}</span>
-              <span class="ml-auto badge-pill bg-emerald-100 text-emerald-800 text-[10px] font-bold">✓ VERIFIED CITATION</span>
+              <span>Updated ${story.date}</span>
+              <span class="ml-auto label-caps bg-teal-50 text-accent-teal border border-teal-200 px-2 py-0.5 rounded-sm">✓ VERIFIED CITATION</span>
             </div>
 
-            <h1 class="font-serif-headline text-3xl sm:text-4xl font-bold text-stone-950 leading-tight">
+            <h1 class="font-serif-headline text-3xl sm:text-5xl font-bold text-text-primary leading-tight">
               ${story.title}
             </h1>
-            <p class="text-sm sm:text-base text-stone-600 italic font-serif leading-relaxed">
+            <p class="text-base sm:text-lg text-text-secondary font-serif italic leading-relaxed">
               ${story.subtitle}
             </p>
-          </div>
-
-          <!-- Hero Media -->
-          <div class="rounded-2xl overflow-hidden aspect-[16/9] shadow">
-            <img src="${story.coverImage}" alt="${story.title}" class="w-full h-full object-cover" />
-          </div>
-
-          <!-- 📌 TL;DR Summary Box -->
-          <div class="p-6 rounded-2xl bg-stone-100 border border-stone-200 space-y-3 text-xs">
-            <span class="font-bold text-stone-900 uppercase tracking-wider text-[11px] block font-sans">📌 Executive Summary (TL;DR)</span>
-            <ul class="space-y-1.5 list-disc list-inside text-stone-700 leading-relaxed">
-              ${story.tldr.map(t => `<li>${t}</li>`).join('')}
-            </ul>
-          </div>
-
-          <!-- 1. What Happened -->
-          <div class="space-y-2">
-            <h3 class="font-serif-headline text-xl font-bold text-stone-950 flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-stone-900 text-amber-400 font-sans text-xs flex items-center justify-center">1</span>
-              <span>What Happened? (The Origin Narrative)</span>
-            </h3>
-            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed whitespace-pre-line">${sec.whatHappened}</p>
-          </div>
-
-          <!-- 2. Why Did It Happen -->
-          <div class="space-y-2">
-            <h3 class="font-serif-headline text-xl font-bold text-stone-950 flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-stone-900 text-amber-400 font-sans text-xs flex items-center justify-center">2</span>
-              <span>Why Did It Happen? (Market Structural Inefficiencies)</span>
-            </h3>
-            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed whitespace-pre-line">${sec.whyItHappened}</p>
-          </div>
-
-          <!-- 3. What Worked -->
-          <div class="space-y-2">
-            <h3 class="font-serif-headline text-xl font-bold text-stone-950 flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-stone-900 text-amber-400 font-sans text-xs flex items-center justify-center">3</span>
-              <span>What Actually Worked? (Strategic Moats)</span>
-            </h3>
-            <div class="text-xs sm:text-sm text-stone-700 leading-relaxed whitespace-pre-line">${sec.whatWorked}</div>
-          </div>
-
-          <!-- 4. What Failed / Mistakes -->
-          <div class="space-y-2">
-            <h3 class="font-serif-headline text-xl font-bold text-stone-950 flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-stone-900 text-amber-400 font-sans text-xs flex items-center justify-center">4</span>
-              <span>What Failed & Glitches Overcome?</span>
-            </h3>
-            <div class="text-xs sm:text-sm text-stone-700 leading-relaxed whitespace-pre-line">${sec.whatFailed}</div>
-          </div>
-
-          <!-- 💡 Single Contextual Soft Course CTA Card -->
-          <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="space-y-1 text-xs">
-              <span class="badge-pill bg-amber-200 text-amber-900 font-bold text-[10px]">APPLY THIS SKILL</span>
-              <h4 class="font-bold text-stone-900 text-sm">${story.relatedCourse.title}</h4>
-              <p class="text-stone-600">Turn these architectural & business principles into real code and client projects.</p>
+            <div class="text-xs text-text-secondary font-mono pt-1">
+              By <strong class="text-text-primary">${story.author}</strong>
             </div>
-            <a href="/lp1" target="_blank" class="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-black text-xs shadow transition-all whitespace-nowrap">
-              ${story.relatedCourse.ctaText}
-            </a>
           </div>
 
-          <!-- 5. What Can We Learn -->
-          <div class="space-y-3">
-            <h3 class="font-serif-headline text-xl font-bold text-stone-950 flex items-center gap-2">
-              <span class="w-6 h-6 rounded-full bg-stone-900 text-amber-400 font-sans text-xs flex items-center justify-center">5</span>
-              <span>What Can We Learn? (5 Builder Takeaways)</span>
-            </h3>
-            <div class="grid grid-cols-1 gap-2 text-xs">
-              ${sec.lessonsLearned.map(l => `
-                <div class="p-3.5 rounded-xl bg-stone-50 border editorial-border text-stone-800 leading-relaxed">
-                  ${l}
-                </div>
+          <!-- Hero Image with Editorial Caption -->
+          <div class="space-y-2">
+            <div class="overflow-hidden rounded-sm aspect-[16/9] bg-stone-100">
+              <img src="${story.coverImage}" alt="${story.title}" class="w-full h-full object-cover" />
+            </div>
+            <p class="text-[11px] text-text-secondary italic text-center font-serif">Archival & Editorial Case Study — Curated by Skillsfy Research Desk.</p>
+          </div>
+
+          <!-- 📌 TL;DR & KEY TAKEAWAYS (Section 20) -->
+          <div class="p-6 bg-surface-paper border border-subtle rounded-sm space-y-4 text-xs text-left">
+            <div>
+              <span class="label-caps text-accent-teal block mb-1.5">📌 EXECUTIVE SUMMARY (TL;DR)</span>
+              <ul class="space-y-1.5 list-disc list-inside text-text-primary leading-relaxed">
+                ${story.tldr.map(t => `<li>${t}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="pt-3 border-t border-subtle">
+              <span class="label-caps text-text-primary block mb-1.5">KEY TAKEAWAYS</span>
+              <ul class="space-y-1.5 list-disc list-inside text-text-secondary leading-relaxed">
+                ${story.keyTakeaways.map(k => `<li>${k}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+
+          <!-- 21. ARTICLE STRUCTURE (5-Question Framework) -->
+          <div class="space-y-6 text-left font-body text-sm leading-relaxed text-text-primary">
+            
+            <!-- 1. What Happened -->
+            <div class="space-y-2">
+              <h3 class="font-serif-headline text-2xl font-bold text-text-primary">1. What Happened? (The Origin Narrative)</h3>
+              <p class="whitespace-pre-line text-stone-700">${sec.whatHappened}</p>
+            </div>
+
+            <!-- 2. Why It Happened -->
+            <div class="space-y-2">
+              <h3 class="font-serif-headline text-2xl font-bold text-text-primary">2. Why Did It Happen? (Market Inefficiencies)</h3>
+              <p class="whitespace-pre-line text-stone-700">${sec.whyItHappened}</p>
+            </div>
+
+            <!-- Pull Quote (DESIGN.md) -->
+            <div class="pull-quote my-6">
+              "When you don't incentivize your team with trade commissions, you build unbreakable customer trust."
+            </div>
+
+            <!-- 3. What Worked -->
+            <div class="space-y-2">
+              <h3 class="font-serif-headline text-2xl font-bold text-text-primary">3. What Actually Worked? (Strategic Moats)</h3>
+              <div class="whitespace-pre-line text-stone-700">${sec.whatWorked}</div>
+            </div>
+
+            <!-- 4. What Failed -->
+            <div class="space-y-2">
+              <h3 class="font-serif-headline text-2xl font-bold text-text-primary">4. What Failed & Challenges Overcome?</h3>
+              <div class="whitespace-pre-line text-stone-700">${sec.whatFailed}</div>
+            </div>
+
+            <!-- Contextual Soft Course CTA (Section 19) -->
+            <div class="p-6 bg-accent-teal-light border border-teal-200 rounded-sm flex flex-col sm:flex-row items-center justify-between gap-4 my-6">
+              <div class="space-y-1 text-left">
+                <span class="label-caps text-accent-teal">TURN INSIGHT INTO SKILL</span>
+                <h4 class="font-serif-headline text-base font-bold text-text-primary">${story.relatedCourse.title}</h4>
+                <p class="text-xs text-text-secondary font-body">${story.relatedCourse.desc}</p>
+              </div>
+              <a href="/lp1" target="_blank" class="px-4 py-2.5 bg-text-primary hover:bg-stone-800 text-white text-xs font-bold rounded-sm transition-all whitespace-nowrap">
+                ${story.relatedCourse.ctaText}
+              </a>
+            </div>
+
+            <!-- 5. What We Learned -->
+            <div class="space-y-3">
+              <h3 class="font-serif-headline text-2xl font-bold text-text-primary">5. What Can You Learn? (Actionable Takeaways)</h3>
+              <div class="space-y-2">
+                ${sec.lessonsLearned.map(l => `
+                  <div class="p-4 bg-surface-paper border border-subtle rounded-sm text-xs text-text-primary leading-relaxed">
+                    ${l}
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- How to Apply -->
+            <div class="p-4 border-l-2 border-accent-teal bg-stone-50 text-xs text-text-secondary italic">
+              <strong>How You Can Apply It:</strong> ${sec.howToApply}
+            </div>
+
+            <!-- Sources References (Section 30) -->
+            <div class="p-4 bg-surface-paper border border-subtle rounded-sm text-xs space-y-1 font-mono text-[11px] text-text-secondary">
+              <span class="label-caps text-text-primary block font-sans mb-1">Verified Sources & References:</span>
+              ${sec.sources.map(src => `
+                <div>• ${src.title} — <strong>${src.publisher}</strong></div>
               `).join('')}
             </div>
+
           </div>
 
-          <!-- Primary & Secondary Sources -->
-          <div class="p-4 rounded-xl bg-stone-100 border editorial-border text-xs space-y-1 font-mono text-[11px] text-stone-600">
-            <span class="font-bold text-stone-800 block font-sans">Verified Sources & Citations:</span>
-            ${sec.sources.map(s => `
-              <div>• ${s.title} — <strong class="text-stone-700">${s.publisher}</strong></div>
-            `).join('')}
-          </div>
-
-        </div>
+        </article>
       `;
 
       modal.classList.remove('hidden');
@@ -659,7 +932,7 @@
       if (modal) modal.classList.add('hidden');
     }
 
-    // ================= OPEN FOUNDER PROFILE MODAL =================
+    // ================= 11. OPEN FOUNDER PROFILE MODAL =================
     function openFounderModal(founderId) {
       const f = window.INSIGHTS_DATA.founders.find(item => item.id === founderId);
       if (!f) return;
@@ -671,36 +944,78 @@
       content.innerHTML = `
         <div class="space-y-6 text-left">
           
-          <div class="flex items-center gap-4 pb-4 border-b editorial-border">
-            <img src="${f.photo}" alt="${f.name}" class="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl object-cover shadow" />
-            <div>
-              <span class="badge-pill bg-stone-100 text-stone-800 text-[10px] font-bold">${f.industry}</span>
-              <h3 class="font-serif-headline text-2xl font-bold text-stone-950 mt-1">${f.name}</h3>
-              <p class="text-xs text-stone-500 font-semibold">${f.title}</p>
+          <!-- Hero Section -->
+          <div class="flex items-start gap-4 pb-4 border-b border-subtle">
+            <img src="${f.portrait}" alt="${f.name}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-sm object-cover flex-shrink-0" />
+            <div class="space-y-1">
+              <span class="label-caps text-accent-teal">${f.industry}</span>
+              <h3 class="font-serif-headline text-2xl sm:text-3xl font-bold text-text-primary">${f.name}</h3>
+              <p class="text-xs font-semibold text-text-secondary">${f.role}, ${f.company} (${f.location})</p>
+              <p class="text-xs text-stone-600 font-serif italic pt-1">"${f.shortBio}"</p>
             </div>
           </div>
 
-          <p class="text-xs sm:text-sm text-stone-700 leading-relaxed italic font-serif">"${f.bio}"</p>
+          <!-- Overview & Full Bio -->
+          <div class="space-y-2 text-xs font-body text-text-secondary leading-relaxed">
+            <span class="label-caps text-text-primary block">About</span>
+            <p>${f.fullBio}</p>
+          </div>
 
-          <!-- Timeline -->
-          <div class="space-y-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-stone-500 font-sans block">Chronological Timeline</span>
-            <div class="space-y-2 text-xs border-l-2 border-amber-500/50 pl-3">
+          <!-- Visual Journey Timeline (Section 11) -->
+          <div class="space-y-3">
+            <span class="label-caps text-text-primary block">Chronological Journey</span>
+            <div class="space-y-3 border-l-2 border-accent-teal pl-4 text-xs font-body">
               ${f.timeline.map(t => `
                 <div>
-                  <strong class="font-mono text-amber-800 block">${t.year}</strong>
-                  <p class="text-stone-600">${t.event}</p>
+                  <strong class="font-mono text-accent-teal block">${t.year} — ${t.title}</strong>
+                  <p class="text-text-secondary mt-0.5">${t.desc}</p>
                 </div>
               `).join('')}
             </div>
           </div>
 
-          <!-- Key Lessons -->
+          <!-- Major Decisions -->
           <div class="space-y-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-stone-500 font-sans block">Extracted Leadership Lessons</span>
-            <ul class="space-y-1.5 list-disc list-inside text-xs text-stone-700">
+            <span class="label-caps text-text-primary block">Major Strategic Decisions</span>
+            <div class="grid grid-cols-1 gap-2 text-xs font-body">
+              ${f.decisions.map(d => `
+                <div class="p-3 bg-surface-paper border border-subtle rounded-sm">
+                  <strong class="text-text-primary block">${d.title}</strong>
+                  <p class="text-text-secondary mt-0.5">${d.desc}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Key Quotes Layout -->
+          <div class="space-y-2">
+            <span class="label-caps text-text-primary block">Selected Quotes</span>
+            <div class="space-y-2">
+              ${f.quotes.map(q => `
+                <div class="pull-quote text-sm">
+                  "${q}"
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Actionable Lessons -->
+          <div class="space-y-2">
+            <span class="label-caps text-text-primary block">Actionable Lessons</span>
+            <ul class="space-y-1.5 list-disc list-inside text-xs text-text-secondary font-body">
               ${f.lessons.map(l => `<li>${l}</li>`).join('')}
             </ul>
+          </div>
+
+          <!-- Connected Course -->
+          <div class="p-4 bg-stone-100 rounded-sm flex items-center justify-between text-xs">
+            <div>
+              <span class="label-caps text-text-secondary">Skillsfy Learning Path</span>
+              <h5 class="font-bold text-text-primary">${f.relatedCourse.title}</h5>
+            </div>
+            <a href="/lp1" target="_blank" class="px-3 py-1.5 bg-text-primary text-white font-bold rounded-sm text-xs">
+              Learn Skill →
+            </a>
           </div>
 
         </div>
@@ -714,7 +1029,7 @@
       if (modal) modal.classList.add('hidden');
     }
 
-    // ================= OPEN COMPANY DOSSIER MODAL =================
+    // ================= 12. OPEN COMPANY PROFILE MODAL =================
     function openCompanyModal(companyId) {
       const c = window.INSIGHTS_DATA.companies.find(item => item.id === companyId);
       if (!c) return;
@@ -726,34 +1041,48 @@
       content.innerHTML = `
         <div class="space-y-6 text-left">
           
-          <div class="flex items-center justify-between pb-4 border-b editorial-border">
+          <!-- Company Snapshot Top Header -->
+          <div class="flex items-start justify-between pb-4 border-b border-subtle">
             <div>
-              <span class="badge-pill bg-sky-100 text-sky-800 text-[10px] font-bold">${c.industry}</span>
-              <h3 class="font-serif-headline text-2xl font-bold text-stone-950 mt-1">${c.name}</h3>
-              <p class="text-xs text-stone-500">${c.tagline}</p>
+              <span class="label-caps text-accent-teal">${c.industry}</span>
+              <h3 class="font-serif-headline text-2xl sm:text-3xl font-bold text-text-primary mt-1">${c.name}</h3>
+              <p class="text-xs text-text-secondary font-body">${c.tagline}</p>
             </div>
-            <span class="text-xs font-mono text-stone-400">Founded ${c.founded}</span>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-            <div class="p-4 rounded-xl bg-stone-50 border editorial-border space-y-1">
-              <span class="font-bold text-stone-500 uppercase text-[10px] block">Business Model</span>
-              <p class="text-stone-800 font-medium">${c.businessModel}</p>
-            </div>
-            <div class="p-4 rounded-xl bg-stone-50 border editorial-border space-y-1">
-              <span class="font-bold text-stone-500 uppercase text-[10px] block">Funding & Valuation</span>
-              <p class="text-stone-800 font-medium">${c.fundingStage} (${c.valuation})</p>
+            <div class="text-right text-xs font-mono text-text-secondary">
+              <span>Founded ${c.founded}</span>
+              <span class="block text-text-primary font-bold">${c.headquarters}</span>
             </div>
           </div>
 
-          <div class="space-y-1 text-xs">
-            <span class="font-bold text-stone-500 uppercase text-[10px] block">Revenue Model Breakdown</span>
-            <p class="text-stone-700 leading-relaxed">${c.revenueModel}</p>
+          <!-- Business Model & Revenue Model -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-body">
+            <div class="p-4 bg-surface-paper border border-subtle rounded-sm space-y-1">
+              <span class="label-caps text-text-primary block">Business Model</span>
+              <p class="text-text-secondary">${c.businessModel}</p>
+            </div>
+            <div class="p-4 bg-surface-paper border border-subtle rounded-sm space-y-1">
+              <span class="label-caps text-text-primary block">Funding & Valuation</span>
+              <p class="text-text-secondary">${c.fundingStage} (${c.valuation})</p>
+            </div>
           </div>
 
-          <div class="space-y-1 text-xs">
-            <span class="font-bold text-stone-500 uppercase text-[10px] block">Defensible Moat</span>
-            <p class="text-stone-700 leading-relaxed">${c.moat}</p>
+          <div class="space-y-1.5 text-xs font-body">
+            <span class="label-caps text-text-primary block">Revenue Architecture</span>
+            <p class="text-text-secondary leading-relaxed">${c.revenueModel}</p>
+          </div>
+
+          <div class="space-y-1.5 text-xs font-body">
+            <span class="label-caps text-text-primary block">Defensible Moat</span>
+            <p class="text-text-secondary leading-relaxed">${c.moat}</p>
+          </div>
+
+          <div class="space-y-1.5 text-xs font-body">
+            <span class="label-caps text-text-primary block">Competitors & Market Landscape</span>
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              ${c.competitors.map(comp => `
+                <span class="px-2.5 py-1 bg-stone-100 text-text-primary rounded-sm text-xs font-medium">${comp}</span>
+              `).join('')}
+            </div>
           </div>
 
         </div>
@@ -767,7 +1096,7 @@
       if (modal) modal.classList.add('hidden');
     }
 
-    // ================= MULTI-ENTITY LIVE SEARCH =================
+    // ================= 23. MULTI-ENTITY SEARCH EXPERIENCE =================
     function handleLiveSearch(query) {
       const dropdown = document.getElementById('search-results-dropdown');
       if (!dropdown) return;
@@ -783,37 +1112,37 @@
       const matchCompanies = window.INSIGHTS_DATA.companies.filter(c => c.name.toLowerCase().includes(q) || c.industry.toLowerCase().includes(q));
 
       if (matchStories.length === 0 && matchFounders.length === 0 && matchCompanies.length === 0) {
-        dropdown.innerHTML = `<p class="text-xs text-stone-400 text-center py-2">No matching knowledge entities found.</p>`;
+        dropdown.innerHTML = `<p class="text-xs text-text-secondary text-center py-2">No matching knowledge entities found.</p>`;
         dropdown.classList.remove('hidden');
         return;
       }
 
       let html = '';
-      if (matchStories.length > 0) {
-        html += `<span class="text-[10px] font-bold uppercase text-stone-400 block px-1">Research Stories</span>`;
-        html += matchStories.map(s => `
-          <div onclick="openStoryModal('${s.id}'); document.getElementById('search-results-dropdown').classList.add('hidden')" class="p-2 hover:bg-stone-50 rounded-xl cursor-pointer text-xs font-semibold text-stone-900">
-            ${s.title}
-          </div>
-        `).join('');
-      }
-
       if (matchFounders.length > 0) {
-        html += `<span class="text-[10px] font-bold uppercase text-amber-700 block px-1 pt-2">Founders & Builders</span>`;
+        html += `<span class="label-caps text-accent-teal block px-1 pb-1">PEOPLE</span>`;
         html += matchFounders.map(f => `
-          <div onclick="openFounderModal('${f.id}'); document.getElementById('search-results-dropdown').classList.add('hidden')" class="p-2 hover:bg-stone-50 rounded-xl cursor-pointer text-xs font-bold text-stone-900 flex items-center justify-between">
+          <div onclick="openFounderModal('${f.id}'); document.getElementById('search-results-dropdown').classList.add('hidden')" class="p-2 hover:bg-stone-50 rounded-sm cursor-pointer text-xs font-bold text-text-primary flex items-center justify-between">
             <span>${f.name}</span>
-            <span class="text-[10px] font-normal text-stone-400">${f.company}</span>
+            <span class="text-[10px] font-normal text-text-secondary">${f.company}</span>
           </div>
         `).join('');
       }
 
       if (matchCompanies.length > 0) {
-        html += `<span class="text-[10px] font-bold uppercase text-sky-700 block px-1 pt-2">Companies</span>`;
+        html += `<span class="label-caps text-text-primary block px-1 pt-2 pb-1">COMPANIES</span>`;
         html += matchCompanies.map(c => `
-          <div onclick="openCompanyModal('${c.id}'); document.getElementById('search-results-dropdown').classList.add('hidden')" class="p-2 hover:bg-stone-50 rounded-xl cursor-pointer text-xs font-bold text-stone-900 flex items-center justify-between">
+          <div onclick="openCompanyModal('${c.id}'); document.getElementById('search-results-dropdown').classList.add('hidden')" class="p-2 hover:bg-stone-50 rounded-sm cursor-pointer text-xs font-bold text-text-primary flex items-center justify-between">
             <span>${c.name}</span>
-            <span class="text-[10px] font-normal text-stone-400">${c.industry}</span>
+            <span class="text-[10px] font-normal text-text-secondary">${c.industry}</span>
+          </div>
+        `).join('');
+      }
+
+      if (matchStories.length > 0) {
+        html += `<span class="label-caps text-text-secondary block px-1 pt-2 pb-1">STORIES</span>`;
+        html += matchStories.map(s => `
+          <div onclick="openStoryModal('${s.id}'); document.getElementById('search-results-dropdown').classList.add('hidden')" class="p-2 hover:bg-stone-50 rounded-sm cursor-pointer text-xs font-medium text-text-primary">
+            ${s.title}
           </div>
         `).join('');
       }
@@ -822,7 +1151,21 @@
       dropdown.classList.remove('hidden');
     }
 
-    // ================= NEWSLETTER SUBMIT =================
+    // Category filter button
+    function filterCategory(cat) {
+      currentCategoryFilter = cat;
+      const buttons = document.querySelectorAll('.category-nav-btn');
+      buttons.forEach(btn => {
+        if (btn.textContent.includes(cat) || (cat === 'All' && btn.textContent.includes('All Stories'))) {
+          btn.className = 'category-nav-btn text-text-primary font-bold border-b-2 border-text-primary pb-0.5';
+        } else {
+          btn.className = 'category-nav-btn hover:text-text-primary transition-colors';
+        }
+      });
+      showToast(`Showing ${cat} stories`, 'info');
+    }
+
+    // Newsletter submit
     function handleNewsletterSubmit(e) {
       e.preventDefault();
       const email = document.getElementById('newsletter-email').value;
@@ -830,7 +1173,7 @@
       document.getElementById('newsletter-email').value = '';
     }
 
-    // ================= READING PROGRESS BAR =================
+    // Reading progress bar
     window.addEventListener('scroll', () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -840,9 +1183,7 @@
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-      renderEditorialStories();
-      renderFoundersGrid();
-      renderCompaniesGrid();
+      renderHomepageContent();
     });
   </script>
 </body>
