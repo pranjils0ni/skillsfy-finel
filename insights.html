@@ -16,10 +16,10 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
   
-  <!-- Luxury Editorial Fonts: Newsreader (Editorial Serif) + Plus Jakarta Sans + Inter + JetBrains Mono -->
+  <!-- Unified Google Fonts Matching skillsfy.in (Plus Jakarta Sans, Geist, Geist Mono, Inter, Manrope, Newsreader) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,500;1,6..72,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,600;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   
   <script>
@@ -42,9 +42,11 @@
             'accent-teal': '#006781',
           },
           fontFamily: {
-            serif: ['"Newsreader"', 'Georgia', 'serif'],
             sans: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
+            display: ['"Plus Jakarta Sans"', '"Manrope"', 'sans-serif'],
+            geist: ['"Geist"', 'sans-serif'],
+            mono: ['"Geist Mono"', 'monospace'],
+            serif: ['"Newsreader"', 'Georgia', 'serif'],
           }
         }
       }
@@ -65,9 +67,19 @@
       -moz-osx-font-smoothing: grayscale;
     }
     
+    .font-brand-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: -0.025em;
+    }
+    
     .font-editorial-serif {
       font-family: 'Newsreader', Georgia, serif;
       letter-spacing: -0.015em;
+    }
+
+    .font-geist-num {
+      font-family: 'Geist', sans-serif;
+      font-feature-settings: "tnum";
     }
     
     .hairline-border {
@@ -80,10 +92,6 @@
     
     .hairline-t {
       border-top: 1px solid #E2DFD7;
-    }
-
-    .hairline-r {
-      border-right: 1px solid #E2DFD7;
     }
 
     /* Subtle Paper Texture Grid */
@@ -107,25 +115,25 @@
     /* Editorial Drop Cap */
     .editorial-dropcap::first-letter {
       float: left;
-      font-family: 'Newsreader', Georgia, serif;
-      font-size: 4.2rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 4rem;
       line-height: 0.8;
       padding-top: 4px;
       padding-right: 12px;
       padding-bottom: 2px;
       color: #0F172A;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     /* Pull Quote Styling */
     .luxury-pullquote {
       font-family: 'Newsreader', Georgia, serif;
       font-style: italic;
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       line-height: 1.5;
       color: #0F172A;
       position: relative;
-      padding-left: 28px;
+      padding-left: 24px;
       border-left: 3px solid #B45309;
     }
 
@@ -166,14 +174,14 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-amber-100 selection:text-amber-900">
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-100 selection:text-amber-900 font-sans">
 
   <!-- Top 60fps Reading Progress Line -->
   <div id="reading-bar" class="top-reading-progress"></div>
 
   <!-- ================= 1. LIVE MARKET INTELLIGENCE TICKER TAPE ================= -->
   <div class="bg-paper-dark text-stone-300 text-[11px] font-mono py-1.5 overflow-hidden border-b border-stone-800 relative z-30">
-    <div class="animate-marquee whitespace-nowrap flex items-center gap-12 tracking-wide">
+    <div class="animate-marquee whitespace-nowrap flex items-center gap-12 tracking-wide font-mono">
       <div class="flex items-center gap-8">
         <span class="inline-flex items-center gap-1.5 text-amber-400 font-bold"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> LIVE INTELLIGENCE DOSSIERS:</span>
         <span><strong>ZERODHA</strong>: ₹2,000+ Cr Net Profit (100% Bootstrapped / Zero Debt)</span>
@@ -215,17 +223,17 @@
       </div>
 
       <div class="flex items-center gap-5">
-        <button onclick="toggleAudioBrief()" class="hover:text-amber-800 transition-colors flex items-center gap-1.5 text-ink-primary font-semibold">
+        <button onclick="toggleAudioBrief()" class="hover:text-amber-800 transition-colors flex items-center gap-1.5 text-ink-primary font-semibold font-sans">
           <span class="material-symbols-outlined text-sm text-accent-amber">headphones</span>
           <span>Audio Brief (12m)</span>
         </button>
         <span>•</span>
-        <a href="#newsletter" class="hover:text-ink-primary transition-colors flex items-center gap-1 text-ink-secondary font-medium">
+        <a href="#newsletter" class="hover:text-ink-primary transition-colors flex items-center gap-1 text-ink-secondary font-medium font-sans">
           <span class="material-symbols-outlined text-xs">mail</span>
           <span>The Sunday Dispatch</span>
         </a>
         <span>•</span>
-        <a href="/" class="text-accent-teal hover:text-ink-primary font-bold flex items-center gap-1">
+        <a href="/" class="text-accent-teal hover:text-ink-primary font-bold flex items-center gap-1 font-sans">
           <span>Main Campus</span>
           <span class="material-symbols-outlined text-xs">arrow_forward</span>
         </a>
@@ -235,11 +243,11 @@
     <!-- Main Masthead Brand & Navigation -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
       
-      <!-- Brand Identity Wordmark -->
+      <!-- Brand Identity Wordmark (Matching skillsfy.in typography) -->
       <div class="flex items-center gap-3">
         <a href="insights.html" class="flex flex-col text-left group">
-          <span class="font-editorial-serif text-3xl sm:text-4xl font-bold tracking-tight text-ink-primary group-hover:text-accent-amber transition-colors">
-            SKILLSFY INSIGHTS
+          <span class="font-brand-display text-3xl sm:text-4xl font-extrabold tracking-tight text-ink-primary group-hover:text-accent-amber transition-colors">
+            SKILLSFY <span class="text-accent-amber font-normal">INSIGHTS</span>
           </span>
           <span class="font-mono text-[9px] uppercase tracking-[0.25em] text-ink-secondary font-semibold -mt-1">
             Stories • Strategies • Lessons
@@ -247,8 +255,8 @@
         </a>
       </div>
 
-      <!-- Center Category Navigation -->
-      <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold text-ink-secondary">
+      <!-- Center Category Navigation (Plus Jakarta Sans & Geist) -->
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold text-ink-secondary font-sans">
         <button onclick="filterCategory('All')" class="category-nav-pill text-ink-primary font-bold border-b-2 border-ink-primary pb-0.5">Cover Stories</button>
         <a href="#founders-section" class="hover:text-ink-primary transition-colors">Founders</a>
         <a href="#companies-section" class="hover:text-ink-primary transition-colors">Company Dossiers</a>
@@ -261,13 +269,13 @@
       <!-- Right Utility Actions -->
       <div class="flex items-center gap-3">
         <!-- Spotlight / Command+K Search Trigger -->
-        <button onclick="openSearchModal()" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border hairline-border text-xs text-ink-secondary hover:border-ink-primary hover:text-ink-primary transition-all shadow-sm">
+        <button onclick="openSearchModal()" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border hairline-border text-xs text-ink-secondary hover:border-ink-primary hover:text-ink-primary transition-all shadow-sm font-sans">
           <span class="material-symbols-outlined text-sm">search</span>
           <span class="hidden sm:inline font-mono text-[11px]">Search Index...</span>
           <kbd class="hidden sm:inline px-1.5 py-0.5 rounded bg-stone-100 border border-stone-300 text-[9px] font-mono font-bold">⌘K</kbd>
         </button>
 
-        <a href="/" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-ink-primary hover:bg-stone-800 text-white text-xs font-bold transition-all shadow hover:scale-105">
+        <a href="/" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-ink-primary hover:bg-stone-800 text-white text-xs font-bold transition-all shadow hover:scale-105 font-sans">
           <span>Skillsfy Cohorts</span>
           <span class="material-symbols-outlined text-xs text-amber-400">arrow_forward</span>
         </a>
@@ -289,21 +297,21 @@
           <!-- Category & Tag Bar -->
           <div class="flex items-center justify-between text-xs font-mono text-ink-secondary pb-3 hairline-b">
             <div class="flex items-center gap-2">
-              <span class="px-2.5 py-1 rounded-full bg-amber-50 text-accent-amber border border-amber-200 font-bold text-[10px] uppercase tracking-wider">
+              <span class="px-2.5 py-1 rounded-full bg-amber-50 text-accent-amber border border-amber-200 font-bold text-[10px] uppercase tracking-wider font-mono">
                 FLAGSHIP INVESTIGATION
               </span>
               <span>•</span>
-              <span class="text-ink-primary font-bold">FINTECH ARCHITECTURE</span>
+              <span class="text-ink-primary font-bold font-sans">FINTECH ARCHITECTURE</span>
             </div>
-            <div class="flex items-center gap-2 text-[11px]">
+            <div class="flex items-center gap-2 text-[11px] font-mono">
               <span class="material-symbols-outlined text-sm text-emerald-600">verified</span>
-              <span>100% PRIMARY SOURCE VERIFIED</span>
+              <span>PRIMARY SOURCE VERIFIED</span>
             </div>
           </div>
 
           <!-- Headline & Deck -->
           <div class="space-y-3">
-            <h1 class="font-editorial-serif text-3xl sm:text-5xl lg:text-[52px] font-bold text-ink-primary leading-[1.08] hover:text-accent-amber transition-colors">
+            <h1 class="font-brand-display text-3xl sm:text-5xl lg:text-[46px] font-extrabold text-ink-primary leading-[1.12] hover:text-accent-amber transition-colors">
               How Zerodha Built a Different Kind of Brokerage Business
             </h1>
             <p class="text-base sm:text-lg text-ink-secondary font-editorial-serif italic leading-relaxed">
@@ -325,7 +333,7 @@
               <div class="flex items-center gap-2.5">
                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Nithin Kamath" class="w-8 h-8 rounded-full border-2 border-white object-cover shadow" />
                 <div>
-                  <span class="font-bold block text-sm leading-none">Nithin Kamath</span>
+                  <span class="font-bold block text-sm leading-none font-sans">Nithin Kamath</span>
                   <span class="text-[10px] text-stone-300 font-mono">Founder, Zerodha (₹2,000+ Cr Profit)</span>
                 </div>
               </div>
@@ -336,13 +344,13 @@
           <!-- Bottom Action & Audio Trigger Strip -->
           <div class="pt-2 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-ink-secondary">
             <div class="flex items-center gap-4">
-              <button onclick="event.stopPropagation(); playStoryAudio('zerodha')" class="px-3 py-1.5 rounded-full bg-stone-100 hover:bg-stone-200 text-ink-primary font-bold flex items-center gap-1.5 transition-all">
+              <button onclick="event.stopPropagation(); playStoryAudio('zerodha')" class="px-3 py-1.5 rounded-full bg-stone-100 hover:bg-stone-200 text-ink-primary font-bold flex items-center gap-1.5 transition-all font-sans">
                 <span class="material-symbols-outlined text-sm text-accent-amber">play_circle</span>
                 <span>Listen Audio (12 min)</span>
               </button>
               <span>By Skillsfy Editorial Desk</span>
             </div>
-            <span class="text-accent-amber font-bold hover:underline flex items-center gap-1">
+            <span class="text-accent-amber font-bold hover:underline flex items-center gap-1 font-sans">
               <span>Read Complete 5-Question Breakdown</span>
               <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </span>
@@ -379,7 +387,7 @@
           </div>
 
           <div class="space-y-1">
-            <h3 class="font-editorial-serif text-xl font-bold leading-snug">
+            <h3 class="font-brand-display text-xl font-bold leading-snug">
               5 Minutes. 5 Ideas. One Better Business Decision.
             </h3>
             <p class="text-xs text-stone-300 leading-relaxed font-sans">
@@ -393,9 +401,9 @@
               id="side-newsletter-email" 
               required 
               placeholder="Enter your work email..." 
-              class="w-full px-3.5 py-2.5 rounded-lg bg-stone-800/80 border border-stone-700 text-xs text-white placeholder:text-stone-400 focus:outline-none focus:border-amber-400"
+              class="w-full px-3.5 py-2.5 rounded-lg bg-stone-800/80 border border-stone-700 text-xs text-white placeholder:text-stone-400 focus:outline-none focus:border-amber-400 font-sans"
             />
-            <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-bold text-xs rounded-lg transition-all shadow">
+            <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-bold text-xs rounded-lg transition-all shadow font-sans">
               Subscribe Free →
             </button>
           </form>
@@ -410,8 +418,8 @@
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 text-left">
         <div>
           <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-teal">REAL-TIME VELOCITY</span>
-          <h2 class="font-editorial-serif text-3xl sm:text-4xl font-bold text-ink-primary mt-1">Trending Deep Research</h2>
-          <p class="text-xs text-ink-secondary mt-1">Calculated from reading completion rate, citation backlinks, and founder community shares.</p>
+          <h2 class="font-brand-display text-3xl sm:text-4xl font-extrabold text-ink-primary mt-1">Trending Deep Research</h2>
+          <p class="text-xs text-ink-secondary mt-1 font-sans">Calculated from reading completion rate, citation backlinks, and founder community shares.</p>
         </div>
         <span class="text-xs font-mono text-ink-muted">UPDATED HOURLY</span>
       </div>
@@ -426,10 +434,10 @@
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 text-left">
         <div>
           <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-amber">THE BUILDER KNOWLEDGE GRAPH</span>
-          <h2 class="font-editorial-serif text-3xl sm:text-4xl font-bold text-ink-primary mt-1">
+          <h2 class="font-brand-display text-3xl sm:text-4xl font-extrabold text-ink-primary mt-1">
             People Who Built Something Remarkable
           </h2>
-          <p class="text-xs text-ink-secondary mt-1">
+          <p class="text-xs text-ink-secondary mt-1 font-sans">
             Explore unvarnished founder journeys, milestone timelines, tactical decisions, and failures overcome.
           </p>
         </div>
@@ -445,10 +453,10 @@
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 text-left">
         <div>
           <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-emerald">ENTERPRISE FINANCIAL INTELLIGENCE</span>
-          <h2 class="font-editorial-serif text-3xl sm:text-4xl font-bold text-ink-primary mt-1">
+          <h2 class="font-brand-display text-3xl sm:text-4xl font-extrabold text-ink-primary mt-1">
             How India's Best Companies Make Money
           </h2>
-          <p class="text-xs text-ink-secondary mt-1">
+          <p class="text-xs text-ink-secondary mt-1 font-sans">
             Unbundled unit economics, customer acquisition loops, gross margin structures, and defensible moats.
           </p>
         </div>
@@ -463,7 +471,7 @@
     <section id="playbook-section" class="p-8 sm:p-12 luxury-card rounded-3xl space-y-10 text-left bg-white relative overflow-hidden">
       <div class="max-w-3xl space-y-2">
         <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-amber">THE SIGNATURE PLAYBOOK</span>
-        <h2 class="font-editorial-serif text-3xl sm:text-5xl font-bold text-ink-primary leading-tight">
+        <h2 class="font-brand-display text-3xl sm:text-4xl font-extrabold text-ink-primary leading-tight">
           What We Learned: 6 Principles of Resilient Enterprise Architecture
         </h2>
         <p class="text-xs sm:text-sm text-ink-secondary leading-relaxed font-editorial-serif italic">
@@ -474,49 +482,49 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
         <div class="p-6 rounded-2xl bg-paper-subtle border hairline-border space-y-3 hover:border-ink-primary transition-all">
-          <span class="font-editorial-serif text-4xl font-bold text-accent-amber block opacity-80">01</span>
-          <h4 class="font-editorial-serif text-xl font-bold text-ink-primary">Distribution Moats Compound</h4>
-          <p class="text-xs text-ink-secondary leading-relaxed">
+          <span class="font-brand-display text-3xl font-extrabold text-accent-amber block opacity-80">01</span>
+          <h4 class="font-brand-display text-lg font-bold text-ink-primary">Distribution Moats Compound</h4>
+          <p class="text-xs text-ink-secondary leading-relaxed font-sans">
             Paid marketing only works while credit cards swipe. Educational engines (Zerodha Varsity) and developer APIs build permanent organic inbound traffic.
           </p>
         </div>
 
         <div class="p-6 rounded-2xl bg-paper-subtle border hairline-border space-y-3 hover:border-ink-primary transition-all">
-          <span class="font-editorial-serif text-4xl font-bold text-accent-amber block opacity-80">02</span>
-          <h4 class="font-editorial-serif text-xl font-bold text-ink-primary">Lean Teams Protect Agility</h4>
-          <p class="text-xs text-ink-secondary leading-relaxed">
+          <span class="font-brand-display text-3xl font-extrabold text-accent-amber block opacity-80">02</span>
+          <h4 class="font-brand-display text-lg font-bold text-ink-primary">Lean Teams Protect Agility</h4>
+          <p class="text-xs text-ink-secondary leading-relaxed font-sans">
             Zerodha generated ₹2,000+ Cr profit with 120 engineers. Excessive headcount before achieving product-market fit introduces paralyzing organizational debt.
           </p>
         </div>
 
         <div class="p-6 rounded-2xl bg-paper-subtle border hairline-border space-y-3 hover:border-ink-primary transition-all">
-          <span class="font-editorial-serif text-4xl font-bold text-accent-amber block opacity-80">03</span>
-          <h4 class="font-editorial-serif text-xl font-bold text-ink-primary">Own the Entire Tech Stack</h4>
-          <p class="text-xs text-ink-secondary leading-relaxed">
+          <span class="font-brand-display text-3xl font-extrabold text-accent-amber block opacity-80">03</span>
+          <h4 class="font-brand-display text-lg font-bold text-ink-primary">Own the Entire Tech Stack</h4>
+          <p class="text-xs text-ink-secondary leading-relaxed font-sans">
             Zoho owns its data centers, compilers, and hardware layers, achieving 85%+ gross profit margins while competitors pay heavy cloud rents to AWS and Azure.
           </p>
         </div>
 
         <div class="p-6 rounded-2xl bg-paper-subtle border hairline-border space-y-3 hover:border-ink-primary transition-all">
-          <span class="font-editorial-serif text-4xl font-bold text-accent-amber block opacity-80">04</span>
-          <h4 class="font-editorial-serif text-xl font-bold text-ink-primary">Hyperlocal Density Over City Count</h4>
-          <p class="text-xs text-ink-secondary leading-relaxed">
+          <span class="font-brand-display text-3xl font-extrabold text-accent-amber block opacity-80">04</span>
+          <h4 class="font-brand-display text-lg font-bold text-ink-primary">Hyperlocal Density Over City Count</h4>
+          <p class="text-xs text-ink-secondary leading-relaxed font-sans">
             Quick commerce only works when you dominate a 2 km cluster with 1,000 orders/day before expanding geographically.
           </p>
         </div>
 
         <div class="p-6 rounded-2xl bg-paper-subtle border hairline-border space-y-3 hover:border-ink-primary transition-all">
-          <span class="font-editorial-serif text-4xl font-bold text-accent-amber block opacity-80">05</span>
-          <h4 class="font-editorial-serif text-xl font-bold text-ink-primary">Never Sell On Commissions</h4>
-          <p class="text-xs text-ink-secondary leading-relaxed">
+          <span class="font-brand-display text-3xl font-extrabold text-accent-amber block opacity-80">05</span>
+          <h4 class="font-brand-display text-lg font-bold text-ink-primary">Never Sell On Commissions</h4>
+          <p class="text-xs text-ink-secondary leading-relaxed font-sans">
             If your sales force earns based on transaction volume, they will inevitably sacrifice long-term client trust for short-term revenue quotas.
           </p>
         </div>
 
         <div class="p-6 rounded-2xl bg-paper-subtle border hairline-border space-y-3 hover:border-ink-primary transition-all">
-          <span class="font-editorial-serif text-4xl font-bold text-accent-amber block opacity-80">06</span>
-          <h4 class="font-editorial-serif text-xl font-bold text-ink-primary">Capital Discipline Is Freedom</h4>
-          <p class="text-xs text-ink-secondary leading-relaxed">
+          <span class="font-brand-display text-3xl font-extrabold text-accent-amber block opacity-80">06</span>
+          <h4 class="font-brand-display text-lg font-bold text-ink-primary">Capital Discipline Is Freedom</h4>
+          <p class="text-xs text-ink-secondary leading-relaxed font-sans">
             When you owe nothing to venture capitalists, you can afford to think in 20-year horizons and survive macroeconomic downturns that wipe out peers.
           </p>
         </div>
@@ -529,14 +537,14 @@
           <span class="px-2.5 py-0.5 rounded bg-amber-400/20 text-amber-300 font-mono text-[9px] font-bold uppercase tracking-wider">
             APPLY THIS ARCHITECTURE
           </span>
-          <h4 class="font-editorial-serif text-2xl font-bold text-white">
+          <h4 class="font-brand-display text-2xl font-bold text-white">
             Want to build, deploy, and scale high-concurrency software systems?
           </h4>
           <p class="text-xs text-stone-300 font-sans leading-relaxed">
             Master full-stack engineering, clean database schemas, and AI-powered web applications in the live Skillsfy cohort.
           </p>
         </div>
-        <a href="/lp1" target="_blank" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-bold text-xs shadow-lg transition-all whitespace-nowrap hover:scale-105">
+        <a href="/lp1" target="_blank" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-bold text-xs shadow-lg transition-all whitespace-nowrap hover:scale-105 font-sans">
           Explore Live Program (₹149) →
         </a>
       </div>
@@ -549,7 +557,7 @@
       <div class="space-y-4 text-left">
         <div>
           <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-amber">WATCH</span>
-          <h2 class="font-editorial-serif text-3xl font-bold text-ink-primary mt-1">Video Teardowns</h2>
+          <h2 class="font-brand-display text-2xl font-bold text-ink-primary mt-1">Video Teardowns</h2>
         </div>
         <div class="space-y-4" id="multimedia-videos">
           <!-- Rendered dynamically -->
@@ -560,7 +568,7 @@
       <div class="space-y-4 text-left">
         <div>
           <span class="text-xs font-mono font-bold uppercase tracking-wider text-accent-emerald">LISTEN</span>
-          <h2 class="font-editorial-serif text-3xl font-bold text-ink-primary mt-1">Skillsfy Founder Stories</h2>
+          <h2 class="font-brand-display text-2xl font-bold text-ink-primary mt-1">Skillsfy Founder Stories</h2>
         </div>
         <div class="space-y-4" id="multimedia-podcasts">
           <!-- Rendered dynamically -->
@@ -583,7 +591,7 @@
       </div>
       <div class="text-left leading-tight">
         <span class="text-[10px] font-mono text-amber-400 block uppercase">NOW PLAYING AUDIO ESSAY</span>
-        <h5 class="text-xs font-bold text-white truncate max-w-[220px] sm:max-w-xs" id="audio-title">How Zerodha Built a Different Brokerage</h5>
+        <h5 class="text-xs font-bold text-white truncate max-w-[220px] sm:max-w-xs font-sans" id="audio-title">How Zerodha Built a Different Brokerage</h5>
       </div>
     </div>
 
@@ -668,19 +676,19 @@
           id="spotlight-input"
           onkeyup="handleSpotlightSearch(this.value)"
           placeholder="Search founders, companies, business models, lessons..." 
-          class="w-full bg-transparent border-0 text-sm text-ink-primary focus:ring-0 placeholder:text-stone-400"
+          class="w-full bg-transparent border-0 text-sm text-ink-primary focus:ring-0 placeholder:text-stone-400 font-sans"
           autofocus
         />
         <kbd class="px-2 py-0.5 rounded bg-stone-200 text-stone-600 font-mono text-[10px] font-bold">ESC</kbd>
       </div>
-      <div id="spotlight-results" class="p-4 max-h-96 overflow-y-auto space-y-3 divide-y divide-stone-100 text-xs">
+      <div id="spotlight-results" class="p-4 max-h-96 overflow-y-auto space-y-3 divide-y divide-stone-100 text-xs font-sans">
         <p class="text-stone-400 text-center py-4 font-mono">Type to search across the Skillsfy Knowledge Graph...</p>
       </div>
     </div>
   </div>
 
   <!-- Toast Notification Container -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300"></div>
+  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300 font-sans"></div>
 
   <!-- ================= 9. GRAND LUXURY FOOTER ================= -->
   <footer class="bg-paper-dark text-stone-400 border-t border-stone-800 py-16 text-xs">
@@ -690,7 +698,7 @@
         
         <!-- Col 1: Brand -->
         <div class="space-y-4">
-          <span class="font-editorial-serif text-2xl font-bold text-white tracking-tight">SKILLSFY INSIGHTS</span>
+          <span class="font-brand-display text-2xl font-bold text-white tracking-tight">SKILLSFY INSIGHTS</span>
           <p class="text-xs text-stone-400 leading-relaxed font-sans">
             Stories. Strategies. Lessons. — An authoritative business media initiative by Skillsfy Institute of Technology studying remarkable builders.
           </p>
@@ -779,7 +787,7 @@
               <span>•</span>
               <span>${s.readTime}</span>
             </div>
-            <h4 class="font-editorial-serif text-base font-bold text-ink-primary group-hover:text-accent-amber transition-colors line-clamp-2 leading-snug">
+            <h4 class="font-brand-display text-base font-bold text-ink-primary group-hover:text-accent-amber transition-colors line-clamp-2 leading-snug">
               ${s.title}
             </h4>
           </div>
@@ -799,7 +807,7 @@
                 <span class="text-accent-amber font-bold uppercase">${s.category}</span>
                 <span>${s.readTime}</span>
               </div>
-              <h3 class="font-editorial-serif text-xl font-bold text-ink-primary group-hover:text-accent-amber transition-colors line-clamp-2 leading-snug">
+              <h3 class="font-brand-display text-xl font-bold text-ink-primary group-hover:text-accent-amber transition-colors line-clamp-2 leading-snug">
                 ${s.title}
               </h3>
               <p class="text-xs text-ink-secondary font-sans line-clamp-2 leading-relaxed">${s.subtitle}</p>
@@ -821,9 +829,9 @@
             </div>
             <div class="space-y-1">
               <span class="text-[10px] font-mono text-accent-amber uppercase font-bold tracking-wider">${f.industry}</span>
-              <h4 class="font-editorial-serif text-2xl font-bold text-ink-primary group-hover:text-accent-amber transition-colors">${f.name}</h4>
-              <p class="text-xs font-semibold text-ink-secondary">${f.role}</p>
-              <p class="text-xs text-ink-secondary line-clamp-2 mt-1 leading-relaxed">${f.shortBio}</p>
+              <h4 class="font-brand-display text-xl font-bold text-ink-primary group-hover:text-accent-amber transition-colors">${f.name}</h4>
+              <p class="text-xs font-semibold text-ink-secondary font-sans">${f.role}</p>
+              <p class="text-xs text-ink-secondary line-clamp-2 mt-1 leading-relaxed font-sans">${f.shortBio}</p>
             </div>
             <div class="pt-2 hairline-t text-xs font-mono font-bold text-ink-primary flex items-center justify-between">
               <span>View Dossier →</span>
@@ -843,12 +851,12 @@
               <span class="text-[10px] font-mono text-ink-muted">EST. ${c.founded}</span>
             </div>
             <div class="space-y-1.5">
-              <h4 class="font-editorial-serif text-2xl font-bold text-ink-primary group-hover:text-accent-emerald transition-colors">${c.name}</h4>
+              <h4 class="font-brand-display text-2xl font-bold text-ink-primary group-hover:text-accent-emerald transition-colors">${c.name}</h4>
               <p class="text-xs text-ink-secondary font-sans line-clamp-2 leading-relaxed">${c.tagline}</p>
             </div>
             <div class="pt-3 hairline-t text-[11px] text-ink-secondary font-mono flex items-center justify-between">
               <span class="text-accent-amber font-bold">${c.fundingStage}</span>
-              <span class="font-bold text-ink-primary group-hover:underline">Explore Teardown →</span>
+              <span class="font-bold text-ink-primary group-hover:underline font-sans">Explore Teardown →</span>
             </div>
           </div>
         `).join('');
@@ -865,8 +873,8 @@
             </div>
             <div class="space-y-1">
               <span class="text-[10px] font-mono text-accent-amber uppercase font-bold">${v.category}</span>
-              <h4 class="font-editorial-serif text-base font-bold text-ink-primary group-hover:text-accent-amber transition-colors line-clamp-2 leading-snug">${v.title}</h4>
-              <p class="text-xs text-ink-secondary">Feat. ${v.founder}</p>
+              <h4 class="font-brand-display text-sm font-bold text-ink-primary group-hover:text-accent-amber transition-colors line-clamp-2 leading-snug">${v.title}</h4>
+              <p class="text-xs text-ink-secondary font-sans">Feat. ${v.founder}</p>
             </div>
           </div>
         `).join('');
@@ -881,8 +889,8 @@
             </div>
             <div class="space-y-1">
               <span class="text-[10px] font-mono text-accent-emerald uppercase font-bold">${p.duration}</span>
-              <h4 class="font-editorial-serif text-base font-bold text-ink-primary group-hover:text-accent-emerald transition-colors line-clamp-1 leading-snug">${p.title}</h4>
-              <p class="text-xs text-ink-secondary">${p.guest}</p>
+              <h4 class="font-brand-display text-sm font-bold text-ink-primary group-hover:text-accent-emerald transition-colors line-clamp-1 leading-snug">${p.title}</h4>
+              <p class="text-xs text-ink-secondary font-sans">${p.guest}</p>
             </div>
           </div>
         `).join('');
@@ -913,14 +921,14 @@
               <span>Updated ${story.date}</span>
             </div>
 
-            <h1 class="font-editorial-serif text-3xl sm:text-5xl font-bold text-ink-primary leading-[1.1]">
+            <h1 class="font-brand-display text-3xl sm:text-4xl font-extrabold text-ink-primary leading-[1.15]">
               ${story.title}
             </h1>
             <p class="text-base sm:text-lg text-ink-secondary font-editorial-serif italic leading-relaxed">
               ${story.subtitle}
             </p>
             <div class="text-xs font-mono text-ink-secondary pt-1">
-              Authored by <strong class="text-ink-primary">${story.author}</strong>
+              Authored by <strong class="text-ink-primary font-sans">${story.author}</strong>
             </div>
           </div>
 
@@ -933,13 +941,13 @@
           <div class="p-6 rounded-2xl bg-paper-subtle border hairline-border space-y-4 text-xs text-left">
             <div>
               <span class="font-mono font-bold text-accent-amber block mb-1.5 uppercase tracking-wider text-[11px]">📌 EXECUTIVE SUMMARY (TL;DR)</span>
-              <ul class="space-y-1.5 list-disc list-inside text-ink-primary leading-relaxed">
+              <ul class="space-y-1.5 list-disc list-inside text-ink-primary leading-relaxed font-sans">
                 ${story.tldr.map(t => `<li>${t}</li>`).join('')}
               </ul>
             </div>
             <div class="pt-3 hairline-t">
               <span class="font-mono font-bold text-ink-primary block mb-1.5 uppercase tracking-wider text-[11px]">KEY TAKEAWAYS</span>
-              <ul class="space-y-1.5 list-disc list-inside text-ink-secondary leading-relaxed">
+              <ul class="space-y-1.5 list-disc list-inside text-ink-secondary leading-relaxed font-sans">
                 ${story.keyTakeaways.map(k => `<li>${k}</li>`).join('')}
               </ul>
             </div>
@@ -949,13 +957,13 @@
           <div class="space-y-6 text-left font-sans text-sm leading-relaxed text-ink-primary">
             
             <div class="space-y-2">
-              <h3 class="font-editorial-serif text-2xl font-bold text-ink-primary">1. What Happened? (The Origin Narrative)</h3>
-              <p class="whitespace-pre-line text-stone-700 editorial-dropcap">${sec.whatHappened}</p>
+              <h3 class="font-brand-display text-2xl font-bold text-ink-primary">1. What Happened? (The Origin Narrative)</h3>
+              <p class="whitespace-pre-line text-stone-700 editorial-dropcap font-sans">${sec.whatHappened}</p>
             </div>
 
             <div class="space-y-2">
-              <h3 class="font-editorial-serif text-2xl font-bold text-ink-primary">2. Why Did It Happen? (Market Structural Inefficiencies)</h3>
-              <p class="whitespace-pre-line text-stone-700">${sec.whyItHappened}</p>
+              <h3 class="font-brand-display text-2xl font-bold text-ink-primary">2. Why Did It Happen? (Market Structural Inefficiencies)</h3>
+              <p class="whitespace-pre-line text-stone-700 font-sans">${sec.whyItHappened}</p>
             </div>
 
             <!-- Luxury Pull Quote -->
@@ -964,39 +972,39 @@
             </div>
 
             <div class="space-y-2">
-              <h3 class="font-editorial-serif text-2xl font-bold text-ink-primary">3. What Actually Worked? (Strategic Moats)</h3>
-              <div class="whitespace-pre-line text-stone-700">${sec.whatWorked}</div>
+              <h3 class="font-brand-display text-2xl font-bold text-ink-primary">3. What Actually Worked? (Strategic Moats)</h3>
+              <div class="whitespace-pre-line text-stone-700 font-sans">${sec.whatWorked}</div>
             </div>
 
             <div class="space-y-2">
-              <h3 class="font-editorial-serif text-2xl font-bold text-ink-primary">4. What Failed & Challenges Overcome?</h3>
-              <div class="whitespace-pre-line text-stone-700">${sec.whatFailed}</div>
+              <h3 class="font-brand-display text-2xl font-bold text-ink-primary">4. What Failed & Challenges Overcome?</h3>
+              <div class="whitespace-pre-line text-stone-700 font-sans">${sec.whatFailed}</div>
             </div>
 
             <!-- Contextual Course Integration -->
             <div class="p-6 rounded-2xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-4 my-6">
               <div class="space-y-1 text-left">
                 <span class="px-2 py-0.5 rounded bg-amber-200 text-amber-900 font-mono text-[9px] font-bold">APPLY THIS SKILL</span>
-                <h4 class="font-editorial-serif text-base font-bold text-ink-primary">${story.relatedCourse.title}</h4>
-                <p class="text-xs text-ink-secondary">${story.relatedCourse.desc}</p>
+                <h4 class="font-brand-display text-base font-bold text-ink-primary">${story.relatedCourse.title}</h4>
+                <p class="text-xs text-ink-secondary font-sans">${story.relatedCourse.desc}</p>
               </div>
-              <a href="/lp1" target="_blank" class="px-5 py-2.5 bg-ink-primary hover:bg-stone-800 text-white text-xs font-bold rounded-xl transition-all whitespace-nowrap">
+              <a href="/lp1" target="_blank" class="px-5 py-2.5 bg-ink-primary hover:bg-stone-800 text-white text-xs font-bold rounded-xl transition-all whitespace-nowrap font-sans">
                 ${story.relatedCourse.ctaText}
               </a>
             </div>
 
             <div class="space-y-3">
-              <h3 class="font-editorial-serif text-2xl font-bold text-ink-primary">5. What Can You Learn? (Actionable Takeaways)</h3>
+              <h3 class="font-brand-display text-2xl font-bold text-ink-primary">5. What Can You Learn? (Actionable Takeaways)</h3>
               <div class="space-y-2">
                 ${sec.lessonsLearned.map(l => `
-                  <div class="p-4 rounded-xl bg-paper-subtle border hairline-border text-xs text-ink-primary leading-relaxed">
+                  <div class="p-4 rounded-xl bg-paper-subtle border hairline-border text-xs text-ink-primary leading-relaxed font-sans">
                     ${l}
                   </div>
                 `).join('')}
               </div>
             </div>
 
-            <div class="p-4 rounded-xl border-l-2 border-accent-amber bg-stone-50 text-xs text-ink-secondary italic">
+            <div class="p-4 rounded-xl border-l-2 border-accent-amber bg-stone-50 text-xs text-ink-secondary italic font-sans">
               <strong>How You Can Apply It:</strong> ${sec.howToApply}
             </div>
 
@@ -1036,8 +1044,8 @@
             <img src="${f.portrait}" alt="${f.name}" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover flex-shrink-0 shadow" />
             <div class="space-y-1">
               <span class="text-[10px] font-mono text-accent-amber uppercase font-bold">${f.industry}</span>
-              <h3 class="font-editorial-serif text-2xl sm:text-3xl font-bold text-ink-primary">${f.name}</h3>
-              <p class="text-xs font-semibold text-ink-secondary">${f.role}, ${f.company} (${f.location})</p>
+              <h3 class="font-brand-display text-2xl font-bold text-ink-primary">${f.name}</h3>
+              <p class="text-xs font-semibold text-ink-secondary font-sans">${f.role}, ${f.company} (${f.location})</p>
               <p class="text-xs text-stone-600 font-editorial-serif italic pt-1">"${f.shortBio}"</p>
             </div>
           </div>
@@ -1103,7 +1111,7 @@
           <div class="flex items-start justify-between pb-4 hairline-b">
             <div>
               <span class="px-2.5 py-1 rounded bg-teal-50 text-accent-emerald font-mono text-[10px] font-bold">${c.industry}</span>
-              <h3 class="font-editorial-serif text-2xl sm:text-3xl font-bold text-ink-primary mt-1">${c.name}</h3>
+              <h3 class="font-brand-display text-2xl font-bold text-ink-primary mt-1">${c.name}</h3>
               <p class="text-xs text-ink-secondary font-sans">${c.tagline}</p>
             </div>
             <div class="text-right text-xs font-mono text-ink-secondary">
@@ -1194,7 +1202,7 @@
       if (matchStories.length > 0) {
         html += `<span class="text-[10px] font-mono font-bold uppercase text-accent-amber block pt-1">Research Stories (${matchStories.length})</span>`;
         html += matchStories.map(s => `
-          <div onclick="openStoryModal('${s.id}'); closeSearchModal()" class="p-2.5 rounded-lg hover:bg-stone-50 cursor-pointer text-xs font-bold text-ink-primary flex items-center justify-between">
+          <div onclick="openStoryModal('${s.id}'); closeSearchModal()" class="p-2.5 rounded-lg hover:bg-stone-50 cursor-pointer text-xs font-bold text-ink-primary flex items-center justify-between font-sans">
             <span>${s.title}</span>
             <span class="text-[10px] font-mono text-ink-muted">${s.category}</span>
           </div>
@@ -1204,7 +1212,7 @@
       if (matchFounders.length > 0) {
         html += `<span class="text-[10px] font-mono font-bold uppercase text-accent-teal block pt-2">Founders (${matchFounders.length})</span>`;
         html += matchFounders.map(f => `
-          <div onclick="openFounderModal('${f.id}'); closeSearchModal()" class="p-2.5 rounded-lg hover:bg-stone-50 cursor-pointer text-xs font-bold text-ink-primary flex items-center justify-between">
+          <div onclick="openFounderModal('${f.id}'); closeSearchModal()" class="p-2.5 rounded-lg hover:bg-stone-50 cursor-pointer text-xs font-bold text-ink-primary flex items-center justify-between font-sans">
             <span>${f.name}</span>
             <span class="text-[10px] font-mono text-ink-muted">${f.company}</span>
           </div>
@@ -1214,7 +1222,7 @@
       if (matchCompanies.length > 0) {
         html += `<span class="text-[10px] font-mono font-bold uppercase text-accent-emerald block pt-2">Companies (${matchCompanies.length})</span>`;
         html += matchCompanies.map(c => `
-          <div onclick="openCompanyModal('${c.id}'); closeSearchModal()" class="p-2.5 rounded-lg hover:bg-stone-50 cursor-pointer text-xs font-bold text-ink-primary flex items-center justify-between">
+          <div onclick="openCompanyModal('${c.id}'); closeSearchModal()" class="p-2.5 rounded-lg hover:bg-stone-50 cursor-pointer text-xs font-bold text-ink-primary flex items-center justify-between font-sans">
             <span>${c.name}</span>
             <span class="text-[10px] font-mono text-ink-muted">${c.industry}</span>
           </div>
