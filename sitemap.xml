@@ -92,4 +92,48 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- Skillsfy Articles Section -->
+  <url>
+    <loc>https://skillsfy.in/articles</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://skillsfy.in/articles/how-students-can-use-ai-without-becoming-dependent</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsfy.in/articles/high-income-coding-ai-skills-students-2026</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsfy.in/articles/how-to-land-first-freelance-client-student</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsfy.in/articles/prompt-engineering-for-students-ai-tutor</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsfy.in/articles/building-real-projects-vs-memorizing-dsa</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skillsfy.in/articles/daily-habit-top-software-developers</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
