@@ -1144,6 +1144,12 @@
         `;
       }
 
+      // Render Rich Narrative Content
+      const narrativeContainer = document.getElementById('art-narrative-content');
+      if (narrativeContainer) {
+        narrativeContainer.innerHTML = content.narrativeHtml || '';
+      }
+
       // Render Callout Blocks
       const calloutsContainer = document.getElementById('art-callouts-container');
       if (calloutsContainer && content.callouts) {
