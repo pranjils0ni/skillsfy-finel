@@ -43,30 +43,69 @@
   <meta name="twitter:description" content="Master next-gen AI tools and full-stack web development. ISO verifiable certifications." />
   <meta name="twitter:image" content="https://skillsfy.in/assets/logo.png" />
 
-  <!-- JSON-LD Structured Data Schema (Google Knowledge Graph) -->
+  <!-- JSON-LD Structured Data Schema (Google Knowledge Graph & Brand Disambiguation) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "Skillsfy - Institute of Technology",
-    "url": "https://skillsfy.in",
-    "logo": "https://skillsfy.in/assets/logo.png",
-    "founder": {
-      "@type": "Person",
-      "name": "Pranjil Soni"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Civic Center",
-      "addressLocality": "Jabalpur",
-      "addressRegion": "Madhya Pradesh",
-      "postalCode": "482002",
-      "addressCountry": "IN"
-    },
-    "description": "Skillsfy is a premier AI and modern technology education institute empowering developers and creators in India with practical software engineering and monetization skills.",
-    "sameAs": [
-      "https://github.com/pranjils0ni",
-      "https://skillsfy.in/lp1"
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        "@id": "https://skillsfy.in/#organization",
+        "name": "Skillsfy - Institute of Technology",
+        "alternateName": [
+          "Skillsfy",
+          "Skillsify",
+          "Skillfy",
+          "Skillsfy.in",
+          "Skillsfy Institute",
+          "The Skillsfy",
+          "Skillsfy EdTech",
+          "Skillsfy Jabalpur"
+        ],
+        "disambiguatingDescription": "Skillsfy (official domain: skillsfy.in) is India's premier AI & Software Engineering Institute founded by Pranjil Soni, distinct from generic names like skillsify or skillfy.",
+        "url": "https://skillsfy.in",
+        "logo": "https://skillsfy.in/assets/logo.png",
+        "founder": {
+          "@type": "Person",
+          "name": "Pranjil Soni"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Civic Center",
+          "addressLocality": "Jabalpur",
+          "addressRegion": "Madhya Pradesh",
+          "postalCode": "482002",
+          "addressCountry": "IN"
+        },
+        "description": "Skillsfy is a premier AI and modern technology education institute empowering developers and creators in India with practical software engineering and monetization skills.",
+        "sameAs": [
+          "https://github.com/pranjils0ni",
+          "https://skillsfy.in/lp1",
+          "https://skillsfy.in/insights.html"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://skillsfy.in/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Skillsfy (skillsfy.in) and is it different from Skillfy or Skillsify?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Skillsfy (official website https://skillsfy.in) is India's leading AI & Full-Stack Development Institute founded by Pranjil Soni. Unlike generic tutoring portals or spelling variants such as Skillfy or Skillsify, Skillsfy provides live coding masterclasses, verifiable ISO certifications, and software engineering cohorts."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where is Skillsfy Institute of Technology located?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Skillsfy Institute of Technology is headquartered in Civic Center, Jabalpur, Madhya Pradesh, India (PIN: 482002), offering live cohorts across India and offline practical training."
+            }
+          }
+        ]
+      }
     ]
   }
   </script>
