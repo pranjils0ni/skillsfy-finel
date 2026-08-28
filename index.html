@@ -148,6 +148,11 @@
 
       <!-- Desktop Header Actions -->
       <div class="hidden md:flex items-center gap-3.5">
+        <a href="/login.html" class="px-3 py-2 text-xs font-bold text-slate-700 hover:text-primary transition-colors flex items-center gap-1 border border-slate-200 rounded-xl hover:bg-slate-50">
+          <span class="material-symbols-outlined text-base text-sky-600">account_circle</span>
+          <span>Login</span>
+        </a>
+
         <button onclick="openMentorModal()" class="px-3 py-2 text-xs font-bold text-[#00677f] hover:text-primary transition-colors flex items-center gap-1.5 border border-slate-200 rounded-xl hover:bg-slate-50">
           <span class="material-symbols-outlined text-base text-cyan-600">event_available</span>
           <span>1:1 Mentorship</span>
@@ -161,6 +166,7 @@
 
       <!-- Mobile Menu Toggle Button -->
       <div class="flex items-center gap-2 lg:hidden">
+        <a href="/login.html" class="px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs font-bold text-slate-700">Login</a>
         <a href="/enroll?course=standard-course" class="btn-cyan py-1.5 px-3 rounded-lg text-xs font-bold">Enroll</a>
         <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none" aria-label="Toggle menu">
           <span class="material-symbols-outlined text-2xl">menu</span>
