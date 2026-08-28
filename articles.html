@@ -14,6 +14,8 @@
     gtag('config', 'G-Q400P9M9X4');
   </script>
 
+  <base href="/" />
+
   <!-- Dynamic Metadata -->
   <title id="meta-page-title">Articles | Skillsfy — Practical Knowledge, AI Guides & Career Insights</title>
   <meta name="description" id="meta-page-desc" content="A curated collection of practical ideas, guides, career roadmaps, technology explainers, and real-world software engineering knowledge from Skillsfy." />
@@ -729,9 +731,22 @@
 
     function getQueryParams() {
       const params = new URLSearchParams(window.location.search);
+      const pathname = window.location.pathname;
+      let slugFromPath = '';
+      let catFromPath = '';
+
+      if (pathname.includes('/articles/')) {
+        const cleanPath = pathname.substring(pathname.indexOf('/articles/') + 10).replace(/\/$/, '');
+        if (cleanPath.startsWith('category/')) {
+          catFromPath = cleanPath.replace('category/', '');
+        } else if (cleanPath && cleanPath !== 'articles' && cleanPath !== 'articles.html') {
+          slugFromPath = cleanPath;
+        }
+      }
+
       return {
-        slug: params.get('slug') || '',
-        category: params.get('category') || '',
+        slug: params.get('slug') || slugFromPath || '',
+        category: params.get('category') || catFromPath || '',
         q: params.get('q') || ''
       };
     }
@@ -1137,7 +1152,7 @@
     // ================= NAVIGATION ACTIONS =================
     function navigateToArticle(slug) {
       currentArticleSlug = slug;
-      const newUrl = `articles.html?slug=${encodeURIComponent(slug)}`;
+      const newUrl = `/articles/${encodeURIComponent(slug)}`;
       window.history.pushState({}, '', newUrl);
       initArticlesRouter();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1145,7 +1160,7 @@
 
     function filterByCategory(slug) {
       activeCategory = slug;
-      const newUrl = slug === 'all' ? 'articles.html' : `articles.html?category=${encodeURIComponent(slug)}`;
+      const newUrl = slug === 'all' ? '/articles' : `/articles/category/${encodeURIComponent(slug)}`;
       window.history.pushState({}, '', newUrl);
       initArticlesRouter();
     }
