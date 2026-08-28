@@ -2,6 +2,15 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/articles", "destination": "/articles.html" },
+    { "source": "/articles/:slug", "destination": "/articles.html" },
+    { "source": "/articles/category/:category", "destination": "/articles.html" },
+    { "source": "/articles/search", "destination": "/articles.html" },
+    { "source": "/insights", "destination": "/insights.html" },
+    { "source": "/login", "destination": "/login.html" },
+    { "source": "/article", "destination": "/article.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
