@@ -4,11 +4,12 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/articles", "destination": "/articles.html" },
-    { "source": "/articles/(.*)", "destination": "/articles.html" },
+    { "source": "/articles/:slug*", "destination": "/articles.html" },
     { "source": "/insights", "destination": "/insights.html" },
-    { "source": "/login", "destination": "/login.html" },
+    { "source": "/insights/:slug*", "destination": "/insights.html" },
     { "source": "/article", "destination": "/article.html" },
-    { "source": "/article/(.*)", "destination": "/article.html" }
+    { "source": "/article/:slug*", "destination": "/article.html" },
+    { "source": "/login", "destination": "/login.html" }
   ],
   "headers": [
     {
