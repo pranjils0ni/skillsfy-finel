@@ -1282,7 +1282,7 @@
     // ================= NAVIGATION ACTIONS =================
     function navigateToArticle(slug) {
       currentArticleSlug = slug;
-      const newUrl = `/articles/${encodeURIComponent(slug)}`;
+      const newUrl = `articles?slug=${encodeURIComponent(slug)}`;
       window.history.pushState({}, '', newUrl);
       initArticlesRouter();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1290,7 +1290,7 @@
 
     function filterByCategory(slug) {
       activeCategory = slug;
-      const newUrl = slug === 'all' ? '/articles' : `/articles/category/${encodeURIComponent(slug)}`;
+      const newUrl = slug === 'all' ? 'articles' : `articles?category=${encodeURIComponent(slug)}`;
       window.history.pushState({}, '', newUrl);
       initArticlesRouter();
     }
