@@ -185,28 +185,33 @@
       max-width: 740px;
     }
 
-    /* Responsive Data Tables */
+    /* Responsive Mobile-Friendly Data Tables */
     .article-table-wrapper {
       overflow-x: auto;
-      margin: 28px 0;
-      border-radius: 14px;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+      border-radius: 16px;
       border: 1px solid #E2DFD7;
+      background: #FFFFFF;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
     }
     .article-table {
       width: 100%;
+      min-width: 540px;
       border-collapse: collapse;
       font-size: 13.5px;
       text-align: left;
     }
     .article-table th {
       background-color: #F8F7F2;
-      padding: 14px 18px;
+      padding: 12px 16px;
       font-weight: 800;
       color: #0F172A;
       border-bottom: 1px solid #E2DFD7;
+      white-space: nowrap;
     }
     .article-table td {
-      padding: 14px 18px;
+      padding: 12px 16px;
       border-bottom: 1px solid #F1F0E8;
       color: #334155;
     }
