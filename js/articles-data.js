@@ -36,6 +36,391 @@ window.SKILLSFY_ARTICLES_DATA = {
 
   articles: [
     {
+  "id": "art-mpbse-10-svadhyayi",
+  "slug": "mp-board-class-10-svadhyayi-self-study-guide-75-percent",
+  "aliases": [
+    "mp-board-class-10-self-study-blueprint",
+    "mp-board-class-10-private-strategy",
+    "mpbse-class-10-pyq-blueprint"
+  ],
+  "category": "Students",
+  "categorySlug": "students",
+  "tags": [
+    "MP Board",
+    "Class 10th",
+    "Self Study",
+    "MPBSE",
+    "Board Exam 2026",
+    "Study Strategy",
+    "Question Bank",
+    "PYQs"
+  ],
+  "authorId": "editorial-team",
+  "publishedAt": "29 August 2026",
+  "updatedAt": "29 August 2026",
+  "readingTime": "18 min read",
+  "featured": true,
+  "popularRank": 1,
+  "coverImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1400&q=85",
+  "coverImageAlt": "MP Board Class 10 Svadhyayi Self Study Guide and Question Bank",
+  "translations": {
+    "hi": {
+      "title": "MP Board Class 10 स्वाध्यायी (Self-Study) छात्र 75%+ कैसे लाएं: सम्पूर्ण 6 विषयों का ब्लूप्रिंट, मार्क्स स्केलिंग पॉलिसी, टाइम टेबल और PYQs प्रश्न बैंक",
+      "subtitle": "घर से तैयारी करने वाले मध्य प्रदेश माध्यमिक शिक्षा मंडल (MPBSE) के कक्षा 10वीं के छात्रों हेतु संपूर्ण रोडमैप: 75/100 मार्क्स स्केलिंग फॉर्मूला, डे-1 किकस्टार्ट प्लान, सभी 6 विषयों का अध्यायवार अंक विभाजन और वास्तविक बोर्ड प्रश्न।",
+      "excerpt": "यदि आप स्कूल नहीं जा रहे और घर से स्वाध्यायी (प्राइवेट) रूप में 10वीं बोर्ड परीक्षा दे रहे हैं, तो बिना प्रोजेक्ट या इंटरनल मार्क्स के 75% से अधिक अंक लाने का अचूक फॉर्मूला, ब्लूप्रिंट और मॉडल प्रश्न बैंक यहाँ पढ़ें।",
+      "tldr": [
+        "मार्क्स स्केलिंग नियम (Pro-rata): विज्ञान को छोड़कर अन्य 5 विषयों में 75 अंकों के लिखित पेपर के अंकों को सीधे 100 में स्केल किया जाता है (75 में से 56.25 = 100 में से 75 अंक)।",
+        "वस्तुनिष्ठ प्रश्न (Objective Qs) की शक्ति: 30 अंक के MCQs/रिक्त स्थान/सही जोड़ी से मेरिट का रास्ता तय होता है (28+ सही करने का लक्ष्य)।",
+        "2 अंक वाले 12 अति लघु उत्तरीय प्रश्न (24 अंक): सीधे और सरल 30 शब्दों के उत्तर पूरे अंक दिलाते हैं।",
+        "डे-1 किकस्टार्ट टाइम टेबल: सुबह 8 से रात 7 बजे तक 4 मुख्य विषयों (गणित, विज्ञान, अंग्रेजी, हिंदी) का सटीक दैनिक अध्ययन प्लान।",
+        "सम्पूर्ण 6 विषयों का ब्लूप्रिंट: गणित (75 अंक), विज्ञान (75 सैद्धांतिक + 25 प्रायोगिक), सामाजिक विज्ञान (75 अंक), अंग्रेजी (75 अंक), हिंदी (75 अंक) व संस्कृत (75 अंक)।",
+        "वास्तविक विगत वर्ष प्रश्न (PYQs Bank): 2023, 2024, 2025 प्री-बोर्ड और त्रैमासिक/अर्धवार्षिक के बार-बार पूछे जाने वाले प्रश्न।"
+      ],
+      "visualDiagram": {
+        "title": "📊 स्वाध्यायी छात्र 75% अंक प्राप्ति की कार्ययोजना (Scoring Architecture)",
+        "badPath": {
+          "label": "❌ गलत तरीका (फेल होने या कम अंक आने का जोखिम)",
+          "steps": [
+            "केवल किताबों को सरसरी तौर पर पढ़ना, रफ कॉपी में उत्तर न लिखना",
+            "ब्लूप्रिंट समझे बिना कम अंक वाले कठिन अध्यायों में हफ्तों बर्बाद करना",
+            "30 अंक के वस्तुनिष्ठ (Objective) प्रश्नों का अभ्यास न करना",
+            "प्राइवेट छात्रों के प्रो-राटा स्केलिंग फॉर्मूले को न समझकर प्रोजेक्ट की चिंता करना",
+            "❌ परिणाम: 75 में से 35-40 अंक पर अटक जाना!"
+          ]
+        },
+        "goodPath": {
+          "label": "✅ स्किल्सफाई टॉपर तरीका (75%+ पक्का स्कोर)",
+          "steps": [
+            "पहले 30 अंकों के वस्तुनिष्ठ प्रश्न (Objective) पर 100% पकड़ बनाना",
+            "2-अंक वाले 12 प्रश्नों (24 अंक) की सटीक 30-शब्दों में लिखित प्रैक्टिस",
+            "हाई-वेटेज चैप्टर्स (त्रिकोणमिति 8 अंक, जैव प्रक्रम 8 अंक, इतिहास 18 अंक) पहले खत्म करना",
+            "प्रतिदिन 2-3 प्रश्न बिना देखे 'Svadhyayi Copy' में लिखने का अभ्यास",
+            "🚀 परिणाम: 75 में से 58+ लिखित अंक = 100 में से 78%+ फर्स्ट डिवीजन मेरिट!"
+          ]
+        }
+      },
+      "analogy": {
+        "title": "💡 10-साल के बच्चे के लिए सरल उदाहरण: क्रिकेट में पावरप्ले की रणनीति",
+        "text": "जैसे T20 क्रिकेट में पहले 6 ओवर (पावरप्ले) में तेजी से रन बनाकर मैच की नींव रख दी जाती है, वैसे ही MP Board के 75 अंकों के पेपर में पहले 30 अंकों के वस्तुनिष्ठ (Objective) प्रश्न आपके 'पावरप्ले' हैं! अगर आपने शुरू के 30 में से 28 सही कर लिए, तो बाकी 45 अंकों में से 30 अंक लाना आपके लिए चुटकियों का खेल बन जाएगा!"
+      },
+      "callouts": {
+        "skillsfyInsight": "स्वाध्यायी (Private) छात्रों के लिए सबसे बड़ा वरदान यह है कि आपको स्कूल के इंटरनल असेसमेंट या प्रोजेक्ट फाइल्स के 25 अंकों पर निर्भर नहीं रहना पड़ता। आपके 75 अंकों के थ्योरी पेपर के प्रदर्शन को ही गणितीय रूप से 100 में बदल दिया जाता है। इसका मतलब आपका हर 1 लिखित अंक असल में 1.33 अंक का मूल्य रखता है!",
+        "tryThis": "आज ही एक अलग 'Svadhyayi Practice Copy' बनाएं और नीचे दिए गए डे-1 किकस्टार्ट प्लान के अनुसार वास्तविक संख्याएँ (√3 अपरिमेयता सिद्ध करना) और रासायनिक अभिक्रियाओं को लिखकर याद करें।"
+      },
+      "comparisonTable": {
+        "headers": [
+          "विषय",
+          "लिखित पेपर अंक (Theory)",
+          "प्रायोगिक/प्रोजेक्ट (Practical)",
+          "स्वाध्यायी मूल्यांकन पद्धति (Scaling)"
+        ],
+        "rows": [
+          [
+            "गणित (Mathematics)",
+            "75 अंक",
+            "लागू नहीं (No Project)",
+            "75 अंकों को 100 में Pro-rata स्केल किया जाता है"
+          ],
+          [
+            "विज्ञान (Science)",
+            "75 अंक",
+            "25 अंक (परीक्षा केंद्र पर प्रायोगिक)",
+            "75 थ्योरी + 25 प्रायोगिक परीक्षा केंद्र पर viva/फाइल"
+          ],
+          [
+            "सामाजिक विज्ञान (Social Science)",
+            "75 अंक",
+            "लागू नहीं",
+            "75 अंकों को 100 में Pro-rata स्केल किया जाता है"
+          ],
+          [
+            "अंग्रेजी (English)",
+            "75 अंक",
+            "लागू नहीं",
+            "75 अंकों को 100 में Pro-rata स्केल किया जाता है"
+          ],
+          [
+            "हिंदी (Hindi)",
+            "75 अंक",
+            "लागू नहीं",
+            "75 अंकों को 100 में Pro-rata स्केल किया जाता है"
+          ],
+          [
+            "संस्कृत (Sanskrit)",
+            "75 अंक",
+            "लागू नहीं",
+            "75 अंकों को 100 में Pro-rata स्केल किया जाता है"
+          ]
+        ]
+      },
+      "narrativeHtml": "\n        <div class=\"space-y-8 text-left\">\n          \n          <!-- Section 1 -->\n          <div class=\"space-y-4\">\n            <h2 id=\"scaling-policy\" class=\"text-2xl sm:text-3xl font-extrabold text-slate-900 pt-4\">1. स्वाध्यायी (Private) छात्र रणनीति: घर से 75%+ कैसे लाएं?</h2>\n            <p class=\"leading-relaxed text-slate-700\">\n              प्रिय छात्र, यह मार्गदर्शिका विशेष रूप से आपके लिए तैयार की गई है। चूंकि आप घर से पढ़ाई कर रहे हैं और विद्यालय में आपकी उपस्थिति या प्रोजेक्ट कार्य नहीं होंगे, आपके लिए मध्य प्रदेश माध्यमिक शिक्षा मंडल (MPBSE) के नियमों को समझना बेहद जरूरी है।\n            </p>\n            <div class=\"p-5 rounded-2xl bg-sky-50 border-l-4 border-sky-600 text-sky-950 text-sm space-y-2\">\n              <span class=\"font-bold text-base block\">1.1 MP Board Marks Scaling Policy for Private Candidates</span>\n              <p>मध्य प्रदेश बोर्ड के राजपत्र और आधिकारिक नियमों के अनुसार, स्वाध्यायी (Private) छात्रों के लिए मूल्यांकन नीति इस प्रकार है:</p>\n              <ul class=\"list-disc list-inside space-y-1.5 pl-2\">\n                <li><strong>विज्ञान (Science) विषय को छोड़कर अन्य सभी विषय (गणित, सामाजिक विज्ञान, हिंदी, अंग्रेजी, संस्कृत):</strong> आपका मुख्य लिखित परीक्षा का पेपर 75 अंकों का होगा। लेकिन आपका मूल्यांकन सीधे 100 अंकों में से किया जाएगा। आपको कोई प्रोजेक्ट या इंटरनल मार्क्स जमा नहीं करने हैं; आपके 75 अंकों के पेपर में प्राप्त अंकों को बोर्ड द्वारा गणितीय रूप से (pro-rata basis) 100 अंकों में स्केल कर दिया जाएगा! (उदाहरण: यदि आप 75 में से 56.25 अंक लाते हैं, जो कि 75% है, तो आपके अंतिम अंक 100 में से 75 हो जाएंगे)।</li>\n                <li><strong>विज्ञान (Science) विषय:</strong> 75 अंक की सैद्धांतिक परीक्षा होगी और 25 अंक की प्रायोगिक (Practical) परीक्षा होगी जो कि आपके निर्धारित परीक्षा केंद्र पर मुख्य परीक्षा के समय ही आयोजित की जाएगी। इसमें आपको प्रैक्टिकल फाइल और मौखिक परीक्षा (viva) देनी होगी।</li>\n              </ul>\n            </div>\n            \n            <div class=\"p-5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-950 text-sm space-y-2\">\n              <span class=\"font-bold text-base text-amber-900 block\">1.2 थ्योरी परीक्षा में 75% अंक हासिल करने की 4 सुनहरी रणनीतियाँ:</span>\n              <ul class=\"list-disc list-inside space-y-1.5 pl-2\">\n                <li><strong>वस्तुनिष्ठ प्रश्न (Objective Questions are Gold - 30 Marks):</strong> सभी 6 विषयों के पेपर में पहले 5 प्रश्न वस्तुनिष्ठ होंगे, जिनमें 30 उप-प्रश्न (1 अंक वाले) होंगे। यदि आप इनमें से 28+ सही कर लेते हैं, तो आपका 75% का मार्ग बेहद आसान हो जाएगा। इसके लिए प्रत्येक अध्याय के मूलभूत तथ्यों, सूत्रों और परिभाषाओं को गहराई से पढ़ें।</li>\n                <li><strong>2 अंक वाले प्रश्नों पर विशेष ध्यान (24 Marks):</strong> अति लघु उत्तरीय प्रश्न कुल 12 पूछे जाएंगे (प्रश्न 6 से 17)। ये छोटे और सीधे होते हैं। इन्हें 30 शब्दों में लिखना होता है। इनमें पूरे अंक मिलना बहुत आसान है।</li>\n                <li><strong>उच्च वेटेज वाले अध्याय पहले (High Weightage Chapters First):</strong> गणित में त्रिकोणमिति (8 अंक), समांतर श्रेढ़ियाँ (7 अंक) और त्रिभुज (7 अंक) तथा विज्ञान में जैव प्रक्रम (8 अंक) और प्रकाश (8 अंक) जैसे भारी अध्यायों पर पहले नियंत्रण स्थापित करें।</li>\n                <li><strong>सक्रिय लेखन अभ्यास (Active Writing):</strong> चूंकि आप खुद पढ़ रहे हैं, प्रतिदिन कम से कम 2-3 प्रश्न लिखने का अभ्यास करें। सिर्फ पढ़ने से परीक्षा में लिखना कठिन होता है।</li>\n              </ul>\n            </div>\n          </div>\n\n          <!-- Section 2: Day 1 Timetable -->\n          <div class=\"space-y-4 pt-4 border-t border-slate-200\">\n            <h2 id=\"day1-plan\" class=\"text-2xl sm:text-3xl font-extrabold text-slate-900\">2. Day-1 किकस्टार्ट प्लान: कल से पढ़ाई की शुरुआत कैसे करें</h2>\n            <p class=\"leading-relaxed text-slate-700\">\n              कल से आपकी पढ़ाई शुरू करने के लिए यहाँ एक सटीक समय-सारणी और अध्ययन लक्ष्य दिया जा रहा है। इसे पूरी निष्ठा से पूरा करें:\n            </p>\n            <div class=\"article-table-wrapper\">\n              <table class=\"article-table\">\n                <thead>\n                  <tr>\n                    <th>समय (Time)</th>\n                    <th>विषय (Subject)</th>\n                    <th>लक्ष्य (Target Topics)</th>\n                    <th>अध्ययन सामग्री व कार्य (Task)</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr>\n                    <td class=\"font-bold\">08:00 AM - 10:00 AM</td>\n                    <td class=\"font-bold text-sky-800\">गणित (Maths)</td>\n                    <td>Chapter 1: वास्तविक संख्याएँ (Real Numbers)</td>\n                    <td>अपरिमेयता सिद्ध करना (जैसे √2, √3, √5 को अपरिमेय सिद्ध करना) — <strong>2 अंक का पक्का सवाल यहाँ से आएगा।</strong></td>\n                  </tr>\n                  <tr>\n                    <td class=\"font-bold\">11:00 AM - 01:00 PM</td>\n                    <td class=\"font-bold text-emerald-800\">विज्ञान (Science)</td>\n                    <td>Chapter 1: रासायनिक अभिक्रियाएँ (Chemical Reactions)</td>\n                    <td>रासायनिक समीकरणों को संतुलित करना सीखें (Hit and Trial method), ऊष्माक्षेपी और ऊष्माशोषी अभिक्रियाओं की परिभाषा और उदाहरण।</td>\n                  </tr>\n                  <tr>\n                    <td class=\"font-bold\">03:00 PM - 04:30 PM</td>\n                    <td class=\"font-bold text-purple-800\">अंग्रेजी (English)</td>\n                    <td>Section A: Reading Skills</td>\n                    <td>पिछले वर्ष के 2 अनसीन पैसेज हल करें। गद्यांश से मुख्य उत्तर खोजने की तकनीक सीखें (10 अंक पक्के)।</td>\n                  </tr>\n                  <tr>\n                    <td class=\"font-bold\">05:30 PM - 07:00 PM</td>\n                    <td class=\"font-bold text-amber-800\">हिंदी (Hindi)</td>\n                    <td>काव्य खंड: सूरदास के पद</td>\n                    <td>सूरदास के प्रथम दो पदों का भावार्थ समझें। सूरदास जी की दो रचनाएँ और भावपक्ष-कलापक्ष याद करें (2 अंक)।</td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n            <p class=\"text-xs text-slate-500 italic\">\n              📌 <strong>महत्वपूर्ण सुझाव:</strong> कल शाम को सोने से पहले जो भी पढ़ा है, उसे रफ कॉपी में बिना देखे लिखने की कोशिश करें। यही आपके परीक्षा का आधार बनेगा।\n            </p>\n          </div>\n\n          <!-- Section 3: Mathematics -->\n          <div class=\"space-y-4 pt-6 border-t border-slate-200\">\n            <h2 id=\"maths-blueprint\" class=\"text-2xl sm:text-3xl font-extrabold text-slate-900\">3. Mathematics (गणित) — ब्लूप्रिंट एवं प्रश्न बैंक (75 Marks)</h2>\n            <div class=\"article-table-wrapper\">\n              <table class=\"article-table\">\n                <thead>\n                  <tr>\n                    <th>अध्याय / इकाई (Chapter/Unit)</th>\n                    <th>अंक (Weightage)</th>\n                    <th>प्रश्न प्रकार व अंक विभाजन (Breakdown)</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr><td>वास्तविक संख्याएँ (Real Numbers)</td><td class=\"font-bold\">05 Marks</td><td>1 Mark x 3 Objective, 2 Marks x 1 Short Q</td></tr>\n                  <tr><td>बहुपद (Polynomials)</td><td class=\"font-bold\">05 Marks</td><td>1 Mark x 3 Objective, 2 Marks x 1 Short Q</td></tr>\n                  <tr><td>दो चरों वाले रैखिक समीकरण युग्म (Linear Equations)</td><td class=\"font-bold\">06 Marks</td><td>1 Mark x 2 Objective, 4 Marks x 1 Long Q</td></tr>\n                  <tr><td>द्विघात समीकरण (Quadratic Equations)</td><td class=\"font-bold\">05 Marks</td><td>1 Mark x 3 Objective, 2 Marks x 1 Short Q</td></tr>\n                  <tr><td>समांतर श्रेढ़ियाँ (Arithmetic Progressions)</td><td class=\"font-bold text-emerald-700\">07 Marks</td><td>1 Mark x 3 Objective, 2 Marks x 2 Short Q</td></tr>\n                  <tr><td>त्रिभुज (Triangles)</td><td class=\"font-bold text-emerald-700\">07 Marks</td><td>1 Mark x 3 Objective, 2 Marks x 2 Short Q</td></tr>\n                  <tr><td>निर्देशांक ज्यामिति (Coordinate Geometry)</td><td class=\"font-bold\">06 Marks</td><td>1 Mark x 2 Objective, 2 Marks x 2 Short Q</td></tr>\n                  <tr><td>त्रिकोणमिति का परिचय (Introduction to Trigonometry)</td><td class=\"font-bold text-sky-700\">08 Marks</td><td>1 Mark x 3 Objective, 2 Marks x 1, 3 Marks x 1 Q</td></tr>\n                  <tr><td>त्रिकोणमिति के कुछ अनुप्रयोग (Applications of Trig)</td><td class=\"font-bold\">05 Marks</td><td>1 Mark x 2 Objective, 3 Marks x 1 Short Q</td></tr>\n                  <tr><td>वृत्त (Circles)</td><td class=\"font-bold\">05 Marks</td><td>1 Mark x 2 Objective, 3 Marks x 1 Short Q</td></tr>\n                  <tr><td>वृत्तों से संबंधित क्षेत्रफल (Areas Related to Circles)</td><td class=\"font-bold\">04 Marks</td><td>1 Mark x 2 Objective, 2 Marks x 1 Short Q</td></tr>\n                  <tr><td>पृष्ठीय क्षेत्रफल और आयतन (Surface Area & Volume)</td><td class=\"font-bold\">06 Marks</td><td>1 Mark x 2 Objective, 4 Marks x 1 Long Q</td></tr>\n                  <tr><td>सांख्यिकी (Statistics)</td><td class=\"font-bold\">06 Marks</td><td>1 Mark x 2 Objective, 4 Marks x 1 Long Q</td></tr>\n                  <tr><td>प्रायिकता (Probability)</td><td class=\"font-bold\">06 Marks</td><td>1 Mark x 2 Objective, 2 Marks x 2 Short Q</td></tr>\n                </tbody>\n              </table>\n            </div>\n\n            <div class=\"p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3\">\n              <h4 class=\"font-bold text-slate-900 text-base\">📝 गणित के महत्वपूर्ण विगत वर्ष प्रश्न (MP Board PYQs & Model Qs):</h4>\n              <ol class=\"list-decimal list-inside space-y-2 text-sm text-slate-700 pl-1 font-sans\">\n                <li><strong>सिद्ध कीजिए कि √3 एक अपरिमेय संख्या है।</strong> (Prove that √3 is an irrational number.) <em>[बार-बार पूछा गया - Board 2024, 2025]</em></li>\n                <li><strong>द्विघात बहुपद x² - 2x - 8 के शून्यक ज्ञात कीजिए और शून्यकों तथा गुणांकों के बीच संबंध की सत्यता की जाँच कीजिए।</strong> <em>[Board 2023, Preboard 2025]</em></li>\n                <li><strong>विलोपन विधि (Elimination Method) का प्रयोग करके समीकरण हल कीजिए:</strong> x + y = 5 और 2x - 3y = 4। <em>[Board 2024, 2025, Half-yearly 2024]</em></li>\n                <li><strong>समांतर श्रेढ़ी (AP): 2, 7, 12, ... का 10वां पद ज्ञात कीजिए।</strong> <em>[Quarterly 2024, Board 2023]</em></li>\n                <li><strong>यदि tan A = 4/3, तो sin A और cos A का मान ज्ञात कीजिए।</strong> <em>[Board 2024, Preboard 2025]</em></li>\n                <li><strong>एक बक्से में 3 नीले, 2 सफेद और 4 लाल कंचे हैं। यदि इस बक्से में से एक कंचा यादृच्छया निकाला जाता है, तो इसकी क्या प्रायिकता है कि यह कंचा सफेद होगा?</strong> <em>[Board 2024, Half-yearly 2024]</em></li>\n              </ol>\n            </div>\n          </div>\n\n          <!-- Section 4: Science -->\n          <div class=\"space-y-4 pt-6 border-t border-slate-200\">\n            <h2 id=\"science-blueprint\" class=\"text-2xl sm:text-3xl font-extrabold text-slate-900\">4. Science (विज्ञान) — ब्लूप्रिंट एवं प्रश्न बैंक (75 Theory + 25 Practical)</h2>\n            <div class=\"article-table-wrapper\">\n              <table class=\"article-table\">\n                <thead>\n                  <tr>\n                    <th>अध्याय / इकाई (Chapter/Unit)</th>\n                    <th>अंक (Weightage)</th>\n                    <th>प्रश्न प्रकार व अंक विभाजन (Breakdown)</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr><td>रासायनिक अभिक्रियाएँ एवं समीकरण (Chemical Reactions)</td><td class=\"font-bold text-emerald-700\">07 Marks</td><td>1 Mark x 3 Objective, 2 Marks x 2 Short Q</td></tr>\n                  <tr><td>अम्ल, क्षारक एवं लवण (Acids, Bases & Salts)</td><td class=\"font-bold\">06 Marks</td><td>1 Mark x 2 Objective, 4 Marks x 1 Long Q</td></tr>\n                  <tr><td>धातु एवं अधातु (Metals & Non-metals)</td><td class=\"font-bold\">05 Marks</td><td>1 Mark x 3 Objective, 2 Marks x 1 Short Q</td></tr>\n                  <tr><td>कार्बन एवं उसके यौगिक (Carbon & Compounds)</td><td class=\"font-bold\">06 Marks</td><td>1 Mark x 2 Objective, 4 Marks x 1 Long Q</td></tr>\n                  <tr><td>जैव प्रक्रम (Life Processes)</td><td class=\"font-bold text-sky-700\">08 Marks</td><td>1 Mark x 2 Objective, 2 Marks x 1, 4 Marks x 1 Q</td></tr>\n                  <tr><td>नियंत्रण एवं समन्वय (Control & Coordination)</td><td class=\"font-bold\">06 Marks</td><td>1 Mark x 3 Objective, 3 Marks x 1 Short Q</td></tr>\n                  <tr><td>जीव जनन कैसे करते हैं? (How do Organisms Reproduce?)</td><td class=\"font-bold\">06 Marks</td><td>1 Mark x 2 Objective, 2 Marks x 2 Short Q</td></tr>\n                  <tr><td>आनुवंशिकता (Heredity)</td><td class=\"font-bold\">04 Marks</td><td>1 Mark x 2 Objective, 2 Marks x 1 Short Q</td></tr>\n                  <tr><td>प्रकाश - परावर्तन तथा अपवर्तन (Light Reflection/Refraction)</td><td class=\"font-bold text-sky-700\">08 Marks</td><td>1 Mark x 4 Objective, 2 Marks x 2 Short Q</td></tr>\n                  <tr><td>मानव नेत्र तथा रंगबिरंगा संसार (Human Eye)</td><td class=\"font-bold\">05 Marks</td><td>1 Mark x 2 Objective, 3 Marks x 1 Short Q</td></tr>\n                  <tr><td>विद्युत (Electricity)</td><td class=\"font-bold\">05 Marks</td><td>1 Mark x 3 Objective, 2 Marks x 1 Short Q</td></tr>\n                  <tr><td>विद्युत धारा के चुंबकीय प्रभाव (Magnetic Effects)</td><td class=\"font-bold\">06 Marks</td><td>1 Mark x 2 Objective, 2 Marks x 2 Short Q</td></tr>\n                  <tr><td>हमारा पर्यावरण (Our Environment)</td><td class=\"font-bold\">03 Marks</td><td>1 Mark x 1 Objective, 2 Marks x 1 Short Q</td></tr>\n                </tbody>\n              </table>\n            </div>\n\n            <div class=\"p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3\">\n              <h4 class=\"font-bold text-slate-900 text-base\">🔬 विज्ञान के महत्वपूर्ण विगत वर्ष प्रश्न (MP Board Science PYQs):</h4>\n              <ol class=\"list-decimal list-inside space-y-2 text-sm text-slate-700 pl-1 font-sans\">\n                <li><strong>वायु में जलाने से पहले मैग्नीशियम रिबन को साफ क्यों किया जाता है?</strong> (Why should a magnesium ribbon be cleaned before burning in air?) <em>[Board 2024, Preboard 2025]</em></li>\n                <li><strong>पीतल एवं ताँबे के बर्तनों में दही एवं खट्टे पदार्थ क्यों नहीं रखने चाहिए?</strong> <em>[Board 2023, Half-yearly 2024]</em></li>\n                <li><strong>उभयधर्मी ऑक्साइड क्या होते हैं? दो उभयधर्मी ऑक्साइडों के उदाहरण दीजिए।</strong> (What are amphoteric oxides? Give two examples.) <em>[Board 2024, Preboard 2025]</em></li>\n                <li><strong>धमनी और शिरा में कोई तीन मुख्य अंतर लिखिए।</strong> (Write any three differences between artery and vein.) <em>[Board 2023, 2024, Half-yearly 2024]</em></li>\n                <li><strong>स्वपोषी पोषण तथा विषमपोषी पोषण में क्या अंतर है?</strong> (Difference between autotrophic and heterotrophic nutrition.) <em>[Quarterly 2024, Preboard 2025]</em></li>\n                <li><strong>मानव नेत्र का स्वच्छ नामांकित चित्र बनाइए।</strong> (Draw a neat labeled diagram of the human eye.) <em>[Board 2024, 2025]</em></li>\n              </ol>\n            </div>\n          </div>\n\n          <!-- Section 5: Social Science -->\n          <div class=\"space-y-4 pt-6 border-t border-slate-200\">\n            <h2 id=\"social-science-blueprint\" class=\"text-2xl sm:text-3xl font-extrabold text-slate-900\">5. Social Science (सामाजिक विज्ञान) — ब्लूप्रिंट एवं प्रश्न बैंक (75 Marks)</h2>\n            <div class=\"article-table-wrapper\">\n              <table class=\"article-table\">\n                <thead>\n                  <tr>\n                    <th>इकाई (Unit)</th>\n                    <th>अंक (Weightage)</th>\n                    <th>अध्याय विवरण (Chapters Included)</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr>\n                    <td class=\"font-bold\">इतिहास: भारत और समकालीन विश्व - II</td>\n                    <td class=\"font-bold text-sky-700\">18 Marks</td>\n                    <td>यूरोप में राष्ट्रवाद, भारत में राष्ट्रवाद, भूमंडलीकृत विश्व, औद्योगिकीकरण, मुद्रण संस्कृति, अमर बलिदानी</td>\n                  </tr>\n                  <tr>\n                    <td class=\"font-bold\">भूगोल: समकालीन भारत - II</td>\n                    <td class=\"font-bold text-emerald-700\">18 Marks</td>\n                    <td>संसाधन, वन-वन्यजीव, जल, कृषि, खनिज-ऊर्जा (मानचित्र कार्य), विनिर्माण, राष्ट्रीय अर्थव्यवस्था की जीवन रेखाएँ</td>\n                  </tr>\n                  <tr>\n                    <td class=\"font-bold\">राजनीति: लोकतांत्रिक राजनीति - II</td>\n                    <td class=\"font-bold text-purple-700\">18 Marks</td>\n                    <td>सत्ता की साझेदारी, संघवाद, जाति-धर्म-लैंगिक मसले, राजनीतिक दल, लोकतंत्र के परिणाम</td>\n                  </tr>\n                  <tr>\n                    <td class=\"font-bold\">अर्थशास्त्र: आर्थिक विकास की समझ</td>\n                    <td class=\"font-bold text-amber-700\">17 Marks</td>\n                    <td>विकास, भारतीय अर्थव्यवस्था के क्षेत्रक, मुद्रा और साख, वैश्वीकरण, उपभोक्ता अधिकार</td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n\n            <div class=\"p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3\">\n              <h4 class=\"font-bold text-slate-900 text-base\">🌍 सामाजिक विज्ञान के महत्वपूर्ण विगत वर्ष प्रश्न (PYQs):</h4>\n              <ol class=\"list-decimal list-inside space-y-2 text-sm text-slate-700 pl-1 font-sans\">\n                <li><strong>मृदा अपरदन (Soil Erosion) से क्या तात्पर्य है? मृदा संरक्षण के दो उपाय लिखिए।</strong> <em>[Board 2024, Preboard 2025]</em></li>\n                <li><strong>असहयोग आंदोलन (Non-Cooperation Movement) के कारणों की विवेचना कीजिए।</strong> <em>[Board 2023, 2024, Half-yearly 2024]</em></li>\n                <li><strong>गठबंधन सरकार (Coalition Government) किसे कहते हैं? इसके महत्व को समझाइए।</strong> <em>[Board 2024]</em></li>\n                <li><strong>मुद्रा क्या है? इसे विनिमय का माध्यम क्यों स्वीकार किया जाता है?</strong> (What is money? Why is it accepted as a medium of exchange?) <em>[Board 2023, Preboard 2025]</em></li>\n                <li><strong>वैश्वीकरण (Globalization) के भारतीय अर्थव्यवस्था पर पड़ने वाले दो सकारात्मक और दो नकारात्मक प्रभाव लिखिए।</strong> <em>[Board 2024, Half-yearly 2024]</em></li>\n                <li><strong>उपभोक्ता शोषण के मुख्य तरीके क्या हैं? उपभोक्ता अधिकारों (Consumer Rights) की व्याख्या करें।</strong> <em>[Board 2024, Preboard 2025]</em></li>\n              </ol>\n            </div>\n          </div>\n\n          <!-- Section 6: English -->\n          <div class=\"space-y-4 pt-6 border-t border-slate-200\">\n            <h2 id=\"english-blueprint\" class=\"text-2xl sm:text-3xl font-extrabold text-slate-900\">6. English — ब्लूप्रिंट एवं प्रश्न बैंक (75 Marks)</h2>\n            <div class=\"article-table-wrapper\">\n              <table class=\"article-table\">\n                <thead>\n                  <tr>\n                    <th>अनुभाग (Section)</th>\n                    <th>अंक (Weightage)</th>\n                    <th>प्रश्न प्रकार व अंक विभाजन (Questions Breakdown)</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr><td class=\"font-bold\">Section A: Reading Skills</td><td class=\"font-bold\">10 Marks</td><td>2 Unseen Passages (5 Marks each with 5 MCQs/Objective Qs)</td></tr>\n                  <tr><td class=\"font-bold\">Section B: Writing Skills</td><td class=\"font-bold\">16 Marks</td><td>Q3: Note Making (4 Marks), Q4: Letter (4 Marks), Q5: Essay/Paragraph (5 Marks), Q6: Picture Composition (3 Marks)</td></tr>\n                  <tr><td class=\"font-bold\">Section C: Grammar</td><td class=\"font-bold\">10 Marks</td><td>Q7: Fill in the Blanks (5 Marks), Q8: Do as Directed (5 Marks - Voice, Narration, Synthesis, so...that, unless)</td></tr>\n                  <tr><td class=\"font-bold\">Section D: Literature (Textbooks)</td><td class=\"font-bold text-sky-700\">39 Marks</td><td>First Flight (Prose & Poetry extracts, Short/Long Qs), Footprints Without Feet (Short/Long Qs)</td></tr>\n                </tbody>\n              </table>\n            </div>\n\n            <div class=\"p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3\">\n              <h4 class=\"font-bold text-slate-900 text-base\">📖 English Important Past Year Questions (PYQs):</h4>\n              <ol class=\"list-decimal list-inside space-y-2 text-sm text-slate-700 pl-1 font-sans\">\n                <li><strong>Letter Writing:</strong> Write a formal letter to your Principal requesting him/her to issue your School Leaving Certificate (SLC) / Book Bank books. <em>[Very Common - Board 2024, 2025]</em></li>\n                <li><strong>Essay Writing:</strong> Write an essay on 'Wonders of Science' OR 'Value of Games and Sports' in 150 words. <em>[Board 2023, 2024, Preboard 2025]</em></li>\n                <li><strong>Do as Directed (Grammar):</strong>\n                  <br>(i) He is too weak to walk. (Rewrite using 'so...that')\n                  <br>(ii) If you do not work hard, you will fail. (Rewrite using 'Unless' in place of 'If')\n                  <br>(iii) She wrote a letter. (Change into Passive Voice) <em>[Board 2024, 2025, Half-yearly 2024]</em>\n                </li>\n                <li><strong>Why did Lencho write a letter to God? Who received and read the letter?</strong> (From 'A Letter to God') <em>[Board 2023, Preboard 2025]</em></li>\n                <li><strong>What does courage mean to Nelson Mandela?</strong> (From 'Long Walk to Freedom') <em>[Board 2024]</em></li>\n                <li><strong>Why did Bholi's parents accept Bishamber's marriage proposal?</strong> (From 'Bholi') <em>[Board 2024]</em></li>\n              </ol>\n            </div>\n          </div>\n\n          <!-- Section 7: Hindi -->\n          <div class=\"space-y-4 pt-6 border-t border-slate-200\">\n            <h2 id=\"hindi-blueprint\" class=\"text-2xl sm:text-3xl font-extrabold text-slate-900\">7. Hindi (हिंदी) — ब्लूप्रिंट एवं प्रश्न बैंक (75 Marks)</h2>\n            <div class=\"article-table-wrapper\">\n              <table class=\"article-table\">\n                <thead>\n                  <tr>\n                    <th>इकाई (Unit)</th>\n                    <th>अंक (Weightage)</th>\n                    <th>प्रश्न प्रकार व अंक विभाजन (Questions Breakdown)</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr><td class=\"font-bold\">क्षितिज भाग-2 (काव्य खंड व गद्य खंड)</td><td class=\"font-bold text-sky-700\">34 Marks</td><td>कवि परिचय, लेखक परिचय, व्याख्या, श्लोक/काव्य भावार्थ, पाठों पर आधारित प्रश्न</td></tr>\n                  <tr><td class=\"font-bold\">कृतिका भाग-2</td><td class=\"font-bold\">06 Marks</td><td>पूरक पाठ्यपुस्तक पर आधारित पूरक प्रश्न</td></tr>\n                  <tr><td class=\"font-bold\">काव्यबोध (रस, छंद, अलंकार)</td><td class=\"font-bold\">10 Marks</td><td>काव्य की परिभाषा, रस के अंग व प्रकार, छंद (दोहा, चौपाई), अलंकार (अनुप्रास, रूपक, उपमा आदि)</td></tr>\n                  <tr><td class=\"font-bold\">भाषाबोध व व्याकरण</td><td class=\"font-bold\">08 Marks</td><td>संधि, समास, मुहावरे, लोकोक्तियाँ, वाक्य के प्रकार</td></tr>\n                  <tr><td class=\"font-bold\">अपठित बोध, पत्र व निबंध</td><td class=\"font-bold text-emerald-700\">17 Marks</td><td>अपठित गद्यांश (4 अंक), पत्र लेखन (4 अंक), निबंध/अनुच्छेद लेखन (5 अंक), संवाद/विज्ञापन (4 अंक)</td></tr>\n                </tbody>\n              </table>\n            </div>\n\n            <div class=\"p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3\">\n              <h4 class=\"font-bold text-slate-900 text-base\">✍️ हिंदी के महत्वपूर्ण विगत वर्ष प्रश्न (PYQs):</h4>\n              <ol class=\"list-decimal list-inside space-y-2 text-sm text-slate-700 pl-1 font-sans\">\n                <li><strong>छायावाद की कोई दो प्रमुख विशेषताएँ लिखते हुए दो छायावादी कवियों के नाम लिखिए।</strong> <em>[Board 2024, Preboard 2025]</em></li>\n                <li><strong>सूरदास अथवा तुलसीदास की काव्यगत विशेषताएँ निम्नलिखित बिंदुओं के आधार पर लिखिए:</strong> (i) दो रचनाएँ, (ii) भावपक्ष-कलापक्ष। <em>[Board 2024, 2025, Half-yearly 2024]</em></li>\n                <li><strong>महाकाव्य और खंडकाव्य में कोई दो प्रमुख अंतर लिखिए।</strong> <em>[Board 2023, 2024, Preboard 2025]</em></li>\n                <li><strong>नाटक और एकांकी में कोई दो अंतर लिखिए।</strong> <em>[Board 2024]</em></li>\n                <li><strong>संधि और समास में कोई दो मुख्य अंतर स्पष्ट कीजिए।</strong> <em>[Quarterly 2024, Preboard 2025]</em></li>\n                <li><strong>अपने विद्यालय के प्राचार्य को स्थानांतरण प्रमाण पत्र (TC) हेतु आवेदन पत्र लिखिए।</strong> <em>[Board 2024, 2025]</em></li>\n              </ol>\n            </div>\n          </div>\n\n          <!-- Section 8: Sanskrit -->\n          <div class=\"space-y-4 pt-6 border-t border-slate-200\">\n            <h2 id=\"sanskrit-blueprint\" class=\"text-2xl sm:text-3xl font-extrabold text-slate-900\">8. Sanskrit (संस्कृत) — ब्लूप्रिंट एवं प्रश्न बैंक (75 Marks)</h2>\n            <div class=\"article-table-wrapper\">\n              <table class=\"article-table\">\n                <thead>\n                  <tr>\n                    <th>इकाई (Unit)</th>\n                    <th>अंक (Weightage)</th>\n                    <th>प्रश्न प्रकार व अंक विभाजन (Questions Breakdown)</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr><td class=\"font-bold\">शेमुषी भाग-2 (पाठ्यपुस्तक)</td><td class=\"font-bold text-sky-700\">30 Marks</td><td>पाठाधारित प्रश्नोत्तर, श्लोक सुभाषित, गद्यांश-पद्यांश-नाट्यांश अवबोधन</td></tr>\n                  <tr><td class=\"font-bold\">व्याकरण (संधि, समास, धातु, प्रत्यय)</td><td class=\"font-bold text-emerald-700\">25 Marks</td><td>संधि, समास, शब्दरूप, धातुरूप, उपसर्ग, अव्यय, प्रत्यय (1 अंक व 2 अंक प्रश्न)</td></tr>\n                  <tr><td class=\"font-bold\">अपठित गद्यांश, पत्र व निबंध</td><td class=\"font-bold\">20 Marks</td><td>अपठित गद्यांश (4 अंक), पत्र लेखन (प्रार्थना पत्र) (4 अंक), निबंध लेखन (5 अंक), अशुद्ध संशोधन (3 अंक), वाक्य परिवर्तन (4 अंक)</td></tr>\n                </tbody>\n              </table>\n            </div>\n\n            <div class=\"p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3\">\n              <h4 class=\"font-bold text-slate-900 text-base\">📜 संस्कृत के महत्वपूर्ण विगत वर्ष प्रश्न (PYQs):</h4>\n              <ol class=\"list-decimal list-inside space-y-2 text-sm text-slate-700 pl-1 font-sans\">\n                <li><strong>कविः किमर्थं प्रकृतेः शरणम् इच्छति?</strong> (कवि किसलिए प्रकृति की शरण चाहता है?) <em>[सूची पर्यावरणम् - Board 2024, Preboard 2025]</em></li>\n                <li><strong>बुद्धिमती केन उपायेन व्याघ्रात् मुक्ता अभवत्?</strong> (बुद्धिमती किस उपाय से बाघ से मुक्त हुई?) <em>[बुद्धिर्बलवती सदा - Board 2023, 2024]</em></li>\n                <li><strong>स्वप्राचार्याय त्र्याणां दिवसानां अवकाशार्थं एकं प्रार्थनापत्रं संस्कृते लिखत।</strong> (अपने प्राचार्य को तीन दिन के अवकाश के लिए प्रार्थना पत्र संस्कृत में लिखिए।) <em>[अति महत्वपूर्ण - Board 2024, 2025]</em></li>\n                <li><strong>अधोलिखितं अपठित गद्यांशं पठित्वा प्रश्नानां उत्तराणि संस्कृते लिखत।</strong> <em>[Board 2024]</em></li>\n                <li><strong>अधोलिखितयोः कस्मिंश्चित् एकस्मिन् विषये संस्कृते शतशब्देषु निबंधं लिखत:</strong> (i) संस्कृतभाषायाः महत्त्वम्, (ii) महाकविः कालिदासः। <em>[Board 2023, 2024, 2025, Preboard 2025]</em></li>\n              </ol>\n            </div>\n          </div>\n\n          <!-- Section 9: Disclaimer -->\n          <div class=\"space-y-2 pt-6\">\n            <h2 id=\"disclaimer\" class=\"text-xl sm:text-2xl font-extrabold text-slate-900\">महत्वपूर्ण अस्वीकरण (Academic Disclaimer)</h2>\n            <p class=\"text-xs text-slate-500 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200\">\n              यह मार्गदर्शिका मध्य प्रदेश माध्यमिक शिक्षा मंडल (MPBSE), भोपाल द्वारा जारी आधिकारिक परीक्षा विनियम, नवीनतम अंक योजना एवं विगत वर्ष प्रश्न पत्रों के गहन विश्लेषण पर आधारित है। विद्यार्थी अपनी मुख्य पाठ्यपुस्तकों (NCERT / MP Textbooks) को ही प्राथमिक अध्ययन स्रोत मानें।\n            </p>\n          </div>\n\n        </div>\n      ",
+      "faq": [
+        {
+          "q": "क्या स्वाध्यायी (Private) छात्रों को स्कूल में प्रोजेक्ट फाइल जमा करनी होती है?",
+          "a": "नहीं। विज्ञान विषय को छोड़कर अन्य सभी 5 विषयों (गणित, सामाजिक विज्ञान, अंग्रेजी, हिंदी, संस्कृत) में प्राइवेट छात्रों को कोई प्रोजेक्ट या इंटरनल मार्क्स जमा नहीं करने होते। 75 अंकों के थ्योरी पेपर के अंकों को सीधे 100 में प्रो-राटा स्केल कर दिया जाता है।"
+        },
+        {
+          "q": "विज्ञान विषय की 25 अंक की प्रायोगिक परीक्षा कहाँ होगी?",
+          "a": "विज्ञान की 25 अंक की प्रायोगिक (Practical/Viva) परीक्षा आपके निर्धारित मुख्य बोर्ड परीक्षा केंद्र पर ही मुख्य परीक्षा के समय आयोजित की जाती है।"
+        },
+        {
+          "q": "यदि मैं 75 में से 56.25 अंक लाता हूँ तो फाइनल मार्कशीट में कितने अंक दिखेंगे?",
+          "a": "75 में से 56.25 अंक (जो कि 75% है) लाने पर प्रो-राटा स्केलिंग फॉर्मूले के अनुसार आपकी मार्कशीट में 100 में से 75 अंक दर्ज होंगे!"
+        },
+        {
+          "q": "कम समय में 75%+ लाने के लिए सबसे पहले किन प्रश्नों को तैयार करें?",
+          "a": "सबसे पहले प्रत्येक विषय के 30 अंक के वस्तुनिष्ठ प्रश्न (Objective Questions) और 2 अंक वाले 12 अति लघु उत्तरीय प्रश्नों (24 अंक) को मजबूत करें।"
+        },
+        {
+          "q": "गणित में सबसे ज्यादा अंक वाले कौन-से अध्याय हैं?",
+          "a": "त्रिकोणमिति का परिचय (8 अंक), समांतर श्रेढ़ियाँ (7 अंक), त्रिभुज (7 अंक), सांख्यिकी (6 अंक) और दो चरों वाले रैखिक समीकरण (6 अंक)।"
+        }
+      ]
+    },
+    "hinglish": {
+      "title": "MP Board Class 10 Svadhyayi (Self-Study) Complete Guide: 75%+ Strategy, Scaling Rules & 6-Subject Question Bank",
+      "subtitle": "The definitive handbook for MPBSE Class 10th home-study/private candidates: 75-to-100 mark scaling formula, Day-1 kickstart timetable, chapter-wise blueprints, and solved past year questions.",
+      "excerpt": "Step-by-step master guide for MP Board Class 10 private students to score 75%+ without internal school marks using smart pro-rata scaling, objective mastery, and active writing.",
+      "tldr": [
+        "Pro-Rata Marks Scaling: For 5 subjects (except Science), 75-mark theory exam is scaled mathematically to 100 marks (56.25/75 = 75/100).",
+        "Objective Questions (30 Marks): First 5 questions in every paper are objective. Scoring 28+ guarantees a smooth 75%+ aggregate.",
+        "2-Mark Short Questions (24 Marks): 12 short questions of 30 words each provide easy full marks.",
+        "Complete 6-Subject Blueprint: Maths (75), Science (75+25 Practical), Social Science (75), English (75), Hindi (75), Sanskrit (75).",
+        "Real Past Year Questions: Solved board questions from 2023, 2024, and 2025."
+      ],
+      "visualDiagram": {
+        "title": "📊 Self-Study Student Scoring Blueprint",
+        "badPath": {
+          "label": "❌ Ineffective Method",
+          "steps": [
+            "Just passively reading without writing on paper",
+            "Ignoring the 30-mark objective questions",
+            "Wasting time worrying about missing school internal project marks"
+          ]
+        },
+        "goodPath": {
+          "label": "✅ Skillsfy Topper Method",
+          "steps": [
+            "Mastering 30-mark objective questions first",
+            "Practicing 12 two-mark short questions in writing",
+            "Covering heavy weightage chapters (Trigonometry 8M, Life Processes 8M, History 18M)",
+            "Scoring 58+/75 in theory = 78%+ first division on marksheet!"
+          ]
+        }
+      },
+      "analogy": {
+        "title": "💡 Cricket Powerplay Analogy",
+        "text": "Just like the first 6 overs in a T20 match set the platform, the 30-mark objective section is your Powerplay! Scoring 28+ here makes reaching the 75% target effortless."
+      },
+      "callouts": {
+        "skillsfyInsight": "For private candidates, every single mark in the 75-mark theory paper is worth 1.33 marks on your final marksheet due to pro-rata scaling. Treat every question as high-value!",
+        "tryThis": "Start your Day-1 kickstart plan tomorrow with Maths Chapter 1 (proving √3 is irrational) and Science Chapter 1 balancing equations."
+      },
+      "comparisonTable": {
+        "headers": [
+          "Subject",
+          "Theory Marks",
+          "Practical/Project",
+          "Scaling Mode"
+        ],
+        "rows": [
+          [
+            "Maths",
+            "75 Marks",
+            "No Project",
+            "Pro-rata scaled to 100"
+          ],
+          [
+            "Science",
+            "75 Marks",
+            "25 Marks at exam center",
+            "75 Theory + 25 Practical at center"
+          ],
+          [
+            "Social Science",
+            "75 Marks",
+            "No Project",
+            "Pro-rata scaled to 100"
+          ],
+          [
+            "English",
+            "75 Marks",
+            "No Project",
+            "Pro-rata scaled to 100"
+          ],
+          [
+            "Hindi",
+            "75 Marks",
+            "No Project",
+            "Pro-rata scaled to 100"
+          ],
+          [
+            "Sanskrit",
+            "75 Marks",
+            "No Project",
+            "Pro-rata scaled to 100"
+          ]
+        ]
+      },
+      "faq": [
+        {
+          "q": "Do private candidates need to submit project files in school?",
+          "a": "No. Except Science, all 5 subjects are scaled from 75 marks directly to 100 marks on a pro-rata basis."
+        },
+        {
+          "q": "Where is the 25-mark Science practical exam held?",
+          "a": "At your designated board exam center during the main examination period."
+        }
+      ]
+    },
+    "en": {
+      "title": "MP Board Class 10 Svadhyayi (Self-Study) Guide: 75%+ Aggregate Strategy, Subject Blueprints & PYQ Bank",
+      "subtitle": "Comprehensive preparation guide for MPBSE Class 10 private candidates: 75-to-100 pro-rata scaling formula, Day-1 study schedule, 6-subject blueprints, and past year question banks.",
+      "excerpt": "Complete blueprint for home-study MP Board Class 10 candidates to achieve a 75%+ aggregate score without internal project marks through pro-rata theory scaling.",
+      "tldr": [
+        "Pro-Rata Scaling Policy: For 5 non-science subjects, the 75-mark written paper is scaled mathematically to 100 marks.",
+        "30-Mark Objective Focus: Mastering MCQs and fill-in-the-blanks forms the core foundation of a 75%+ score.",
+        "12 Two-Mark Questions: 24 marks from direct, 30-word answers.",
+        "Complete 6-Subject Breakdown: Mathematics, Science, Social Science, English, Hindi, and Sanskrit.",
+        "Verified Board PYQs: High-probability questions from recent board examinations."
+      ],
+      "visualDiagram": {
+        "title": "📊 Strategic Score Maximization Funnel",
+        "badPath": {
+          "label": "❌ Suboptimal Strategy",
+          "steps": [
+            "Passive reading",
+            "Ignoring 30-mark objectives",
+            "Unbalanced chapter allocation"
+          ]
+        },
+        "goodPath": {
+          "label": "✅ Recommended Protocol",
+          "steps": [
+            "Objective mastery",
+            "Daily active writing practice",
+            "High-weightage chapter prioritization"
+          ]
+        }
+      },
+      "analogy": {
+        "title": "💡 Powerplay Analogy",
+        "text": "The 30-mark objective questions act as the powerplay overs in cricket. Securing 28+ marks here guarantees a formidable total score."
+      },
+      "callouts": {
+        "skillsfyInsight": "Under MPBSE pro-rata scaling, each written mark in a 75-mark paper translates to 1.33 marks on the final 100-mark transcript.",
+        "tryThis": "Execute the Day-1 study schedule with focus on real numbers and chemical reactions."
+      },
+      "comparisonTable": {
+        "headers": [
+          "Subject",
+          "Theory Paper",
+          "Practical",
+          "Evaluation Method"
+        ],
+        "rows": [
+          [
+            "Mathematics",
+            "75 Marks",
+            "None",
+            "Pro-rata scaled to 100"
+          ],
+          [
+            "Science",
+            "75 Marks",
+            "25 Marks at Exam Center",
+            "75 Theory + 25 Practical"
+          ],
+          [
+            "Social Science",
+            "75 Marks",
+            "None",
+            "Pro-rata scaled to 100"
+          ],
+          [
+            "English",
+            "75 Marks",
+            "None",
+            "Pro-rata scaled to 100"
+          ],
+          [
+            "Hindi",
+            "75 Marks",
+            "None",
+            "Pro-rata scaled to 100"
+          ],
+          [
+            "Sanskrit",
+            "75 Marks",
+            "None",
+            "Pro-rata scaled to 100"
+          ]
+        ]
+      },
+      "faq": [
+        {
+          "q": "How does the pro-rata marks scaling work for private candidates?",
+          "a": "For non-science subjects, your raw score out of 75 is multiplied by (100/75) to calculate your final marks out of 100."
+        }
+      ]
+    }
+  },
+  "toc": [
+    {
+      "id": "scaling-policy",
+      "title": "Scaling Policy / मार्क्स स्केलिंग नियम"
+    },
+    {
+      "id": "day1-plan",
+      "title": "Day-1 Plan / किकस्टार्ट टाइम टेबल"
+    },
+    {
+      "id": "maths-blueprint",
+      "title": "Maths / गणित ब्लूप्रिंट व PYQs"
+    },
+    {
+      "id": "science-blueprint",
+      "title": "Science / विज्ञान ब्लूप्रिंट व PYQs"
+    },
+    {
+      "id": "social-science-blueprint",
+      "title": "Social Science / सामाजिक विज्ञान"
+    },
+    {
+      "id": "english-blueprint",
+      "title": "English / अंग्रेजी ब्लूप्रिंट व PYQs"
+    },
+    {
+      "id": "hindi-blueprint",
+      "title": "Hindi / हिंदी ब्लूप्रिंट व PYQs"
+    },
+    {
+      "id": "sanskrit-blueprint",
+      "title": "Sanskrit / संस्कृत ब्लूप्रिंट व PYQs"
+    },
+    {
+      "id": "disclaimer",
+      "title": "Disclaimer / अस्वीकरण"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Madhya Pradesh Board of Secondary Education (MPBSE) Examination Regulations",
+      "publisher": "mpbse.nic.in"
+    },
+    {
+      "title": "MP Board Class 10 Subject-wise Blueprint & Marking Scheme 2025-2026",
+      "publisher": "mpbse.nic.in"
+    }
+  ],
+  "relatedSlugs": [
+    "how-students-can-use-ai-without-becoming-dependent",
+    "building-real-projects-vs-memorizing-dsa",
+    "mukhyamantri-udyam-kranti-yojana-2026"
+  ]
+},
+
+    {
   "id": "art-muky-2026",
   "slug": "mukhyamantri-udyam-kranti-yojana-2026",
   "aliases": [
