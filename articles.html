@@ -1580,7 +1580,7 @@
       // Main Narrative Content
       const narrativeContainer = document.getElementById('art-narrative-content');
       if (narrativeContainer) {
-        narrativeContainer.innerHTML = content.narrativeHtml || '';
+        narrativeContainer.innerHTML = content.narrativeHtml || article.narrativeHtml || '';
       }
 
       // Table of Contents
