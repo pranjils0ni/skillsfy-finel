@@ -508,6 +508,56 @@
     .mobile-toc-fab-btn:active {
       transform: scale(0.96);
     }
+
+    /* ================= PRINT / PDF EXPORT CSS ================= */
+    @media print {
+      body {
+        background-color: #FFFFFF !important;
+        color: #000000 !important;
+        font-size: 11.5pt !important;
+      }
+      header, footer, #mobile-toc-fab, #mobile-toc-modal, #articles-toast, 
+      .sticky-toc, .lang-pill, #dark-toggle-btn, .pyq-action-btn, 
+      #art-related-section, #newsletter-section, .no-print, #art-actions-toolbar,
+      .reading-progress-top {
+        display: none !important;
+      }
+      .article-reading-width {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      .article-table-wrapper {
+        border: 1px solid #000000 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+      }
+      .subject-chapter-card {
+        background: #F1F5F9 !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+        page-break-before: always;
+      }
+      .subject-chapter-card h3, .subject-chapter-card p {
+        color: #000000 !important;
+      }
+      .pyq-card {
+        border: 1px solid #CBD5E1 !important;
+        page-break-inside: avoid;
+      }
+    }
+
+    /* ================= FOCUS READING MODE ================= */
+    body.focus-mode-active header,
+    body.focus-mode-active footer,
+    body.focus-mode-active aside,
+    body.focus-mode-active #art-related-section,
+    body.focus-mode-active #newsletter-section {
+      display: none !important;
+    }
+    body.focus-mode-active .article-reading-width {
+      max-width: 820px !important;
+      margin: 0 auto !important;
+    }
   </style>
 </head>
 <body class="bg-paper-canvas text-slate-900 min-h-screen flex flex-col antialiased">
@@ -616,7 +666,7 @@
             <input 
               type="text" 
               id="articles-search-input" 
-              placeholder="Search articles on AI, full-stack, freelancing, careers..." 
+              placeholder="Search articles, guides, subjects, chapters..." 
               class="w-full pl-12 pr-28 py-3.5 rounded-2xl bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 shadow-sm transition-all"
             />
             <button type="submit" class="absolute right-2.5 top-1/2 -translate-y-1/2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-all">
@@ -812,6 +862,26 @@
           </div>
         </div>
 
+        <!-- Hero Study Actions Toolbar (Start Guide | Save Guide | Print/PDF | Focus Mode) -->
+        <div class="flex items-center gap-2 flex-wrap pt-2 no-print" id="art-actions-toolbar">
+          <a href="#overview" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-sm text-sky-400">play_arrow</span>
+            <span>Start Guide</span>
+          </a>
+          <button onclick="bookmarkArticle()" id="save-guide-btn" class="px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-slate-700 font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-sm text-rose-500" id="save-guide-icon">favorite_border</span>
+            <span id="save-guide-text">Save Guide</span>
+          </button>
+          <button onclick="window.print()" class="px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-slate-700 font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all" title="Print or Save as PDF">
+            <span class="material-symbols-outlined text-sm text-slate-600">print</span>
+            <span>Print / Save PDF</span>
+          </button>
+          <button onclick="toggleFocusMode()" id="focus-mode-btn" class="px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-slate-700 font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all" title="Distraction-Free Focus Mode">
+            <span class="material-symbols-outlined text-sm text-amber-500">center_focus_strong</span>
+            <span id="focus-mode-text">Focus Mode</span>
+          </button>
+        </div>
+
       </div>
 
       <!-- Large Centered Hero Image -->
@@ -843,8 +913,8 @@
         <!-- Centered Reading Article Body (8 Columns on desktop, 720px width) -->
         <article class="lg:col-span-8 article-reading-width mx-auto space-y-8 text-slate-800 leading-[1.8] text-[17.5px] sm:text-[18.5px]">
           
-          <!-- Executive Summary Callout -->
-          <div class="callout-box callout-key-takeaway space-y-2">
+          <!-- Executive Summary Callout (Only for articles that have TLDR) -->
+          <div class="callout-box callout-key-takeaway space-y-2 hidden" id="art-tldr-container">
             <div class="font-mono text-xs font-bold text-sky-700 uppercase tracking-wider flex items-center gap-1.5">
               <span class="material-symbols-outlined text-sm">lightbulb</span>
               <span>EXECUTIVE SUMMARY (TL;DR)</span>
@@ -854,13 +924,13 @@
             </ul>
           </div>
 
-          <!-- 📊 VISUAL DIAGRAM & DUAL-PATH FLOWCHART (Learnize / Adymize Visual Standard) -->
-          <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-5" id="art-visual-diagram-container">
+          <!-- Visual Diagram Container -->
+          <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-5 hidden" id="art-visual-diagram-container">
             <!-- Rendered dynamically -->
           </div>
 
-          <!-- 💡 10-YEAR-OLD FRIENDLY INTUITIVE ANALOGY CARD -->
-          <div class="callout-box callout-analogy p-6 sm:p-8 space-y-3" id="art-analogy-container">
+          <!-- Analogy Card Container -->
+          <div class="callout-box callout-analogy p-6 sm:p-8 space-y-3 hidden" id="art-analogy-container">
             <!-- Rendered dynamically -->
           </div>
 
@@ -870,7 +940,7 @@
           </div>
 
           <!-- Reusable Skillsfy Callouts Container -->
-          <div class="space-y-6 pt-4" id="art-callouts-container">
+          <div class="space-y-6 pt-4 hidden" id="art-callouts-container">
             <!-- Rendered dynamically -->
           </div>
 
@@ -880,7 +950,7 @@
           </div>
 
           <!-- FAQ Accordion Section -->
-          <div class="space-y-4 pt-6 border-t border-slate-200" id="art-faq-section">
+          <div class="space-y-4 pt-6 border-t border-slate-200 hidden" id="art-faq-section">
             <h3 class="text-2xl font-extrabold text-slate-900" id="art-faq-title">Frequently Asked Questions</h3>
             <div class="space-y-3" id="art-faq-container">
               <!-- Rendered dynamically -->
@@ -888,7 +958,7 @@
           </div>
 
           <!-- Sources & Citations -->
-          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 text-xs font-['Geist'] text-slate-600 mt-8" id="art-sources-section">
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 text-xs font-['Geist'] text-slate-600 mt-8 hidden" id="art-sources-section">
             <span class="font-bold text-slate-900 block text-xs">Sources & References:</span>
             <div id="art-sources-container" class="space-y-1 text-[11.5px]">
               <!-- Rendered dynamically -->
@@ -901,7 +971,7 @@
             <div class="space-y-1 text-left">
               <div class="flex items-center gap-2">
                 <h4 class="text-base font-bold text-slate-900" id="art-author-box-name">Skillsfy Editorial Team</h4>
-                <span class="text-[10px] font-['Geist'] px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-bold uppercase">Verified Author</span>
+                <span class="text-[10px] font-['Geist'] px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-bold uppercase">Research & Pedagogy</span>
               </div>
               <p class="text-xs text-slate-600 leading-relaxed" id="art-author-box-bio">
                 Engineers, educators, and curriculum designers at Skillsfy Institute of Technology researching AI, software engineering, and student career mastery.
@@ -910,7 +980,7 @@
           </div>
 
           <!-- Contextual Soft Skillsfy Course CTA -->
-          <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-slate-900 via-[#031636] to-slate-950 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl my-10">
+          <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-slate-900 via-[#031636] to-slate-950 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl my-10 no-print">
             <div class="space-y-1.5 text-left">
               <span class="px-2.5 py-0.5 rounded bg-[#00ccf9]/20 text-[#00ccf9] font-mono text-[9px] font-bold uppercase tracking-wider">
                 READY TO TURN KNOWLEDGE INTO SKILLS?
@@ -929,8 +999,23 @@
 
         <!-- Sticky Right Table of Contents (4 Columns on desktop, 240px width) -->
         <aside class="hidden lg:block lg:col-span-4 sticky-toc space-y-6">
+          
+          <!-- Study Progress Widget -->
+          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2 text-left">
+            <div class="flex items-center justify-between text-xs font-bold text-slate-900">
+              <span class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sky-600 text-sm">trending_up</span>
+                <span>YOUR READING PROGRESS</span>
+              </span>
+              <span id="study-progress-pct" class="font-mono text-sky-700 font-bold">0%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+              <div id="study-progress-bar" class="h-full bg-gradient-to-r from-sky-500 to-emerald-500 rounded-full transition-all duration-300" style="width: 0%;"></div>
+            </div>
+          </div>
+
           <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3 text-left">
-            <span class="font-mono text-[10px] font-bold text-slate-400 uppercase tracking-widest block">TABLE OF CONTENTS</span>
+            <span class="font-mono text-[10px] font-bold text-slate-400 uppercase tracking-widest block">ON THIS GUIDE</span>
             <div class="space-y-2 text-xs text-slate-600 font-['Geist']" id="desktop-toc-container">
               <!-- Rendered dynamically -->
             </div>
@@ -954,7 +1039,7 @@
       </div>
 
       <!-- Continue Reading Related Articles Section -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-200 mt-16 text-left space-y-6">
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-200 mt-16 text-left space-y-6" id="art-related-section">
         <div class="flex items-center justify-between">
           <div>
             <span class="text-xs font-mono font-bold uppercase tracking-wider text-sky-600">CONTINUE READING</span>
@@ -968,6 +1053,46 @@
         </div>
       </section>
 
+    </div>
+
+    <!-- ================= VIEW C: 404 ARTICLE / GUIDE NOT FOUND ================= -->
+    <div id="view-not-found" class="hidden max-w-3xl mx-auto px-4 py-20 text-center space-y-8">
+      <div class="w-16 h-16 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center mx-auto shadow-sm">
+        <span class="material-symbols-outlined text-3xl">menu_book</span>
+      </div>
+      <div class="space-y-2">
+        <span class="text-xs font-mono font-bold uppercase tracking-wider text-amber-700">404 — CONTENT NOT FOUND</span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Article or Study Guide Not Found</h1>
+        <p class="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+          The requested article or guide (<code id="missing-slug-label" class="text-sky-700 bg-sky-50 px-2 py-0.5 rounded font-mono text-xs">...</code>) does not exist or has moved.
+        </p>
+      </div>
+
+      <!-- Search Form -->
+      <div class="max-w-md mx-auto">
+        <form onsubmit="handleNotFoundSearch(event)" class="relative">
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+          <input 
+            type="text" 
+            id="not-found-search-input" 
+            placeholder="Search articles, guides, subjects..." 
+            class="w-full pl-12 pr-28 py-3.5 rounded-2xl bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 shadow-sm"
+          />
+          <button type="submit" class="absolute right-2.5 top-1/2 -translate-y-1/2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-all">
+            Search
+          </button>
+        </form>
+      </div>
+
+      <!-- Return Button & Quick Links -->
+      <div class="pt-4 flex items-center justify-center gap-4 flex-wrap">
+        <a href="articles.html" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm">
+          ← View All Articles & Guides
+        </a>
+        <a href="articles.html?slug=mp-board-class-10-svadhyayi-self-study-guide-75-percent" class="px-5 py-2.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-800 hover:bg-sky-100 text-xs font-bold transition-all">
+          📖 Open MP Board Class 10 Study Guide →
+        </a>
+      </div>
     </div>
 
   </div>
@@ -1077,13 +1202,42 @@
       setTimeout(() => toast.classList.add('hidden'), 3500);
     }
 
+    function normalizeSlug(s) {
+      return decodeURIComponent(s || '')
+        .toLowerCase()
+        .trim()
+        .replace(/[\s_]+/g, '-')
+        .replace(/[^a-z0-9-]/g, '');
+    }
+
+    function findArticleBySlug(slug) {
+      const clean = normalizeSlug(slug);
+      if (!clean) return null;
+      const data = window.SKILLSFY_ARTICLES_DATA;
+      if (!data || !data.articles) return null;
+      return data.articles.find(a => {
+        if (normalizeSlug(a.slug) === clean) return true;
+        if (a.id && normalizeSlug(a.id) === clean) return true;
+        if (a.aliases && a.aliases.some(al => normalizeSlug(al) === clean)) return true;
+        return false;
+      }) || null;
+    }
+
     function getQueryParams() {
       const params = new URLSearchParams(window.location.search);
       const pathname = window.location.pathname;
       let slugFromPath = '';
       let catFromPath = '';
 
-      if (pathname.includes('/articles/')) {
+      if (pathname.includes('/guides')) {
+        catFromPath = 'study-guides';
+        if (pathname.includes('/guides/')) {
+          const cleanPath = pathname.substring(pathname.indexOf('/guides/') + 8).replace(/\/$/, '');
+          if (cleanPath && cleanPath !== 'guides' && cleanPath !== 'guides.html') {
+            slugFromPath = cleanPath;
+          }
+        }
+      } else if (pathname.includes('/articles/')) {
         const cleanPath = pathname.substring(pathname.indexOf('/articles/') + 10).replace(/\/$/, '');
         if (cleanPath.startsWith('category/')) {
           catFromPath = cleanPath.replace('category/', '');
@@ -1099,22 +1253,51 @@
       };
     }
 
-    // ================= ROUTER: LISTING VS ARTICLE VIEW =================
+    // ================= ROUTER: LISTING VS ARTICLE VS 404 VIEW =================
     function initArticlesRouter() {
       if (!window.SKILLSFY_ARTICLES_DATA) return;
 
       const { slug, category, q } = getQueryParams();
+      const viewListing = document.getElementById('view-listing');
+      const viewArticle = document.getElementById('view-article');
+      const viewNotFound = document.getElementById('view-not-found');
 
       if (slug) {
-        currentArticleSlug = slug;
-        document.getElementById('view-listing').classList.add('hidden');
-        document.getElementById('view-article').classList.remove('hidden');
-        renderIndividualArticle(slug, currentLanguage);
+        const article = findArticleBySlug(slug);
+        if (article) {
+          currentArticleSlug = article.slug;
+          if (viewListing) viewListing.classList.add('hidden');
+          if (viewNotFound) viewNotFound.classList.add('hidden');
+          if (viewArticle) viewArticle.classList.remove('hidden');
+          renderIndividualArticle(article, currentLanguage);
+        } else {
+          if (viewListing) viewListing.classList.add('hidden');
+          if (viewArticle) viewArticle.classList.add('hidden');
+          if (viewNotFound) viewNotFound.classList.remove('hidden');
+          renderNotFoundPage(slug);
+        }
       } else {
-        document.getElementById('view-article').classList.add('hidden');
-        document.getElementById('view-listing').classList.remove('hidden');
+        if (viewArticle) viewArticle.classList.add('hidden');
+        if (viewNotFound) viewNotFound.classList.add('hidden');
+        if (viewListing) viewListing.classList.remove('hidden');
         renderListingPage(category, q);
       }
+    }
+
+    // ================= 404 NOT FOUND PAGE =================
+    function renderNotFoundPage(missingSlug) {
+      document.title = 'Content Not Found — Skillsfy';
+      const label = document.getElementById('missing-slug-label');
+      if (label) label.textContent = missingSlug || 'unknown';
+    }
+
+    function handleNotFoundSearch(e) {
+      e.preventDefault();
+      const input = document.getElementById('not-found-search-input');
+      const q = input ? input.value.trim() : '';
+      const newUrl = q ? `articles.html?q=${encodeURIComponent(q)}` : 'articles.html';
+      window.history.pushState({}, '', newUrl);
+      initArticlesRouter();
     }
 
     // ================= LANGUAGE SWITCHER =================
@@ -1135,8 +1318,11 @@
       });
 
       if (currentArticleSlug) {
-        renderIndividualArticle(currentArticleSlug, lang);
-        showToast(`Language switched to ${lang.toUpperCase()}`, 'info');
+        const article = findArticleBySlug(currentArticleSlug);
+        if (article) {
+          renderIndividualArticle(article, lang);
+          showToast(`Language switched to ${lang.toUpperCase()}`, 'info');
+        }
       }
     }
 
@@ -1148,19 +1334,21 @@
 
       if (searchQuery) {
         const query = searchQuery.toLowerCase().trim();
-        articles = articles.filter(a => 
-          a.translations.en.title.toLowerCase().includes(query) || 
-          a.translations.hinglish.title.toLowerCase().includes(query) || 
-          a.category.toLowerCase().includes(query) ||
-          a.tags.some(t => t.toLowerCase().includes(query))
-        );
+        articles = articles.filter(a => {
+          const tEn = a.translations.en ? a.translations.en.title.toLowerCase() : '';
+          const tHi = a.translations.hi ? a.translations.hi.title.toLowerCase() : '';
+          const tHing = a.translations.hinglish ? a.translations.hinglish.title.toLowerCase() : '';
+          const cat = a.category.toLowerCase();
+          const tags = (a.tags || []).map(t => t.toLowerCase());
+          return tEn.includes(query) || tHi.includes(query) || tHing.includes(query) || cat.includes(query) || tags.some(t => t.includes(query));
+        });
         document.getElementById('grid-section-title').textContent = `Search results for "${searchQuery}"`;
       } else if (categoryFilter && categoryFilter !== 'all') {
         articles = articles.filter(a => a.categorySlug === categoryFilter);
         const catObj = categories.find(c => c.slug === categoryFilter);
         document.getElementById('grid-section-title').textContent = catObj ? catObj.name : 'Category Articles';
       } else {
-        document.getElementById('grid-section-title').textContent = 'Latest Articles';
+        document.getElementById('grid-section-title').textContent = 'Latest Articles & Study Guides';
       }
 
       document.getElementById('articles-count-label').textContent = `Showing ${articles.length} articles`;
@@ -1192,7 +1380,7 @@
             <div class="lg:col-span-7 space-y-4">
               <div class="flex items-center gap-2 text-xs font-['Geist'] text-slate-500">
                 <span class="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200 font-bold uppercase text-[10px]">
-                  FEATURED ARTICLE
+                  FEATURED STUDY GUIDE
                 </span>
                 <span>•</span>
                 <span class="font-semibold text-slate-700">${featured.category}</span>
@@ -1211,7 +1399,7 @@
                   <span class="font-bold text-slate-900">${author.name}</span>
                 </div>
                 <span class="text-sky-600 font-bold group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                  <span>Read Article</span>
+                  <span>Open Guide</span>
                   <span class="material-symbols-outlined text-sm">arrow_forward</span>
                 </span>
               </div>
@@ -1274,7 +1462,7 @@
       // 4. Render Popular Articles Grid
       const popularContainer = document.getElementById('popular-articles-grid');
       if (popularContainer) {
-        const popular = [...data.articles].sort((a, b) => a.popularRank - b.popularRank).slice(0, 3);
+        const popular = [...data.articles].sort((a, b) => (a.popularRank || 99) - (b.popularRank || 99)).slice(0, 3);
         popularContainer.innerHTML = popular.map((p, idx) => {
           const content = p.translations[currentLanguage] || p.translations.hinglish || p.translations.en;
           return `
@@ -1294,23 +1482,13 @@
       }
     }
 
-    function normalizeSlug(s) {
-      return decodeURIComponent(s || '').toLowerCase().trim().replace(/[\s_]+/g, '-');
-    }
-
-    // ================= RENDER INDIVIDUAL EBOOK ARTICLE (MULTILINGUAL) =================
-    function renderIndividualArticle(slug, lang = 'hinglish') {
+    // ================= RENDER INDIVIDUAL DIGITAL STUDY GUIDE / ARTICLE =================
+    function renderIndividualArticle(article, lang = 'hinglish') {
       const data = window.SKILLSFY_ARTICLES_DATA;
-      const cleanSlug = normalizeSlug(slug);
-      const article = data.articles.find(a => 
-        normalizeSlug(a.slug) === cleanSlug || 
-        (a.aliases && a.aliases.some(al => normalizeSlug(al) === cleanSlug)) ||
-        (a.id && a.id.toLowerCase() === cleanSlug)
-      ) || data.articles[0];
       const author = data.authors[article.authorId] || data.authors['editorial-team'];
       const content = article.translations[lang] || article.translations.hinglish || article.translations.en;
 
-      if (!article) return;
+      if (!article || !content) return;
 
       // Update Language Switcher UI Buttons
       ['en', 'hinglish', 'hi'].forEach(l => {
@@ -1321,10 +1499,12 @@
         }
       });
 
-      // Update Page Meta
-      document.title = `${content.title} — Skillsfy Articles`;
+      // Update Page Title, Meta, and Canonical URL
+      document.title = `${content.title} — Skillsfy`;
       const descEl = document.getElementById('meta-page-desc');
       if (descEl) descEl.setAttribute('content', content.subtitle);
+      const canonicalEl = document.getElementById('meta-canonical');
+      if (canonicalEl) canonicalEl.setAttribute('href', `https://skillsfy.in/articles?slug=${encodeURIComponent(article.slug)}`);
 
       // Header Spread
       document.getElementById('art-bread-category').textContent = article.category;
@@ -1337,22 +1517,24 @@
       document.getElementById('art-date-readtime').textContent = `${article.publishedAt} · ${article.readingTime}`;
       document.getElementById('art-hero-img').src = article.coverImage;
 
-      // TL;DR
-      const tldrContainer = document.getElementById('art-tldr-list');
-      if (tldrContainer && content.tldr) {
-        tldrContainer.innerHTML = content.tldr.map(t => `<li>${t}</li>`).join('');
+      // TL;DR Container
+      const tldrBox = document.getElementById('art-tldr-container');
+      const tldrList = document.getElementById('art-tldr-list');
+      if (content.tldr && content.tldr.length > 0) {
+        if (tldrList) tldrList.innerHTML = content.tldr.map(t => `<li>${t}</li>`).join('');
+        if (tldrBox) tldrBox.classList.remove('hidden');
+      } else if (tldrBox) {
+        tldrBox.classList.add('hidden');
       }
 
-      // 📊 RENDER VISUAL FLOWCHART & DUAL-PATH DIAGRAM
+      // Visual Diagram
       const visualContainer = document.getElementById('art-visual-diagram-container');
-      if (visualContainer && content.visualDiagram) {
+      if (content.visualDiagram && visualContainer) {
         const vd = content.visualDiagram;
         visualContainer.innerHTML = `
           <div class="space-y-4">
             <span class="font-mono text-xs font-bold text-sky-700 uppercase tracking-wider block">${vd.title}</span>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-['Geist']">
-              <!-- Bad Path (Red) -->
               <div class="p-5 rounded-2xl bg-red-50/80 border border-red-200 space-y-3">
                 <span class="font-bold text-red-900 block">${vd.badPath.label}</span>
                 <div class="space-y-2">
@@ -1364,8 +1546,6 @@
                   `).join('')}
                 </div>
               </div>
-
-              <!-- Good Path (Green) -->
               <div class="p-5 rounded-2xl bg-emerald-50/80 border border-emerald-200 space-y-3">
                 <span class="font-bold text-emerald-900 block">${vd.goodPath.label}</span>
                 <div class="space-y-2">
@@ -1380,75 +1560,30 @@
             </div>
           </div>
         `;
+        visualContainer.classList.remove('hidden');
+      } else if (visualContainer) {
+        visualContainer.classList.add('hidden');
       }
 
-      // 💡 RENDER 10-YEAR-OLD FRIENDLY INTUITIVE ANALOGY CARD
+      // Analogy Card
       const analogyContainer = document.getElementById('art-analogy-container');
-      if (analogyContainer && content.analogy) {
+      if (content.analogy && analogyContainer) {
         analogyContainer.innerHTML = `
           <h4 class="text-base font-extrabold text-amber-950">${content.analogy.title}</h4>
           <p class="text-xs sm:text-sm text-amber-900 leading-relaxed font-sans">${content.analogy.text}</p>
         `;
+        analogyContainer.classList.remove('hidden');
+      } else if (analogyContainer) {
+        analogyContainer.classList.add('hidden');
       }
 
-      // Render Rich Narrative Content
+      // Main Narrative Content
       const narrativeContainer = document.getElementById('art-narrative-content');
       if (narrativeContainer) {
         narrativeContainer.innerHTML = content.narrativeHtml || '';
       }
 
-      // Render Callout Blocks
-      const calloutsContainer = document.getElementById('art-callouts-container');
-      if (calloutsContainer && content.callouts) {
-        calloutsContainer.innerHTML = `
-          <div class="callout-box callout-insight space-y-1.5">
-            <div class="font-mono text-xs font-bold text-amber-700 uppercase tracking-wider flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm">psychology</span>
-              <span>SKILLSFY INSIGHT</span>
-            </div>
-            <p class="text-sm text-amber-950 leading-relaxed">${content.callouts.skillsfyInsight}</p>
-          </div>
-
-          <div class="callout-box callout-try-this space-y-1.5">
-            <div class="font-mono text-xs font-bold text-emerald-700 uppercase tracking-wider flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm">play_circle</span>
-              <span>TRY THIS TODAY</span>
-            </div>
-            <p class="text-sm text-emerald-950 leading-relaxed">${content.callouts.tryThis}</p>
-          </div>
-        `;
-      }
-
-      // Render Comparison Table
-      const tableContainer = document.getElementById('art-comparison-table-container');
-      if (tableContainer && content.comparisonTable) {
-        const t = content.comparisonTable;
-        tableContainer.innerHTML = `
-          <div class="space-y-3 pt-4">
-            <h3 class="text-xl font-bold text-slate-900">Direct Comparison / सीधी तुलना</h3>
-            <div class="article-table-wrapper">
-              <table class="article-table">
-                <thead>
-                  <tr>
-                    ${t.headers.map(h => `<th>${h}</th>`).join('')}
-                  </tr>
-                </thead>
-                <tbody>
-                  ${t.rows.map(r => `
-                    <tr>
-                      <td class="font-bold text-slate-900">${r[0]}</td>
-                      <td class="text-red-700">${r[1]}</td>
-                      <td class="text-emerald-800 font-medium">${r[2]}</td>
-                    </tr>
-                  `).join('')}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        `;
-      }
-
-      // Render TOC Links
+      // Table of Contents
       const desktopToc = document.getElementById('desktop-toc-container');
       const mobileToc = document.getElementById('mobile-toc-container');
       const drawerToc = document.getElementById('mobile-drawer-toc-list');
@@ -1484,10 +1619,11 @@
         });
       }, 50);
 
-      // Render FAQ Accordion
+      // FAQ
+      const faqSection = document.getElementById('art-faq-section');
       const faqContainer = document.getElementById('art-faq-container');
-      if (faqContainer && content.faq) {
-        faqContainer.innerHTML = content.faq.map((item, idx) => `
+      if (content.faq && content.faq.length > 0 && faqContainer) {
+        faqContainer.innerHTML = content.faq.map(item => `
           <details class="group p-4 rounded-xl bg-white border border-slate-200 cursor-pointer">
             <summary class="flex items-center justify-between font-bold text-sm text-slate-900 list-none">
               <span>${item.q}</span>
@@ -1498,22 +1634,29 @@
             </p>
           </details>
         `).join('');
+        if (faqSection) faqSection.classList.remove('hidden');
+      } else if (faqSection) {
+        faqSection.classList.add('hidden');
       }
 
-      // Render Sources
+      // Sources
+      const sourcesSection = document.getElementById('art-sources-section');
       const sourcesContainer = document.getElementById('art-sources-container');
-      if (sourcesContainer && article.sources) {
+      if (article.sources && article.sources.length > 0 && sourcesContainer) {
         sourcesContainer.innerHTML = article.sources.map(s => `
           <div>• <strong>${s.title}</strong> — ${s.publisher}</div>
         `).join('');
+        if (sourcesSection) sourcesSection.classList.remove('hidden');
+      } else if (sourcesSection) {
+        sourcesSection.classList.add('hidden');
       }
 
-      // Author Box
+      // Author Bio
       document.getElementById('art-author-box-img').src = author.avatar;
       document.getElementById('art-author-box-name').textContent = author.name;
       document.getElementById('art-author-box-bio').textContent = author.bio;
 
-      // Render Related Articles Grid
+      // Related Articles
       const relatedContainer = document.getElementById('art-related-grid');
       if (relatedContainer) {
         const related = data.articles.filter(a => a.id !== article.id).slice(0, 3);
@@ -1569,6 +1712,7 @@
       }
     }
 
+    // ================= SOCIAL SHARING & BOOKMARKS =================
     function shareWhatsApp() {
       const url = encodeURIComponent(window.location.href);
       const title = encodeURIComponent(document.title);
@@ -1588,16 +1732,30 @@
 
     function copyArticleUrl() {
       navigator.clipboard.writeText(window.location.href);
-      showToast('✓ Article link copied to clipboard!', 'success');
+      showToast('✓ Link copied to clipboard!', 'success');
     }
 
     function bookmarkArticle() {
-      showToast('✓ Saved to your Skillsfy Reading List!', 'success');
+      const savedGuides = JSON.parse(localStorage.getItem('skillsfy_saved_guides') || '[]');
+      if (currentArticleSlug && !savedGuides.includes(currentArticleSlug)) {
+        savedGuides.push(currentArticleSlug);
+        localStorage.setItem('skillsfy_saved_guides', JSON.stringify(savedGuides));
+      }
+      showToast('✓ Saved to your Skillsfy Study Guide Library!', 'success');
     }
 
     function handleNewsletterSubmit(e) {
       e.preventDefault();
       showToast('✓ You are subscribed to the Skillsfy Weekly Dispatch!', 'success');
+    }
+
+    // ================= FOCUS READING MODE =================
+    function toggleFocusMode() {
+      document.body.classList.toggle('focus-mode-active');
+      const isFocus = document.body.classList.contains('focus-mode-active');
+      const btnText = document.getElementById('focus-mode-text');
+      if (btnText) btnText.textContent = isFocus ? 'Exit Focus' : 'Focus Mode';
+      showToast(isFocus ? '🔍 Focus Reading Mode activated' : 'Exited Focus Mode', 'info');
     }
 
     // ================= DAY / DARK READING MODE =================
@@ -1691,12 +1849,17 @@
       const bar = document.getElementById('reading-progress-bar');
       if (bar) bar.style.width = scrolled + '%';
 
+      const studyBar = document.getElementById('study-progress-bar');
+      const studyPct = document.getElementById('study-progress-pct');
+      if (studyBar) studyBar.style.width = Math.min(100, Math.round(scrolled)) + '%';
+      if (studyPct) studyPct.textContent = Math.min(100, Math.round(scrolled)) + '%';
+
       // Active TOC link highlighting
-      const sections = document.querySelectorAll('h2[id], h3[id]');
+      const sections = document.querySelectorAll('h2[id], h3[id], div[id]');
       let currentSection = '';
       sections.forEach(sec => {
         const top = sec.getBoundingClientRect().top;
-        if (top <= 140) currentSection = sec.id;
+        if (top <= 160 && top >= -200) currentSection = sec.id;
       });
       if (currentSection) {
         document.querySelectorAll('.toc-link').forEach(link => {
