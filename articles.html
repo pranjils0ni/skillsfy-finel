@@ -315,6 +315,199 @@
     body.fs-sm article { font-size: 15.5px !important; line-height: 1.7 !important; }
     body.fs-md article { font-size: 18px !important; line-height: 1.8 !important; }
     body.fs-lg article { font-size: 21px !important; line-height: 1.85 !important; }
+
+    /* ================= DIGITAL STUDY GUIDE DESIGN SYSTEM ================= */
+    .guide-trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(2, 132, 199, 0.08);
+      color: #0369a1;
+      border: 1px solid rgba(2, 132, 199, 0.2);
+    }
+    body.dark-reading-mode .guide-trust-badge {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.25);
+    }
+
+    .guide-stat-card {
+      background: #FFFFFF;
+      border: 1px solid #E2DFD7;
+      border-radius: 16px;
+      padding: 16px 18px;
+      transition: all 0.2s ease;
+    }
+    .guide-stat-card:hover {
+      border-color: #031636;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -6px rgba(15, 23, 42, 0.08);
+    }
+    body.dark-reading-mode .guide-stat-card {
+      background: #161B22;
+      border-color: #30363D;
+    }
+    body.dark-reading-mode .guide-stat-card:hover {
+      border-color: #38BDF8;
+    }
+
+    /* Subject Chapter Banner */
+    .subject-chapter-card {
+      background: linear-gradient(135deg, #031636 0%, #0F254B 100%);
+      color: #FFFFFF;
+      border-radius: 20px;
+      padding: 22px 26px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 36px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px -5px rgba(3, 22, 54, 0.25);
+    }
+    .subject-num-watermark {
+      position: absolute;
+      right: 16px;
+      bottom: -12px;
+      font-size: 68px;
+      font-weight: 900;
+      font-family: 'Geist Mono', monospace;
+      opacity: 0.12;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* High Weightage Progress Bars */
+    .weightage-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid #F1F0E8;
+      font-size: 13px;
+    }
+    body.dark-reading-mode .weightage-row {
+      border-color: #21262D;
+    }
+    .weightage-bar-track {
+      flex: 1;
+      height: 7px;
+      border-radius: 9999px;
+      background: #F1F0E8;
+      overflow: hidden;
+    }
+    body.dark-reading-mode .weightage-bar-track {
+      background: #21262D;
+    }
+    .weightage-bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #0284c7, #00ccf9);
+    }
+
+    /* PYQ Question Cards */
+    .pyq-card {
+      background: #FFFFFF;
+      border: 1px solid #E2DFD7;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 12px 0;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .pyq-card:hover {
+      border-color: #94A3B8;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .pyq-card.is-solved {
+      border-color: #10B981 !important;
+      background: rgba(16, 185, 129, 0.05) !important;
+    }
+    body.dark-reading-mode .pyq-card {
+      background: #161B22;
+      border-color: #30363D;
+    }
+    body.dark-reading-mode .pyq-card.is-solved {
+      border-color: #059669 !important;
+      background: rgba(5, 150, 105, 0.1) !important;
+    }
+
+    .pyq-tag {
+      font-family: 'Geist Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: #F1F5F9;
+      color: #475569;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    body.dark-reading-mode .pyq-tag {
+      background: #21262D;
+      color: #94A3B8;
+    }
+
+    /* Interactive Study Checklist */
+    .checklist-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #FFFFFF;
+      border: 1px solid #E2DFD7;
+      border-radius: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .checklist-row:hover {
+      border-color: #031636;
+      background: #FAF9F5;
+    }
+    .checklist-row.checked {
+      border-color: #10B981;
+      background: rgba(16, 185, 129, 0.06);
+      text-decoration: line-through;
+      color: #64748B;
+    }
+    body.dark-reading-mode .checklist-row {
+      background: #161B22;
+      border-color: #30363D;
+      color: #E2E8F0;
+    }
+    body.dark-reading-mode .checklist-row.checked {
+      border-color: #059669;
+      background: rgba(5, 150, 105, 0.1);
+      color: #8B949E;
+    }
+
+    /* Mobile Sticky TOC Drawer Button */
+    .mobile-toc-fab-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      z-index: 45;
+      background: #031636;
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 8px 24px rgba(3, 22, 54, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.2s ease;
+    }
+    .mobile-toc-fab-btn:active {
+      transform: scale(0.96);
+    }
   </style>
 </head>
 <body class="bg-paper-canvas text-slate-900 min-h-screen flex flex-col antialiased">
@@ -556,10 +749,26 @@
 
         </div>
 
-        <!-- Category Tag -->
-        <div>
+        <!-- Category Tag & Trust Badges -->
+        <div class="flex items-center gap-2 flex-wrap">
           <span id="art-category-badge" class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-bold uppercase tracking-wider font-mono">
             AI & TECHNOLOGY
+          </span>
+          <span class="guide-trust-badge">
+            <span class="material-symbols-outlined text-xs">school</span>
+            <span>Student-Focused</span>
+          </span>
+          <span class="guide-trust-badge">
+            <span class="material-symbols-outlined text-xs">auto_stories</span>
+            <span>6 Subjects Blueprint</span>
+          </span>
+          <span class="guide-trust-badge">
+            <span class="material-symbols-outlined text-xs">verified</span>
+            <span>Exam PYQs Bank</span>
+          </span>
+          <span class="guide-trust-badge">
+            <span class="material-symbols-outlined text-xs">download_done</span>
+            <span>Free Guide</span>
           </span>
         </div>
 
@@ -761,6 +970,30 @@
 
     </div>
 
+  </div>
+
+  <!-- Mobile TOC Floating Pill Button -->
+  <button onclick="openMobileToc()" id="mobile-toc-fab" class="lg:hidden mobile-toc-fab-btn">
+    <span class="material-symbols-outlined text-sm">menu_book</span>
+    <span>विषय सूची (TOC)</span>
+  </button>
+
+  <!-- Mobile TOC Drawer Modal -->
+  <div id="mobile-toc-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex flex-col justify-end">
+    <div class="bg-white rounded-t-3xl max-h-[75vh] overflow-y-auto p-6 space-y-4 border-t border-slate-200 text-left shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-sky-600">format_list_bulleted</span>
+          <span class="font-bold text-slate-900 text-base">विषय सूची / Study Guide Index</span>
+        </div>
+        <button onclick="closeMobileToc()" class="p-1 rounded-full bg-slate-100 text-slate-500 hover:text-slate-900">
+          <span class="material-symbols-outlined text-base">close</span>
+        </button>
+      </div>
+      <div class="space-y-1.5 text-sm" id="mobile-drawer-toc-list">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
   </div>
 
   <!-- Toast Notification Box -->
@@ -1218,16 +1451,38 @@
       // Render TOC Links
       const desktopToc = document.getElementById('desktop-toc-container');
       const mobileToc = document.getElementById('mobile-toc-container');
+      const drawerToc = document.getElementById('mobile-drawer-toc-list');
       if (article.toc) {
         const tocHtml = article.toc.map((item, idx) => `
-          <a href="#${item.id}" class="toc-link block hover:text-slate-900 transition-colors py-0.5">
-            <span class="text-slate-400 font-mono mr-1.5">0${idx + 1}</span>
+          <a href="#${item.id}" class="toc-link block hover:text-slate-900 transition-colors py-1">
+            <span class="text-slate-400 font-mono mr-1.5">${idx < 9 ? '0' : ''}${idx + 1}</span>
             <span>${item.title}</span>
           </a>
         `).join('');
         if (desktopToc) desktopToc.innerHTML = tocHtml;
         if (mobileToc) mobileToc.innerHTML = tocHtml;
+        if (drawerToc) {
+          drawerToc.innerHTML = article.toc.map((item, idx) => `
+            <a href="#${item.id}" onclick="closeMobileToc()" class="flex items-center gap-2.5 p-2.5 rounded-xl hover:bg-sky-50 text-slate-800 font-medium transition-colors">
+              <span class="w-6 h-6 rounded-lg bg-sky-100 text-sky-800 font-mono text-xs font-bold flex items-center justify-center flex-shrink-0">${idx + 1}</span>
+              <span class="text-xs leading-snug">${item.title}</span>
+            </a>
+          `).join('');
+        }
       }
+
+      // Restore Solved PYQs from LocalStorage
+      setTimeout(() => {
+        const savedSolved = JSON.parse(localStorage.getItem('skillsfy_pyqs_solved') || '[]');
+        savedSolved.forEach(cardId => {
+          const card = document.getElementById(cardId);
+          if (card) {
+            card.classList.add('is-solved');
+            const btn = card.querySelector('button[title="Mark as Practised"] span:last-child');
+            if (btn) btn.textContent = 'हल किया ✓';
+          }
+        });
+      }, 50);
 
       // Render FAQ Accordion
       const faqContainer = document.getElementById('art-faq-container');
@@ -1384,13 +1639,74 @@
       showToast(`Font size: ${size.toUpperCase()}`, 'info');
     }
 
+    // ================= INTERACTIVE DIGITAL STUDY GUIDE UTILITIES =================
+    function togglePyqSolved(cardId) {
+      const card = document.getElementById(cardId);
+      if (!card) return;
+      card.classList.toggle('is-solved');
+      const isSolved = card.classList.contains('is-solved');
+      const btn = card.querySelector('button[title="Mark as Practised"] span:last-child');
+      if (btn) btn.textContent = isSolved ? 'हल किया ✓' : 'हल किया';
+      
+      const savedSolved = JSON.parse(localStorage.getItem('skillsfy_pyqs_solved') || '[]');
+      if (isSolved) {
+        if (!savedSolved.includes(cardId)) savedSolved.push(cardId);
+        showToast('✓ प्रश्न अभ्यास पूर्ण मार्क हो गया!', 'success');
+      } else {
+        const idx = savedSolved.indexOf(cardId);
+        if (idx !== -1) savedSolved.splice(idx, 1);
+        showToast('अभ्यास स्थिति रीसेट की गई', 'info');
+      }
+      localStorage.setItem('skillsfy_pyqs_solved', JSON.stringify(savedSolved));
+    }
+
+    function copyQuestionText(text) {
+      navigator.clipboard.writeText(text);
+      showToast('📋 प्रश्न क्लिपबोर्ड पर कॉपी हो गया!', 'success');
+    }
+
+    function toggleChecklist(el) {
+      el.classList.toggle('checked');
+      const icon = el.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.textContent = el.classList.contains('checked') ? 'check_box' : 'check_box_outline_blank';
+      }
+    }
+
+    function openMobileToc() {
+      const modal = document.getElementById('mobile-toc-modal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeMobileToc() {
+      const modal = document.getElementById('mobile-toc-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
     // Scroll Reading Progress Bar & TOC Spy
     window.addEventListener('scroll', () => {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
       const bar = document.getElementById('reading-progress-bar');
       if (bar) bar.style.width = scrolled + '%';
+
+      // Active TOC link highlighting
+      const sections = document.querySelectorAll('h2[id], h3[id]');
+      let currentSection = '';
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top <= 140) currentSection = sec.id;
+      });
+      if (currentSection) {
+        document.querySelectorAll('.toc-link').forEach(link => {
+          if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
     });
 
     window.addEventListener('popstate', () => {
