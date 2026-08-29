@@ -1061,10 +1061,19 @@
       }
     }
 
+    function normalizeSlug(s) {
+      return decodeURIComponent(s || '').toLowerCase().trim().replace(/[\s_]+/g, '-');
+    }
+
     // ================= RENDER INDIVIDUAL EBOOK ARTICLE (MULTILINGUAL) =================
     function renderIndividualArticle(slug, lang = 'hinglish') {
       const data = window.SKILLSFY_ARTICLES_DATA;
-      const article = data.articles.find(a => a.slug === slug || (a.aliases && a.aliases.includes(slug))) || data.articles[0];
+      const cleanSlug = normalizeSlug(slug);
+      const article = data.articles.find(a => 
+        normalizeSlug(a.slug) === cleanSlug || 
+        (a.aliases && a.aliases.some(al => normalizeSlug(al) === cleanSlug)) ||
+        (a.id && a.id.toLowerCase() === cleanSlug)
+      ) || data.articles[0];
       const author = data.authors[article.authorId] || data.authors['editorial-team'];
       const content = article.translations[lang] || article.translations.hinglish || article.translations.en;
 
