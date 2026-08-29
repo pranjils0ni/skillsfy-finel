@@ -3,6 +3,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/guides/:slug*", "destination": "/api/articles" },
+    { "source": "/guides", "destination": "/api/articles" },
     { "source": "/articles/:slug*", "destination": "/api/articles" },
     { "source": "/articles", "destination": "/api/articles" },
     { "source": "/article/:slug*", "destination": "/api/article" },
