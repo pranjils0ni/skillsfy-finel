@@ -10,62 +10,54 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-Q400P9M9X4');
   </script>
 
   <base href="/" />
 
   <!-- Dynamic Metadata -->
-  <title id="meta-page-title">Articles | Skillsfy — Practical Knowledge, AI Guides & Career Insights</title>
-  <meta name="description" id="meta-page-desc" content="A curated collection of practical ideas, guides, career roadmaps, technology explainers, and real-world software engineering knowledge from Skillsfy." />
+  <title id="meta-page-title">Articles & Guides | Skillsfy — Simple, Practical Knowledge</title>
+  <meta name="description" id="meta-page-desc" content="Explore practical guides, exam strategies, coding roadmaps, and career insights from Skillsfy." />
   <link rel="canonical" id="meta-canonical" href="https://skillsfy.in/articles" />
 
   <!-- OpenGraph & Twitter Cards -->
   <meta property="og:locale" content="en_IN" />
   <meta property="og:type" content="website" id="og-type" />
-  <meta property="og:title" id="og-title" content="Articles — Skillsfy Institute of Technology" />
-  <meta property="og:description" id="og-desc" content="Ideas, skills, technology and practical knowledge that help students move forward." />
+  <meta property="og:title" id="og-title" content="Articles & Guides — Skillsfy" />
+  <meta property="og:description" id="og-desc" content="Simple, practical guides on programming, modern technology, and academic mastery." />
   <meta property="og:url" id="og-url" content="https://skillsfy.in/articles" />
-  <meta property="og:site_name" content="Skillsfy - Institute of Technology" />
+  <meta property="og:site_name" content="Skillsfy" />
   <meta property="og:image" id="og-image" content="https://skillsfy.in/assets/logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
 
-  <!-- Unified Typography: Adymize / Learnize Style (Plus Jakarta Sans, Inter, Geist, Poppins) -->
+  <!-- Typography: Clean Inter & Plus Jakarta Sans (Meta Learn Standard) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/styles.css" />
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: '#031636',
-            'primary-container': '#1a2b4c',
-            secondary: '#00677f',
-            'secondary-container': '#00ccf9',
-            'paper-canvas': '#FDFCF9',
-            'paper-card': '#FFFFFF',
-            'paper-subtle': '#F8F7F2',
-            'ink-primary': '#0F172A',
-            'ink-secondary': '#475569',
-            'ink-muted': '#94A3B8',
-            'hairline': '#E2DFD7',
-            'accent-sky': '#0284c7',
-            'accent-amber': '#d97706',
-            'accent-emerald': '#059669',
+            primary: '#0B1527',
+            brand: '#0066FF',
+            'brand-light': '#EBF3FF',
+            'brand-dark': '#0052CC',
+            surface: '#FFFFFF',
+            'surface-subtle': '#F7F8FA',
+            'border-subtle': '#E4E7EC',
+            'text-main': '#101828',
+            'text-muted': '#475467',
+            'text-light': '#667085',
           },
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"Poppins"', '"Inter"', 'sans-serif'],
-            mono: ['"Geist Mono"', 'monospace'],
-            serif: ['"Newsreader"', 'Georgia', 'serif'],
+            sans: ['"Inter"', '"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
           }
         }
       }
@@ -74,479 +66,201 @@
 
   <style>
     body {
-      background-color: #FDFCF9;
-      color: #0F172A;
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Poppins', 'Inter', sans-serif;
+      background-color: #FFFFFF;
+      color: #101828;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Reading Progress Indicator */
+    /* Reading Progress Top Bar */
     .reading-progress-top {
       position: fixed;
       top: 0;
       left: 0;
-      height: 3.5px;
-      background: linear-gradient(90deg, #d97706, #0284c7, #00ccf9, #031636);
+      height: 3px;
+      background: #0066FF;
       width: 0%;
       z-index: 100;
       transition: width 0.1s ease-out;
     }
 
-    /* Article Card Soft Hover */
-    .article-card-apple {
+    /* Meta-Style Minimalist Card */
+    .meta-card {
       background: #FFFFFF;
-      border: 1px solid #E2DFD7;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid #EAECF0;
+      border-radius: 16px;
+      transition: all 0.2s ease;
     }
-    .article-card-apple:hover {
-      border-color: #0F172A;
-      transform: translateY(-3px);
-      box-shadow: 0 16px 30px -10px rgba(15, 23, 42, 0.08);
+    .meta-card:hover {
+      border-color: #D0D5DD;
+      box-shadow: 0 8px 24px -4px rgba(16, 24, 40, 0.08);
+      transform: translateY(-2px);
     }
 
-    /* Category Pill Active */
-    .category-pill {
-      transition: all 0.2s ease;
+    /* Clean Category Tab / Pill */
+    .category-tab {
+      transition: all 0.15s ease;
       white-space: nowrap;
+      font-weight: 500;
+      color: #475467;
+      background: #F2F4F7;
+      border: 1px solid transparent;
     }
-    .category-pill.active {
-      background-color: #031636;
+    .category-tab:hover {
+      background: #E4E7EC;
+      color: #101828;
+    }
+    .category-tab.active {
+      background: #0066FF;
       color: #FFFFFF;
-      border-color: #031636;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     /* Language Switcher Pill */
-    .lang-pill {
-      transition: all 0.2s ease;
-      cursor: pointer;
+    .lang-tab {
+      transition: all 0.15s ease;
+      font-weight: 500;
+      color: #475467;
+      background: transparent;
     }
-    .lang-pill.active {
-      background-color: #031636;
+    .lang-tab:hover {
+      color: #101828;
+      background: #F2F4F7;
+    }
+    .lang-tab.active {
+      background: #0066FF;
       color: #FFFFFF;
-      border-color: #031636;
-      font-weight: 700;
-      box-shadow: 0 2px 8px rgba(3, 22, 54, 0.15);
+      font-weight: 600;
     }
 
-    /* Editorial Drop Cap */
-    .article-dropcap::first-letter {
-      float: left;
-      font-size: 3.8rem;
-      line-height: 0.8;
-      padding-top: 4px;
-      padding-right: 12px;
-      padding-bottom: 2px;
-      color: #031636;
-      font-weight: 900;
-      font-family: 'Newsreader', Georgia, serif;
+    /* Clean Reading Width */
+    .article-reading-canvas {
+      max-width: 760px;
     }
 
-    /* Custom Callout Boxes */
-    .callout-box {
-      border-radius: 16px;
-      padding: 20px 24px;
-      margin: 28px 0;
-      position: relative;
-    }
-    .callout-key-takeaway {
-      background-color: #F8FAFC;
-      border-left: 4.5px solid #0284c7;
-    }
-    .callout-try-this {
-      background-color: #F0FDF4;
-      border-left: 4.5px solid #16a34a;
-    }
-    .callout-insight {
-      background-color: #FFFBEB;
-      border-left: 4.5px solid #d97706;
-    }
-    .callout-analogy {
-      background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-      border: 1px solid #F59E0B;
-      border-radius: 18px;
-    }
-
-    /* Sticky TOC Sidebar */
+    /* Sticky Sidebar Navigation */
     .sticky-toc {
       position: sticky;
-      top: 100px;
+      top: 96px;
     }
-    .toc-link.active {
-      color: #0284c7;
+    .toc-item {
+      display: block;
+      padding: 6px 12px;
+      font-size: 13.5px;
+      color: #475467;
+      border-left: 2px solid transparent;
+      transition: all 0.15s ease;
+      line-height: 1.4;
+    }
+    .toc-item:hover {
+      color: #0066FF;
+      background: #F8FAFC;
+      border-radius: 0 6px 6px 0;
+    }
+    .toc-item.active {
+      color: #0066FF;
+      font-weight: 600;
+      border-left-color: #0066FF;
+      background: #F0F7FF;
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* Clean Meta-Style Article Content Typography */
+    .prose-custom p {
+      font-size: 17.5px;
+      line-height: 1.8;
+      color: #1D2939;
+      margin-bottom: 24px;
+    }
+    .prose-custom h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #101828;
+      margin-top: 48px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #EAECF0;
+      letter-spacing: -0.015em;
+    }
+    .prose-custom h3 {
+      font-size: 20px;
       font-weight: 700;
-      border-left: 2px solid #0284c7;
-      padding-left: 8px;
+      color: #101828;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .prose-custom ul, .prose-custom ol {
+      margin-bottom: 24px;
+      padding-left: 24px;
+    }
+    .prose-custom li {
+      font-size: 17px;
+      line-height: 1.75;
+      color: #344054;
+      margin-bottom: 8px;
     }
 
-    /* Article Reading Container Max Widths */
-    .article-reading-width {
-      max-width: 740px;
-    }
-
-    /* Responsive Mobile-Friendly Data Tables */
+    /* Clean Meta Tables */
     .article-table-wrapper {
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 24px 0;
-      border-radius: 16px;
-      border: 1px solid #E2DFD7;
+      margin: 28px 0;
+      border-radius: 12px;
+      border: 1px solid #EAECF0;
       background: #FFFFFF;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
     }
     .article-table {
       width: 100%;
-      min-width: 540px;
+      min-width: 500px;
       border-collapse: collapse;
-      font-size: 13.5px;
+      font-size: 14px;
       text-align: left;
     }
     .article-table th {
-      background-color: #F8F7F2;
-      padding: 12px 16px;
-      font-weight: 800;
-      color: #0F172A;
-      border-bottom: 1px solid #E2DFD7;
-      white-space: nowrap;
+      background-color: #F8F9FA;
+      padding: 12px 18px;
+      font-weight: 600;
+      color: #101828;
+      border-bottom: 1px solid #EAECF0;
     }
     .article-table td {
-      padding: 12px 16px;
-      border-bottom: 1px solid #F1F0E8;
-      color: #334155;
+      padding: 12px 18px;
+      border-bottom: 1px solid #F2F4F7;
+      color: #344054;
     }
     .article-table tr:last-child td {
       border-bottom: none;
     }
 
-    /* Editorial Pull Quote */
-    .article-pullquote {
-      font-style: italic;
-      font-family: 'Newsreader', Georgia, serif;
-      font-size: 1.4rem;
-      line-height: 1.55;
-      color: #0F172A;
-      padding: 20px 26px;
-      margin: 32px 0;
-      border-left: 4px solid #d97706;
-      background: #F8F7F2;
-      border-radius: 0 14px 14px 0;
-    }
-
-    /* ================= DARK READING MODE ================= */
-    body.dark-reading-mode {
-      background-color: #0D1117 !important;
-      color: #E6EDF3 !important;
-    }
-    body.dark-reading-mode header {
-      background-color: rgba(13, 17, 23, 0.95) !important;
-      border-color: #30363D !important;
-    }
-    body.dark-reading-mode .article-card-apple,
-    body.dark-reading-mode .bg-white {
-      background-color: #161B22 !important;
-      border-color: #30363D !important;
-      color: #E6EDF3 !important;
-    }
-    body.dark-reading-mode .text-slate-900,
-    body.dark-reading-mode .text-slate-800 {
-      color: #F0F6FC !important;
-    }
-    body.dark-reading-mode .text-slate-700,
-    body.dark-reading-mode .text-slate-600 {
-      color: #8B949E !important;
-    }
-    body.dark-reading-mode .text-slate-500 {
-      color: #6E7681 !important;
-    }
-    body.dark-reading-mode .border-slate-200,
-    body.dark-reading-mode .border-slate-100 {
-      border-color: #30363D !important;
-    }
-    body.dark-reading-mode .bg-slate-100,
-    body.dark-reading-mode .bg-slate-50 {
-      background-color: #21262D !important;
-      border-color: #30363D !important;
-      color: #E6EDF3 !important;
-    }
-    body.dark-reading-mode .callout-key-takeaway {
-      background-color: #0F1E33 !important;
-      border-left-color: #38BDF8 !important;
-    }
-    body.dark-reading-mode .callout-try-this {
-      background-color: #0F2D1E !important;
-      border-left-color: #34D399 !important;
-    }
-    body.dark-reading-mode .callout-insight {
-      background-color: #2D2006 !important;
-      border-left-color: #FBBF24 !important;
-    }
-    body.dark-reading-mode .callout-analogy {
-      background: linear-gradient(135deg, #2D2006 0%, #1A1302 100%) !important;
-      border-color: #D97706 !important;
-      color: #FEF3C7 !important;
-    }
-    body.dark-reading-mode .article-table th {
-      background-color: #161B22 !important;
-      color: #F0F6FC !important;
-      border-color: #30363D !important;
-    }
-    body.dark-reading-mode .article-table td {
-      border-color: #21262D !important;
-      color: #C9D1D9 !important;
-    }
-    body.dark-reading-mode .article-pullquote {
-      background: #161B22 !important;
-      color: #F0F6FC !important;
-      border-left-color: #F59E0B !important;
-    }
-    body.dark-reading-mode .article-dropcap::first-letter {
-      color: #38BDF8 !important;
-    }
-    body.dark-reading-mode .lang-pill {
-      color: #C9D1D9;
-    }
-    body.dark-reading-mode .lang-pill.active {
-      background-color: #38BDF8 !important;
-      color: #0D1117 !important;
-    }
-
-    /* Font size scaling */
-    body.fs-sm article { font-size: 15.5px !important; line-height: 1.7 !important; }
-    body.fs-md article { font-size: 18px !important; line-height: 1.8 !important; }
-    body.fs-lg article { font-size: 21px !important; line-height: 1.85 !important; }
-
-    /* ================= DIGITAL STUDY GUIDE DESIGN SYSTEM ================= */
-    .guide-trust-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      font-size: 11px;
-      font-weight: 700;
-      background: rgba(2, 132, 199, 0.08);
-      color: #0369a1;
-      border: 1px solid rgba(2, 132, 199, 0.2);
-    }
-    body.dark-reading-mode .guide-trust-badge {
-      background: rgba(56, 189, 248, 0.12);
-      color: #38bdf8;
-      border-color: rgba(56, 189, 248, 0.25);
-    }
-
-    .guide-stat-card {
-      background: #FFFFFF;
-      border: 1px solid #E2DFD7;
-      border-radius: 16px;
-      padding: 16px 18px;
-      transition: all 0.2s ease;
-    }
-    .guide-stat-card:hover {
-      border-color: #031636;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px -6px rgba(15, 23, 42, 0.08);
-    }
-    body.dark-reading-mode .guide-stat-card {
-      background: #161B22;
-      border-color: #30363D;
-    }
-    body.dark-reading-mode .guide-stat-card:hover {
-      border-color: #38BDF8;
-    }
-
-    /* Subject Chapter Banner */
-    .subject-chapter-card {
-      background: linear-gradient(135deg, #031636 0%, #0F254B 100%);
-      color: #FFFFFF;
-      border-radius: 20px;
-      padding: 22px 26px;
-      position: relative;
-      overflow: hidden;
-      margin-top: 36px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 25px -5px rgba(3, 22, 54, 0.25);
-    }
-    .subject-num-watermark {
-      position: absolute;
-      right: 16px;
-      bottom: -12px;
-      font-size: 68px;
-      font-weight: 900;
-      font-family: 'Geist Mono', monospace;
-      opacity: 0.12;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    /* High Weightage Progress Bars */
-    .weightage-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 8px 0;
-      border-bottom: 1px solid #F1F0E8;
-      font-size: 13px;
-    }
-    body.dark-reading-mode .weightage-row {
-      border-color: #21262D;
-    }
-    .weightage-bar-track {
-      flex: 1;
-      height: 7px;
-      border-radius: 9999px;
-      background: #F1F0E8;
-      overflow: hidden;
-    }
-    body.dark-reading-mode .weightage-bar-track {
-      background: #21262D;
-    }
-    .weightage-bar-fill {
-      height: 100%;
-      border-radius: 9999px;
-      background: linear-gradient(90deg, #0284c7, #00ccf9);
-    }
-
-    /* PYQ Question Cards */
-    .pyq-card {
-      background: #FFFFFF;
-      border: 1px solid #E2DFD7;
-      border-radius: 16px;
-      padding: 16px 18px;
-      margin: 12px 0;
-      transition: all 0.2s ease;
-      position: relative;
-    }
-    .pyq-card:hover {
-      border-color: #94A3B8;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-    }
-    .pyq-card.is-solved {
-      border-color: #10B981 !important;
-      background: rgba(16, 185, 129, 0.05) !important;
-    }
-    body.dark-reading-mode .pyq-card {
-      background: #161B22;
-      border-color: #30363D;
-    }
-    body.dark-reading-mode .pyq-card.is-solved {
-      border-color: #059669 !important;
-      background: rgba(5, 150, 105, 0.1) !important;
-    }
-
-    .pyq-tag {
-      font-family: 'Geist Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 6px;
-      background: #F1F5F9;
-      color: #475569;
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-    }
-    body.dark-reading-mode .pyq-tag {
-      background: #21262D;
-      color: #94A3B8;
-    }
-
-    /* Interactive Study Checklist */
-    .checklist-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      background: #FFFFFF;
-      border: 1px solid #E2DFD7;
+    /* Clean Subtle Callout Box */
+    .callout-box {
       border-radius: 12px;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.15s ease;
-    }
-    .checklist-row:hover {
-      border-color: #031636;
-      background: #FAF9F5;
-    }
-    .checklist-row.checked {
-      border-color: #10B981;
-      background: rgba(16, 185, 129, 0.06);
-      text-decoration: line-through;
-      color: #64748B;
-    }
-    body.dark-reading-mode .checklist-row {
-      background: #161B22;
-      border-color: #30363D;
-      color: #E2E8F0;
-    }
-    body.dark-reading-mode .checklist-row.checked {
-      border-color: #059669;
-      background: rgba(5, 150, 105, 0.1);
-      color: #8B949E;
+      padding: 18px 22px;
+      margin: 24px 0;
+      background: #F8F9FA;
+      border-left: 4px solid #0066FF;
     }
 
-    /* Mobile Sticky TOC Drawer Button */
-    .mobile-toc-fab-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 20px;
-      z-index: 45;
-      background: #031636;
-      color: #FFFFFF;
-      padding: 10px 18px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 800;
-      box-shadow: 0 8px 24px rgba(3, 22, 54, 0.35);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Clean PYQ Interactive Question Card */
+    .pyq-clean-card {
+      background: #FFFFFF;
+      border: 1px solid #EAECF0;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
       transition: all 0.2s ease;
     }
-    .mobile-toc-fab-btn:active {
-      transform: scale(0.96);
+    .pyq-clean-card:hover {
+      border-color: #D0D5DD;
+      box-shadow: 0 4px 16px -2px rgba(16, 24, 40, 0.05);
+    }
+    .pyq-clean-card.is-solved {
+      border-color: #A6F4C5;
+      background-color: #F6FEF9;
     }
 
-    /* ================= PRINT / PDF EXPORT CSS ================= */
-    @media print {
-      body {
-        background-color: #FFFFFF !important;
-        color: #000000 !important;
-        font-size: 11.5pt !important;
-      }
-      header, footer, #mobile-toc-fab, #mobile-toc-modal, #articles-toast, 
-      .sticky-toc, .lang-pill, #dark-toggle-btn, .pyq-action-btn, 
-      #art-related-section, #newsletter-section, .no-print, #art-actions-toolbar,
-      .reading-progress-top {
-        display: none !important;
-      }
-      .article-reading-width {
-        max-width: 100% !important;
-        width: 100% !important;
-      }
-      .article-table-wrapper {
-        border: 1px solid #000000 !important;
-        box-shadow: none !important;
-        page-break-inside: avoid;
-      }
-      .subject-chapter-card {
-        background: #F1F5F9 !important;
-        color: #000000 !important;
-        border: 1px solid #000000 !important;
-        page-break-before: always;
-      }
-      .subject-chapter-card h3, .subject-chapter-card p {
-        color: #000000 !important;
-      }
-      .pyq-card {
-        border: 1px solid #CBD5E1 !important;
-        page-break-inside: avoid;
-      }
-    }
-
-    /* ================= FOCUS READING MODE ================= */
+    /* Distraction-Free Focus Mode */
     body.focus-mode-active header,
     body.focus-mode-active footer,
     body.focus-mode-active aside,
@@ -554,189 +268,139 @@
     body.focus-mode-active #newsletter-section {
       display: none !important;
     }
-    body.focus-mode-active .article-reading-width {
-      max-width: 820px !important;
+    body.focus-mode-active .article-reading-canvas {
+      max-width: 800px !important;
       margin: 0 auto !important;
+    }
+
+    /* Print Clean Styles */
+    @media print {
+      header, footer, aside, .no-print, button, #art-actions-toolbar, #reading-progress-bar {
+        display: none !important;
+      }
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+      .article-reading-canvas {
+        max-width: 100% !important;
+      }
     }
   </style>
 </head>
-<body class="bg-paper-canvas text-slate-900 min-h-screen flex flex-col antialiased">
+<body class="bg-white text-text-main min-h-screen flex flex-col antialiased">
 
   <!-- Subtle Top Reading Progress Bar -->
   <div id="reading-progress-bar" class="reading-progress-top"></div>
 
-  <!-- ================= 1. SKILLSFY NOTIFICATION BAR ================= -->
-  <div class="bg-[#031636] text-white text-xs font-['Geist'] py-2 px-4 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-      <div class="flex items-center gap-2">
-        <span class="px-2 py-0.5 rounded-full bg-[#00ccf9]/20 text-[#00ccf9] border border-[#00ccf9]/30 text-[10px] font-bold uppercase tracking-wider">
-          SKILLSFY ARTICLES
-        </span>
-        <span class="text-slate-300">Practical guides, AI frameworks & mental models — Available in <strong>English, Hinglish & Hindi</strong>.</span>
-      </div>
-      <div class="flex items-center gap-4 text-[11px] font-medium">
-        <a href="/lp1" class="text-[#00ccf9] hover:underline font-bold flex items-center gap-1">
-          <span>Live Workshop (30 Aug)</span>
-          <span class="material-symbols-outlined text-xs">arrow_forward</span>
-        </a>
-        <span class="text-slate-600">|</span>
-        <a href="/" class="text-slate-300 hover:text-white">Main Campus</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= 2. SKILLSFY OFFICIAL HEADER NAVIGATION ================= -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+  <!-- ================= 1. SIMPLE CLEAN HEADER (META LEARN STYLE) ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-border-subtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       
-      <!-- Exact Skillsfy Logo (Unchanged) -->
-      <a href="/" class="flex items-center gap-3 group" title="Skillsfy Institute of Technology">
-        <img src="assets/logo.png" alt="Skillsfy - Institute of Technology" class="brand-logo-img h-10 object-contain" />
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-3" title="Skillsfy">
+        <img src="assets/logo.png" alt="Skillsfy" class="h-8 object-contain" />
       </a>
 
-      <!-- Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold font-sans text-slate-700">
-        <a href="/" class="hover:text-primary transition-colors">Home</a>
-        <a href="articles.html" class="text-primary font-bold transition-colors flex items-center gap-1">
-          <span>Articles</span>
-          <span class="px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 text-[10px] font-bold">New</span>
-        </a>
-        <a href="/lp1" class="text-purple-700 font-bold hover:text-primary transition-colors flex items-center gap-1">
-          <span>Live Workshop</span>
-          <span class="badge-pill bg-purple-100 text-purple-800 text-[10px]">30 Aug</span>
-        </a>
-        <a href="/courses" class="hover:text-primary transition-colors">All Courses</a>
-        <a href="insights.html" class="hover:text-primary transition-colors">Insights</a>
-        <a href="/dashboard" class="hover:text-primary transition-colors">Student LMS</a>
+      <!-- Clean Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
+        <a href="/" class="hover:text-text-main transition-colors">Home</a>
+        <a href="articles.html" class="text-brand font-semibold transition-colors">Articles & Guides</a>
+        <a href="/courses" class="hover:text-text-main transition-colors">Courses</a>
+        <a href="insights.html" class="hover:text-text-main transition-colors">Insights</a>
       </nav>
 
-      <!-- Right Header Actions -->
+      <!-- Header Actions -->
       <div class="flex items-center gap-3">
-        <!-- Quick Search Trigger -->
-        <button onclick="focusArticleSearch()" class="p-2 rounded-xl border border-slate-200 text-slate-600 hover:text-primary hover:border-slate-400 transition-all flex items-center gap-1.5 text-xs bg-slate-50" title="Search Articles">
-          <span class="material-symbols-outlined text-sm text-slate-500">search</span>
-          <span class="hidden sm:inline font-sans font-medium">Search Articles</span>
+        <!-- Quick Search -->
+        <button onclick="focusArticleSearch()" class="px-3 py-1.5 rounded-lg border border-border-subtle hover:border-gray-400 text-text-muted hover:text-text-main text-xs font-medium flex items-center gap-1.5 bg-surface-subtle transition-all">
+          <span class="material-symbols-outlined text-sm">search</span>
+          <span class="hidden sm:inline">Search</span>
         </button>
 
-        <!-- 🌓 Day / Dark Reading View Toggle in Header -->
-        <button onclick="toggleDayDarkMode()" class="p-2 sm:px-3 sm:py-2 rounded-xl border border-slate-200 text-slate-700 hover:text-primary hover:border-slate-400 transition-all flex items-center gap-1.5 text-xs bg-slate-50 shadow-sm" title="Toggle Day / Dark Reading Mode">
-          <span class="material-symbols-outlined text-sm text-amber-500" id="dark-mode-icon-header">dark_mode</span>
-          <span class="hidden sm:inline font-sans font-bold" id="dark-mode-text-header">Dark View</span>
-        </button>
-
-        <a href="/login.html" class="hidden sm:inline-flex px-3.5 py-2 text-xs font-bold text-slate-700 hover:text-primary transition-colors items-center gap-1 border border-slate-200 rounded-xl hover:bg-slate-50">
-          <span class="material-symbols-outlined text-sm text-sky-600">account_circle</span>
-          <span>Login</span>
+        <a href="/login.html" class="text-xs font-semibold text-text-muted hover:text-text-main px-3 py-1.5 rounded-lg hover:bg-surface-subtle transition-colors">
+          Log in
         </a>
 
-        <a href="/lp1" class="btn-primary py-2.5 px-4 rounded-xl text-xs font-bold shadow-sm flex items-center gap-1.5">
-          <span>Explore Cohort</span>
-          <span class="material-symbols-outlined text-sm text-[#00ccf9]">arrow_forward</span>
+        <a href="/lp1" class="px-3.5 py-1.5 bg-brand hover:bg-brand-dark text-white text-xs font-semibold rounded-lg transition-all shadow-sm">
+          Live Cohort
         </a>
       </div>
 
     </div>
   </header>
 
-  <!-- ================= 3. DYNAMIC CONTENT VIEWS CONTAINER ================= -->
-  <div id="articles-app" class="flex-1">
+  <!-- ================= 2. MAIN APPLICATION CONTENT ================= -->
+  <main id="articles-app" class="flex-1">
 
-    <!-- ================= VIEW A: ARTICLES LISTING & DISCOVERY VIEW ================= -->
-    <div id="view-listing" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+    <!-- ================= VIEW A: CLEAN ARTICLES & GUIDES LISTING ================= -->
+    <div id="view-listing" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 text-left">
       
-      <!-- Articles Hero Section (Adymize / Learnize Polish) -->
-      <div class="max-w-3xl space-y-4 text-left">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider">
-          <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-          <span>PRACTICAL & VISUAL KNOWLEDGE DESK</span>
-        </div>
-        
-        <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.08]">
-          Learn something useful.<br /><span class="text-sky-600">Build something better.</span>
+      <!-- Minimalist Hero (Meta Learn Inspired) -->
+      <div class="max-w-2xl space-y-3">
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-text-main tracking-tight leading-tight">
+          Learn with Skillsfy
         </h1>
-        
-        <p class="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-          Step-by-step guides, visual mental models, and real-world software engineering knowledge explained so simply that anyone can understand.
+        <p class="text-base sm:text-lg text-text-muted leading-relaxed font-normal">
+          Explore practical guides, exam strategies, coding roadmaps, and career insights designed for clarity.
         </p>
 
-        <!-- Functional Article Search Bar -->
-        <div class="pt-2">
+        <!-- Search Bar -->
+        <div class="pt-3">
           <form onsubmit="handleSearchSubmit(event)" class="relative max-w-xl">
-            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
             <input 
               type="text" 
               id="articles-search-input" 
-              placeholder="Search articles, guides, subjects, chapters..." 
-              class="w-full pl-12 pr-28 py-3.5 rounded-2xl bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 shadow-sm transition-all"
+              placeholder="Search guides, articles, subjects..." 
+              class="w-full pl-10 pr-24 py-2.5 rounded-xl bg-surface border border-border-subtle text-sm text-text-main placeholder:text-gray-400 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand shadow-sm transition-all"
             />
-            <button type="submit" class="absolute right-2.5 top-1/2 -translate-y-1/2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-all">
+            <button type="submit" class="absolute right-1.5 top-1/2 -translate-y-1/2 px-3.5 py-1.5 bg-brand hover:bg-brand-dark text-white text-xs font-semibold rounded-lg transition-all">
               Search
             </button>
           </form>
         </div>
       </div>
 
-      <!-- Horizontally Scrollable Category Filter Navigation -->
-      <div class="space-y-3 text-left">
-        <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="categories-pill-container">
-          <!-- Rendered dynamically -->
-        </div>
+      <!-- Clean Category Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="categories-pill-container">
+        <!-- Rendered dynamically -->
       </div>
 
-      <!-- Featured Editorial Article Card -->
+      <!-- Featured Guide Card (Meta Learn Clean Split Card) -->
       <div id="featured-article-container">
         <!-- Rendered dynamically -->
       </div>
 
-      <!-- Latest Articles 3-Column Responsive Grid -->
-      <div class="space-y-6 text-left">
-        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-          <h2 class="text-2xl font-extrabold text-slate-900" id="grid-section-title">Latest Articles</h2>
-          <span class="text-xs font-['Geist'] text-slate-500 font-medium" id="articles-count-label">Showing all articles</span>
+      <!-- Articles Grid Section -->
+      <div class="space-y-6">
+        <div class="flex items-center justify-between border-b border-border-subtle pb-3">
+          <h2 class="text-xl font-bold text-text-main" id="grid-section-title">All Guides & Articles</h2>
+          <span class="text-xs text-text-light" id="articles-count-label">Showing articles</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articles-grid">
           <!-- Rendered dynamically -->
         </div>
       </div>
 
-      <!-- Popular On Skillsfy (Ranked 01..05) -->
-      <div class="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6 text-left">
-        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-          <div>
-            <span class="text-xs font-mono font-bold uppercase tracking-wider text-sky-600">TRENDING READING LIST</span>
-            <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">Popular on Skillsfy</h3>
-          </div>
-          <span class="text-xs font-['Geist'] text-slate-400">Calculated from student engagement</span>
+      <!-- Clean Minimalist Newsletter Strip -->
+      <div class="p-8 rounded-2xl bg-surface-subtle border border-border-subtle flex flex-col md:flex-row items-center justify-between gap-6" id="newsletter-section">
+        <div class="space-y-1">
+          <h3 class="text-lg font-bold text-text-main">Stay updated with practical guides</h3>
+          <p class="text-xs text-text-muted">Get one curated study or technology guide delivered every week.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="popular-articles-grid">
-          <!-- Rendered dynamically -->
-        </div>
-      </div>
-
-      <!-- The Sunday Dispatch Newsletter -->
-      <div class="p-8 sm:p-12 rounded-3xl bg-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-8 text-left shadow-xl">
-        <div class="space-y-2 max-w-xl">
-          <span class="px-2.5 py-0.5 rounded bg-sky-400/20 text-sky-300 font-mono text-[10px] font-bold uppercase tracking-wider">
-            FREE WEEKLY NEWSLETTER
-          </span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Get one useful idea every week.</h3>
-          <p class="text-sm text-slate-300 leading-relaxed">
-            Practical insights on AI, modern software engineering, career roadmaps, and student freelancing delivered every Sunday morning.
-          </p>
-        </div>
-
-        <form onsubmit="handleNewsletterSubmit(event)" class="w-full md:w-auto flex flex-col sm:flex-row gap-3">
+        <form onsubmit="handleNewsletterSubmit(event)" class="flex gap-2 w-full md:w-auto">
           <input 
             type="email" 
             id="newsletter-email" 
             required 
-            placeholder="Enter your student email..." 
-            class="px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-sky-400 w-full sm:w-72"
+            placeholder="Your email address..." 
+            class="px-3.5 py-2 rounded-xl bg-white border border-border-subtle text-xs text-text-main placeholder:text-gray-400 focus:outline-none focus:border-brand w-full sm:w-64"
           />
-          <button type="submit" class="px-6 py-3 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white font-bold text-sm rounded-xl transition-all whitespace-nowrap shadow">
-            Subscribe Free
+          <button type="submit" class="px-4 py-2 bg-brand hover:bg-brand-dark text-white font-semibold text-xs rounded-xl transition-all whitespace-nowrap shadow-sm">
+            Subscribe
           </button>
         </form>
       </div>
@@ -744,308 +408,150 @@
     </div>
 
 
-    <!-- ================= VIEW B: INDIVIDUAL EBOOK ARTICLE READER (WITH MULTILINGUAL SWITCHER) ================= -->
+    <!-- ================= VIEW B: CLEAN ARTICLE & DIGITAL STUDY GUIDE READER ================= -->
     <div id="view-article" class="hidden">
       
-      <!-- Article Top Header Spread -->
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6 text-left space-y-5">
-        
-        <!-- Breadcrumbs Navigation -->
-        <nav class="flex items-center gap-2 text-xs font-['Geist'] text-slate-500">
-          <a href="/" class="hover:text-slate-900 transition-colors">Home</a>
-          <span>/</span>
-          <a href="articles.html" class="hover:text-slate-900 transition-colors">Articles</a>
-          <span>/</span>
-          <span id="art-bread-category" class="text-sky-600 font-bold uppercase">AI & Technology</span>
-          <span>/</span>
-          <span id="art-bread-title" class="text-slate-400 truncate max-w-[180px] sm:max-w-xs">Article</span>
-        </nav>
-
-        <!-- 🌐 MULTILINGUAL & READING TOOLBAR (Language | Day/Dark Mode | Font Size) -->
-        <div class="p-2 rounded-2xl bg-slate-100 border border-slate-200 flex flex-wrap items-center justify-between gap-3 shadow-sm">
+      <!-- Clean Top Article Header -->
+      <div class="border-b border-border-subtle bg-surface-subtle/50 py-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-left">
           
-          <!-- Left: Multilingual Language Switcher -->
-          <div class="flex items-center gap-1.5 flex-wrap">
-            <span class="text-[11px] font-mono font-bold text-slate-500 pl-2 pr-1 uppercase flex items-center gap-1">
-              <span class="material-symbols-outlined text-sm text-sky-600">translate</span>
-              <span>LANGUAGE:</span>
+          <!-- Breadcrumb Navigation -->
+          <nav class="flex items-center gap-1.5 text-xs text-text-light">
+            <a href="/" class="hover:text-text-main transition-colors">Home</a>
+            <span>/</span>
+            <a href="articles.html" class="hover:text-text-main transition-colors">Articles</a>
+            <span>/</span>
+            <span id="art-bread-category" class="text-brand font-medium">Category</span>
+          </nav>
+
+          <!-- Top Toolbar: Language Switcher & Quick Actions -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+            <!-- Language Pill Switcher -->
+            <div class="inline-flex p-1 rounded-xl bg-white border border-border-subtle text-xs shadow-sm">
+              <button onclick="changeLanguage('en')" id="lang-btn-en" class="lang-tab px-3 py-1 rounded-lg">English</button>
+              <button onclick="changeLanguage('hinglish')" id="lang-btn-hinglish" class="lang-tab px-3 py-1 rounded-lg active">Hinglish</button>
+              <button onclick="changeLanguage('hi')" id="lang-btn-hi" class="lang-tab px-3 py-1 rounded-lg">हिंदी</button>
+            </div>
+
+            <!-- Reading Actions -->
+            <div class="flex items-center gap-2" id="art-actions-toolbar">
+              <button onclick="window.print()" class="px-3 py-1 rounded-lg border border-border-subtle bg-white hover:bg-gray-50 text-text-muted text-xs font-medium flex items-center gap-1 shadow-sm transition-all" title="Print or Save as PDF">
+                <span class="material-symbols-outlined text-sm">print</span>
+                <span>PDF</span>
+              </button>
+              <button onclick="toggleFocusMode()" id="focus-mode-btn" class="px-3 py-1 rounded-lg border border-border-subtle bg-white hover:bg-gray-50 text-text-muted text-xs font-medium flex items-center gap-1 shadow-sm transition-all" title="Focus Reading Mode">
+                <span class="material-symbols-outlined text-sm text-amber-600">center_focus_strong</span>
+                <span id="focus-mode-text">Focus</span>
+              </button>
+              <button onclick="copyArticleUrl()" class="px-3 py-1 rounded-lg border border-border-subtle bg-white hover:bg-gray-50 text-text-muted text-xs font-medium flex items-center gap-1 shadow-sm transition-all" title="Copy Link">
+                <span class="material-symbols-outlined text-sm">link</span>
+                <span>Share</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Category Badge -->
+          <div class="pt-2">
+            <span id="art-category-badge" class="px-2.5 py-1 rounded-md bg-brand-light text-brand text-xs font-semibold uppercase tracking-wide">
+              CATEGORY
             </span>
-            <button onclick="changeLanguage('en')" id="lang-btn-en" class="lang-pill px-3.5 py-1.5 rounded-xl text-xs font-bold border border-transparent hover:bg-white active">
-              🇬🇧 English
-            </button>
-            <button onclick="changeLanguage('hinglish')" id="lang-btn-hinglish" class="lang-pill px-3.5 py-1.5 rounded-xl text-xs font-bold border border-transparent hover:bg-white">
-              🇮🇳 Hinglish
-            </button>
-            <button onclick="changeLanguage('hi')" id="lang-btn-hi" class="lang-pill px-3.5 py-1.5 rounded-xl text-xs font-bold border border-transparent hover:bg-white">
-              🕉️ हिंदी (Hindi)
-            </button>
           </div>
 
-          <!-- Right: Day/Dark Reading View & Font Size Scaler -->
-          <div class="flex items-center gap-2 pr-1">
-            <!-- Day/Dark Toggle -->
-            <button onclick="toggleDayDarkMode()" class="px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 flex items-center gap-1.5 shadow-sm transition-all" id="dark-toggle-btn">
-              <span class="material-symbols-outlined text-sm text-amber-500" id="dark-toggle-icon">dark_mode</span>
-              <span id="dark-toggle-text">Dark View</span>
-            </button>
+          <!-- Title (Meta Large H1) -->
+          <h1 id="art-title" class="text-2xl sm:text-4xl font-extrabold text-text-main tracking-tight leading-snug">
+            Article Title
+          </h1>
 
-            <!-- Font Scaler -->
-            <div class="flex items-center gap-1 bg-white p-0.5 rounded-xl border border-slate-200 shadow-sm">
-              <button onclick="changeFontSize('sm')" class="px-2 py-1 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors" title="Smaller text">A-</button>
-              <button onclick="changeFontSize('md')" class="px-2 py-1 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors" title="Default text">A</button>
-              <button onclick="changeFontSize('lg')" class="px-2 py-1 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors" title="Larger text">A+</button>
-            </div>
-          </div>
+          <!-- Subtitle -->
+          <p id="art-subtitle" class="text-base sm:text-lg text-text-muted font-normal leading-relaxed">
+            Article subtitle explaining the concept simply.
+          </p>
 
-        </div>
-
-        <!-- Category Tag & Trust Badges -->
-        <div class="flex items-center gap-2 flex-wrap">
-          <span id="art-category-badge" class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-bold uppercase tracking-wider font-mono">
-            AI & TECHNOLOGY
-          </span>
-          <span class="guide-trust-badge">
-            <span class="material-symbols-outlined text-xs">school</span>
-            <span>Student-Focused</span>
-          </span>
-          <span class="guide-trust-badge">
-            <span class="material-symbols-outlined text-xs">auto_stories</span>
-            <span>6 Subjects Blueprint</span>
-          </span>
-          <span class="guide-trust-badge">
-            <span class="material-symbols-outlined text-xs">verified</span>
-            <span>Exam PYQs Bank</span>
-          </span>
-          <span class="guide-trust-badge">
-            <span class="material-symbols-outlined text-xs">download_done</span>
-            <span>Free Guide</span>
-          </span>
-        </div>
-
-        <!-- Article H1 Title -->
-        <h1 id="art-title" class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-          How Students Can Use AI Without Becoming Dependent on It
-        </h1>
-
-        <!-- Subtitle Deck -->
-        <p id="art-subtitle" class="text-lg sm:text-xl text-slate-600 font-normal leading-relaxed">
-          A practical framework for using AI to learn faster while still developing your own thinking.
-        </p>
-
-        <!-- Author Byline & Auto Reading Time -->
-        <div class="pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4 text-xs">
-          <div class="flex items-center gap-3">
-            <img id="art-author-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Author" class="w-10 h-10 rounded-full object-cover border border-slate-200 shadow-sm" />
+          <!-- Byline & Meta Info -->
+          <div class="pt-3 flex items-center gap-3 text-xs text-text-light border-t border-border-subtle/80">
+            <img id="art-author-img" src="assets/logo.png" alt="Author" class="w-7 h-7 rounded-full object-cover border border-border-subtle" />
             <div>
-              <div class="font-bold text-slate-900" id="art-author-name">Skillsfy Editorial Team</div>
-              <div class="text-slate-500 font-['Geist'] text-[11px]" id="art-date-readtime">28 August 2026 · 8 min read</div>
+              <span class="font-medium text-text-main" id="art-author-name">Skillsfy Editorial</span>
+              <span class="mx-1.5">·</span>
+              <span id="art-date-readtime">Updated 2026 · 10 min read</span>
             </div>
           </div>
 
-          <!-- Social Share Icons -->
-          <div class="flex items-center gap-2">
-            <button onclick="shareWhatsApp()" class="w-8 h-8 rounded-full bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-600 flex items-center justify-center transition-all" title="Share on WhatsApp">
-              <i class="fa-brands fa-whatsapp text-xs"></i>
-            </button>
-            <button onclick="shareLinkedIn()" class="w-8 h-8 rounded-full bg-blue-50 hover:bg-blue-600 hover:text-white text-blue-600 flex items-center justify-center transition-all" title="Share on LinkedIn">
-              <i class="fa-brands fa-linkedin-in text-xs"></i>
-            </button>
-            <button onclick="shareTwitter()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-700 flex items-center justify-center transition-all" title="Share on X">
-              <i class="fa-brands fa-x-twitter text-xs"></i>
-            </button>
-            <button onclick="copyArticleUrl()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-700 flex items-center justify-center transition-all" title="Copy Link">
-              <span class="material-symbols-outlined text-sm">link</span>
-            </button>
-            <button onclick="bookmarkArticle()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-700 flex items-center justify-center transition-all" title="Save to Reading List">
-              <span class="material-symbols-outlined text-sm">bookmark</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Hero Study Actions Toolbar (Start Guide | Save Guide | Print/PDF | Focus Mode) -->
-        <div class="flex items-center gap-2 flex-wrap pt-2 no-print" id="art-actions-toolbar">
-          <a href="#overview" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all">
-            <span class="material-symbols-outlined text-sm text-sky-400">play_arrow</span>
-            <span>Start Guide</span>
-          </a>
-          <button onclick="bookmarkArticle()" id="save-guide-btn" class="px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-slate-700 font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all">
-            <span class="material-symbols-outlined text-sm text-rose-500" id="save-guide-icon">favorite_border</span>
-            <span id="save-guide-text">Save Guide</span>
-          </button>
-          <button onclick="window.print()" class="px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-slate-700 font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all" title="Print or Save as PDF">
-            <span class="material-symbols-outlined text-sm text-slate-600">print</span>
-            <span>Print / Save PDF</span>
-          </button>
-          <button onclick="toggleFocusMode()" id="focus-mode-btn" class="px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-slate-700 font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all" title="Distraction-Free Focus Mode">
-            <span class="material-symbols-outlined text-sm text-amber-500">center_focus_strong</span>
-            <span id="focus-mode-text">Focus Mode</span>
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Large Centered Hero Image -->
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        <div class="rounded-2xl overflow-hidden aspect-[16/9] bg-slate-900 shadow-sm">
-          <img id="art-hero-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=85" alt="Hero Cover" class="w-full h-full object-cover" />
         </div>
       </div>
 
       <!-- Main Reading Column & Sticky Table of Contents -->
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-left">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start text-left">
         
-        <!-- Mobile Collapsible Table of Contents -->
-        <div class="lg:hidden col-span-12 p-4 rounded-xl bg-slate-100 border border-slate-200">
-          <details class="group">
-            <summary class="flex items-center justify-between cursor-pointer font-bold text-xs text-slate-900 list-none">
-              <span class="flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-base text-sky-600">format_list_bulleted</span>
-                <span>Table of Contents / विषय सूची</span>
-              </span>
-              <span class="material-symbols-outlined text-base transition-transform group-open:rotate-180">expand_more</span>
-            </summary>
-            <div class="pt-3 space-y-2 text-xs text-slate-600" id="mobile-toc-container">
+        <!-- Sticky Left Table of Contents (Meta Docs / Transparency Style) -->
+        <aside class="hidden lg:block lg:col-span-4 sticky-toc space-y-5">
+          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-subtle space-y-3">
+            <div class="flex items-center justify-between pb-2 border-b border-border-subtle">
+              <span class="text-xs font-bold text-text-main uppercase tracking-wider">TABLE OF CONTENTS</span>
+              <span id="study-progress-pct" class="text-xs font-semibold text-brand">0%</span>
+            </div>
+            
+            <div class="space-y-1" id="desktop-toc-container">
               <!-- Rendered dynamically -->
             </div>
-          </details>
-        </div>
+          </div>
+        </aside>
 
-        <!-- Centered Reading Article Body (8 Columns on desktop, 720px width) -->
-        <article class="lg:col-span-8 article-reading-width mx-auto space-y-8 text-slate-800 leading-[1.8] text-[17.5px] sm:text-[18.5px]">
+        <!-- Main Reading Body Canvas (760px width) -->
+        <article class="lg:col-span-8 article-reading-canvas mx-auto space-y-8 prose-custom">
           
-          <!-- Executive Summary Callout (Only for articles that have TLDR) -->
-          <div class="callout-box callout-key-takeaway space-y-2 hidden" id="art-tldr-container">
-            <div class="font-mono text-xs font-bold text-sky-700 uppercase tracking-wider flex items-center gap-1.5">
+          <!-- Executive Summary Callout (If Available) -->
+          <div class="callout-box hidden" id="art-tldr-container">
+            <div class="font-semibold text-xs text-brand uppercase tracking-wider mb-2 flex items-center gap-1.5">
               <span class="material-symbols-outlined text-sm">lightbulb</span>
-              <span>EXECUTIVE SUMMARY (TL;DR)</span>
+              <span>KEY TAKEAWAYS</span>
             </div>
-            <ul id="art-tldr-list" class="space-y-1.5 text-sm text-slate-700 list-disc list-inside leading-relaxed">
+            <ul id="art-tldr-list" class="space-y-1.5 text-sm text-text-muted list-disc list-inside">
               <!-- Rendered dynamically -->
             </ul>
           </div>
 
-          <!-- Visual Diagram Container -->
-          <div class="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-5 hidden" id="art-visual-diagram-container">
+          <!-- Main Rich Narrative Body -->
+          <div id="art-narrative-content" class="space-y-6">
             <!-- Rendered dynamically -->
           </div>
 
-          <!-- Analogy Card Container -->
-          <div class="callout-box callout-analogy p-6 sm:p-8 space-y-3 hidden" id="art-analogy-container">
-            <!-- Rendered dynamically -->
-          </div>
-
-          <!-- Rich Article Narrative Content -->
-          <div id="art-narrative-content" class="space-y-8">
-            <!-- Rendered dynamically with H2, H3, paragraphs, callouts, tables, quotes -->
-          </div>
-
-          <!-- Reusable Skillsfy Callouts Container -->
-          <div class="space-y-6 pt-4 hidden" id="art-callouts-container">
-            <!-- Rendered dynamically -->
-          </div>
-
-          <!-- Comparison Table Container -->
-          <div id="art-comparison-table-container">
-            <!-- Rendered dynamically -->
-          </div>
-
-          <!-- FAQ Accordion Section -->
-          <div class="space-y-4 pt-6 border-t border-slate-200 hidden" id="art-faq-section">
-            <h3 class="text-2xl font-extrabold text-slate-900" id="art-faq-title">Frequently Asked Questions</h3>
+          <!-- FAQ Section -->
+          <div class="space-y-4 pt-8 border-t border-border-subtle hidden" id="art-faq-section">
+            <h3 class="text-xl font-bold text-text-main">Frequently Asked Questions</h3>
             <div class="space-y-3" id="art-faq-container">
               <!-- Rendered dynamically -->
             </div>
           </div>
 
-          <!-- Sources & Citations -->
-          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 text-xs font-['Geist'] text-slate-600 mt-8 hidden" id="art-sources-section">
-            <span class="font-bold text-slate-900 block text-xs">Sources & References:</span>
-            <div id="art-sources-container" class="space-y-1 text-[11.5px]">
+          <!-- Sources & Academic Disclaimer -->
+          <div class="p-4 rounded-xl bg-surface-subtle border border-border-subtle space-y-1.5 text-xs text-text-light mt-8 hidden" id="art-sources-section">
+            <span class="font-semibold text-text-main block">Sources & Academic Note:</span>
+            <div id="art-sources-container" class="space-y-1">
               <!-- Rendered dynamically -->
             </div>
           </div>
 
-          <!-- Author Bio Box -->
-          <div class="p-6 rounded-2xl bg-white border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center gap-5 shadow-sm mt-10">
-            <img id="art-author-box-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Author" class="w-16 h-16 rounded-2xl object-cover border border-slate-200 flex-shrink-0" />
-            <div class="space-y-1 text-left">
-              <div class="flex items-center gap-2">
-                <h4 class="text-base font-bold text-slate-900" id="art-author-box-name">Skillsfy Editorial Team</h4>
-                <span class="text-[10px] font-['Geist'] px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-bold uppercase">Research & Pedagogy</span>
-              </div>
-              <p class="text-xs text-slate-600 leading-relaxed" id="art-author-box-bio">
-                Engineers, educators, and curriculum designers at Skillsfy Institute of Technology researching AI, software engineering, and student career mastery.
+          <!-- Clean Author Box -->
+          <div class="p-5 rounded-xl bg-surface-subtle border border-border-subtle flex items-center gap-4 mt-8">
+            <img id="art-author-box-img" src="assets/logo.png" alt="Author" class="w-12 h-12 rounded-xl object-cover border border-border-subtle" />
+            <div class="space-y-0.5">
+              <h4 class="text-sm font-bold text-text-main" id="art-author-box-name">Skillsfy Editorial Team</h4>
+              <p class="text-xs text-text-muted leading-relaxed" id="art-author-box-bio">
+                Educational research and curriculum team at Skillsfy Institute of Technology.
               </p>
             </div>
-          </div>
-
-          <!-- Contextual Soft Skillsfy Course CTA -->
-          <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-slate-900 via-[#031636] to-slate-950 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl my-10 no-print">
-            <div class="space-y-1.5 text-left">
-              <span class="px-2.5 py-0.5 rounded bg-[#00ccf9]/20 text-[#00ccf9] font-mono text-[9px] font-bold uppercase tracking-wider">
-                READY TO TURN KNOWLEDGE INTO SKILLS?
-              </span>
-              <h4 class="text-xl font-bold text-white">Master Practical AI & Web Engineering in the Live Skillsfy Cohort</h4>
-              <p class="text-xs text-slate-300 leading-relaxed font-['Geist']">
-                Build real-world full-stack projects, connect cloud databases, and deploy live production web apps.
-              </p>
-            </div>
-            <a href="/lp1" target="_blank" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#00ccf9] to-cyan-500 hover:from-cyan-400 hover:to-[#00ccf9] text-slate-950 font-extrabold text-xs shadow-lg transition-all whitespace-nowrap hover:scale-105">
-              Explore Live Cohort (₹149) →
-            </a>
           </div>
 
         </article>
 
-        <!-- Sticky Right Table of Contents (4 Columns on desktop, 240px width) -->
-        <aside class="hidden lg:block lg:col-span-4 sticky-toc space-y-6">
-          
-          <!-- Study Progress Widget -->
-          <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-2 text-left">
-            <div class="flex items-center justify-between text-xs font-bold text-slate-900">
-              <span class="flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-sky-600 text-sm">trending_up</span>
-                <span>YOUR READING PROGRESS</span>
-              </span>
-              <span id="study-progress-pct" class="font-mono text-sky-700 font-bold">0%</span>
-            </div>
-            <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
-              <div id="study-progress-bar" class="h-full bg-gradient-to-r from-sky-500 to-emerald-500 rounded-full transition-all duration-300" style="width: 0%;"></div>
-            </div>
-          </div>
-
-          <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3 text-left">
-            <span class="font-mono text-[10px] font-bold text-slate-400 uppercase tracking-widest block">ON THIS GUIDE</span>
-            <div class="space-y-2 text-xs text-slate-600 font-['Geist']" id="desktop-toc-container">
-              <!-- Rendered dynamically -->
-            </div>
-          </div>
-
-          <!-- Share Widget -->
-          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-left">
-            <span class="font-mono text-[10px] font-bold text-slate-400 uppercase tracking-widest block">SHARE THIS GUIDE</span>
-            <div class="flex items-center gap-2">
-              <button onclick="shareWhatsApp()" class="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-sm">
-                <i class="fa-brands fa-whatsapp"></i>
-                <span>WhatsApp</span>
-              </button>
-              <button onclick="copyArticleUrl()" class="px-3 py-2 rounded-xl bg-white border border-slate-200 hover:border-slate-400 text-slate-700 text-xs font-bold transition-all" title="Copy Link">
-                <span class="material-symbols-outlined text-sm">link</span>
-              </button>
-            </div>
-          </div>
-        </aside>
-
       </div>
 
-      <!-- Continue Reading Related Articles Section -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-200 mt-16 text-left space-y-6" id="art-related-section">
+      <!-- Related Guides (Clean 3-Grid) -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-border-subtle mt-10 text-left space-y-6" id="art-related-section">
         <div class="flex items-center justify-between">
-          <div>
-            <span class="text-xs font-mono font-bold uppercase tracking-wider text-sky-600">CONTINUE READING</span>
-            <h3 class="text-2xl font-extrabold text-slate-900 mt-0.5">Related Skillsfy Articles</h3>
-          </div>
-          <a href="articles.html" class="text-xs font-['Geist'] font-bold text-sky-600 hover:underline">View all articles →</a>
+          <h3 class="text-lg font-bold text-text-main">Related Guides & Articles</h3>
+          <a href="articles.html" class="text-xs font-semibold text-brand hover:underline">View all →</a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="art-related-grid">
@@ -1055,71 +561,32 @@
 
     </div>
 
-    <!-- ================= VIEW C: 404 ARTICLE / GUIDE NOT FOUND ================= -->
-    <div id="view-not-found" class="hidden max-w-3xl mx-auto px-4 py-20 text-center space-y-8">
-      <div class="w-16 h-16 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center mx-auto shadow-sm">
-        <span class="material-symbols-outlined text-3xl">menu_book</span>
+    <!-- ================= VIEW C: 404 NOT FOUND ================= -->
+    <div id="view-not-found" class="hidden max-w-2xl mx-auto px-4 py-20 text-center space-y-6">
+      <div class="w-12 h-12 rounded-xl bg-gray-100 text-gray-600 flex items-center justify-center mx-auto">
+        <span class="material-symbols-outlined text-2xl">menu_book</span>
       </div>
       <div class="space-y-2">
-        <span class="text-xs font-mono font-bold uppercase tracking-wider text-amber-700">404 — CONTENT NOT FOUND</span>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Article or Study Guide Not Found</h1>
-        <p class="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-          The requested article or guide (<code id="missing-slug-label" class="text-sky-700 bg-sky-50 px-2 py-0.5 rounded font-mono text-xs">...</code>) does not exist or has moved.
+        <h1 class="text-2xl sm:text-3xl font-bold text-text-main">Guide Not Found</h1>
+        <p class="text-sm text-text-muted max-w-md mx-auto">
+          The requested guide (<code id="missing-slug-label" class="text-brand bg-brand-light px-1.5 py-0.5 rounded text-xs font-mono">...</code>) was not found.
         </p>
       </div>
 
       <!-- Search Form -->
       <div class="max-w-md mx-auto">
         <form onsubmit="handleNotFoundSearch(event)" class="relative">
-          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
           <input 
             type="text" 
             id="not-found-search-input" 
-            placeholder="Search articles, guides, subjects..." 
-            class="w-full pl-12 pr-28 py-3.5 rounded-2xl bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 shadow-sm"
+            placeholder="Search guides..." 
+            class="w-full pl-4 pr-24 py-2 rounded-xl bg-white border border-border-subtle text-xs text-text-main focus:outline-none focus:border-brand shadow-sm"
           />
-          <button type="submit" class="absolute right-2.5 top-1/2 -translate-y-1/2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-all">
+          <button type="submit" class="absolute right-1 top-1/2 -translate-y-1/2 px-3 py-1 bg-brand hover:bg-brand-dark text-white text-xs font-semibold rounded-lg transition-all">
             Search
           </button>
         </form>
       </div>
-
-      <!-- Return Button & Quick Links -->
-      <div class="pt-4 flex items-center justify-center gap-4 flex-wrap">
-        <a href="articles.html" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-sm">
-          ← View All Articles & Guides
-        </a>
-        <a href="articles.html?slug=mp-board-class-10-svadhyayi-self-study-guide-75-percent" class="px-5 py-2.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-800 hover:bg-sky-100 text-xs font-bold transition-all">
-          📖 Open MP Board Class 10 Study Guide →
-        </a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Mobile TOC Floating Pill Button -->
-  <button onclick="openMobileToc()" id="mobile-toc-fab" class="lg:hidden mobile-toc-fab-btn">
-    <span class="material-symbols-outlined text-sm">menu_book</span>
-    <span>विषय सूची (TOC)</span>
-  </button>
-
-  <!-- Mobile TOC Drawer Modal -->
-  <div id="mobile-toc-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex flex-col justify-end">
-    <div class="bg-white rounded-t-3xl max-h-[75vh] overflow-y-auto p-6 space-y-4 border-t border-slate-200 text-left shadow-2xl">
-      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-sky-600">format_list_bulleted</span>
-          <span class="font-bold text-slate-900 text-base">विषय सूची / Study Guide Index</span>
-        </div>
-        <button onclick="closeMobileToc()" class="p-1 rounded-full bg-slate-100 text-slate-500 hover:text-slate-900">
-          <span class="material-symbols-outlined text-base">close</span>
-        </button>
-      </div>
-      <div class="space-y-1.5 text-sm" id="mobile-drawer-toc-list">
-        <!-- Injected dynamically -->
-      </div>
-    </div>
-  </div>
 
   <!-- Toast Notification Box -->
   <div id="articles-toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300"></div>
@@ -1353,7 +820,7 @@
 
       document.getElementById('articles-count-label').textContent = `Showing ${articles.length} articles`;
 
-      // 1. Render Category Pills
+      // 1. Render Category Tabs (Meta Learn Style)
       const catContainer = document.getElementById('categories-pill-container');
       if (catContainer) {
         catContainer.innerHTML = categories.map(c => {
@@ -1361,7 +828,7 @@
           return `
             <button 
               onclick="filterByCategory('${c.slug}')" 
-              class="category-pill px-4 py-2 rounded-full border border-slate-200 text-xs font-medium text-slate-700 hover:border-slate-400 ${isActive ? 'active' : 'bg-white'}"
+              class="category-tab px-4 py-2 rounded-xl text-xs ${isActive ? 'active' : ''}"
             >
               ${c.name}
             </button>
@@ -1369,43 +836,43 @@
         }).join('');
       }
 
-      // 2. Render Featured Article
+      // 2. Render Featured Guide Card (Meta Learn Clean Split Card)
       const featuredContainer = document.getElementById('featured-article-container');
       const featured = data.articles.find(a => a.featured) || data.articles[0];
       if (featuredContainer && featured && !searchQuery && (!categoryFilter || categoryFilter === 'all')) {
         const author = data.authors[featured.authorId] || data.authors['editorial-team'];
         const content = featured.translations[currentLanguage] || featured.translations.hinglish || featured.translations.en;
         featuredContainer.innerHTML = `
-          <div onclick="navigateToArticle('${featured.slug}')" class="article-card-apple rounded-3xl p-6 sm:p-10 cursor-pointer grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left group">
-            <div class="lg:col-span-7 space-y-4">
-              <div class="flex items-center gap-2 text-xs font-['Geist'] text-slate-500">
-                <span class="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200 font-bold uppercase text-[10px]">
-                  FEATURED STUDY GUIDE
+          <div onclick="navigateToArticle('${featured.slug}')" class="meta-card p-6 sm:p-8 cursor-pointer grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left group">
+            <div class="lg:col-span-7 space-y-3">
+              <div class="flex items-center gap-2 text-xs">
+                <span class="px-2.5 py-0.5 rounded-md bg-brand-light text-brand font-bold text-[11px] uppercase tracking-wide">
+                  FEATURED GUIDE
                 </span>
-                <span>•</span>
-                <span class="font-semibold text-slate-700">${featured.category}</span>
-                <span>•</span>
-                <span>${featured.readingTime}</span>
+                <span class="text-text-light">•</span>
+                <span class="font-medium text-text-muted">${featured.category}</span>
+                <span class="text-text-light">•</span>
+                <span class="text-text-light">${featured.readingTime}</span>
               </div>
-              <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 group-hover:text-sky-700 transition-colors leading-tight">
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-text-main group-hover:text-brand transition-colors leading-tight">
                 ${content.title}
               </h2>
-              <p class="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+              <p class="text-sm text-text-muted font-normal leading-relaxed">
                 ${content.subtitle}
               </p>
-              <div class="pt-2 flex items-center justify-between text-xs font-['Geist']">
+              <div class="pt-2 flex items-center justify-between text-xs">
                 <div class="flex items-center gap-2">
-                  <img src="${author.avatar}" alt="${author.name}" class="w-6 h-6 rounded-full object-cover border" />
-                  <span class="font-bold text-slate-900">${author.name}</span>
+                  <img src="${author.avatar}" alt="${author.name}" class="w-6 h-6 rounded-full object-cover border border-border-subtle" />
+                  <span class="font-medium text-text-main">${author.name}</span>
                 </div>
-                <span class="text-sky-600 font-bold group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                <span class="text-brand font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1">
                   <span>Open Guide</span>
                   <span class="material-symbols-outlined text-sm">arrow_forward</span>
                 </span>
               </div>
             </div>
-            <div class="lg:col-span-5 rounded-2xl overflow-hidden aspect-[16/10] bg-slate-100">
-              <img src="${featured.coverImage}" alt="${featured.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div class="lg:col-span-5 rounded-xl overflow-hidden aspect-[16/10] bg-surface-subtle">
+              <img src="${featured.coverImage}" alt="${featured.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
         `;
@@ -1414,16 +881,16 @@
         featuredContainer.classList.add('hidden');
       }
 
-      // 3. Render Latest Articles Grid
+      // 3. Render Articles Grid (Meta Learn Clean Grid)
       const gridContainer = document.getElementById('articles-grid');
       if (gridContainer) {
         if (articles.length === 0) {
           gridContainer.innerHTML = `
             <div class="col-span-3 py-16 text-center space-y-3">
-              <span class="material-symbols-outlined text-4xl text-slate-400">search_off</span>
-              <h3 class="text-lg font-bold text-slate-900">No articles found</h3>
-              <p class="text-xs text-slate-500">Try searching for a different keyword or browse all categories.</p>
-              <button onclick="filterByCategory('all')" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">
+              <span class="material-symbols-outlined text-4xl text-text-light">search_off</span>
+              <h3 class="text-base font-bold text-text-main">No guides found</h3>
+              <p class="text-xs text-text-muted">Try searching with different keywords.</p>
+              <button onclick="filterByCategory('all')" class="px-4 py-2 rounded-lg bg-text-main text-white text-xs font-semibold">
                 Reset Filter
               </button>
             </div>
@@ -1433,52 +900,32 @@
             const author = data.authors[art.authorId] || data.authors['editorial-team'];
             const content = art.translations[currentLanguage] || art.translations.hinglish || art.translations.en;
             return `
-              <div onclick="navigateToArticle('${art.slug}')" class="article-card-apple rounded-2xl p-5 cursor-pointer space-y-4 text-left group">
-                <div class="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100">
-                  <img src="${art.coverImage}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div onclick="navigateToArticle('${art.slug}')" class="meta-card overflow-hidden cursor-pointer flex flex-col text-left group">
+                <div class="aspect-[16/10] overflow-hidden bg-surface-subtle border-b border-border-subtle">
+                  <img src="${art.coverImage}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 </div>
-                <div class="space-y-2">
-                  <div class="flex items-center justify-between text-[11px] font-['Geist'] text-slate-500">
-                    <span class="font-bold text-sky-700 uppercase tracking-wide">${art.category}</span>
-                    <span>${art.readingTime}</span>
+                <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-[11px]">
+                      <span class="font-bold text-brand uppercase tracking-wider">${art.category}</span>
+                      <span class="text-text-light">${art.readingTime}</span>
+                    </div>
+                    <h3 class="text-base font-bold text-text-main group-hover:text-brand transition-colors line-clamp-2 leading-snug">
+                      ${content.title}
+                    </h3>
+                    <p class="text-xs text-text-muted line-clamp-2 leading-relaxed font-normal">
+                      ${content.subtitle}
+                    </p>
                   </div>
-                  <h3 class="text-lg font-extrabold text-slate-900 group-hover:text-sky-700 transition-colors line-clamp-2 leading-snug">
-                    ${content.title}
-                  </h3>
-                  <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed font-normal">
-                    ${content.subtitle}
-                  </p>
-                </div>
-                <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-['Geist'] text-slate-500">
-                  <span>${author.name}</span>
-                  <span class="font-bold text-slate-900 group-hover:underline">Read →</span>
+                  <div class="pt-3 border-t border-border-subtle flex items-center justify-between text-xs text-text-light">
+                    <span>${author.name}</span>
+                    <span class="font-semibold text-brand">Read →</span>
+                  </div>
                 </div>
               </div>
             `;
           }).join('');
         }
-      }
-
-      // 4. Render Popular Articles Grid
-      const popularContainer = document.getElementById('popular-articles-grid');
-      if (popularContainer) {
-        const popular = [...data.articles].sort((a, b) => (a.popularRank || 99) - (b.popularRank || 99)).slice(0, 3);
-        popularContainer.innerHTML = popular.map((p, idx) => {
-          const content = p.translations[currentLanguage] || p.translations.hinglish || p.translations.en;
-          return `
-            <div onclick="navigateToArticle('${p.slug}')" class="cursor-pointer space-y-1.5 text-left group">
-              <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400">
-                <span class="font-extrabold text-sky-600 text-xs">#0${idx + 1}</span>
-                <span class="uppercase">${p.category}</span>
-                <span>•</span>
-                <span>${p.readingTime}</span>
-              </div>
-              <h4 class="text-base font-extrabold text-slate-900 group-hover:text-sky-700 transition-colors line-clamp-2 leading-snug">
-                ${content.title}
-              </h4>
-            </div>
-          `;
-        }).join('');
       }
     }
 
@@ -1508,14 +955,12 @@
 
       // Header Spread
       document.getElementById('art-bread-category').textContent = article.category;
-      document.getElementById('art-bread-title').textContent = content.title;
       document.getElementById('art-category-badge').textContent = article.category;
       document.getElementById('art-title').textContent = content.title;
       document.getElementById('art-subtitle').textContent = content.subtitle;
       document.getElementById('art-author-img').src = author.avatar;
       document.getElementById('art-author-name').textContent = author.name;
       document.getElementById('art-date-readtime').textContent = `${article.publishedAt} · ${article.readingTime}`;
-      document.getElementById('art-hero-img').src = article.coverImage;
 
       // TL;DR Container
       const tldrBox = document.getElementById('art-tldr-container');
@@ -1527,83 +972,21 @@
         tldrBox.classList.add('hidden');
       }
 
-      // Visual Diagram
-      const visualContainer = document.getElementById('art-visual-diagram-container');
-      if (content.visualDiagram && visualContainer) {
-        const vd = content.visualDiagram;
-        visualContainer.innerHTML = `
-          <div class="space-y-4">
-            <span class="font-mono text-xs font-bold text-sky-700 uppercase tracking-wider block">${vd.title}</span>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-['Geist']">
-              <div class="p-5 rounded-2xl bg-red-50/80 border border-red-200 space-y-3">
-                <span class="font-bold text-red-900 block">${vd.badPath.label}</span>
-                <div class="space-y-2">
-                  ${vd.badPath.steps.map((s, i) => `
-                    <div class="flex items-center gap-2 text-red-950">
-                      <span class="w-5 h-5 rounded-full bg-red-200 text-red-800 font-bold flex items-center justify-center text-[10px] flex-shrink-0">${i + 1}</span>
-                      <span>${s}</span>
-                    </div>
-                  `).join('')}
-                </div>
-              </div>
-              <div class="p-5 rounded-2xl bg-emerald-50/80 border border-emerald-200 space-y-3">
-                <span class="font-bold text-emerald-900 block">${vd.goodPath.label}</span>
-                <div class="space-y-2">
-                  ${vd.goodPath.steps.map((s, i) => `
-                    <div class="flex items-center gap-2 text-emerald-950 font-medium">
-                      <span class="w-5 h-5 rounded-full bg-emerald-200 text-emerald-800 font-bold flex items-center justify-center text-[10px] flex-shrink-0">✓</span>
-                      <span>${s}</span>
-                    </div>
-                  `).join('')}
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-        visualContainer.classList.remove('hidden');
-      } else if (visualContainer) {
-        visualContainer.classList.add('hidden');
-      }
-
-      // Analogy Card
-      const analogyContainer = document.getElementById('art-analogy-container');
-      if (content.analogy && analogyContainer) {
-        analogyContainer.innerHTML = `
-          <h4 class="text-base font-extrabold text-amber-950">${content.analogy.title}</h4>
-          <p class="text-xs sm:text-sm text-amber-900 leading-relaxed font-sans">${content.analogy.text}</p>
-        `;
-        analogyContainer.classList.remove('hidden');
-      } else if (analogyContainer) {
-        analogyContainer.classList.add('hidden');
-      }
-
       // Main Narrative Content
       const narrativeContainer = document.getElementById('art-narrative-content');
       if (narrativeContainer) {
         narrativeContainer.innerHTML = content.narrativeHtml || article.narrativeHtml || '';
       }
 
-      // Table of Contents
+      // Table of Contents (Meta Docs Left Sidebar)
       const desktopToc = document.getElementById('desktop-toc-container');
-      const mobileToc = document.getElementById('mobile-toc-container');
-      const drawerToc = document.getElementById('mobile-drawer-toc-list');
-      if (article.toc) {
-        const tocHtml = article.toc.map((item, idx) => `
-          <a href="#${item.id}" class="toc-link block hover:text-slate-900 transition-colors py-1">
-            <span class="text-slate-400 font-mono mr-1.5">${idx < 9 ? '0' : ''}${idx + 1}</span>
+      if (article.toc && desktopToc) {
+        desktopToc.innerHTML = article.toc.map((item, idx) => `
+          <a href="#${item.id}" class="toc-item">
+            <span class="text-text-light font-mono text-xs mr-1">${idx < 9 ? '0' : ''}${idx + 1}.</span>
             <span>${item.title}</span>
           </a>
         `).join('');
-        if (desktopToc) desktopToc.innerHTML = tocHtml;
-        if (mobileToc) mobileToc.innerHTML = tocHtml;
-        if (drawerToc) {
-          drawerToc.innerHTML = article.toc.map((item, idx) => `
-            <a href="#${item.id}" onclick="closeMobileToc()" class="flex items-center gap-2.5 p-2.5 rounded-xl hover:bg-sky-50 text-slate-800 font-medium transition-colors">
-              <span class="w-6 h-6 rounded-lg bg-sky-100 text-sky-800 font-mono text-xs font-bold flex items-center justify-center flex-shrink-0">${idx + 1}</span>
-              <span class="text-xs leading-snug">${item.title}</span>
-            </a>
-          `).join('');
-        }
       }
 
       // Restore Solved PYQs from LocalStorage
@@ -1624,12 +1007,12 @@
       const faqContainer = document.getElementById('art-faq-container');
       if (content.faq && content.faq.length > 0 && faqContainer) {
         faqContainer.innerHTML = content.faq.map(item => `
-          <details class="group p-4 rounded-xl bg-white border border-slate-200 cursor-pointer">
-            <summary class="flex items-center justify-between font-bold text-sm text-slate-900 list-none">
+          <details class="group p-3.5 rounded-xl bg-surface-subtle border border-border-subtle cursor-pointer">
+            <summary class="flex items-center justify-between font-semibold text-sm text-text-main list-none">
               <span>${item.q}</span>
-              <span class="material-symbols-outlined text-base transition-transform group-open:rotate-180 text-slate-400">expand_more</span>
+              <span class="material-symbols-outlined text-base transition-transform group-open:rotate-180 text-text-light">expand_more</span>
             </summary>
-            <p class="text-xs sm:text-sm text-slate-600 mt-2.5 pt-2.5 border-t border-slate-100 leading-relaxed font-normal">
+            <p class="text-xs sm:text-sm text-text-muted mt-2 pt-2 border-t border-border-subtle leading-relaxed">
               ${item.a}
             </p>
           </details>
@@ -1663,13 +1046,19 @@
         relatedContainer.innerHTML = related.map(rel => {
           const relContent = rel.translations[lang] || rel.translations.hinglish || rel.translations.en;
           return `
-            <div onclick="navigateToArticle('${rel.slug}')" class="article-card-apple rounded-2xl p-4 cursor-pointer space-y-3 text-left group">
-              <div class="aspect-[16/10] rounded-xl overflow-hidden bg-slate-100">
-                <img src="${rel.coverImage}" alt="${rel.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div onclick="navigateToArticle('${rel.slug}')" class="meta-card overflow-hidden p-0 cursor-pointer flex flex-col text-left group">
+              <div class="aspect-[16/10] bg-surface-subtle border-b border-border-subtle overflow-hidden">
+                <img src="${rel.coverImage}" alt="${rel.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               </div>
-              <div class="space-y-1.5">
-                <span class="text-[10px] font-['Geist'] font-bold text-sky-700 uppercase">${rel.category}</span>
-                <h4 class="text-sm font-extrabold text-slate-900 group-hover:text-sky-700 transition-colors line-clamp-2 leading-snug">${relContent.title}</h4>
+              <div class="p-4 space-y-1.5 flex-1 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] font-bold text-brand uppercase">${rel.category}</span>
+                  <h4 class="text-xs font-bold text-text-main group-hover:text-brand transition-colors line-clamp-2 leading-snug">${relContent.title}</h4>
+                </div>
+                <div class="pt-2 text-[11px] text-text-light font-medium flex items-center justify-between">
+                  <span>${rel.readingTime}</span>
+                  <span class="text-brand font-semibold">Read →</span>
+                </div>
               </div>
             </div>
           `;
