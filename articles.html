@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="hi" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,315 +16,363 @@
   <base href="/" />
 
   <!-- Dynamic Metadata -->
-  <title id="meta-page-title">Articles & Guides | Skillsfy — Simple, Practical Knowledge</title>
-  <meta name="description" id="meta-page-desc" content="Explore practical guides, exam strategies, coding roadmaps, and career insights from Skillsfy." />
+  <title id="meta-page-title">MP Board Class 10वीं स्वाध्यायी संपूर्ण ई-बुक गाइड | Skillsfy</title>
+  <meta name="description" id="meta-page-desc" content="MP Board कक्षा 10वीं स्वाध्यायी (Home Study) संपूर्ण ई-बुक गाइड: 75% रणनीति, ब्लूप्रिंट एवं हल सहित प्रश्न बैंक।" />
   <link rel="canonical" id="meta-canonical" href="https://skillsfy.in/articles" />
 
-  <!-- OpenGraph & Twitter Cards -->
-  <meta property="og:locale" content="en_IN" />
-  <meta property="og:type" content="website" id="og-type" />
-  <meta property="og:title" id="og-title" content="Articles & Guides — Skillsfy" />
-  <meta property="og:description" id="og-desc" content="Simple, practical guides on programming, modern technology, and academic mastery." />
+  <!-- OpenGraph -->
+  <meta property="og:locale" content="hi_IN" />
+  <meta property="og:type" content="article" id="og-type" />
+  <meta property="og:title" id="og-title" content="MP Board Class 10th Study Guide E-Book — Skillsfy" />
+  <meta property="og:description" id="og-desc" content="75% मेरिट लक्ष्य, 6 विषयों का ब्लूप्रिंट एवं हल सहित पिछले वर्षों के प्रश्न।" />
   <meta property="og:url" id="og-url" content="https://skillsfy.in/articles" />
   <meta property="og:site_name" content="Skillsfy" />
   <meta property="og:image" id="og-image" content="https://skillsfy.in/assets/logo.png" />
-  <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com?plugins=typography,forms"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Typography: Clean Inter & Plus Jakarta Sans (Meta Learn Standard) -->
+  <!-- Clean Book Typography: Newsreader (Book Serif) & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#0B1527',
-            brand: '#0066FF',
-            'brand-light': '#EBF3FF',
-            'brand-dark': '#0052CC',
-            surface: '#FFFFFF',
-            'surface-subtle': '#F7F8FA',
-            'border-subtle': '#E4E7EC',
-            'text-main': '#101828',
-            'text-muted': '#475467',
-            'text-light': '#667085',
-          },
-          fontFamily: {
-            sans: ['"Inter"', '"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
 
   <style>
+    /* Pure Clean Book Stylesheet */
     body {
       background-color: #FFFFFF;
-      color: #101828;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #000000;
+      font-family: 'Newsreader', Georgia, 'Inter', serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Reading Progress Top Bar */
-    .reading-progress-top {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: #0066FF;
-      width: 0%;
-      z-index: 100;
-      transition: width 0.1s ease-out;
+    .font-sans-ui {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    /* Meta-Style Minimalist Card */
-    .meta-card {
+    /* Book Reading Canvas Width */
+    .book-reading-page {
+      max-width: 780px;
+      margin: 0 auto;
       background: #FFFFFF;
-      border: 1px solid #EAECF0;
-      border-radius: 16px;
-      transition: all 0.2s ease;
-    }
-    .meta-card:hover {
-      border-color: #D0D5DD;
-      box-shadow: 0 8px 24px -4px rgba(16, 24, 40, 0.08);
-      transform: translateY(-2px);
+      padding: 0 16px;
     }
 
-    /* Clean Category Tab / Pill */
-    .category-tab {
-      transition: all 0.15s ease;
-      white-space: nowrap;
-      font-weight: 500;
-      color: #475467;
-      background: #F2F4F7;
-      border: 1px solid transparent;
-    }
-    .category-tab:hover {
-      background: #E4E7EC;
-      color: #101828;
-    }
-    .category-tab.active {
-      background: #0066FF;
-      color: #FFFFFF;
-      font-weight: 600;
+    /* Book Typography */
+    .book-container p {
+      font-size: 19px;
+      line-height: 1.85;
+      color: #111111;
+      margin-bottom: 22px;
     }
 
-    /* Language Switcher Pill */
-    .lang-tab {
-      transition: all 0.15s ease;
-      font-weight: 500;
-      color: #475467;
-      background: transparent;
-    }
-    .lang-tab:hover {
-      color: #101828;
-      background: #F2F4F7;
-    }
-    .lang-tab.active {
-      background: #0066FF;
-      color: #FFFFFF;
-      font-weight: 600;
-    }
-
-    /* Clean Reading Width */
-    .article-reading-canvas {
-      max-width: 760px;
-    }
-
-    /* Sticky Sidebar Navigation */
-    .sticky-toc {
-      position: sticky;
-      top: 96px;
-    }
-    .toc-item {
-      display: block;
-      padding: 6px 12px;
-      font-size: 13.5px;
-      color: #475467;
-      border-left: 2px solid transparent;
-      transition: all 0.15s ease;
-      line-height: 1.4;
-    }
-    .toc-item:hover {
-      color: #0066FF;
-      background: #F8FAFC;
-      border-radius: 0 6px 6px 0;
-    }
-    .toc-item.active {
-      color: #0066FF;
-      font-weight: 600;
-      border-left-color: #0066FF;
-      background: #F0F7FF;
-      border-radius: 0 6px 6px 0;
-    }
-
-    /* Clean Meta-Style Article Content Typography */
-    .prose-custom p {
-      font-size: 17.5px;
-      line-height: 1.8;
-      color: #1D2939;
-      margin-bottom: 24px;
-    }
-    .prose-custom h2 {
+    .book-container h2 {
       font-size: 26px;
       font-weight: 800;
-      color: #101828;
-      margin-top: 48px;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #EAECF0;
-      letter-spacing: -0.015em;
-    }
-    .prose-custom h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #101828;
-      margin-top: 32px;
+      color: #000000;
+      margin-top: 44px;
       margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid #222222;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       letter-spacing: -0.01em;
     }
-    .prose-custom ul, .prose-custom ol {
-      margin-bottom: 24px;
-      padding-left: 24px;
-    }
-    .prose-custom li {
-      font-size: 17px;
-      line-height: 1.75;
-      color: #344054;
-      margin-bottom: 8px;
+
+    .book-container h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000000;
+      margin-top: 32px;
+      margin-bottom: 14px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    /* Clean Meta Tables */
-    .article-table-wrapper {
-      overflow-x: auto;
-      margin: 28px 0;
-      border-radius: 12px;
-      border: 1px solid #EAECF0;
-      background: #FFFFFF;
+    .book-container strong {
+      color: #000000;
+      font-weight: 700;
     }
-    .article-table {
+
+    .book-chapter-header {
+      margin-top: 48px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #000000;
+    }
+
+    .book-chapter-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #444444;
+      margin-bottom: 4px;
+    }
+
+    .book-chapter-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #000000;
+      line-height: 1.3;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .book-chapter-subtitle {
+      font-size: 15px;
+      color: #555555;
+      margin-top: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Clean Book Tables */
+    .book-table-wrapper {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid #333333;
+      border-radius: 4px;
+    }
+
+    .book-table {
       width: 100%;
       min-width: 500px;
       border-collapse: collapse;
-      font-size: 14px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
       text-align: left;
     }
-    .article-table th {
-      background-color: #F8F9FA;
-      padding: 12px 18px;
-      font-weight: 600;
-      color: #101828;
-      border-bottom: 1px solid #EAECF0;
+
+    .book-table th {
+      background-color: #F4F4F4;
+      color: #000000;
+      padding: 10px 14px;
+      border-bottom: 1px solid #333333;
+      font-weight: 700;
     }
-    .article-table td {
-      padding: 12px 18px;
-      border-bottom: 1px solid #F2F4F7;
-      color: #344054;
+
+    .book-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #E5E5E5;
+      color: #111111;
+      line-height: 1.6;
     }
-    .article-table tr:last-child td {
+
+    .book-table tr:last-child td {
       border-bottom: none;
     }
 
-    /* Clean Subtle Callout Box */
-    .callout-box {
-      border-radius: 12px;
-      padding: 18px 22px;
-      margin: 24px 0;
-      background: #F8F9FA;
-      border-left: 4px solid #0066FF;
-    }
-
-    /* Clean PYQ Interactive Question Card */
-    .pyq-clean-card {
+    /* Book Q&A Block */
+    .book-qa-block {
+      border: 1px solid #D1D5DB;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin: 20px 0;
       background: #FFFFFF;
-      border: 1px solid #EAECF0;
-      border-radius: 14px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .book-q-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+
+    .book-q-num {
+      font-weight: 800;
+      color: #000000;
+    }
+
+    .book-q-tags {
+      font-weight: 600;
+      color: #4B5563;
+    }
+
+    .book-q-text {
+      font-size: 16.5px !important;
+      line-height: 1.6 !important;
+      color: #000000;
+      margin-bottom: 6px !important;
+    }
+
+    .book-q-en {
+      font-size: 13.5px !important;
+      color: #6B7280;
+      margin-bottom: 12px !important;
+    }
+
+    .book-solution {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #D1D5DB;
+    }
+
+    .book-details summary {
+      cursor: pointer;
+      font-size: 14px;
+      color: #111827;
+      user-select: none;
+      outline: none;
+    }
+
+    .book-solution-body {
+      margin-top: 8px;
+      padding: 12px 14px;
+      background: #F9FAFB;
+      border-left: 3px solid #111827;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #1F2937;
+    }
+
+    /* Simple Book Callouts */
+    .book-callout {
+      border: 1px solid #333333;
+      background: #F9FAFB;
+      padding: 16px 20px;
+      border-radius: 6px;
+      font-size: 16px !important;
+      line-height: 1.7 !important;
+      margin: 24px 0 !important;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .book-shloka-box {
+      border: 1.5px solid #000000;
+      background: #FAFAFA;
       padding: 20px;
-      margin-bottom: 16px;
-      transition: all 0.2s ease;
-    }
-    .pyq-clean-card:hover {
-      border-color: #D0D5DD;
-      box-shadow: 0 4px 16px -2px rgba(16, 24, 40, 0.05);
-    }
-    .pyq-clean-card.is-solved {
-      border-color: #A6F4C5;
-      background-color: #F6FEF9;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.9;
+      margin: 24px 0;
+      color: #000000;
     }
 
-    /* Distraction-Free Focus Mode */
-    body.focus-mode-active header,
-    body.focus-mode-active footer,
-    body.focus-mode-active aside,
-    body.focus-mode-active #art-related-section,
-    body.focus-mode-active #newsletter-section {
-      display: none !important;
-    }
-    body.focus-mode-active .article-reading-canvas {
-      max-width: 800px !important;
-      margin: 0 auto !important;
+    .book-checklist {
+      border: 1px solid #D1D5DB;
+      border-radius: 6px;
+      padding: 16px 20px;
+      background: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      margin: 20px 0;
     }
 
-    /* Print Clean Styles */
+    .book-check-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #F3F4F6;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #111827;
+    }
+
+    .book-check-item:last-child {
+      border-bottom: none;
+    }
+
+    .book-list li {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #111111;
+      margin-bottom: 12px;
+    }
+
+    /* Sticky Sidebar Index */
+    .sticky-toc {
+      position: sticky;
+      top: 80px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .toc-item {
+      display: block;
+      padding: 6px 10px;
+      font-size: 13.5px;
+      color: #374151;
+      border-left: 2px solid transparent;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.4;
+      text-decoration: none;
+    }
+
+    .toc-item:hover {
+      color: #000000;
+      background: #F3F4F6;
+      border-left-color: #000000;
+    }
+
+    .toc-item.active {
+      color: #000000;
+      font-weight: 700;
+      border-left-color: #000000;
+      background: #F9FAFB;
+    }
+
+    /* Language Switcher */
+    .lang-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid #D1D5DB;
+      background: #FFFFFF;
+      color: #374151;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      background: #000000;
+      color: #FFFFFF;
+      border-color: #000000;
+      font-weight: 600;
+    }
+
+    /* Print Styles */
     @media print {
-      header, footer, aside, .no-print, button, #art-actions-toolbar, #reading-progress-bar {
+      header, footer, aside, .no-print, button, .lang-switcher {
         display: none !important;
       }
       body {
         background: #fff !important;
         color: #000 !important;
       }
-      .article-reading-canvas {
+      .book-reading-page {
         max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .book-chapter-header {
+        page-break-before: always;
+      }
+      .book-table-wrapper, .book-qa-block {
+        page-break-inside: avoid;
       }
     }
   </style>
 </head>
-<body class="bg-white text-text-main min-h-screen flex flex-col antialiased">
+<body class="bg-white text-black min-h-screen flex flex-col antialiased">
 
-  <!-- Subtle Top Reading Progress Bar -->
-  <div id="reading-progress-bar" class="reading-progress-top"></div>
-
-  <!-- ================= 1. SIMPLE CLEAN HEADER (META LEARN STYLE) ================= -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-border-subtle">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <!-- ================= 1. SIMPLE CLEAN HEADER ================= -->
+  <header class="border-b border-gray-300 py-4 bg-white sticky top-0 z-30 font-sans-ui no-print">
+    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
       
       <!-- Brand Logo -->
-      <a href="/" class="flex items-center gap-3" title="Skillsfy">
-        <img src="assets/logo.png" alt="Skillsfy" class="h-8 object-contain" />
+      <a href="/" class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="Skillsfy" class="h-7 object-contain" />
+        <span class="font-bold text-sm tracking-tight text-black">| E-Books & Study Guides</span>
       </a>
 
-      <!-- Clean Navigation Links -->
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-text-muted">
-        <a href="/" class="hover:text-text-main transition-colors">Home</a>
-        <a href="articles.html" class="text-brand font-semibold transition-colors">Articles & Guides</a>
-        <a href="/courses" class="hover:text-text-main transition-colors">Courses</a>
-        <a href="insights.html" class="hover:text-text-main transition-colors">Insights</a>
-      </nav>
-
-      <!-- Header Actions -->
+      <!-- Simple Nav & Print -->
       <div class="flex items-center gap-3">
-        <!-- Quick Search -->
-        <button onclick="focusArticleSearch()" class="px-3 py-1.5 rounded-lg border border-border-subtle hover:border-gray-400 text-text-muted hover:text-text-main text-xs font-medium flex items-center gap-1.5 bg-surface-subtle transition-all">
-          <span class="material-symbols-outlined text-sm">search</span>
-          <span class="hidden sm:inline">Search</span>
+        <a href="articles.html" class="text-xs font-semibold text-gray-700 hover:text-black transition-colors">
+          All Guides
+        </a>
+        <button onclick="window.print()" class="px-3 py-1 text-xs font-semibold border border-gray-400 rounded bg-white hover:bg-gray-100 flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">print</span>
+          <span>Print / PDF</span>
         </button>
-
-        <a href="/login.html" class="text-xs font-semibold text-text-muted hover:text-text-main px-3 py-1.5 rounded-lg hover:bg-surface-subtle transition-colors">
-          Log in
-        </a>
-
-        <a href="/lp1" class="px-3.5 py-1.5 bg-brand hover:bg-brand-dark text-white text-xs font-semibold rounded-lg transition-all shadow-sm">
-          Live Cohort
-        </a>
       </div>
 
     </div>
@@ -333,341 +381,117 @@
   <!-- ================= 2. MAIN APPLICATION CONTENT ================= -->
   <main id="articles-app" class="flex-1">
 
-    <!-- ================= VIEW A: CLEAN ARTICLES & GUIDES LISTING ================= -->
-    <div id="view-listing" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 text-left">
+    <!-- ================= VIEW A: CLEAN LIBRARY CATALOG ================= -->
+    <div id="view-listing" class="max-w-4xl mx-auto px-4 py-12 space-y-8 font-sans-ui text-left">
       
-      <!-- Minimalist Hero (Meta Learn Inspired) -->
-      <div class="max-w-2xl space-y-3">
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-text-main tracking-tight leading-tight">
-          Learn with Skillsfy
+      <div class="border-b border-black pb-4 space-y-1">
+        <h1 class="text-3xl font-extrabold text-black tracking-tight">
+          Skillsfy Digital Books & Study Handbooks
         </h1>
-        <p class="text-base sm:text-lg text-text-muted leading-relaxed font-normal">
-          Explore practical guides, exam strategies, coding roadmaps, and career insights designed for clarity.
+        <p class="text-sm text-gray-600">
+          कक्षा 10वीं एवं तकनीकी परीक्षाओं की संपूर्ण पाठ्य सामग्री एवं डिजिटल ई-बुक्स।
         </p>
-
-        <!-- Search Bar -->
-        <div class="pt-3">
-          <form onsubmit="handleSearchSubmit(event)" class="relative max-w-xl">
-            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
-            <input 
-              type="text" 
-              id="articles-search-input" 
-              placeholder="Search guides, articles, subjects..." 
-              class="w-full pl-10 pr-24 py-2.5 rounded-xl bg-surface border border-border-subtle text-sm text-text-main placeholder:text-gray-400 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand shadow-sm transition-all"
-            />
-            <button type="submit" class="absolute right-1.5 top-1/2 -translate-y-1/2 px-3.5 py-1.5 bg-brand hover:bg-brand-dark text-white text-xs font-semibold rounded-lg transition-all">
-              Search
-            </button>
-          </form>
-        </div>
       </div>
 
-      <!-- Clean Category Filter Tabs -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="categories-pill-container">
+      <!-- Published Books List -->
+      <div id="articles-grid" class="space-y-6">
         <!-- Rendered dynamically -->
-      </div>
-
-      <!-- Featured Guide Card (Meta Learn Clean Split Card) -->
-      <div id="featured-article-container">
-        <!-- Rendered dynamically -->
-      </div>
-
-      <!-- Articles Grid Section -->
-      <div class="space-y-6">
-        <div class="flex items-center justify-between border-b border-border-subtle pb-3">
-          <h2 class="text-xl font-bold text-text-main" id="grid-section-title">All Guides & Articles</h2>
-          <span class="text-xs text-text-light" id="articles-count-label">Showing articles</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articles-grid">
-          <!-- Rendered dynamically -->
-        </div>
-      </div>
-
-      <!-- Clean Minimalist Newsletter Strip -->
-      <div class="p-8 rounded-2xl bg-surface-subtle border border-border-subtle flex flex-col md:flex-row items-center justify-between gap-6" id="newsletter-section">
-        <div class="space-y-1">
-          <h3 class="text-lg font-bold text-text-main">Stay updated with practical guides</h3>
-          <p class="text-xs text-text-muted">Get one curated study or technology guide delivered every week.</p>
-        </div>
-
-        <form onsubmit="handleNewsletterSubmit(event)" class="flex gap-2 w-full md:w-auto">
-          <input 
-            type="email" 
-            id="newsletter-email" 
-            required 
-            placeholder="Your email address..." 
-            class="px-3.5 py-2 rounded-xl bg-white border border-border-subtle text-xs text-text-main placeholder:text-gray-400 focus:outline-none focus:border-brand w-full sm:w-64"
-          />
-          <button type="submit" class="px-4 py-2 bg-brand hover:bg-brand-dark text-white font-semibold text-xs rounded-xl transition-all whitespace-nowrap shadow-sm">
-            Subscribe
-          </button>
-        </form>
       </div>
 
     </div>
 
-
-    <!-- ================= VIEW B: CLEAN ARTICLE & DIGITAL STUDY GUIDE READER ================= -->
+    <!-- ================= VIEW B: PURE BOOK READING EXPERIENCE ================= -->
     <div id="view-article" class="hidden">
       
-      <!-- Clean Top Article Header -->
-      <div class="border-b border-border-subtle bg-surface-subtle/50 py-8">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-left">
+      <!-- Book Title Header -->
+      <div class="border-b border-gray-300 bg-gray-50 py-10">
+        <div class="max-w-4xl mx-auto px-4 space-y-4 text-center">
           
-          <!-- Breadcrumb Navigation -->
-          <nav class="flex items-center gap-1.5 text-xs text-text-light">
-            <a href="/" class="hover:text-text-main transition-colors">Home</a>
-            <span>/</span>
-            <a href="articles.html" class="hover:text-text-main transition-colors">Articles</a>
-            <span>/</span>
-            <span id="art-bread-category" class="text-brand font-medium">Category</span>
-          </nav>
-
-          <!-- Top Toolbar: Language Switcher & Quick Actions -->
-          <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
-            <!-- Language Pill Switcher -->
-            <div class="inline-flex p-1 rounded-xl bg-white border border-border-subtle text-xs shadow-sm">
-              <button onclick="changeLanguage('en')" id="lang-btn-en" class="lang-tab px-3 py-1 rounded-lg">English</button>
-              <button onclick="changeLanguage('hinglish')" id="lang-btn-hinglish" class="lang-tab px-3 py-1 rounded-lg active">Hinglish</button>
-              <button onclick="changeLanguage('hi')" id="lang-btn-hi" class="lang-tab px-3 py-1 rounded-lg">हिंदी</button>
-            </div>
-
-            <!-- Reading Actions -->
-            <div class="flex items-center gap-2" id="art-actions-toolbar">
-              <button onclick="window.print()" class="px-3 py-1 rounded-lg border border-border-subtle bg-white hover:bg-gray-50 text-text-muted text-xs font-medium flex items-center gap-1 shadow-sm transition-all" title="Print or Save as PDF">
-                <span class="material-symbols-outlined text-sm">print</span>
-                <span>PDF</span>
-              </button>
-              <button onclick="toggleFocusMode()" id="focus-mode-btn" class="px-3 py-1 rounded-lg border border-border-subtle bg-white hover:bg-gray-50 text-text-muted text-xs font-medium flex items-center gap-1 shadow-sm transition-all" title="Focus Reading Mode">
-                <span class="material-symbols-outlined text-sm text-amber-600">center_focus_strong</span>
-                <span id="focus-mode-text">Focus</span>
-              </button>
-              <button onclick="copyArticleUrl()" class="px-3 py-1 rounded-lg border border-border-subtle bg-white hover:bg-gray-50 text-text-muted text-xs font-medium flex items-center gap-1 shadow-sm transition-all" title="Copy Link">
-                <span class="material-symbols-outlined text-sm">link</span>
-                <span>Share</span>
-              </button>
-            </div>
+          <!-- Category / Badge -->
+          <div class="font-sans-ui text-xs font-bold uppercase tracking-widest text-gray-600" id="art-category-badge">
+            MP BOARD CLASS 10TH • SVADHYAYI STUDY GUIDE
           </div>
 
-          <!-- Category Badge -->
-          <div class="pt-2">
-            <span id="art-category-badge" class="px-2.5 py-1 rounded-md bg-brand-light text-brand text-xs font-semibold uppercase tracking-wide">
-              CATEGORY
-            </span>
-          </div>
-
-          <!-- Title (Meta Large H1) -->
-          <h1 id="art-title" class="text-2xl sm:text-4xl font-extrabold text-text-main tracking-tight leading-snug">
-            Article Title
+          <!-- Book H1 Title -->
+          <h1 id="art-title" class="text-3xl sm:text-5xl font-extrabold text-black tracking-tight leading-tight">
+            MP Board Class 10 Svadhyayi Study Guide
           </h1>
 
           <!-- Subtitle -->
-          <p id="art-subtitle" class="text-base sm:text-lg text-text-muted font-normal leading-relaxed">
-            Article subtitle explaining the concept simply.
+          <p id="art-subtitle" class="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
+            75% Target Strategy, 6 Subjects Blueprint, Scaling Rule & Solved Past Year Questions.
           </p>
 
-          <!-- Byline & Meta Info -->
-          <div class="pt-3 flex items-center gap-3 text-xs text-text-light border-t border-border-subtle/80">
-            <img id="art-author-img" src="assets/logo.png" alt="Author" class="w-7 h-7 rounded-full object-cover border border-border-subtle" />
+          <!-- Book Meta & Language Switcher -->
+          <div class="pt-4 flex flex-wrap items-center justify-center gap-4 text-xs font-sans-ui text-gray-600 border-t border-gray-200">
             <div>
-              <span class="font-medium text-text-main" id="art-author-name">Skillsfy Editorial</span>
-              <span class="mx-1.5">·</span>
-              <span id="art-date-readtime">Updated 2026 · 10 min read</span>
+              <span>प्रकाशक: <strong>Skillsfy Academic Desk</strong></span>
+              <span class="mx-2">•</span>
+              <span id="art-date-readtime">14-Page Complete E-Book</span>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="flex items-center gap-1 lang-switcher no-print">
+              <button onclick="changeLanguage('hi')" id="lang-btn-hi" class="lang-btn active">हिंदी (Hindi)</button>
+              <button onclick="changeLanguage('hinglish')" id="lang-btn-hinglish" class="lang-btn">Hinglish</button>
+              <button onclick="changeLanguage('en')" id="lang-btn-en" class="lang-btn">English</button>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Main Reading Column & Sticky Table of Contents -->
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start text-left">
+      <!-- Book Main Two-Column Layout (TOC on Left, Clean Book on Right) -->
+      <div class="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start text-left">
         
-        <!-- Sticky Left Table of Contents (Meta Docs / Transparency Style) -->
-        <aside class="hidden lg:block lg:col-span-4 sticky-toc space-y-5">
-          <div class="p-5 rounded-2xl bg-surface-subtle border border-border-subtle space-y-3">
-            <div class="flex items-center justify-between pb-2 border-b border-border-subtle">
-              <span class="text-xs font-bold text-text-main uppercase tracking-wider">TABLE OF CONTENTS</span>
-              <span id="study-progress-pct" class="text-xs font-semibold text-brand">0%</span>
+        <!-- Sticky Table of Contents (Left Column) -->
+        <aside class="hidden lg:block lg:col-span-4 sticky-toc font-sans-ui no-print">
+          <div class="border border-gray-300 rounded p-4 bg-gray-50 space-y-2">
+            <div class="font-bold text-xs uppercase tracking-wider text-black pb-2 border-b border-gray-300">
+              विषय सूची / INDEX
             </div>
-            
-            <div class="space-y-1" id="desktop-toc-container">
+            <nav id="desktop-toc-container" class="space-y-0.5">
               <!-- Rendered dynamically -->
-            </div>
+            </nav>
           </div>
         </aside>
 
-        <!-- Main Reading Body Canvas (760px width) -->
-        <article class="lg:col-span-8 article-reading-canvas mx-auto space-y-8 prose-custom">
-          
-          <!-- Executive Summary Callout (If Available) -->
-          <div class="callout-box hidden" id="art-tldr-container">
-            <div class="font-semibold text-xs text-brand uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm">lightbulb</span>
-              <span>KEY TAKEAWAYS</span>
-            </div>
-            <ul id="art-tldr-list" class="space-y-1.5 text-sm text-text-muted list-disc list-inside">
-              <!-- Rendered dynamically -->
-            </ul>
-          </div>
-
-          <!-- Main Rich Narrative Body -->
-          <div id="art-narrative-content" class="space-y-6">
+        <!-- Main Book Reading Page (Right Column, 780px wide) -->
+        <article class="lg:col-span-8 book-reading-page">
+          <div id="art-narrative-content" class="book-container">
             <!-- Rendered dynamically -->
           </div>
-
-          <!-- FAQ Section -->
-          <div class="space-y-4 pt-8 border-t border-border-subtle hidden" id="art-faq-section">
-            <h3 class="text-xl font-bold text-text-main">Frequently Asked Questions</h3>
-            <div class="space-y-3" id="art-faq-container">
-              <!-- Rendered dynamically -->
-            </div>
-          </div>
-
-          <!-- Sources & Academic Disclaimer -->
-          <div class="p-4 rounded-xl bg-surface-subtle border border-border-subtle space-y-1.5 text-xs text-text-light mt-8 hidden" id="art-sources-section">
-            <span class="font-semibold text-text-main block">Sources & Academic Note:</span>
-            <div id="art-sources-container" class="space-y-1">
-              <!-- Rendered dynamically -->
-            </div>
-          </div>
-
-          <!-- Clean Author Box -->
-          <div class="p-5 rounded-xl bg-surface-subtle border border-border-subtle flex items-center gap-4 mt-8">
-            <img id="art-author-box-img" src="assets/logo.png" alt="Author" class="w-12 h-12 rounded-xl object-cover border border-border-subtle" />
-            <div class="space-y-0.5">
-              <h4 class="text-sm font-bold text-text-main" id="art-author-box-name">Skillsfy Editorial Team</h4>
-              <p class="text-xs text-text-muted leading-relaxed" id="art-author-box-bio">
-                Educational research and curriculum team at Skillsfy Institute of Technology.
-              </p>
-            </div>
-          </div>
-
         </article>
 
       </div>
 
-      <!-- Related Guides (Clean 3-Grid) -->
-      <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-border-subtle mt-10 text-left space-y-6" id="art-related-section">
-        <div class="flex items-center justify-between">
-          <h3 class="text-lg font-bold text-text-main">Related Guides & Articles</h3>
-          <a href="articles.html" class="text-xs font-semibold text-brand hover:underline">View all →</a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="art-related-grid">
-          <!-- Rendered dynamically -->
-        </div>
-      </section>
-
     </div>
 
     <!-- ================= VIEW C: 404 NOT FOUND ================= -->
-    <div id="view-not-found" class="hidden max-w-2xl mx-auto px-4 py-20 text-center space-y-6">
-      <div class="w-12 h-12 rounded-xl bg-gray-100 text-gray-600 flex items-center justify-center mx-auto">
-        <span class="material-symbols-outlined text-2xl">menu_book</span>
-      </div>
-      <div class="space-y-2">
-        <h1 class="text-2xl sm:text-3xl font-bold text-text-main">Guide Not Found</h1>
-        <p class="text-sm text-text-muted max-w-md mx-auto">
-          The requested guide (<code id="missing-slug-label" class="text-brand bg-brand-light px-1.5 py-0.5 rounded text-xs font-mono">...</code>) was not found.
-        </p>
-      </div>
+    <div id="view-not-found" class="hidden max-w-xl mx-auto px-4 py-20 text-center space-y-4 font-sans-ui">
+      <h1 class="text-2xl font-bold text-black">पुस्तक उपलब्ध नहीं है (Book Not Found)</h1>
+      <p class="text-xs text-gray-600">
+        अनुरोधित पृष्ठ (<code id="missing-slug-label" class="bg-gray-100 px-1 py-0.5 font-mono">...</code>) मौजूद नहीं है।
+      </p>
+      <a href="articles.html" class="inline-block px-4 py-2 bg-black text-white text-xs font-semibold rounded hover:bg-gray-800 transition-colors">
+        ← मुख्य सूची पर जाएं
+      </a>
+    </div>
 
-      <!-- Search Form -->
-      <div class="max-w-md mx-auto">
-        <form onsubmit="handleNotFoundSearch(event)" class="relative">
-          <input 
-            type="text" 
-            id="not-found-search-input" 
-            placeholder="Search guides..." 
-            class="w-full pl-4 pr-24 py-2 rounded-xl bg-white border border-border-subtle text-xs text-text-main focus:outline-none focus:border-brand shadow-sm"
-          />
-          <button type="submit" class="absolute right-1 top-1/2 -translate-y-1/2 px-3 py-1 bg-brand hover:bg-brand-dark text-white text-xs font-semibold rounded-lg transition-all">
-            Search
-          </button>
-        </form>
-      </div>
+  </main>
 
-  <!-- Toast Notification Box -->
-  <div id="articles-toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300"></div>
-
-  <!-- ================= 4. SKILLSFY OFFICIAL FOOTER ================= -->
-  <footer class="bg-primary text-white border-t border-slate-800 pt-16 pb-12 mt-20 text-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800 text-left">
-        
-        <!-- Col 1: Brand Info -->
-        <div class="space-y-4">
-          <img src="assets/logo.png" alt="Skillsfy" class="h-9 object-contain" />
-          <p class="text-slate-400 text-xs leading-relaxed">
-            Skillsfy - Institute of Technology. Empowering students across India with practical software engineering, cloud databases, and AI development mastery.
-          </p>
-          <div class="text-[11px] font-['Geist'] text-[#00ccf9]">
-            ISO 9001:2015 ACCREDITED TECH INSTITUTE
-          </div>
-        </div>
-
-        <!-- Col 2: Articles Categories -->
-        <div class="space-y-2.5">
-          <span class="font-['Geist'] text-white text-xs font-bold uppercase tracking-wider block">ARTICLES BY TOPIC</span>
-          <ul class="space-y-2 text-slate-400">
-            <li><a href="articles.html?category=ai-technology" class="hover:text-white transition-colors">AI & Technology</a></li>
-            <li><a href="articles.html?category=skills" class="hover:text-white transition-colors">High-Income Coding Skills</a></li>
-            <li><a href="articles.html?category=freelancing" class="hover:text-white transition-colors">Student Freelancing</a></li>
-            <li><a href="articles.html?category=career" class="hover:text-white transition-colors">Career & Portfolios</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Programs & LMS -->
-        <div class="space-y-2.5">
-          <span class="font-['Geist'] text-white text-xs font-bold uppercase tracking-wider block">PROGRAMS & HUBS</span>
-          <ul class="space-y-2 text-slate-400">
-            <li><a href="/lp1" class="text-purple-300 hover:text-white font-bold">AI Web Dev Live Masterclass (30 Aug)</a></li>
-            <li><a href="/courses" class="hover:text-white transition-colors">Full-Stack Standard Course</a></li>
-            <li><a href="insights.html" class="hover:text-white transition-colors">Skillsfy Insights (Business Case Studies)</a></li>
-            <li><a href="/dashboard" class="hover:text-white transition-colors">Student LMS Dashboard</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Contact & Verification -->
-        <div class="space-y-2.5">
-          <span class="font-['Geist'] text-white text-xs font-bold uppercase tracking-wider block">CAMPUS & TRUST</span>
-          <ul class="space-y-2 text-slate-400">
-            <li><a href="/verify" class="hover:text-white transition-colors">Verify Certificate</a></li>
-            <li><a href="/about" class="hover:text-white transition-colors">About the Institute</a></li>
-            <li><a href="/contact" class="hover:text-white transition-colors">Contact Admissions</a></li>
-            <li><a href="/login.html" class="hover:text-white transition-colors">Student Login</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 font-['Geist']">
-        <p>© 2026 Skillsfy - Institute of Technology. All educational articles are published for practical student mastery.</p>
-        <p>Built with Content-First Architecture • Vercel Edge</p>
-      </div>
-
+  <!-- ================= 3. SIMPLE FOOTER ================= -->
+  <footer class="border-t border-gray-300 py-6 bg-white font-sans-ui text-xs text-gray-600 text-center mt-20 no-print">
+    <div class="max-w-4xl mx-auto px-4 space-y-1">
+      <p>© 2026 Skillsfy Institute of Technology. All educational guides are published for student learning.</p>
     </div>
   </footer>
 
-  <!-- ================= JAVASCRIPT APP LOGIC ================= -->
+  <!-- ================= 4. JAVASCRIPT APP LOGIC ================= -->
   <script src="js/articles-data.js"></script>
   <script>
-    let activeCategory = 'all';
     let currentArticleSlug = '';
-    let currentLanguage = localStorage.getItem('skillsfy_article_lang') || 'hinglish'; // Default friendly Hinglish
-
-    function showToast(msg, type = 'info') {
-      const toast = document.getElementById('articles-toast');
-      if (!toast) return;
-      toast.textContent = msg;
-      toast.className = `fixed bottom-6 right-6 z-50 px-4 py-3 rounded-xl shadow-2xl text-xs font-bold text-white transition-all ${
-        type === 'success' ? 'bg-emerald-600' : 'bg-slate-900'
-      }`;
-      toast.classList.remove('hidden');
-      setTimeout(() => toast.classList.add('hidden'), 3500);
-    }
+    let currentLanguage = localStorage.getItem('skillsfy_article_lang') || 'hi';
 
     function normalizeSlug(s) {
       return decodeURIComponent(s || '')
@@ -694,37 +518,29 @@
       const params = new URLSearchParams(window.location.search);
       const pathname = window.location.pathname;
       let slugFromPath = '';
-      let catFromPath = '';
 
-      if (pathname.includes('/guides')) {
-        catFromPath = 'study-guides';
-        if (pathname.includes('/guides/')) {
-          const cleanPath = pathname.substring(pathname.indexOf('/guides/') + 8).replace(/\/$/, '');
-          if (cleanPath && cleanPath !== 'guides' && cleanPath !== 'guides.html') {
-            slugFromPath = cleanPath;
-          }
+      if (pathname.includes('/guides/')) {
+        const cleanPath = pathname.substring(pathname.indexOf('/guides/') + 8).replace(/\/$/, '');
+        if (cleanPath && cleanPath !== 'guides' && cleanPath !== 'guides.html') {
+          slugFromPath = cleanPath;
         }
       } else if (pathname.includes('/articles/')) {
         const cleanPath = pathname.substring(pathname.indexOf('/articles/') + 10).replace(/\/$/, '');
-        if (cleanPath.startsWith('category/')) {
-          catFromPath = cleanPath.replace('category/', '');
-        } else if (cleanPath && cleanPath !== 'articles' && cleanPath !== 'articles.html') {
+        if (cleanPath && cleanPath !== 'articles' && cleanPath !== 'articles.html') {
           slugFromPath = cleanPath;
         }
       }
 
       return {
-        slug: params.get('slug') || slugFromPath || '',
-        category: params.get('category') || catFromPath || '',
-        q: params.get('q') || ''
+        slug: params.get('slug') || slugFromPath || ''
       };
     }
 
-    // ================= ROUTER: LISTING VS ARTICLE VS 404 VIEW =================
+    // ================= ROUTER =================
     function initArticlesRouter() {
       if (!window.SKILLSFY_ARTICLES_DATA) return;
 
-      const { slug, category, q } = getQueryParams();
+      const { slug } = getQueryParams();
       const viewListing = document.getElementById('view-listing');
       const viewArticle = document.getElementById('view-article');
       const viewNotFound = document.getElementById('view-not-found');
@@ -741,30 +557,15 @@
           if (viewListing) viewListing.classList.add('hidden');
           if (viewArticle) viewArticle.classList.add('hidden');
           if (viewNotFound) viewNotFound.classList.remove('hidden');
-          renderNotFoundPage(slug);
+          const label = document.getElementById('missing-slug-label');
+          if (label) label.textContent = slug;
         }
       } else {
         if (viewArticle) viewArticle.classList.add('hidden');
         if (viewNotFound) viewNotFound.classList.add('hidden');
         if (viewListing) viewListing.classList.remove('hidden');
-        renderListingPage(category, q);
+        renderListingPage();
       }
-    }
-
-    // ================= 404 NOT FOUND PAGE =================
-    function renderNotFoundPage(missingSlug) {
-      document.title = 'Content Not Found — Skillsfy';
-      const label = document.getElementById('missing-slug-label');
-      if (label) label.textContent = missingSlug || 'unknown';
-    }
-
-    function handleNotFoundSearch(e) {
-      e.preventDefault();
-      const input = document.getElementById('not-found-search-input');
-      const q = input ? input.value.trim() : '';
-      const newUrl = q ? `articles.html?q=${encodeURIComponent(q)}` : 'articles.html';
-      window.history.pushState({}, '', newUrl);
-      initArticlesRouter();
     }
 
     // ================= LANGUAGE SWITCHER =================
@@ -772,173 +573,7 @@
       currentLanguage = lang;
       localStorage.setItem('skillsfy_article_lang', lang);
 
-      // Update Active Pill States
-      ['en', 'hinglish', 'hi'].forEach(l => {
-        const btn = document.getElementById(`lang-btn-${l}`);
-        if (btn) {
-          if (l === lang) {
-            btn.classList.add('active');
-          } else {
-            btn.classList.remove('active');
-          }
-        }
-      });
-
-      if (currentArticleSlug) {
-        const article = findArticleBySlug(currentArticleSlug);
-        if (article) {
-          renderIndividualArticle(article, lang);
-          showToast(`Language switched to ${lang.toUpperCase()}`, 'info');
-        }
-      }
-    }
-
-    // ================= RENDER LISTING PAGE =================
-    function renderListingPage(categoryFilter = '', searchQuery = '') {
-      const data = window.SKILLSFY_ARTICLES_DATA;
-      const categories = data.categories;
-      let articles = [...data.articles];
-
-      if (searchQuery) {
-        const query = searchQuery.toLowerCase().trim();
-        articles = articles.filter(a => {
-          const tEn = a.translations.en ? a.translations.en.title.toLowerCase() : '';
-          const tHi = a.translations.hi ? a.translations.hi.title.toLowerCase() : '';
-          const tHing = a.translations.hinglish ? a.translations.hinglish.title.toLowerCase() : '';
-          const cat = a.category.toLowerCase();
-          const tags = (a.tags || []).map(t => t.toLowerCase());
-          return tEn.includes(query) || tHi.includes(query) || tHing.includes(query) || cat.includes(query) || tags.some(t => t.includes(query));
-        });
-        document.getElementById('grid-section-title').textContent = `Search results for "${searchQuery}"`;
-      } else if (categoryFilter && categoryFilter !== 'all') {
-        articles = articles.filter(a => a.categorySlug === categoryFilter);
-        const catObj = categories.find(c => c.slug === categoryFilter);
-        document.getElementById('grid-section-title').textContent = catObj ? catObj.name : 'Category Articles';
-      } else {
-        document.getElementById('grid-section-title').textContent = 'Latest Articles & Study Guides';
-      }
-
-      document.getElementById('articles-count-label').textContent = `Showing ${articles.length} articles`;
-
-      // 1. Render Category Tabs (Meta Learn Style)
-      const catContainer = document.getElementById('categories-pill-container');
-      if (catContainer) {
-        catContainer.innerHTML = categories.map(c => {
-          const isActive = (categoryFilter === c.slug) || (!categoryFilter && c.slug === 'all');
-          return `
-            <button 
-              onclick="filterByCategory('${c.slug}')" 
-              class="category-tab px-4 py-2 rounded-xl text-xs ${isActive ? 'active' : ''}"
-            >
-              ${c.name}
-            </button>
-          `;
-        }).join('');
-      }
-
-      // 2. Render Featured Guide Card (Meta Learn Clean Split Card)
-      const featuredContainer = document.getElementById('featured-article-container');
-      const featured = data.articles.find(a => a.featured) || data.articles[0];
-      if (featuredContainer && featured && !searchQuery && (!categoryFilter || categoryFilter === 'all')) {
-        const author = data.authors[featured.authorId] || data.authors['editorial-team'];
-        const content = featured.translations[currentLanguage] || featured.translations.hinglish || featured.translations.en;
-        featuredContainer.innerHTML = `
-          <div onclick="navigateToArticle('${featured.slug}')" class="meta-card p-6 sm:p-8 cursor-pointer grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left group">
-            <div class="lg:col-span-7 space-y-3">
-              <div class="flex items-center gap-2 text-xs">
-                <span class="px-2.5 py-0.5 rounded-md bg-brand-light text-brand font-bold text-[11px] uppercase tracking-wide">
-                  FEATURED GUIDE
-                </span>
-                <span class="text-text-light">•</span>
-                <span class="font-medium text-text-muted">${featured.category}</span>
-                <span class="text-text-light">•</span>
-                <span class="text-text-light">${featured.readingTime}</span>
-              </div>
-              <h2 class="text-2xl sm:text-3xl font-extrabold text-text-main group-hover:text-brand transition-colors leading-tight">
-                ${content.title}
-              </h2>
-              <p class="text-sm text-text-muted font-normal leading-relaxed">
-                ${content.subtitle}
-              </p>
-              <div class="pt-2 flex items-center justify-between text-xs">
-                <div class="flex items-center gap-2">
-                  <img src="${author.avatar}" alt="${author.name}" class="w-6 h-6 rounded-full object-cover border border-border-subtle" />
-                  <span class="font-medium text-text-main">${author.name}</span>
-                </div>
-                <span class="text-brand font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                  <span>Open Guide</span>
-                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                </span>
-              </div>
-            </div>
-            <div class="lg:col-span-5 rounded-xl overflow-hidden aspect-[16/10] bg-surface-subtle">
-              <img src="${featured.coverImage}" alt="${featured.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-            </div>
-          </div>
-        `;
-        featuredContainer.classList.remove('hidden');
-      } else if (featuredContainer) {
-        featuredContainer.classList.add('hidden');
-      }
-
-      // 3. Render Articles Grid (Meta Learn Clean Grid)
-      const gridContainer = document.getElementById('articles-grid');
-      if (gridContainer) {
-        if (articles.length === 0) {
-          gridContainer.innerHTML = `
-            <div class="col-span-3 py-16 text-center space-y-3">
-              <span class="material-symbols-outlined text-4xl text-text-light">search_off</span>
-              <h3 class="text-base font-bold text-text-main">No guides found</h3>
-              <p class="text-xs text-text-muted">Try searching with different keywords.</p>
-              <button onclick="filterByCategory('all')" class="px-4 py-2 rounded-lg bg-text-main text-white text-xs font-semibold">
-                Reset Filter
-              </button>
-            </div>
-          `;
-        } else {
-          gridContainer.innerHTML = articles.map(art => {
-            const author = data.authors[art.authorId] || data.authors['editorial-team'];
-            const content = art.translations[currentLanguage] || art.translations.hinglish || art.translations.en;
-            return `
-              <div onclick="navigateToArticle('${art.slug}')" class="meta-card overflow-hidden cursor-pointer flex flex-col text-left group">
-                <div class="aspect-[16/10] overflow-hidden bg-surface-subtle border-b border-border-subtle">
-                  <img src="${art.coverImage}" alt="${art.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                </div>
-                <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
-                  <div class="space-y-2">
-                    <div class="flex items-center justify-between text-[11px]">
-                      <span class="font-bold text-brand uppercase tracking-wider">${art.category}</span>
-                      <span class="text-text-light">${art.readingTime}</span>
-                    </div>
-                    <h3 class="text-base font-bold text-text-main group-hover:text-brand transition-colors line-clamp-2 leading-snug">
-                      ${content.title}
-                    </h3>
-                    <p class="text-xs text-text-muted line-clamp-2 leading-relaxed font-normal">
-                      ${content.subtitle}
-                    </p>
-                  </div>
-                  <div class="pt-3 border-t border-border-subtle flex items-center justify-between text-xs text-text-light">
-                    <span>${author.name}</span>
-                    <span class="font-semibold text-brand">Read →</span>
-                  </div>
-                </div>
-              </div>
-            `;
-          }).join('');
-        }
-      }
-    }
-
-    // ================= RENDER INDIVIDUAL DIGITAL STUDY GUIDE / ARTICLE =================
-    function renderIndividualArticle(article, lang = 'hinglish') {
-      const data = window.SKILLSFY_ARTICLES_DATA;
-      const author = data.authors[article.authorId] || data.authors['editorial-team'];
-      const content = article.translations[lang] || article.translations.hinglish || article.translations.en;
-
-      if (!article || !content) return;
-
-      // Update Language Switcher UI Buttons
-      ['en', 'hinglish', 'hi'].forEach(l => {
+      ['hi', 'hinglish', 'en'].forEach(l => {
         const btn = document.getElementById(`lang-btn-${l}`);
         if (btn) {
           if (l === lang) btn.classList.add('active');
@@ -946,127 +581,91 @@
         }
       });
 
-      // Update Page Title, Meta, and Canonical URL
-      document.title = `${content.title} — Skillsfy`;
+      if (currentArticleSlug) {
+        const article = findArticleBySlug(currentArticleSlug);
+        if (article) renderIndividualArticle(article, lang);
+      }
+    }
+
+    // ================= RENDER LISTING PAGE =================
+    function renderListingPage() {
+      const data = window.SKILLSFY_ARTICLES_DATA;
+      const gridContainer = document.getElementById('articles-grid');
+      if (!gridContainer || !data || !data.articles) return;
+
+      gridContainer.innerHTML = data.articles.map(art => {
+        const content = art.translations[currentLanguage] || art.translations.hi || art.translations.hinglish || art.translations.en;
+        return `
+          <div onclick="navigateToArticle('${art.slug}')" class="border border-gray-300 rounded-lg p-6 bg-white hover:border-black transition-all cursor-pointer space-y-3">
+            <div class="flex items-center gap-2 text-xs font-bold uppercase text-gray-500">
+              <span>${art.category}</span>
+              <span>•</span>
+              <span>${art.readingTime}</span>
+            </div>
+            <h2 class="text-2xl font-bold text-black hover:underline leading-snug">
+              ${content.title}
+            </h2>
+            <p class="text-sm text-gray-700 leading-relaxed">
+              ${content.subtitle}
+            </p>
+            <div class="pt-2 flex items-center justify-between text-xs font-semibold text-black">
+              <span>प्रकाशक: Skillsfy Academic Desk</span>
+              <span class="flex items-center gap-1 text-black font-bold">
+                <span>पुस्तक खोलें (Open Book)</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ================= RENDER INDIVIDUAL BOOK =================
+    function renderIndividualArticle(article, lang = 'hi') {
+      const content = article.translations[lang] || article.translations.hi || article.translations.hinglish || article.translations.en;
+      if (!article || !content) return;
+
+      // Update Language Buttons
+      ['hi', 'hinglish', 'en'].forEach(l => {
+        const btn = document.getElementById(`lang-btn-${l}`);
+        if (btn) {
+          if (l === lang) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      });
+
+      // Update Title & Meta
+      document.title = `${content.title} | Skillsfy E-Book`;
       const descEl = document.getElementById('meta-page-desc');
       if (descEl) descEl.setAttribute('content', content.subtitle);
       const canonicalEl = document.getElementById('meta-canonical');
       if (canonicalEl) canonicalEl.setAttribute('href', `https://skillsfy.in/articles?slug=${encodeURIComponent(article.slug)}`);
 
-      // Header Spread
-      document.getElementById('art-bread-category').textContent = article.category;
-      document.getElementById('art-category-badge').textContent = article.category;
+      // Header Elements
+      document.getElementById('art-category-badge').textContent = article.category.toUpperCase();
       document.getElementById('art-title').textContent = content.title;
       document.getElementById('art-subtitle').textContent = content.subtitle;
-      document.getElementById('art-author-img').src = author.avatar;
-      document.getElementById('art-author-name').textContent = author.name;
-      document.getElementById('art-date-readtime').textContent = `${article.publishedAt} · ${article.readingTime}`;
+      document.getElementById('art-date-readtime').textContent = article.readingTime;
 
-      // TL;DR Container
-      const tldrBox = document.getElementById('art-tldr-container');
-      const tldrList = document.getElementById('art-tldr-list');
-      if (content.tldr && content.tldr.length > 0) {
-        if (tldrList) tldrList.innerHTML = content.tldr.map(t => `<li>${t}</li>`).join('');
-        if (tldrBox) tldrBox.classList.remove('hidden');
-      } else if (tldrBox) {
-        tldrBox.classList.add('hidden');
-      }
-
-      // Main Narrative Content
+      // Narrative Content
       const narrativeContainer = document.getElementById('art-narrative-content');
       if (narrativeContainer) {
         narrativeContainer.innerHTML = content.narrativeHtml || article.narrativeHtml || '';
       }
 
-      // Table of Contents (Meta Docs Left Sidebar)
+      // Table of Contents
       const desktopToc = document.getElementById('desktop-toc-container');
       if (article.toc && desktopToc) {
         desktopToc.innerHTML = article.toc.map((item, idx) => `
           <a href="#${item.id}" class="toc-item">
-            <span class="text-text-light font-mono text-xs mr-1">${idx < 9 ? '0' : ''}${idx + 1}.</span>
+            <span class="text-gray-400 font-mono text-xs mr-1">${idx < 9 ? '0' : ''}${idx + 1}.</span>
             <span>${item.title}</span>
           </a>
         `).join('');
       }
-
-      // Restore Solved PYQs from LocalStorage
-      setTimeout(() => {
-        const savedSolved = JSON.parse(localStorage.getItem('skillsfy_pyqs_solved') || '[]');
-        savedSolved.forEach(cardId => {
-          const card = document.getElementById(cardId);
-          if (card) {
-            card.classList.add('is-solved');
-            const btn = card.querySelector('button[title="Mark as Practised"] span:last-child');
-            if (btn) btn.textContent = 'हल किया ✓';
-          }
-        });
-      }, 50);
-
-      // FAQ
-      const faqSection = document.getElementById('art-faq-section');
-      const faqContainer = document.getElementById('art-faq-container');
-      if (content.faq && content.faq.length > 0 && faqContainer) {
-        faqContainer.innerHTML = content.faq.map(item => `
-          <details class="group p-3.5 rounded-xl bg-surface-subtle border border-border-subtle cursor-pointer">
-            <summary class="flex items-center justify-between font-semibold text-sm text-text-main list-none">
-              <span>${item.q}</span>
-              <span class="material-symbols-outlined text-base transition-transform group-open:rotate-180 text-text-light">expand_more</span>
-            </summary>
-            <p class="text-xs sm:text-sm text-text-muted mt-2 pt-2 border-t border-border-subtle leading-relaxed">
-              ${item.a}
-            </p>
-          </details>
-        `).join('');
-        if (faqSection) faqSection.classList.remove('hidden');
-      } else if (faqSection) {
-        faqSection.classList.add('hidden');
-      }
-
-      // Sources
-      const sourcesSection = document.getElementById('art-sources-section');
-      const sourcesContainer = document.getElementById('art-sources-container');
-      if (article.sources && article.sources.length > 0 && sourcesContainer) {
-        sourcesContainer.innerHTML = article.sources.map(s => `
-          <div>• <strong>${s.title}</strong> — ${s.publisher}</div>
-        `).join('');
-        if (sourcesSection) sourcesSection.classList.remove('hidden');
-      } else if (sourcesSection) {
-        sourcesSection.classList.add('hidden');
-      }
-
-      // Author Bio
-      document.getElementById('art-author-box-img').src = author.avatar;
-      document.getElementById('art-author-box-name').textContent = author.name;
-      document.getElementById('art-author-box-bio').textContent = author.bio;
-
-      // Related Articles
-      const relatedContainer = document.getElementById('art-related-grid');
-      if (relatedContainer) {
-        const related = data.articles.filter(a => a.id !== article.id).slice(0, 3);
-        relatedContainer.innerHTML = related.map(rel => {
-          const relContent = rel.translations[lang] || rel.translations.hinglish || rel.translations.en;
-          return `
-            <div onclick="navigateToArticle('${rel.slug}')" class="meta-card overflow-hidden p-0 cursor-pointer flex flex-col text-left group">
-              <div class="aspect-[16/10] bg-surface-subtle border-b border-border-subtle overflow-hidden">
-                <img src="${rel.coverImage}" alt="${rel.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-              </div>
-              <div class="p-4 space-y-1.5 flex-1 flex flex-col justify-between">
-                <div>
-                  <span class="text-[10px] font-bold text-brand uppercase">${rel.category}</span>
-                  <h4 class="text-xs font-bold text-text-main group-hover:text-brand transition-colors line-clamp-2 leading-snug">${relContent.title}</h4>
-                </div>
-                <div class="pt-2 text-[11px] text-text-light font-medium flex items-center justify-between">
-                  <span>${rel.readingTime}</span>
-                  <span class="text-brand font-semibold">Read →</span>
-                </div>
-              </div>
-            </div>
-          `;
-        }).join('');
-      }
     }
 
-    // ================= NAVIGATION ACTIONS =================
+    // ================= NAVIGATION =================
     function navigateToArticle(slug) {
       currentArticleSlug = slug;
       const newUrl = `articles?slug=${encodeURIComponent(slug)}`;
@@ -1075,183 +674,16 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function filterByCategory(slug) {
-      activeCategory = slug;
-      const newUrl = slug === 'all' ? 'articles' : `articles?category=${encodeURIComponent(slug)}`;
-      window.history.pushState({}, '', newUrl);
-      initArticlesRouter();
-    }
-
-    function handleSearchSubmit(e) {
-      e.preventDefault();
-      const input = document.getElementById('articles-search-input');
-      const q = input.value.trim();
-      const newUrl = q ? `articles.html?q=${encodeURIComponent(q)}` : 'articles.html';
-      window.history.pushState({}, '', newUrl);
-      initArticlesRouter();
-    }
-
-    function focusArticleSearch() {
-      const input = document.getElementById('articles-search-input');
-      if (input) {
-        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        input.focus();
-      } else {
-        window.location.href = 'articles.html';
-      }
-    }
-
-    // ================= SOCIAL SHARING & BOOKMARKS =================
-    function shareWhatsApp() {
-      const url = encodeURIComponent(window.location.href);
-      const title = encodeURIComponent(document.title);
-      window.open(`https://api.whatsapp.com/send?text=${title}%20${url}`, '_blank');
-    }
-
-    function shareLinkedIn() {
-      const url = encodeURIComponent(window.location.href);
-      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
-    }
-
-    function shareTwitter() {
-      const url = encodeURIComponent(window.location.href);
-      const text = encodeURIComponent(`${document.title} via @skillsfy_in`);
-      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
-    }
-
-    function copyArticleUrl() {
-      navigator.clipboard.writeText(window.location.href);
-      showToast('✓ Link copied to clipboard!', 'success');
-    }
-
-    function bookmarkArticle() {
-      const savedGuides = JSON.parse(localStorage.getItem('skillsfy_saved_guides') || '[]');
-      if (currentArticleSlug && !savedGuides.includes(currentArticleSlug)) {
-        savedGuides.push(currentArticleSlug);
-        localStorage.setItem('skillsfy_saved_guides', JSON.stringify(savedGuides));
-      }
-      showToast('✓ Saved to your Skillsfy Study Guide Library!', 'success');
-    }
-
-    function handleNewsletterSubmit(e) {
-      e.preventDefault();
-      showToast('✓ You are subscribed to the Skillsfy Weekly Dispatch!', 'success');
-    }
-
-    // ================= FOCUS READING MODE =================
-    function toggleFocusMode() {
-      document.body.classList.toggle('focus-mode-active');
-      const isFocus = document.body.classList.contains('focus-mode-active');
-      const btnText = document.getElementById('focus-mode-text');
-      if (btnText) btnText.textContent = isFocus ? 'Exit Focus' : 'Focus Mode';
-      showToast(isFocus ? '🔍 Focus Reading Mode activated' : 'Exited Focus Mode', 'info');
-    }
-
-    // ================= DAY / DARK READING MODE =================
-    function initTheme() {
-      const savedTheme = localStorage.getItem('skillsfy_article_theme') || 'light';
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark-reading-mode');
-        updateDarkUI(true);
-      } else {
-        document.body.classList.remove('dark-reading-mode');
-        updateDarkUI(false);
-      }
-    }
-
-    function toggleDayDarkMode() {
-      document.body.classList.toggle('dark-reading-mode');
-      const isDark = document.body.classList.contains('dark-reading-mode');
-      localStorage.setItem('skillsfy_article_theme', isDark ? 'dark' : 'light');
-      updateDarkUI(isDark);
-      showToast(isDark ? '🌙 Dark reading mode enabled' : '☀️ Day reading mode enabled', 'info');
-    }
-
-    function updateDarkUI(isDark) {
-      const hIcon = document.getElementById('dark-mode-icon-header');
-      const hText = document.getElementById('dark-mode-text-header');
-      if (hIcon) hIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
-      if (hText) hText.textContent = isDark ? 'Day View' : 'Dark View';
-
-      const tIcon = document.getElementById('dark-toggle-icon');
-      const tText = document.getElementById('dark-toggle-text');
-      if (tIcon) tIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
-      if (tText) tText.textContent = isDark ? 'Day View' : 'Dark View';
-    }
-
-    // ================= FONT SIZE SCALER =================
-    function changeFontSize(size) {
-      document.body.classList.remove('fs-sm', 'fs-md', 'fs-lg');
-      document.body.classList.add(`fs-${size}`);
-      showToast(`Font size: ${size.toUpperCase()}`, 'info');
-    }
-
-    // ================= INTERACTIVE DIGITAL STUDY GUIDE UTILITIES =================
-    function togglePyqSolved(cardId) {
-      const card = document.getElementById(cardId);
-      if (!card) return;
-      card.classList.toggle('is-solved');
-      const isSolved = card.classList.contains('is-solved');
-      const btn = card.querySelector('button[title="Mark as Practised"] span:last-child');
-      if (btn) btn.textContent = isSolved ? 'हल किया ✓' : 'हल किया';
-      
-      const savedSolved = JSON.parse(localStorage.getItem('skillsfy_pyqs_solved') || '[]');
-      if (isSolved) {
-        if (!savedSolved.includes(cardId)) savedSolved.push(cardId);
-        showToast('✓ प्रश्न अभ्यास पूर्ण मार्क हो गया!', 'success');
-      } else {
-        const idx = savedSolved.indexOf(cardId);
-        if (idx !== -1) savedSolved.splice(idx, 1);
-        showToast('अभ्यास स्थिति रीसेट की गई', 'info');
-      }
-      localStorage.setItem('skillsfy_pyqs_solved', JSON.stringify(savedSolved));
-    }
-
-    function copyQuestionText(text) {
-      navigator.clipboard.writeText(text);
-      showToast('📋 प्रश्न क्लिपबोर्ड पर कॉपी हो गया!', 'success');
-    }
-
-    function toggleChecklist(el) {
-      el.classList.toggle('checked');
-      const icon = el.querySelector('.material-symbols-outlined');
-      if (icon) {
-        icon.textContent = el.classList.contains('checked') ? 'check_box' : 'check_box_outline_blank';
-      }
-    }
-
-    function openMobileToc() {
-      const modal = document.getElementById('mobile-toc-modal');
-      if (modal) modal.classList.remove('hidden');
-    }
-
-    function closeMobileToc() {
-      const modal = document.getElementById('mobile-toc-modal');
-      if (modal) modal.classList.add('hidden');
-    }
-
-    // Scroll Reading Progress Bar & TOC Spy
+    // Scroll active TOC item highlight
     window.addEventListener('scroll', () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-      const bar = document.getElementById('reading-progress-bar');
-      if (bar) bar.style.width = scrolled + '%';
-
-      const studyBar = document.getElementById('study-progress-bar');
-      const studyPct = document.getElementById('study-progress-pct');
-      if (studyBar) studyBar.style.width = Math.min(100, Math.round(scrolled)) + '%';
-      if (studyPct) studyPct.textContent = Math.min(100, Math.round(scrolled)) + '%';
-
-      // Active TOC link highlighting
-      const sections = document.querySelectorAll('h2[id], h3[id], div[id]');
+      const sections = document.querySelectorAll('div[id], h2[id], section[id]');
       let currentSection = '';
       sections.forEach(sec => {
         const top = sec.getBoundingClientRect().top;
-        if (top <= 160 && top >= -200) currentSection = sec.id;
+        if (top <= 140 && top >= -300) currentSection = sec.id;
       });
       if (currentSection) {
-        document.querySelectorAll('.toc-link').forEach(link => {
+        document.querySelectorAll('.toc-item').forEach(link => {
           if (link.getAttribute('href') === `#${currentSection}`) {
             link.classList.add('active');
           } else {
@@ -1266,7 +698,6 @@
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-      initTheme();
       initArticlesRouter();
     });
   </script>
