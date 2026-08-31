@@ -565,7 +565,7 @@
   </footer>
 
   <!-- ================= 4. JAVASCRIPT ROUTER & RENDER LOGIC ================= -->
-  <script src="js/articles-data.js"></script>
+  <script src="js/articles-data.js?v=20260831_02"></script>
   <script>
     let activeCategory = 'all';
     let currentArticleSlug = '';
@@ -579,11 +579,12 @@
       setTimeout(() => toast.classList.add('hidden'), 3000);
     }
 
+    
     function normalizeSlug(s) {
       return decodeURIComponent(s || '')
         .toLowerCase()
         .trim()
-        .replace(/[s_]+/g, '-')
+        .replace(/[\s_]+/g, '-')
         .replace(/[^a-z0-9-]/g, '');
     }
 
@@ -600,6 +601,7 @@
       }) || null;
     }
 
+    
     function getQueryParams() {
       const params = new URLSearchParams(window.location.search);
       const pathname = window.location.pathname;
@@ -607,12 +609,12 @@
       let catFromPath = '';
 
       if (pathname.includes('/guides/')) {
-        const cleanPath = pathname.substring(pathname.indexOf('/guides/') + 8).replace(//$/, '');
+        const cleanPath = pathname.substring(pathname.indexOf('/guides/') + 8).replace(/\/$/, '');
         if (cleanPath && cleanPath !== 'guides' && cleanPath !== 'guides.html') {
           slugFromPath = cleanPath;
         }
       } else if (pathname.includes('/articles/')) {
-        const cleanPath = pathname.substring(pathname.indexOf('/articles/') + 10).replace(//$/, '');
+        const cleanPath = pathname.substring(pathname.indexOf('/articles/') + 10).replace(/\/$/, '');
         if (cleanPath.startsWith('category/')) {
           catFromPath = cleanPath.replace('category/', '');
         } else if (cleanPath && cleanPath !== 'articles' && cleanPath !== 'articles.html') {

@@ -49,7 +49,7 @@ window.SKILLSFY_ARTICLES_DATA = {
         "how-to-make-money-with-ai-beginners-india",
         "ai-monetization-guide-students"
       ],
-      "featured": false,
+      "featured": true,
       "popularRank": 1,
       "category": "High-Income Skills",
       "categorySlug": "skills",
@@ -142,7 +142,7 @@ window.SKILLSFY_ARTICLES_DATA = {
         "mp-board-class-10-svadhyayi-guide",
         "mpbse-class-10-pyq-blueprint"
       ],
-      "featured": true,
+      "featured": false,
       "popularRank": 1,
       "category": "Study Guides",
       "categorySlug": "study-guides",
