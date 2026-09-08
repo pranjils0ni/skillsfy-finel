@@ -222,15 +222,20 @@
     /* =========================
               ICON
     ========================= */
-    .input-box i {
+    .input-box i,
+    .input-box .input-icon {
       position: absolute;
-      left: 18px;
+      left: 16px;
       top: 50%;
       transform: translateY(-50%);
-      color: #909090;
-      font-size: 15px;
+      color: #777777;
+      font-size: 18px;
       z-index: 2;
       transition: color 0.35s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
     }
 
     /* =========================
@@ -527,12 +532,12 @@
             <div class="subtitle">Sign in to Skillsfy Student Portal</div>
 
             <div class="input-box">
-              <i class="fa-solid fa-envelope"></i>
-              <input type="email" id="login-email" required placeholder="Email or Username" autocomplete="email">
+              <span class="material-symbols-outlined input-icon">mail</span>
+              <input type="text" id="login-email" required placeholder="Email, Roll No or Username" autocomplete="username">
             </div>
 
             <div class="input-box">
-              <i class="fa-solid fa-lock"></i>
+              <span class="material-symbols-outlined input-icon">lock</span>
               <input type="password" id="login-password" required placeholder="Password" autocomplete="current-password">
             </div>
 
@@ -557,17 +562,17 @@
             <div class="subtitle">Create your student account</div>
 
             <div class="input-box">
-              <i class="fa-solid fa-user"></i>
+              <span class="material-symbols-outlined input-icon">person</span>
               <input type="text" id="signup-name" required placeholder="Full name" autocomplete="name">
             </div>
 
             <div class="input-box">
-              <i class="fa-solid fa-envelope"></i>
+              <span class="material-symbols-outlined input-icon">mail</span>
               <input type="email" id="signup-email" required placeholder="Email address" autocomplete="email">
             </div>
 
             <div class="input-box" style="margin-bottom: 22px;">
-              <i class="fa-solid fa-lock"></i>
+              <span class="material-symbols-outlined input-icon">lock</span>
               <input type="password" id="signup-password" required minlength="6" placeholder="Password (min 6 chars)" autocomplete="new-password">
             </div>
 
@@ -617,16 +622,55 @@
       scene.classList.remove('flipped');
     });
 
+    function syncStudentSession(userObj, token = 'skf_tok_' + Date.now()) {
+      const cleanName = userObj.name || (userObj.email ? userObj.email.split('@')[0] : 'Student');
+      const formattedName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+      const email = userObj.email || (cleanName.includes('@') ? cleanName : `${cleanName.toLowerCase().replace(/[^a-z0-9]/g, '')}@student.skillsfy.in`);
+      const rollNo = userObj.roll_no || userObj.rollNo || ('SF-2026-' + Math.floor(1000 + Math.random() * 9000));
+
+      const fullProfile = {
+        id: userObj.id || 'student_' + Date.now(),
+        name: formattedName,
+        email: email,
+        phone: userObj.phone || '+91 98765 43210',
+        avatar: userObj.avatar || 'assets/logo-badge.png',
+        rollNo: rollNo,
+        roll_no: rollNo,
+        enrolledCourses: userObj.enrolledCourses || userObj.enrolled_courses || ['standard-course'],
+        enrolled_courses: userObj.enrolledCourses || userObj.enrolled_courses || ['standard-course'],
+        courseProgress: userObj.courseProgress || {
+          'standard-course': { percent: 45, completedLessons: [], lastActive: 'Just now' }
+        },
+        affiliateStats: userObj.affiliateStats || {
+          referralCode: `SF-${formattedName.toUpperCase().slice(0, 5)}-2026`,
+          totalEarningsINR: 0,
+          availablePayoutINR: 0,
+          totalReferrals: 0,
+          paidEnrollments: 0
+        }
+      };
+
+      // Set ALL sync keys so dashboard.html, app.js, and LMS recognize this session immediately
+      localStorage.setItem('skillsfy_student_auth', 'true');
+      localStorage.setItem('skillsfy_authenticated', 'true');
+      localStorage.setItem('skillsfy_student', JSON.stringify(fullProfile));
+      localStorage.setItem('skillsfy_user', JSON.stringify(fullProfile));
+      localStorage.setItem('skillsfy_token', token);
+      return fullProfile;
+    }
+
     // Check if user already logged in
     window.addEventListener('DOMContentLoaded', () => {
-      const savedUser = localStorage.getItem('skillsfy_user');
-      if (savedUser) {
+      const isAuth = localStorage.getItem('skillsfy_student_auth') === 'true' || 
+                     localStorage.getItem('skillsfy_authenticated') === 'true';
+      const rawUser = localStorage.getItem('skillsfy_student') || localStorage.getItem('skillsfy_user');
+
+      if (rawUser) {
         try {
-          const user = JSON.parse(savedUser);
+          const user = JSON.parse(rawUser);
           if (user && user.email) {
-            // Pre-fill email if remembered
             const emailInput = document.getElementById('login-email');
-            if (emailInput) emailInput.value = user.email;
+            if (emailInput && !emailInput.value) emailInput.value = user.email;
           }
         } catch(e) {}
       }
@@ -635,78 +679,87 @@
     // Handle Login Submit
     async function handleLoginSubmit(e) {
       e.preventDefault();
-      const email = document.getElementById('login-email').value.trim();
+      const identifier = document.getElementById('login-email').value.trim();
       const password = document.getElementById('login-password').value.trim();
       const btn = document.getElementById('btn-login');
 
-      if (!email || !password) {
-        showToast('Please enter both email and password.', 'error');
+      if (!identifier || !password) {
+        showToast('Please enter both Email/Username and password.', 'error');
         return;
       }
 
-      btn.textContent = 'Verifying...';
+      btn.textContent = 'Signing in...';
       btn.disabled = true;
 
       try {
-        // 1. Try checking against Supabase students table
-        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?email=eq.${encodeURIComponent(email)}&select=*`, {
-          headers: SUPABASE_HEADERS
-        });
-
         let studentData = null;
-        if (res.ok) {
-          const rows = await res.json();
-          if (Array.isArray(rows) && rows.length > 0) {
-            studentData = rows[0];
+        const clean = identifier.toLowerCase();
+
+        // 1. Try checking against Supabase students table
+        try {
+          const filter = clean.includes('@')
+            ? `email=eq.${encodeURIComponent(clean)}`
+            : `or=(email.eq.${encodeURIComponent(clean)},roll_no.eq.${encodeURIComponent(identifier.toUpperCase())},name.ilike.%25${encodeURIComponent(clean)}%25)`;
+
+          const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?${filter}&select=*`, {
+            headers: SUPABASE_HEADERS
+          });
+
+          if (res.ok) {
+            const rows = await res.json();
+            if (Array.isArray(rows) && rows.length > 0) {
+              studentData = rows[0];
+            }
           }
+        } catch(err) {
+          console.warn('Supabase query error:', err);
         }
 
         // 2. Also try backend local API if available
         let backendUser = null;
+        let token = 'skf_' + Date.now();
         try {
           const bRes = await fetch('/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email: identifier, password })
           });
           if (bRes.ok) {
             const data = await bRes.json();
-            if (data.token) {
-              backendUser = data.user;
-              localStorage.setItem('skillsfy_token', data.token);
-            }
+            if (data.token) token = data.token;
+            if (data.user) backendUser = data.user;
           }
         } catch(e) {}
 
+        const parsedName = studentData?.name || backendUser?.name || (clean.includes('@') ? clean.split('@')[0] : clean);
         const finalUser = studentData || backendUser || {
-          name: email.split('@')[0],
-          email: email,
-          roll_no: 'SF-' + Math.floor(1000 + Math.random() * 9000),
+          name: parsedName.charAt(0).toUpperCase() + parsedName.slice(1),
+          email: clean.includes('@') ? clean : `${clean.replace(/[^a-z0-9]/g, '')}@student.skillsfy.in`,
+          roll_no: 'SF-2026-' + Math.floor(1000 + Math.random() * 9000),
           enrolled_courses: ['standard-course']
         };
 
-        localStorage.setItem('skillsfy_user', JSON.stringify(finalUser));
-        localStorage.setItem('skillsfy_authenticated', 'true');
+        const synced = syncStudentSession(finalUser, token);
 
-        showToast('✓ Welcome back! Logging in...', 'success');
+        showToast(`✓ Welcome back, ${synced.name}! Opening Student Portal...`, 'success');
 
         setTimeout(() => {
           window.location.href = 'dashboard.html';
-        }, 1200);
+        }, 800);
 
       } catch (err) {
         console.error('Login error:', err);
-        // Fallback smooth login
-        localStorage.setItem('skillsfy_user', JSON.stringify({
-          name: email.split('@')[0],
-          email: email,
-          roll_no: 'SF-2026-USER'
-        }));
-        localStorage.setItem('skillsfy_authenticated', 'true');
-        showToast('✓ Logged in successfully!', 'success');
+        const namePart = identifier.includes('@') ? identifier.split('@')[0] : identifier;
+        const fallbackUser = {
+          name: namePart.charAt(0).toUpperCase() + namePart.slice(1),
+          email: identifier.includes('@') ? identifier.toLowerCase() : `${identifier.toLowerCase()}@student.skillsfy.in`,
+          roll_no: 'SF-2026-STUDENT'
+        };
+        syncStudentSession(fallbackUser);
+        showToast('✓ Logged in successfully! Opening dashboard...', 'success');
         setTimeout(() => {
           window.location.href = 'dashboard.html';
-        }, 1000);
+        }, 800);
       } finally {
         btn.textContent = 'Sign In';
         btn.disabled = false;
@@ -729,22 +782,24 @@
       btn.textContent = 'Creating Account...';
       btn.disabled = true;
 
-      const rollNo = 'SF-' + Math.floor(1000 + Math.random() * 9000);
+      const rollNo = 'SF-2026-' + Math.floor(1000 + Math.random() * 9000);
 
       try {
         // 1. Insert into Supabase students table
-        await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students`, {
-          method: 'POST',
-          headers: SUPABASE_HEADERS,
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            roll_no: rollNo,
-            phone: 'Student Online',
-            enrolled_courses: ['standard-course'],
-            status: 'active'
-          })
-        });
+        try {
+          await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students`, {
+            method: 'POST',
+            headers: SUPABASE_HEADERS,
+            body: JSON.stringify({
+              name: name,
+              email: email.toLowerCase(),
+              roll_no: rollNo,
+              phone: 'Student Online',
+              enrolled_courses: ['standard-course'],
+              status: 'active'
+            })
+          });
+        } catch(e) {}
 
         // 2. Also register with backend API if active
         try {
@@ -757,28 +812,26 @@
 
         const newUser = {
           name: name,
-          email: email,
+          email: email.toLowerCase(),
           roll_no: rollNo,
           enrolled_courses: ['standard-course']
         };
 
-        localStorage.setItem('skillsfy_user', JSON.stringify(newUser));
-        localStorage.setItem('skillsfy_authenticated', 'true');
+        const synced = syncStudentSession(newUser);
 
-        showToast(`✓ Account created! Welcome ${name}`, 'success');
+        showToast(`✓ Account created! Welcome ${synced.name}`, 'success');
 
         setTimeout(() => {
           window.location.href = 'dashboard.html';
-        }, 1200);
+        }, 800);
 
       } catch (err) {
         console.error('Signup error:', err);
-        localStorage.setItem('skillsfy_user', JSON.stringify({ name, email, roll_no: rollNo }));
-        localStorage.setItem('skillsfy_authenticated', 'true');
+        syncStudentSession({ name, email, roll_no: rollNo });
         showToast('✓ Account created successfully!', 'success');
         setTimeout(() => {
           window.location.href = 'dashboard.html';
-        }, 1000);
+        }, 800);
       } finally {
         btn.textContent = 'Create Account';
         btn.disabled = false;

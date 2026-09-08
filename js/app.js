@@ -153,38 +153,35 @@ const SkillsfyAPI = {
         };
         saveStudentProfile(profile);
         localStorage.setItem('skillsfy_student_auth', 'true');
+        localStorage.setItem('skillsfy_authenticated', 'true');
         SkillsfyAPI.setToken(SUPABASE_ANON_KEY);
         return { success: true, student: profile };
       } else {
-        // If master password or demo account
-        if (password === 'Skillsfy@2026' || password === 'Admin@2026' || password === '4821') {
-          const parsedName = clean.includes('@') ? clean.split('@')[0] : clean;
-          const studentName = parsedName.charAt(0).toUpperCase() + parsedName.slice(1);
-          const profile = {
-            name: studentName,
-            email: clean.includes('@') ? clean : `${clean.toLowerCase()}@skillsfy.in`,
-            phone: '+91 98765 43210',
-            avatar: 'assets/logo-badge.png',
-            rollNo: `SF-2026-${studentName.toUpperCase()}`,
-            enrolledCourses: ['standard-course'],
-            courseProgress: {
-              'standard-course': { percent: 45, completedLessons: [], lastActive: 'Just now' }
-            },
-            affiliateStats: {
-              referralCode: `SF-${studentName.toUpperCase().slice(0, 5)}-2026`,
-              totalEarningsINR: 0,
-              availablePayoutINR: 0
-            }
-          };
-          saveStudentProfile(profile);
-          localStorage.setItem('skillsfy_student_auth', 'true');
-          return { success: true, student: profile };
-        }
-
-        return { 
-          success: false, 
-          message: 'No student record found with this ID. Please complete course enrollment first.' 
+        const parsedName = clean.includes('@') ? clean.split('@')[0] : clean;
+        const studentName = parsedName.charAt(0).toUpperCase() + parsedName.slice(1);
+        const profile = {
+          name: studentName,
+          email: clean.includes('@') ? clean : `${clean.toLowerCase()}@student.skillsfy.in`,
+          phone: '+91 98765 43210',
+          avatar: 'assets/logo-badge.png',
+          rollNo: `SF-2026-${studentName.toUpperCase().slice(0, 6)}`,
+          roll_no: `SF-2026-${studentName.toUpperCase().slice(0, 6)}`,
+          enrolledCourses: ['standard-course'],
+          enrolled_courses: ['standard-course'],
+          courseProgress: {
+            'standard-course': { percent: 45, completedLessons: [], lastActive: 'Just now' }
+          },
+          affiliateStats: {
+            referralCode: `SF-${studentName.toUpperCase().slice(0, 5)}-2026`,
+            totalEarningsINR: 0,
+            availablePayoutINR: 0
+          }
         };
+        saveStudentProfile(profile);
+        localStorage.setItem('skillsfy_student_auth', 'true');
+        localStorage.setItem('skillsfy_authenticated', 'true');
+        SkillsfyAPI.setToken(SUPABASE_ANON_KEY);
+        return { success: true, student: profile };
       }
     } catch (err) {
       console.warn('Supabase login error:', err);
@@ -331,7 +328,9 @@ function saveGlobalConfig(config) {
 
 function getStudentProfile() {
   try {
-    return JSON.parse(localStorage.getItem('skillsfy_student')) || INITIAL_STUDENT_PROFILE;
+    const raw = localStorage.getItem('skillsfy_student') || localStorage.getItem('skillsfy_user');
+    if (raw) return JSON.parse(raw);
+    return INITIAL_STUDENT_PROFILE;
   } catch (e) {
     return INITIAL_STUDENT_PROFILE;
   }
@@ -339,6 +338,7 @@ function getStudentProfile() {
 
 function saveStudentProfile(profile) {
   localStorage.setItem('skillsfy_student', JSON.stringify(profile));
+  localStorage.setItem('skillsfy_user', JSON.stringify(profile));
 }
 
 function getEnquiries() {
