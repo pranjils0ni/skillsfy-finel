@@ -55,7 +55,7 @@ window.SKILLSFY_ARTICLES_DATA = {
       "categorySlug": "skills",
       "authorId": "editorial-team",
       "publishedAt": "30 August 2026",
-      "readingTime": "12-Page Complete Playbook",
+      "readingTime": "12 min read",
       "coverImage": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=85",
       "tags": [
         "AI Monetization",
@@ -132,7 +132,11 @@ window.SKILLSFY_ARTICLES_DATA = {
           "id": "scam-filter",
           "title": "07. स्कैम फिल्टर एवं अंतिम सिद्धांत"
         }
-      ]
+      ],
+      "difficulty": "Beginner",
+      "views": 38400,
+      "completionRate": 94,
+      "publishedDaysAgo": 2
     },
     {
       "id": "art-mpbse-10-svadhyayi",
@@ -148,7 +152,7 @@ window.SKILLSFY_ARTICLES_DATA = {
       "categorySlug": "study-guides",
       "authorId": "editorial-team",
       "publishedAt": "28 August 2026",
-      "readingTime": "14-Page Complete E-Book",
+      "readingTime": "15 min read",
       "coverImage": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
       "tags": [
         "MP Board",
@@ -241,7 +245,11 @@ window.SKILLSFY_ARTICLES_DATA = {
           "id": "sources",
           "title": "10. शैक्षणिक अस्वीकरण"
         }
-      ]
+      ],
+      "difficulty": "Beginner",
+      "views": 29100,
+      "completionRate": 91,
+      "publishedDaysAgo": 4
     },
     {
       "id": "art-01",
@@ -304,7 +312,11 @@ window.SKILLSFY_ARTICLES_DATA = {
           "id": "ai-framework",
           "title": "3. The 3-Step Verification Rule"
         }
-      ]
+      ],
+      "difficulty": "Beginner",
+      "views": 18200,
+      "completionRate": 88,
+      "publishedDaysAgo": 9
     },
     {
       "id": "art-02",
@@ -367,7 +379,11 @@ window.SKILLSFY_ARTICLES_DATA = {
           "id": "skill-3",
           "title": "3. API Integration & Realtime Sync"
         }
-      ]
+      ],
+      "difficulty": "Intermediate",
+      "views": 24700,
+      "completionRate": 86,
+      "publishedDaysAgo": 6
     },
     {
       "id": "art-03",
@@ -382,7 +398,7 @@ window.SKILLSFY_ARTICLES_DATA = {
       "categorySlug": "freelancing",
       "authorId": "editorial-team",
       "publishedAt": "16 August 2026",
-      "readingTime": "9 min read",
+      "readingTime": "11 min read",
       "coverImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85",
       "tags": [
         "Freelancing",
@@ -430,7 +446,11 @@ window.SKILLSFY_ARTICLES_DATA = {
           "id": "contract-close",
           "title": "3. Closing & Payment Handling"
         }
-      ]
+      ],
+      "difficulty": "Intermediate",
+      "views": 21500,
+      "completionRate": 89,
+      "publishedDaysAgo": 8
     },
     {
       "id": "art-muky-2026",
@@ -445,7 +465,7 @@ window.SKILLSFY_ARTICLES_DATA = {
       "categorySlug": "study-guides",
       "authorId": "editorial-team",
       "publishedAt": "25 August 2026",
-      "readingTime": "11 min read",
+      "readingTime": "14 min read",
       "coverImage": "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=85",
       "tags": [
         "MP Govt",
@@ -493,7 +513,115 @@ window.SKILLSFY_ARTICLES_DATA = {
           "id": "step-by-step",
           "title": "3. Step-by-Step Online Process"
         }
-      ]
+      ],
+      "difficulty": "Beginner",
+      "views": 31200,
+      "completionRate": 93,
+      "publishedDaysAgo": 3
+    },
+    {
+      "id": "art-python-automation",
+      "slug": "python-web-automation-playbook-beginners",
+      "category": "AI & Technology",
+      "categorySlug": "ai-technology",
+      "difficulty": "Intermediate",
+      "views": 22400,
+      "completionRate": 87,
+      "publishedDaysAgo": 5,
+      "readingTime": "14 min read",
+      "tags": [
+        "Python",
+        "Automation",
+        "Web Scraping",
+        "APIs",
+        "Data Extraction"
+      ],
+      "title": "Python & Web Automation Playbook: From Basic Script to Real-World Production",
+      "subtitle": "Learn how to automate boring data entry, scrape marketplaces, and build autonomous background scrapers in 2026.",
+      "translations": {
+        "en": {
+          "title": "Python & Web Automation Playbook: From Basic Script to Production",
+          "subtitle": "Learn how to automate boring data entry, scrape marketplaces, and build autonomous scrapers.",
+          "tldr": [
+            "Understand Playwright vs BeautifulSoup for dynamic JavaScript web extraction.",
+            "Build error-handling retry routines for robust scrapers.",
+            "Schedule scripts via headless cron or GitHub actions for free.",
+            "Package outputs directly into CSV, Excel, or Google Sheets."
+          ]
+        },
+        "hinglish": {
+          "title": "Python & Web Automation Playbook: Zero Se Real-World Script Tak",
+          "subtitle": "Seekho data entry automate karna, websites scrape karna, aur automated background scrapers banana.",
+          "tldr": [
+            "Modern websites scrape karne ke liye BeautifulSoup aur Playwright ka practical use.",
+            "Bina server kharide free me GitHub actions se script schedule karna.",
+            "Data ko seedhe Excel ya Google Sheets me sync karne ka method.",
+            "Error handling aur IP block se bachne ke golden rules."
+          ]
+        },
+        "hi": {
+          "title": "पायथन एवं वेब ऑटोमेशन प्लेबुक: बेसिक स्क्रिप्ट से वास्तविक प्रोजेक्ट्स तक",
+          "subtitle": "डेटा एंट्री ऑटोमेशन, मार्केटप्लेस स्क्रैपिंग और बैकग्राउंड ऑटोमेशन टूल्स का व्यावहारिक मार्गदर्शन।",
+          "tldr": [
+            "वेबसाइट्स से उपयोगी डेटा निकालने के लिए आधुनिक टूल्स का प्रयोग।",
+            "फ्री में ऑटोमेटेड टास्क्स रन करने की तकनीकें।",
+            "एक्सेल और शीट्स में ऑटो-सिंक की व्यवस्था।",
+            "व्यावहारिक उदाहरणों के साथ स्टेप-बाय-स्टेप कोड।"
+          ]
+        }
+      }
+    },
+    {
+      "id": "art-prompt-engineering-biz",
+      "slug": "prompt-engineering-for-business-professionals-2026",
+      "category": "High-Income Skills",
+      "categorySlug": "skills",
+      "difficulty": "Advanced",
+      "views": 26800,
+      "completionRate": 92,
+      "publishedDaysAgo": 1,
+      "readingTime": "10 min read",
+      "tags": [
+        "Prompt Engineering",
+        "AI Strategy",
+        "Productivity",
+        "LLM Workflows",
+        "Business"
+      ],
+      "title": "Enterprise Prompt Engineering: The Structured Framework for Knowledge Workers",
+      "subtitle": "Stop getting generic answers. Use cognitive role prompting, chained reasoning, and zero-shot schema constraints.",
+      "translations": {
+        "en": {
+          "title": "Enterprise Prompt Engineering: Structured Frameworks for Knowledge Workers",
+          "subtitle": "Stop getting generic answers. Master cognitive role prompting, chained reasoning, and JSON schemas.",
+          "tldr": [
+            "Role-Task-Constraint-Exemplar (RTCE) architectural framework.",
+            "Few-shot prompting for deterministic, hallucination-free business output.",
+            "Extracting structured JSON and markdown reports effortlessly.",
+            "System prompt optimization for production AI agents."
+          ]
+        },
+        "hinglish": {
+          "title": "Enterprise Prompt Engineering: Business & Freelancing Ke Liye Professional Framework",
+          "subtitle": "Generic answers lena band karo. Cognitive role prompting aur structured templates se perfect results lo.",
+          "tldr": [
+            "RTCE Framework: Sahi output lene ka 4-step structural formula.",
+            "Hallucination aur galat data rokne ke liye constraints aur examples ka use.",
+            "Complex reports aur Excel sheets ke liye structured prompts.",
+            "Real-world client deliverables banane ke practical tareeqe."
+          ]
+        },
+        "hi": {
+          "title": "उन्नत प्रॉम्प्ट इंजीनियरिंग: प्रोफेशनल्स के लिए व्यावहारिक गाइड",
+          "subtitle": "एआई से सटीक, विश्वसनीय और बिजनेस-ग्रेड परिणाम प्राप्त करने का स्ट्रक्चर्ड फ्रेमवर्क।",
+          "tldr": [
+            "सटीक आउटपुट के लिए 4-स्तरीय प्रॉम्प्ट आर्किटेक्चर।",
+            "गलत जवाबों से बचने के लिए उदाहरण-आधारित तकनीकों का उपयोग।",
+            "रिपोर्ट्स और डेटा एनालिसिस के लिए रेडी-टू-यूज़ टेम्पलेट्स।",
+            "प्रोफेशनल वर्कफ्लो को 5 गुना तेज करने के व्यावहारिक नियम।"
+          ]
+        }
+      }
     }
   ]
 };

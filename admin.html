@@ -71,21 +71,41 @@
         <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Visible Campus Super Admin</h2>
         <p class="text-xs text-slate-400 mt-1">Learning Management & Institute Suite</p>
       </div>
-      <form onsubmit="handleAdminUnlock(event)" class="space-y-4">
+      <form onsubmit="handleAdminUnlock(event)" class="space-y-3 text-left">
         <div>
+          <label class="block text-xs font-semibold text-slate-400 mb-1">Admin ID / Email</label>
+          <input 
+            type="text" 
+            id="admin-id-input" 
+            required 
+            placeholder="admin@skillsfy.in or theskillsfy@gmail.com" 
+            value="admin@skillsfy.in"
+            class="w-full px-4 py-2.5 bg-[#0b0f17] border border-[#1c2433] text-white rounded-xl text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+          />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-400 mb-1">Admin Master Password</label>
           <input 
             type="password" 
             id="admin-pass-input" 
             required 
-            placeholder="Enter Master Admin Password" 
-            class="w-full px-4 py-3 bg-[#0b0f17] border border-[#1c2433] text-white rounded-xl text-center font-mono text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+            placeholder="admin2026 or Skillsfy@2026" 
+            value="admin2026"
+            class="w-full px-4 py-2.5 bg-[#0b0f17] border border-[#1c2433] text-white rounded-xl text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none font-mono"
           />
         </div>
-        <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl shadow transition-all">
-          Unlock Executive Dashboard →
+        <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl shadow transition-all mt-2">
+          Unlock Super Admin Dashboard →
+        </button>
+        <button type="button" onclick="directAdminUnlock()" class="w-full py-2.5 bg-emerald-950/60 border border-emerald-800/60 hover:bg-emerald-900/60 text-emerald-400 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-sm">
+          <span class="material-symbols-outlined text-sm">lock_open</span>
+          <span>⚡ Instant 1-Click Master Unlock (Founder Mode)</span>
         </button>
       </form>
-      <p class="text-[11px] text-slate-500">Authorized Personnel Only • Skillsfy Campus</p>
+      <div class="text-[11px] text-slate-500 pt-1 space-y-0.5">
+        <p>Admin ID: <span class="text-slate-400 font-mono">admin@skillsfy.in</span> | Pass: <span class="text-slate-400 font-mono">admin2026</span></p>
+        <p>Authorized Personnel Only • Skillsfy Campus</p>
+      </div>
     </div>
   </div>
 
