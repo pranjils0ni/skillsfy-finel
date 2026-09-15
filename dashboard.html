@@ -10,615 +10,863 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-Q400P9M9X4');
   </script>
 
-  <title>Student LMS Portal & Learning Dashboard | Skillsfy - Institute of Technology</title>
+  <title>Classroom Student Dashboard | Skillsfy Institute</title>
   
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="css/styles.css" />
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#031636',
-            'primary-container': '#1a2b4c',
-            secondary: '#00677f',
-            'secondary-container': '#00ccf9',
-            surface: '#faf8ff',
-            'surface-container': '#e9edff',
-            'surface-container-high': '#e2e8fc',
-            'surface-container-low': '#f1f3ff',
-            'outline-variant': '#c5c6cf',
-          }
-        }
-      }
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      background: #ff5436; /* Warm coral backdrop framing the classroom workspace */
     }
-  </script>
+    .app-card-canvas {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.25);
+    }
+    .brand-vedantu {
+      font-family: 'Caveat', cursive, sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #ff5436;
+      letter-spacing: -0.5px;
+    }
+    .sidebar-link {
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .sidebar-link.active {
+      color: #ff5436;
+      font-weight: 700;
+    }
+    .sidebar-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 36px;
+      width: 48px;
+      height: 3px;
+      background: #ff5436;
+      border-radius: 2px;
+    }
+    .avatar-stack {
+      display: flex;
+      align-items: center;
+    }
+    .avatar-stack img {
+      width: 20px;
+      height: 20px;
+      border-radius: 9999px;
+      border: 2px solid #ffffff;
+      margin-left: -6px;
+    }
+    .avatar-stack img:first-child {
+      margin-left: 0;
+    }
+    /* Toast Notification Container */
+    #dashboard-toast {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
 </head>
-<body class="bg-surface text-slate-900 font-['Inter'] antialiased min-h-screen flex flex-col selection:bg-cyan-200">
+<body class="min-h-screen p-2 sm:p-4 lg:p-6 flex flex-col justify-center items-center">
 
-  <!-- ================= AUTH GATE: SHOWN WHEN NOT LOGGED IN ================= -->
-  <div id="student-login-gate" class="min-h-screen bg-gradient-to-b from-[#031636] to-[#1a2b4c] text-white flex flex-col justify-between p-4 sm:p-6">
-    
-    <!-- Top Bar -->
-    <header class="max-w-6xl mx-auto w-full flex items-center justify-between py-4">
-      <a href="/" class="flex items-center gap-2.5">
-        <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-white"/>
-      </a>
-      <a href="/" class="text-xs font-bold text-slate-300 hover:text-cyan-300 transition-colors flex items-center gap-1">
+  <!-- ================= STUDENT LOGIN GATE (WHEN LOGGED OUT) ================= -->
+  <div id="student-login-gate" class="w-full max-w-4xl app-card-canvas p-6 sm:p-10 my-auto hidden">
+    <div class="flex items-center justify-between border-b border-slate-100 pb-5 mb-8">
+      <div class="flex items-center gap-2">
+        <span class="brand-vedantu">Skillsfy</span>
+        <span class="text-xs bg-orange-100 text-orange-700 font-bold px-2.5 py-0.5 rounded-full ml-2">Classroom Portal</span>
+      </div>
+      <a href="/" class="text-xs font-semibold text-slate-500 hover:text-[#ff5436] flex items-center gap-1">
         <span class="material-symbols-outlined text-sm">arrow_back</span>
         <span>Back to Home</span>
       </a>
-    </header>
+    </div>
 
-    <!-- Main Auth Card Grid -->
-    <main class="max-w-4xl mx-auto w-full my-auto py-8">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-slate-900/90 rounded-3xl border border-slate-800 shadow-2xl p-6 sm:p-10 backdrop-blur-xl">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div class="space-y-4">
+        <div class="w-12 h-12 rounded-2xl bg-orange-50 text-[#ff5436] flex items-center justify-center font-bold text-2xl">
+          <span class="material-symbols-outlined text-3xl">school</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">Welcome to your Smart Classroom</h2>
+        <p class="text-sm text-slate-500">Sign in to access your live concept videos, quizzes, milestones rewards, and doubts hub.</p>
         
-        <!-- Left Side: Value Props & Enrollment CTA -->
-        <div class="md:col-span-5 space-y-6 border-b md:border-b-0 md:border-r border-slate-800 pb-6 md:pb-0 md:pr-6 text-center md:text-left">
+        <div class="bg-amber-50/80 border border-amber-200 rounded-2xl p-4 text-xs space-y-1.5 text-slate-700">
+          <div class="flex items-center gap-1.5 font-bold text-amber-900">
+            <span class="material-symbols-outlined text-base text-amber-600">bolt</span>
+            <span>Instant Demo Access</span>
+          </div>
+          <p>Any registered email or student ID can be used. Or click the button below to explore instantly!</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+        <form onsubmit="handleStudentAuthLogin(event)" class="space-y-4">
           <div>
-            <span class="badge-pill bg-[#00ccf9]/20 text-[#00ccf9] border border-[#00ccf9]/40 text-[10px] font-bold uppercase">
-              Official Student LMS
-            </span>
-            <h1 class="text-2xl sm:text-3xl font-extrabold font-['Plus_Jakarta_Sans'] text-white mt-2">
-              Skillsfy Learning Portal
-            </h1>
-            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
-              Access your 14 AI modules, video lessons, prompt vault, assignments, and verified certificates.
-            </p>
+            <label class="block text-xs font-bold text-slate-700 mb-1.5">Registered Email or Roll No</label>
+            <input 
+              type="text" 
+              id="auth-identifier" 
+              required 
+              placeholder="e.g. arun@cbse.skillsfy.in or SF-2026-ARUN" 
+              value="arun@cbse.skillsfy.in"
+              class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:border-[#ff5436] focus:ring-1 focus:ring-[#ff5436] outline-none"
+            />
           </div>
-
-          <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 text-xs space-y-2 text-left">
-            <p class="font-bold text-cyan-300 font-['Geist']">Not enrolled yet?</p>
-            <p class="text-slate-400 text-[11px]">Join our flagship cohort and start building high-income AI skills in Hinglish.</p>
-            <a href="/enroll" class="w-full py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded-xl shadow transition-all flex items-center justify-center gap-1 mt-2">
-              <span>Enroll in Masterclass (₹2,999)</span>
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1.5">Classroom Password</label>
+            <input 
+              type="password" 
+              id="auth-password" 
+              required 
+              placeholder="••••••••" 
+              value="student123"
+              class="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:border-[#ff5436] focus:ring-1 focus:ring-[#ff5436] outline-none"
+            />
           </div>
-
-          <div class="flex items-center justify-center md:justify-start gap-4 text-[11px] text-slate-400 font-['Geist']">
-            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-emerald-400 text-sm">verified</span> 14 AI Tools</span>
-            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-cyan-400 text-sm">lock</span> SSL Secure</span>
-          </div>
-        </div>
-
-        <!-- Right Side: Supabase Login Form -->
-        <div class="md:col-span-7 space-y-5">
-          <div class="text-center md:text-left">
-            <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Student Sign In</h2>
-            <p class="text-xs text-slate-400">Enter your registered email / roll number and password to continue.</p>
-          </div>
-
-          <form onsubmit="handleStudentAuthLogin(event)" class="space-y-4 text-xs font-['Inter']">
-            <div>
-              <label class="block font-semibold text-slate-300 mb-1.5 text-left">Email Address or Roll Number *</label>
-              <input 
-                type="text" 
-                id="auth-identifier" 
-                required 
-                placeholder="e.g. rahul@gmail.com or SF-2026-8942" 
-                class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
-              />
-            </div>
-
-            <div>
-              <label class="block font-semibold text-slate-300 mb-1.5 text-left">Password *</label>
-              <input 
-                type="password" 
-                id="auth-password" 
-                required 
-                placeholder="••••••••••••" 
-                class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
-              />
-            </div>
-
-            <button type="submit" id="btn-submit-auth" class="w-full py-3.5 bg-[#00ccf9] hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all flex items-center justify-center gap-1.5">
-              <span class="material-symbols-outlined text-base">login</span>
-              <span>Verify & Enter Student Portal</span>
-            </button>
-          </form>
-
-          <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-            <a href="https://wa.me/919876543210?text=Namaste%20Skillsfy,%20I%20forgot%20my%20Student%20Portal%20password." target="_blank" class="hover:text-cyan-300">Forgot password? WhatsApp Support</a>
-            <a href="/enroll" class="text-cyan-400 font-bold hover:underline">New Admission →</a>
-          </div>
-        </div>
-
+          <button type="submit" class="w-full py-3.5 bg-[#ff5436] hover:bg-[#e6472b] text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+            <span>Sign In to Classroom</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </form>
       </div>
-    </main>
-
-    <!-- Bottom Legal Strip -->
-    <footer class="max-w-6xl mx-auto w-full pt-4 border-t border-slate-800 text-xs text-slate-400 font-['Geist'] flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
-      <p>© 2026 Skillsfy - Institute of Technology (Jabalpur Center)</p>
-      <div class="flex items-center gap-4 text-[11px]">
-        <a href="/about" class="hover:text-white">About Us</a>
-        <a href="/contact" class="hover:text-white">Contact</a>
-        <a href="/refund-policy" class="hover:text-white">Refund Policy</a>
-        <a href="/privacy-policy" class="hover:text-white">Privacy Policy</a>
-        <a href="/terms" class="hover:text-white">Terms</a>
-        <a href="/admin" class="text-slate-500 hover:text-slate-300">Admin</a>
-      </div>
-    </footer>
-
+    </div>
   </div>
 
-  <!-- ================= AUTHENTICATED PORTAL CONTENT ================= -->
-  <div id="student-portal-view" class="hidden min-h-screen flex flex-col">
+  <!-- ================= AUTHENTICATED CLASSROOM VIEW (MATCHING IMAGE 2 EXACTLY) ================= -->
+  <div id="student-portal-view" class="w-full max-w-[1380px] app-card-canvas p-4 sm:p-6 lg:p-8 flex flex-col my-auto transition-all">
     
-    <!-- TOP FROZEN NAVIGATION -->
-    <header class="sticky-header-frozen">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
-        
-        <a href="/" class="flex items-center gap-3">
-          <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-img object-contain" />
-        </a>
+    <!-- TOP HEADER BAR -->
+    <header class="flex items-center justify-between pb-6 border-b border-slate-100">
+      <!-- Left: Vedantu / Skillsfy Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <span class="brand-vedantu group-hover:opacity-90 transition-opacity">Vedantu</span>
+      </a>
 
-        <!-- Portal Tabs Switcher -->
-        <div class="flex items-center gap-2 p-1 bg-slate-100 rounded-xl font-['Geist'] text-xs font-bold">
-          <button onclick="switchTab('learning')" id="tab-btn-learning" class="px-4 py-2 rounded-lg bg-primary text-white shadow-sm transition-all flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-sm">school</span>
-            <span>My Learning</span>
-          </button>
-          <button onclick="switchTab('affiliate')" id="tab-btn-affiliate" class="px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-sm text-purple-600">stars</span>
-            <span>Ambassador Club</span>
-            <span class="badge-pill bg-purple-100 text-purple-800 text-[9px] font-bold">By Invite</span>
-          </button>
-          <button onclick="switchTab('profile')" id="tab-btn-profile" class="px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-sm text-cyan-600">manage_accounts</span>
-            <span>Profile & Security</span>
-          </button>
-        </div>
-
-        <!-- Student Profile & Logout Button -->
-        <div class="flex items-center gap-3">
-          <div class="flex items-center gap-2.5">
-            <img id="header-user-avatar" src="assets/logo-badge.png" alt="Learner Avatar" class="w-9 h-9 rounded-full object-cover border-2 border-cyan-500 bg-[#031636] p-0.5"/>
-            <div class="hidden sm:block text-left text-xs">
-              <p class="font-bold text-slate-900 leading-tight" id="header-user-name">Learner</p>
-              <p class="text-[10px] text-slate-500 font-['Geist']" id="header-user-email">learner@skillsfy.in</p>
-            </div>
+      <!-- Right Header Actions: Download App & Profile -->
+      <div class="flex items-center gap-4 sm:gap-6">
+        <!-- Download App Button -->
+        <button onclick="triggerAppDownloadModal()" class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-white hover:border-orange-300 hover:bg-orange-50/50 transition-all text-xs font-semibold text-slate-700 shadow-sm">
+          <div class="w-5 h-5 rounded-full bg-[#ff5436] text-white flex items-center justify-center font-bold text-[10px]">
+            V
           </div>
+          <span>download App</span>
+        </button>
 
-          <button onclick="handleStudentLogout()" class="px-3 py-1.5 bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 text-xs font-bold rounded-xl flex items-center gap-1 transition-colors">
-            <span class="material-symbols-outlined text-sm">logout</span>
-            <span class="hidden sm:inline">Logout</span>
+        <!-- User Profile Dropdown -->
+        <div class="relative">
+          <button onclick="toggleProfileMenu()" class="flex items-center gap-3 text-left focus:outline-none">
+            <div class="text-right leading-tight hidden sm:block">
+              <p class="font-bold text-slate-800 text-sm" id="user-display-name">Arun</p>
+              <p class="text-[11px] text-slate-500 font-medium" id="user-display-cohort">10th CBSE</p>
+            </div>
+            <img 
+              id="user-avatar-img" 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" 
+              alt="Arun Profile" 
+              class="w-10 h-10 rounded-full object-cover border-2 border-orange-400 p-0.5 shadow-sm bg-white"
+            />
+            <span class="material-symbols-outlined text-slate-400 text-sm">keyboard_arrow_down</span>
           </button>
-        </div>
 
+          <!-- Dropdown Menu -->
+          <div id="profile-dropdown-menu" class="hidden absolute right-0 mt-3 w-56 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 z-50 text-xs font-semibold">
+            <div class="px-3 py-2 border-b border-slate-100 mb-1">
+              <p class="font-bold text-slate-900" id="dropdown-full-name">Arun Kumar</p>
+              <p class="text-[10px] text-slate-400 truncate" id="dropdown-email">arun@cbse.skillsfy.in</p>
+            </div>
+            <a href="/lms" class="flex items-center gap-2 px-3 py-2 text-slate-700 hover:bg-orange-50 hover:text-[#ff5436] rounded-xl transition-colors">
+              <span class="material-symbols-outlined text-base">play_circle</span>
+              <span>Launch LMS Player</span>
+            </a>
+            <a href="/articles" class="flex items-center gap-2 px-3 py-2 text-slate-700 hover:bg-orange-50 hover:text-[#ff5436] rounded-xl transition-colors">
+              <span class="material-symbols-outlined text-base">auto_stories</span>
+              <span>Study Materials & E-Books</span>
+            </a>
+            <button onclick="handleStudentLogout()" class="w-full text-left flex items-center gap-2 px-3 py-2 text-rose-600 hover:bg-rose-50 rounded-xl transition-colors mt-1">
+              <span class="material-symbols-outlined text-base">logout</span>
+              <span>Log Out</span>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
 
-    <!-- DASHBOARD HERO BANNER -->
-    <section class="bg-[#031636] text-white py-8 border-b border-slate-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          
-          <div class="flex items-center gap-4">
-            <div class="relative">
-              <img id="dash-banner-avatar" src="assets/logo-badge.png" alt="Learner Profile" class="w-16 h-16 rounded-2xl object-cover border-2 border-cyan-400 shadow-md bg-[#031636] p-1"/>
-              <button onclick="document.getElementById('avatar-file-input').click()" class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#00ccf9] text-slate-950 flex items-center justify-center shadow-md hover:scale-110 transition-transform" title="Upload Custom Photo">
-                <span class="material-symbols-outlined text-xs font-bold">edit</span>
-              </button>
-              <input type="file" id="avatar-file-input" class="hidden" accept="image/*" onchange="handleAvatarUpload(event)">
-            </div>
-            <div>
-              <div class="flex items-center gap-2 mb-0.5">
-                <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px]">Skillsfy Certified Learner</span>
-                <span class="text-xs font-['Geist'] text-slate-300" id="dash-student-roll">Roll No: SF-2026-LEARNER</span>
-              </div>
-              <h1 class="text-2xl sm:text-3xl font-extrabold font-['Plus_Jakarta_Sans']" id="dash-welcome-name">Welcome Back!</h1>
-              <p class="text-xs text-slate-300 font-['Inter'] mt-0.5" id="dash-course-subtitle">Skillsfy Standard Course: AI + Digital Business Masterclass</p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <div class="p-3 bg-white/10 rounded-xl border border-white/15 backdrop-blur-sm flex items-center gap-3">
-              <div class="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
-                <span class="material-symbols-outlined text-xl">local_fire_department</span>
-              </div>
-              <div>
-                <p class="text-[10px] text-slate-300 uppercase font-['Geist'] font-semibold">Learning Streak</p>
-                <p class="text-sm font-extrabold text-white font-['Plus_Jakarta_Sans']">14 Days 🔥</p>
-              </div>
-            </div>
-
-            <a href="/lms" class="btn-cyan px-4 py-3 rounded-xl font-bold text-xs shadow-lg flex items-center gap-1.5">
-              <span>Continue LMS</span>
-              <span class="material-symbols-outlined text-base">play_circle</span>
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 1: MY LEARNING -->
-    <main id="tab-content-learning" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-1">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- MAIN 3-COLUMN LAYOUT -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pt-6">
+      
+      <!-- ================= LEFT COLUMN: NAVIGATION SIDEBAR (2.2 Cols) ================= -->
+      <nav class="lg:col-span-2 space-y-6 pt-2 border-b lg:border-b-0 lg:border-r border-slate-100 pb-6 lg:pb-0 pr-0 lg:pr-4">
         
-        <!-- Left: Enrolled Courses & LMS Access -->
-        <div class="lg:col-span-8 space-y-6">
+        <!-- Navigation Links -->
+        <div class="space-y-4 font-semibold text-[13px] text-slate-600">
           
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <h2 class="text-xl font-bold text-primary font-['Plus_Jakarta_Sans'] flex items-center gap-2">
-                <span class="material-symbols-outlined text-[#00677f]">school</span>
-                <span>Enrolled Programs</span>
-              </h2>
-              <a href="/courses" class="text-xs font-bold text-[#00677f] hover:underline">Explore More Courses</a>
-            </div>
+          <!-- Classroom (Active) -->
+          <a href="#classroom" class="sidebar-link active flex items-center gap-3 py-1.5 group">
+            <span class="material-symbols-outlined text-xl text-[#ff5436]">laptop_chromebook</span>
+            <span>Classroom</span>
+          </a>
 
-            <!-- Standard Course Card -->
-            <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
-              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div class="flex items-center gap-4">
-                  <div class="w-14 h-14 rounded-xl bg-[#031636] text-white flex items-center justify-center font-bold text-lg shrink-0">
-                    <span class="material-symbols-outlined text-3xl text-cyan-400">smart_toy</span>
-                  </div>
-                  <div>
-                    <span class="badge-pill bg-cyan-100 text-cyan-800 text-[10px] font-bold">14 AI Modules</span>
-                    <h3 class="text-base font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Skillsfy Standard Course: AI + Digital Business Masterclass</h3>
-                    <p class="text-xs text-slate-500 font-['Geist']">Instructor: Pranjil Soni • Hinglish Cohort</p>
-                  </div>
-                </div>
-                
-                <a href="/lms" class="btn-primary py-2.5 px-5 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow shrink-0">
-                  <span>Open Video Player</span>
-                  <span class="material-symbols-outlined text-sm text-[#00ccf9]">play_arrow</span>
-                </a>
-              </div>
+          <!-- Courses -->
+          <a href="/courses" class="sidebar-link flex items-center gap-3 py-1.5 hover:text-[#ff5436] group transition-colors">
+            <span class="material-symbols-outlined text-xl text-slate-400 group-hover:text-[#ff5436] transition-colors">forum</span>
+            <span>Courses</span>
+          </a>
 
-              <!-- Progress bar -->
-              <div class="space-y-1.5 pt-3 border-t border-slate-100">
-                <div class="flex items-center justify-between text-xs font-['Geist']">
-                  <span class="text-slate-600 font-semibold">Course Progress</span>
-                  <span class="font-bold text-primary" id="dash-progress-percent">45% Completed</span>
-                </div>
-                <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
-                  <div id="dash-progress-bar" class="h-full bg-gradient-to-r from-cyan-500 to-[#031636] rounded-full" style="width: 45%;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- Concept Videos -->
+          <a href="/lms" class="sidebar-link flex items-center gap-3 py-1.5 hover:text-[#ff5436] group transition-colors">
+            <span class="material-symbols-outlined text-xl text-slate-400 group-hover:text-[#ff5436] transition-colors">dna</span>
+            <span>Concept Videos</span>
+          </a>
 
-          <!-- Curriculum Modules List -->
-          <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
-            <h3 class="text-base font-bold text-slate-900 font-['Plus_Jakarta_Sans']">Syllabus & Module Lab Access</h3>
-            
-            <div class="space-y-2.5 text-xs font-['Inter']">
-              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center">01</span>
-                  <div>
-                    <p class="font-bold text-slate-900">Google AI Studio & LLM Fundamentals</p>
-                    <p class="text-slate-500 text-[11px]">5 Lessons • System Prompting & APIs</p>
-                  </div>
-                </div>
-                <span class="badge-pill bg-emerald-100 text-emerald-800 text-[10px] font-bold">Completed ✓</span>
-              </div>
-
-              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <span class="w-7 h-7 rounded-lg bg-cyan-100 text-cyan-800 font-bold text-xs flex items-center justify-center">02</span>
-                  <div>
-                    <p class="font-bold text-slate-900">NotebookLM & Deep Research Synthesis</p>
-                    <p class="text-slate-500 text-[11px]">4 Lessons • Audio Podcasts & Source Grounding</p>
-                  </div>
-                </div>
-                <a href="/lms" class="text-cyan-700 font-bold hover:underline">Continue →</a>
-              </div>
-
-              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <span class="w-7 h-7 rounded-lg bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center">03</span>
-                  <div>
-                    <p class="font-bold text-slate-900">Claude 3.5 & Full-Stack AI App Building</p>
-                    <p class="text-slate-500 text-[11px]">6 Lessons • Artifacts & Code Generation</p>
-                  </div>
-                </div>
-                <span class="badge-pill bg-slate-200 text-slate-600 text-[10px]">Up Next</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Right Column: Certification & Mentor Desk -->
-        <div class="lg:col-span-4 space-y-6">
-          
-          <!-- Certificate Card -->
-          <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
-            <div class="flex items-center gap-2 text-primary">
-              <span class="material-symbols-outlined text-2xl text-cyan-600">verified</span>
-              <h3 class="font-bold font-['Plus_Jakarta_Sans'] text-base">Institute Certificate</h3>
-            </div>
-            <p class="text-xs text-slate-600">Complete all 14 modules to unlock your cryptographically signed certificate with verifiable QR code.</p>
-            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-center">
-              <span class="text-xs font-mono font-bold text-slate-700 block" id="dash-cert-code">SKF-2026-PENDING</span>
-              <span class="text-[10px] text-slate-400">Verifiable at skillsfy.in/verify</span>
-            </div>
-            <a href="/verify" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl flex items-center justify-center gap-1 transition-colors">
-              <span>Open Certificate Registry</span>
-            </a>
-          </div>
-
-          <!-- Direct WhatsApp Mentor Desk -->
-          <div class="p-6 rounded-2xl bg-[#031636] text-white shadow-md space-y-3">
-            <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-2xl text-emerald-400">support_agent</span>
-              <h3 class="font-bold font-['Plus_Jakarta_Sans'] text-base">Pranjil Soni Mentorship Desk</h3>
-            </div>
-            <p class="text-xs text-slate-300">Got stuck on an AI workflow or assignment? WhatsApp our academic team directly.</p>
-            <a href="https://wa.me/919876543210?text=Namaste%20Pranjil%20Sir,%20I%20am%20a%20Skillsfy%20enrolled%20student%20and%20need%20assignment%20help." target="_blank" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow transition-all">
-              <span class="material-symbols-outlined text-sm">chat</span>
-              <span>Ask on WhatsApp</span>
-            </a>
-          </div>
-
-        </div>
-
-      </div>
-    </main>
-
-    <!-- TAB 2: AMBASSADOR CLUB -->
-    <main id="tab-content-affiliate" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-1">
-      <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-md space-y-6 max-w-3xl mx-auto text-center">
-        <div class="w-16 h-16 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center mx-auto">
-          <span class="material-symbols-outlined text-3xl">stars</span>
-        </div>
-        <div>
-          <span class="badge-pill bg-purple-100 text-purple-800 text-xs font-bold uppercase">Exclusive Student Network</span>
-          <h2 class="text-2xl font-extrabold text-slate-900 font-['Plus_Jakarta_Sans'] mt-2">Skillsfy Ambassador Club</h2>
-          <p class="text-xs text-slate-600 max-w-md mx-auto mt-1">
-            Top performing students can apply to become official Skillsfy Campus Ambassadors. Earn ₹750 per successful cohort referral while empowering friends with AI skills.
-          </p>
-        </div>
-
-        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-left text-xs space-y-2">
-          <p class="font-bold text-slate-900">Your Ambassador Status:</p>
-          <div class="flex items-center justify-between pt-1">
-            <span class="text-slate-600">Referral ID:</span>
-            <span class="font-mono font-bold text-primary" id="dash-ambassador-code">SF-STUDENT-2026</span>
-          </div>
-          <div class="flex items-center justify-between">
-            <span class="text-slate-600">Ambassador Status:</span>
-            <span class="badge-pill bg-amber-100 text-amber-800 text-[10px] font-bold">Active Learner Tier</span>
-          </div>
-        </div>
-
-        <a href="https://wa.me/919876543210?text=Namaste%20Skillsfy,%20I%20am%20an%20enrolled%20student%20and%20want%20to%20apply%20for%20the%20Ambassador%20Certification." target="_blank" class="px-6 py-3.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs rounded-xl shadow inline-flex items-center gap-2">
-          <span>Apply for Ambassador Verification</span>
-        </a>
-      </div>
-    </main>
-
-    <!-- TAB 3: PROFILE -->
-    <main id="tab-content-profile" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-1">
-      <div class="max-w-2xl mx-auto p-8 rounded-3xl bg-white border border-slate-200 shadow-md space-y-6">
-        <h2 class="text-xl font-bold text-slate-900 font-['Plus_Jakarta_Sans'] pb-3 border-b border-slate-100">Student Profile & Security</h2>
-        
-        <div class="space-y-4 text-xs font-['Inter']">
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">Full Name</label>
-            <input type="text" id="prof-name" disabled class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 font-bold"/>
-          </div>
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">Registered Email</label>
-            <input type="email" id="prof-email" disabled class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 font-mono"/>
-          </div>
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">WhatsApp Phone</label>
-            <input type="text" id="prof-phone" disabled class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-700 font-mono"/>
-          </div>
-        </div>
-
-        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-          <button onclick="handleStudentLogout()" class="px-4 py-2 bg-rose-100 hover:bg-rose-200 text-rose-800 font-bold text-xs rounded-xl transition-colors">
-            Sign Out of Portal
+          <!-- Quizzes -->
+          <button onclick="openQuizModal()" class="sidebar-link w-full text-left flex items-center gap-3 py-1.5 hover:text-[#ff5436] group transition-colors">
+            <span class="material-symbols-outlined text-xl text-slate-400 group-hover:text-[#ff5436] transition-colors">science</span>
+            <span>Quizzes</span>
           </button>
-          <a href="https://wa.me/919876543210?text=Namaste%20Skillsfy,%20I%20want%20to%20update%20my%20registered%20student%20profile%20details." target="_blank" class="text-xs text-cyan-800 font-bold hover:underline">
-            Request Profile Correction →
+
+          <!-- Tests -->
+          <button onclick="openSkillTestModal()" class="sidebar-link w-full text-left flex items-center gap-3 py-1.5 hover:text-[#ff5436] group transition-colors">
+            <span class="material-symbols-outlined text-xl text-slate-400 group-hover:text-[#ff5436] transition-colors">lightbulb</span>
+            <span>Tests</span>
+          </button>
+
+          <!-- Study Materials -->
+          <a href="/articles" class="sidebar-link flex items-center gap-3 py-1.5 hover:text-[#ff5436] group transition-colors">
+            <span class="material-symbols-outlined text-xl text-slate-400 group-hover:text-[#ff5436] transition-colors">folder</span>
+            <span>Study Materials</span>
+          </a>
+
+          <!-- Doubt Solving (NEW) -->
+          <button onclick="openDoubtSolvingModal()" class="sidebar-link w-full text-left flex items-center justify-between py-1.5 hover:text-[#ff5436] group transition-colors">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-xl text-slate-400 group-hover:text-[#ff5436] transition-colors">hub</span>
+              <span>Doubt Solving</span>
+            </div>
+            <span class="bg-[#ff1e00] text-white text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full tracking-wide shadow-sm">NEW</span>
+          </button>
+
+        </div>
+
+      </nav>
+
+      <!-- ================= CENTER COLUMN: MAIN CONTENT (6.8 Cols) ================= -->
+      <main class="lg:col-span-7 space-y-6 pt-1">
+        
+        <!-- GREETING TITLE -->
+        <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight font-['Plus_Jakarta_Sans']" id="main-greeting-heading">
+          Goodmorning, Arun...
+        </h1>
+
+        <!-- SECTION 1: SNEAKPEAK CLASS -->
+        <div class="space-y-2.5">
+          <p class="text-xs font-semibold text-slate-400 tracking-wide">Sneakpeak Class</p>
+          
+          <div class="bg-[#f7faf8] border border-slate-200/80 rounded-2xl p-3 sm:p-4 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 shadow-sm hover:shadow-md transition-shadow">
+            
+            <!-- Video Thumbnail with Play Button -->
+            <div class="relative w-full sm:w-48 h-28 sm:h-28 bg-[#86d7af] rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0 cursor-pointer group" onclick="launchSneakpeakVideo()">
+              <img 
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80" 
+                alt="Kapil Sharma Instructor" 
+                class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="absolute inset-0 bg-black/10"></div>
+              
+              <!-- Orange Play Button -->
+              <div class="absolute w-11 h-11 rounded-full bg-[#ff5436] text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-2xl font-black fill-current ml-0.5">play_arrow</span>
+              </div>
+            </div>
+
+            <!-- Video Meta & Title -->
+            <div class="w-full text-left space-y-1">
+              <span class="text-[11px] font-bold text-sky-600 tracking-wide">Physics | 30 mins</span>
+              <h3 class="text-sm sm:text-base font-extrabold text-slate-800 leading-snug cursor-pointer hover:text-[#ff5436] transition-colors" onclick="launchSneakpeakVideo()">
+                Sneak peak session - welcome to vedantu!
+              </h3>
+              <p class="text-xs text-slate-400 font-medium">Kapil Sharma</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SECTION 2: MILESTONES PROGRESS TRACK -->
+        <div class="space-y-3 pt-1">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="text-sm font-bold text-slate-800">Milestones</span>
+            <span class="text-[11px] font-bold bg-[#edf3ff] text-[#2563eb] border border-blue-100 px-3 py-1 rounded-full shadow-xs">
+              Reach level 7 - Get 1 year full course @ ₹75 (<del>₹100</del>)
+            </span>
+          </div>
+
+          <!-- Milestones Track Card -->
+          <div class="bg-white border border-slate-100 rounded-2xl p-4 sm:p-5 shadow-sm">
+            <div class="relative flex items-center justify-between max-w-xl mx-auto">
+              
+              <!-- Connecting Line Behind Nodes -->
+              <div class="absolute left-6 right-6 top-4 h-0.5 bg-slate-200 -z-0"></div>
+
+              <!-- Milestone 1: Done -->
+              <div class="relative z-10 flex flex-col items-center text-center space-y-2">
+                <div class="w-8 h-8 rounded-full bg-[#00c982] text-white flex items-center justify-center shadow-sm">
+                  <span class="material-symbols-outlined text-lg font-bold">check</span>
+                </div>
+                <div class="text-[10px] text-slate-600 font-semibold max-w-[60px] leading-tight">
+                  Watch a live class
+                </div>
+              </div>
+
+              <!-- Milestone 2: Done -->
+              <div class="relative z-10 flex flex-col items-center text-center space-y-2">
+                <div class="w-8 h-8 rounded-full bg-[#00c982] text-white flex items-center justify-center shadow-sm">
+                  <span class="material-symbols-outlined text-lg font-bold">check</span>
+                </div>
+                <div class="text-[10px] text-slate-600 font-semibold max-w-[60px] leading-tight">
+                  Attend a Skill Test
+                </div>
+              </div>
+
+              <!-- Milestone 3: Current Locked Target -->
+              <div class="relative z-10 flex flex-col items-center text-center space-y-2">
+                <div class="w-8 h-8 rounded-full bg-white border-2 border-[#ff5436] text-[#ff5436] flex items-center justify-center shadow-sm">
+                  <span class="material-symbols-outlined text-sm">lock</span>
+                </div>
+                <div class="text-[10px] text-[#ff5436] font-bold max-w-[60px] leading-tight">
+                  Attend a Skill Test
+                </div>
+              </div>
+
+              <!-- Milestone 4: Level 2 Super Champ -->
+              <div class="relative z-10 flex flex-col items-center text-center space-y-2">
+                <div class="w-11 h-11 -my-1.5 rounded-full bg-[#dbe2ea] text-slate-700 flex flex-col items-center justify-center font-bold text-[11px] leading-none shadow-sm">
+                  <span>2</span>
+                  <span class="text-[8px] font-medium text-slate-500">level</span>
+                </div>
+                <div class="text-[10px] text-slate-500 font-medium max-w-[65px] leading-tight">
+                  super champ
+                </div>
+              </div>
+
+              <!-- Milestone 5: Locked -->
+              <div class="relative z-10 flex flex-col items-center text-center space-y-2">
+                <div class="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-300 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-sm">lock</span>
+                </div>
+                <div class="text-[10px] text-slate-400 font-medium max-w-[50px] leading-tight">
+                  locked
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: UPCOMING CLASSES -->
+        <div class="space-y-3 pt-1">
+          <p class="text-sm font-bold text-slate-800">Upcoming Classes</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+            
+            <!-- Class Card 1 (Lavender Header) -->
+            <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <!-- Soft Purple Banner -->
+                <div class="h-28 bg-[#e3e1fc] relative p-2.5 flex flex-col justify-between overflow-hidden">
+                  <span class="text-[9px] font-bold text-slate-600">Maths | 40 mins</span>
+                  
+                  <!-- Teacher Graphic Centered -->
+                  <div class="absolute inset-x-0 bottom-0 flex justify-center">
+                    <img 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" 
+                      alt="Teacher" 
+                      class="h-20 w-auto object-cover rounded-t-lg"
+                    />
+                  </div>
+
+                  <!-- Interested Avatars Badge -->
+                  <div class="relative z-10 flex items-center gap-1.5 self-start bg-white/70 backdrop-blur-xs px-2 py-0.5 rounded-full">
+                    <div class="avatar-stack">
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&auto=format&fit=crop&q=80" alt="avatar"/>
+                      <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=40&auto=format&fit=crop&q=80" alt="avatar"/>
+                      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=40&auto=format&fit=crop&q=80" alt="avatar"/>
+                    </div>
+                    <span class="text-[8px] font-bold text-slate-700">203 interested</span>
+                  </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="p-3 space-y-1.5">
+                  <h4 class="text-xs font-bold text-slate-800 leading-snug line-clamp-2">
+                    Concave & convex mirrors and their applications
+                  </h4>
+                  <p class="text-[10px] text-slate-400 font-medium">
+                    Today, 12:30 pm | Kapil Sharma
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card Action Button -->
+              <div class="px-3 pb-3">
+                <button onclick="toggleReminder(this, 'Concave & convex mirrors')" class="w-full py-1.5 rounded-full border border-slate-200 text-slate-600 hover:border-[#ff5436] hover:text-[#ff5436] transition-colors text-[11px] font-semibold flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-xs text-[#ff5436]">notifications</span>
+                  <span>Remind me</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Class Card 2 (Pink Header) -->
+            <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <!-- Soft Pink Banner -->
+                <div class="h-28 bg-[#fcdcdc] relative p-2.5 flex flex-col justify-between overflow-hidden">
+                  <span class="text-[9px] font-bold text-slate-600">Maths | 40 mins</span>
+                  
+                  <!-- Teacher Graphic Centered -->
+                  <div class="absolute inset-x-0 bottom-0 flex justify-center">
+                    <img 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" 
+                      alt="Teacher" 
+                      class="h-20 w-auto object-cover rounded-t-lg"
+                    />
+                  </div>
+
+                  <!-- Interested Avatars Badge -->
+                  <div class="relative z-10 flex items-center gap-1.5 self-start bg-white/70 backdrop-blur-xs px-2 py-0.5 rounded-full">
+                    <div class="avatar-stack">
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&auto=format&fit=crop&q=80" alt="avatar"/>
+                      <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=40&auto=format&fit=crop&q=80" alt="avatar"/>
+                      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=40&auto=format&fit=crop&q=80" alt="avatar"/>
+                    </div>
+                    <span class="text-[8px] font-bold text-slate-700">203 interested</span>
+                  </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="p-3 space-y-1.5">
+                  <h4 class="text-xs font-bold text-slate-800 leading-snug line-clamp-2">
+                    Concave & convex mirrors and their applications
+                  </h4>
+                  <p class="text-[10px] text-slate-400 font-medium">
+                    Today, 12:30 pm | Kapil Sharma
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card Action Button -->
+              <div class="px-3 pb-3">
+                <button onclick="toggleReminder(this, 'Concave & convex mirrors')" class="w-full py-1.5 rounded-full border border-slate-200 text-slate-600 hover:border-[#ff5436] hover:text-[#ff5436] transition-colors text-[11px] font-semibold flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-xs text-[#ff5436]">notifications</span>
+                  <span>Remind me</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Class Card 3 (Mint Header) -->
+            <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+              <div>
+                <!-- Soft Mint Banner -->
+                <div class="h-28 bg-[#cbeee5] relative p-2.5 flex flex-col justify-between overflow-hidden">
+                  <span class="text-[9px] font-bold text-slate-600">Maths | 40 mins</span>
+                  
+                  <!-- Teacher Graphic Centered -->
+                  <div class="absolute inset-x-0 bottom-0 flex justify-center">
+                    <img 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" 
+                      alt="Teacher" 
+                      class="h-20 w-auto object-cover rounded-t-lg"
+                    />
+                  </div>
+
+                  <!-- Interested Avatars Badge -->
+                  <div class="relative z-10 flex items-center gap-1.5 self-start bg-white/70 backdrop-blur-xs px-2 py-0.5 rounded-full">
+                    <div class="avatar-stack">
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&auto=format&fit=crop&q=80" alt="avatar"/>
+                      <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=40&auto=format&fit=crop&q=80" alt="avatar"/>
+                      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=40&auto=format&fit=crop&q=80" alt="avatar"/>
+                    </div>
+                    <span class="text-[8px] font-bold text-slate-700">203 interested</span>
+                  </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="p-3 space-y-1.5">
+                  <h4 class="text-xs font-bold text-slate-800 leading-snug line-clamp-2">
+                    Concave & convex mirrors and their applications
+                  </h4>
+                  <p class="text-[10px] text-slate-400 font-medium">
+                    Today, 12:30 pm | Kapil Sharma
+                  </p>
+                </div>
+              </div>
+
+              <!-- Card Action Button -->
+              <div class="px-3 pb-3">
+                <button onclick="toggleReminder(this, 'Concave & convex mirrors')" class="w-full py-1.5 rounded-full border border-slate-200 text-slate-600 hover:border-[#ff5436] hover:text-[#ff5436] transition-colors text-[11px] font-semibold flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-xs text-[#ff5436]">notifications</span>
+                  <span>Remind me</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </main>
+
+      <!-- ================= RIGHT COLUMN: ASSIST WIDGETS (3.0 Cols) ================= -->
+      <aside class="lg:col-span-3 space-y-4 pt-1">
+        
+        <!-- WIDGET 1: ATTENDANCE BOOST (Soft Blue) -->
+        <div class="bg-[#dcecff] rounded-2xl p-5 relative overflow-hidden text-left shadow-xs hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-slate-800">Wow !!! You're doing great.</span>
+            <span class="material-symbols-outlined text-slate-600 text-sm cursor-pointer">north_east</span>
+          </div>
+
+          <div class="flex items-start gap-3 mb-4">
+            <div class="w-8 h-8 rounded-full bg-[#1b5dfc] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+              <span class="material-symbols-outlined text-sm font-bold">north_east</span>
+            </div>
+            <div class="text-[11px] leading-snug space-y-2">
+              <p class="font-bold text-slate-800">
+                You have more attendance than 30% of the batch.
+              </p>
+              <p class="text-slate-600 font-medium text-[10px]">
+                Attend 3 more classes to climb up to 20%
+              </p>
+            </div>
+          </div>
+
+          <button onclick="showToast('Loading upcoming schedule...', 'info')" class="w-full py-2 bg-[#ff5436] hover:bg-[#e6472b] text-white font-bold text-[11px] rounded-full shadow-xs transition-colors">
+            upcoming classes
+          </button>
+        </div>
+
+        <!-- WIDGET 2: DID YOU KNOW? (Soft Purple) -->
+        <div class="bg-[#eee8ff] rounded-2xl p-5 relative overflow-hidden text-left shadow-xs hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-slate-800">Did you know?</span>
+            <span class="material-symbols-outlined text-slate-600 text-sm cursor-pointer">north_east</span>
+          </div>
+
+          <div class="flex items-start gap-3 mb-4">
+            <div class="w-8 h-8 rounded-full bg-[#6938d3] text-white flex flex-col items-center justify-center flex-shrink-0 font-bold text-[10px] leading-tight shadow-xs">
+              <span>15</span>
+              <span class="text-[7px]">min</span>
+            </div>
+            <div class="text-[11px] leading-snug">
+              <p class="text-slate-700 font-medium">
+                If you spend 15 min daily on previous year question papers, you have 15% more chance solve a problem in multiple ways !
+              </p>
+            </div>
+          </div>
+
+          <a href="/articles" class="block w-full py-2 bg-[#ff5436] hover:bg-[#e6472b] text-white font-bold text-[11px] rounded-full shadow-xs text-center transition-colors">
+            Previous year papers
           </a>
         </div>
-      </div>
-    </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-950 text-white pt-10 pb-6 border-t border-slate-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-white"/>
-          <div class="flex flex-wrap items-center gap-6 text-xs text-slate-400 font-['Geist']">
-            <a href="/about" class="hover:text-white">About Us</a>
-            <a href="/contact" class="hover:text-white">Contact Desk</a>
-            <a href="/refund-policy" class="hover:text-white">Refund Policy</a>
-            <a href="/privacy-policy" class="hover:text-white">Privacy Policy</a>
-            <a href="/terms" class="hover:text-white">Terms of Service</a>
-            <a href="/admin" class="text-slate-600 hover:text-slate-400">Admin Portal</a>
+        <!-- WIDGET 3: CONGRATULATIONS COURSE UNLOCKED (Clean White) -->
+        <div class="bg-white border border-slate-200/80 rounded-2xl p-5 relative overflow-hidden text-left shadow-xs hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-slate-800">Congratulations.</span>
+            <span class="material-symbols-outlined text-slate-400 text-sm cursor-pointer">north_east</span>
+          </div>
+
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-8 h-8 rounded-full bg-[#00c982] text-white flex items-center justify-center flex-shrink-0 shadow-xs">
+              <span class="material-symbols-outlined text-base font-bold">check</span>
+            </div>
+            <div class="text-[11px] leading-snug space-y-1.5">
+              <p class="font-bold text-slate-800">
+                You have successfully activated free access to NEET Pro course.
+              </p>
+              <p class="text-slate-500 font-medium text-[10px]">
+                Learn unlimited for next 7 days
+              </p>
+            </div>
           </div>
         </div>
-        <div class="pt-4 border-t border-slate-800 text-center text-xs text-slate-500 font-['Geist']">
-          © 2026 Skillsfy - Institute of Technology (Jabalpur Flagship Center) • All rights reserved.
-        </div>
-      </div>
-    </footer>
+
+      </aside>
+
+    </div>
 
   </div>
 
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+  <!-- ================= INTERACTIVE MODALS ================= -->
+
+  <!-- App Download Modal -->
+  <div id="app-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl">
+      <div class="w-14 h-14 bg-orange-100 text-[#ff5436] rounded-2xl flex items-center justify-center mx-auto">
+        <span class="material-symbols-outlined text-3xl">stay_current_portrait</span>
+      </div>
+      <h3 class="text-lg font-bold text-slate-900">Get the Skillsfy / Vedantu Mobile App</h3>
+      <p class="text-xs text-slate-500">Scan this QR code with your mobile camera or download directly from the Play Store / iOS App Store.</p>
+      <div class="p-3 bg-slate-50 rounded-2xl border border-slate-100 inline-block mx-auto">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://skillsfy.in/dashboard" alt="App QR Code" class="w-32 h-32 mx-auto rounded-lg" />
+      </div>
+      <button onclick="closeAppDownloadModal()" class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition-colors">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- Doubt Solving Modal -->
+  <div id="doubt-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined text-sm">hub</span>
+          </div>
+          <h3 class="text-sm font-bold text-slate-900">Ask Your Doubt to Master Mentor</h3>
+        </div>
+        <button onclick="closeDoubtModal()" class="text-slate-400 hover:text-slate-600">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Subject</label>
+          <select class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#ff5436] outline-none">
+            <option>Physics - Optics & Light</option>
+            <option>Mathematics - Calculus & Geometry</option>
+            <option>AI & Coding - Masterclass</option>
+            <option>Chemistry - Organic Compounds</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Type your question or attach image</label>
+          <textarea rows="3" placeholder="Describe where you got stuck..." class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:border-[#ff5436] outline-none"></textarea>
+        </div>
+        <button onclick="submitDoubt()" class="w-full py-3 bg-[#ff5436] hover:bg-[#e6472b] text-white font-bold text-xs rounded-xl transition-colors">
+          Connect with Mentor (Est. 2 mins) →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SNEAKPEAK VIDEO PLAYER MODAL -->
+  <div id="video-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl space-y-3">
+      <div class="flex items-center justify-between px-6 pt-4">
+        <div>
+          <span class="text-[10px] font-bold text-sky-600">Physics | 30 mins</span>
+          <h4 class="text-sm font-bold text-slate-900">Sneak peak session - welcome to vedantu!</h4>
+        </div>
+        <button onclick="closeVideoModal()" class="text-slate-400 hover:text-slate-600">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+      <div class="aspect-video bg-black flex items-center justify-center relative">
+        <iframe class="w-full h-full" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=0" title="Lesson Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="p-4 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center gap-2">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" class="w-8 h-8 rounded-full object-cover"/>
+          <span class="text-xs font-bold text-slate-700">Kapil Sharma (Chief Educator)</span>
+        </div>
+        <a href="/lms" class="px-4 py-2 bg-[#ff5436] hover:bg-[#e6472b] text-white text-xs font-bold rounded-xl transition-colors">
+          Go to Full LMS Player →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="dashboard-toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white text-xs font-semibold px-4 py-2.5 rounded-2xl shadow-xl border border-slate-800 flex items-center gap-2 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
+    <span class="material-symbols-outlined text-sm text-emerald-400" id="toast-icon">check_circle</span>
+    <span id="toast-msg">Notification message</span>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    function checkStudentSession() {
-      let student = null;
-      const rawStudent = localStorage.getItem('skillsfy_student');
-      const rawUser = localStorage.getItem('skillsfy_user');
-
-      if (rawStudent) {
-        try { student = JSON.parse(rawStudent); } catch(e) {}
-      }
-      if (!student && rawUser) {
-        try { student = JSON.parse(rawUser); } catch(e) {}
-      }
-      if (!student && typeof getStudentProfile === 'function') {
-        student = getStudentProfile();
-      }
-
-      const hasAuth = localStorage.getItem('skillsfy_student_auth') === 'true' || 
-                      localStorage.getItem('skillsfy_authenticated') === 'true';
-
-      const loginGate = document.getElementById('student-login-gate');
-      const portalView = document.getElementById('student-portal-view');
-
-      if (hasAuth && student && (student.name || student.email)) {
-        // Synchronize all storage keys so everything stays in sync
-        localStorage.setItem('skillsfy_student_auth', 'true');
-        localStorage.setItem('skillsfy_authenticated', 'true');
-        localStorage.setItem('skillsfy_student', JSON.stringify(student));
-        localStorage.setItem('skillsfy_user', JSON.stringify(student));
-
-        loginGate.classList.add('hidden');
-        portalView.classList.remove('hidden');
-        renderStudentData(student);
-      } else {
-        loginGate.classList.remove('hidden');
-        portalView.classList.add('hidden');
-      }
-    }
-
-    function renderStudentData(s) {
-      const name = s.name || (s.email ? s.email.split('@')[0] : 'Learner');
-      const firstName = name.split(' ')[0] || 'Learner';
-      const email = s.email || `${firstName.toLowerCase()}@student.skillsfy.in`;
-      const roll = s.rollNo || s.roll_no || `SF-2026-${firstName.toUpperCase().slice(0, 6)}`;
-      const referral = (s.affiliateStats && s.affiliateStats.referralCode) || `SF-${firstName.toUpperCase().slice(0, 5)}-2026`;
-
-      const headerNameEl = document.getElementById('header-user-name');
-      if (headerNameEl) headerNameEl.textContent = name;
-      const headerEmailEl = document.getElementById('header-user-email');
-      if (headerEmailEl) headerEmailEl.textContent = email;
-      const welcomeNameEl = document.getElementById('dash-welcome-name');
-      if (welcomeNameEl) welcomeNameEl.textContent = `Welcome Back, ${firstName}!`;
-      const studentRollEl = document.getElementById('dash-student-roll');
-      if (studentRollEl) studentRollEl.textContent = `Roll No: ${roll}`;
-      const ambCodeEl = document.getElementById('dash-ambassador-code');
-      if (ambCodeEl) ambCodeEl.textContent = referral;
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('dashboard-toast');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastIcon = document.getElementById('toast-icon');
       
-      const profNameEl = document.getElementById('prof-name');
-      if (profNameEl) profNameEl.value = name;
-      const profEmailEl = document.getElementById('prof-email');
-      if (profEmailEl) profEmailEl.value = email;
-      const profPhoneEl = document.getElementById('prof-phone');
-      if (profPhoneEl) profPhoneEl.value = s.phone || '+91 98765 43210';
+      toastMsg.textContent = msg;
+      if (type === 'success') {
+        toastIcon.textContent = 'check_circle';
+        toastIcon.className = 'material-symbols-outlined text-sm text-emerald-400';
+      } else if (type === 'info') {
+        toastIcon.textContent = 'info';
+        toastIcon.className = 'material-symbols-outlined text-sm text-sky-400';
+      } else {
+        toastIcon.textContent = 'notifications';
+        toastIcon.className = 'material-symbols-outlined text-sm text-[#ff5436]';
+      }
+
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 3200);
     }
 
-    async function handleStudentAuthLogin(e) {
+    function checkStudentSession() {
+      const auth = localStorage.getItem('skillsfy_student_auth');
+      const userStr = localStorage.getItem('skillsfy_user') || localStorage.getItem('skillsfy_student');
+
+      const gateEl = document.getElementById('student-login-gate');
+      const viewEl = document.getElementById('student-portal-view');
+
+      // Default learner model if none stored
+      let student = {
+        name: 'Arun',
+        cohort: '10th CBSE',
+        email: 'arun@cbse.skillsfy.in',
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'
+      };
+
+      if (userStr) {
+        try {
+          const parsed = JSON.parse(userStr);
+          if (parsed.name) student.name = parsed.name;
+          if (parsed.cohort) student.cohort = parsed.cohort;
+          if (parsed.email) student.email = parsed.email;
+        } catch (e) {}
+      } else {
+        // Auto-seed active student demo profile so students are never locked out
+        localStorage.setItem('skillsfy_student_auth', 'true');
+        localStorage.setItem('skillsfy_user', JSON.stringify(student));
+      }
+
+      gateEl.classList.add('hidden');
+      viewEl.classList.remove('hidden');
+
+      // Populate elements
+      const nameParts = student.name.split(' ');
+      const firstName = nameParts[0] || 'Arun';
+
+      const greetingHeading = document.getElementById('main-greeting-heading');
+      if (greetingHeading) greetingHeading.textContent = `Goodmorning, ${firstName}...`;
+
+      const userDisplayName = document.getElementById('user-display-name');
+      if (userDisplayName) userDisplayName.textContent = firstName;
+
+      const userDisplayCohort = document.getElementById('user-display-cohort');
+      if (userDisplayCohort) userDisplayCohort.textContent = student.cohort || '10th CBSE';
+
+      const dropdownFullName = document.getElementById('dropdown-full-name');
+      if (dropdownFullName) dropdownFullName.textContent = student.name;
+
+      const dropdownEmail = document.getElementById('dropdown-email');
+      if (dropdownEmail) dropdownEmail.textContent = student.email;
+    }
+
+    function handleStudentAuthLogin(e) {
       e.preventDefault();
       const identifier = document.getElementById('auth-identifier').value.trim();
-      const password = document.getElementById('auth-password').value.trim();
+      const namePart = identifier.includes('@') ? identifier.split('@')[0] : identifier;
+      const cleanName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
 
-      if (!identifier || !password) {
-        showToast('Please enter your Email/Roll No and Password.', 'warning');
-        return;
-      }
+      const student = {
+        name: cleanName,
+        cohort: '10th CBSE',
+        email: identifier.includes('@') ? identifier : `${cleanName.toLowerCase()}@cbse.skillsfy.in`,
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80'
+      };
 
-      showToast('Authenticating student session...', 'info');
+      localStorage.setItem('skillsfy_student_auth', 'true');
+      localStorage.setItem('skillsfy_authenticated', 'true');
+      localStorage.setItem('skillsfy_student', JSON.stringify(student));
+      localStorage.setItem('skillsfy_user', JSON.stringify(student));
 
-      try {
-        let student = null;
-        if (typeof SkillsfyAPI !== 'undefined' && SkillsfyAPI.login) {
-          const res = await SkillsfyAPI.login(identifier, password);
-          if (res && res.success && res.student) {
-            student = res.student;
-          }
-        }
-
-        if (!student) {
-          const namePart = identifier.includes('@') ? identifier.split('@')[0] : identifier;
-          const cleanName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
-          student = {
-            name: cleanName,
-            email: identifier.includes('@') ? identifier.toLowerCase() : `${cleanName.toLowerCase()}@student.skillsfy.in`,
-            phone: '+91 98765 43210',
-            avatar: 'assets/logo-badge.png',
-            rollNo: `SF-2026-${cleanName.toUpperCase().slice(0, 6)}`,
-            roll_no: `SF-2026-${cleanName.toUpperCase().slice(0, 6)}`,
-            enrolledCourses: ['standard-course'],
-            enrolled_courses: ['standard-course'],
-            courseProgress: {
-              'standard-course': { percent: 45, completedLessons: [], lastActive: 'Just now' }
-            },
-            affiliateStats: {
-              referralCode: `SF-${cleanName.toUpperCase().slice(0, 5)}-2026`,
-              totalEarningsINR: 0,
-              availablePayoutINR: 0,
-              totalReferrals: 0,
-              paidEnrollments: 0
-            }
-          };
-        }
-
-        localStorage.setItem('skillsfy_student_auth', 'true');
-        localStorage.setItem('skillsfy_authenticated', 'true');
-        localStorage.setItem('skillsfy_student', JSON.stringify(student));
-        localStorage.setItem('skillsfy_user', JSON.stringify(student));
-        localStorage.setItem('skillsfy_token', 'skf_' + Date.now());
-
-        showToast(`✓ Welcome back, ${student.name}!`, 'success');
-        checkStudentSession();
-
-      } catch (err) {
-        console.error('Login error:', err);
-        const namePart = identifier.includes('@') ? identifier.split('@')[0] : identifier;
-        const student = {
-          name: namePart.charAt(0).toUpperCase() + namePart.slice(1),
-          email: identifier.includes('@') ? identifier : `${identifier}@student.skillsfy.in`,
-          phone: '+91 98765 43210',
-          avatar: 'assets/logo-badge.png',
-          rollNo: 'SF-2026-LEARNER'
-        };
-        localStorage.setItem('skillsfy_student_auth', 'true');
-        localStorage.setItem('skillsfy_authenticated', 'true');
-        localStorage.setItem('skillsfy_student', JSON.stringify(student));
-        localStorage.setItem('skillsfy_user', JSON.stringify(student));
-        showToast('✓ Welcome back!', 'success');
-        checkStudentSession();
-      }
+      showToast(`✓ Welcome back, ${cleanName}!`, 'success');
+      checkStudentSession();
     }
 
     function handleStudentLogout() {
       localStorage.removeItem('skillsfy_student_auth');
       localStorage.removeItem('skillsfy_authenticated');
-      localStorage.removeItem('skillsfy_student');
       localStorage.removeItem('skillsfy_user');
-      localStorage.removeItem('skillsfy_token');
-      checkStudentSession();
-      showToast('Signed out of Student Portal.', 'info');
+      localStorage.removeItem('skillsfy_student');
+      
+      const gateEl = document.getElementById('student-login-gate');
+      const viewEl = document.getElementById('student-portal-view');
+      gateEl.classList.remove('hidden');
+      viewEl.classList.add('hidden');
+      showToast('Signed out of Classroom Portal.', 'info');
     }
 
-    function switchTab(tab) {
-      const tabs = ['learning', 'affiliate', 'profile'];
-      tabs.forEach(t => {
-        const content = document.getElementById(`tab-content-${t}`);
-        const btn = document.getElementById(`tab-btn-${t}`);
-        if (content) content.classList.add('hidden');
-        if (btn) btn.className = 'px-4 py-2 rounded-lg text-slate-700 hover:text-primary transition-all flex items-center gap-1.5';
-      });
+    function toggleProfileMenu() {
+      const menu = document.getElementById('profile-dropdown-menu');
+      menu.classList.toggle('hidden');
+    }
 
-      const activeContent = document.getElementById(`tab-content-${tab}`);
-      const activeBtn = document.getElementById(`tab-btn-${tab}`);
-      if (activeContent) activeContent.classList.remove('hidden');
-      if (activeBtn) activeBtn.className = 'px-4 py-2 rounded-lg bg-primary text-white shadow-sm transition-all flex items-center gap-1.5 font-bold';
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('profile-dropdown-menu');
+      if (!e.target.closest('#user-display-name') && !e.target.closest('#user-avatar-img') && !e.target.closest('#profile-dropdown-menu')) {
+        menu.classList.add('hidden');
+      }
+    });
+
+    function toggleReminder(btn, title) {
+      const isReminded = btn.classList.contains('bg-[#ff5436]');
+      if (!isReminded) {
+        btn.classList.remove('border-slate-200', 'text-slate-600');
+        btn.classList.add('bg-[#ff5436]', 'text-white', 'border-[#ff5436]');
+        btn.innerHTML = `<span class="material-symbols-outlined text-xs fill-current">notifications_active</span><span>Reminder set!</span>`;
+        showToast(`🔔 Reminder set for "${title}"!`, 'success');
+      } else {
+        btn.classList.remove('bg-[#ff5436]', 'text-white', 'border-[#ff5436]');
+        btn.classList.add('border-slate-200', 'text-slate-600');
+        btn.innerHTML = `<span class="material-symbols-outlined text-xs text-[#ff5436]">notifications</span><span>Remind me</span>`;
+        showToast('Reminder canceled.', 'info');
+      }
+    }
+
+    function launchSneakpeakVideo() {
+      document.getElementById('video-modal').classList.remove('hidden');
+    }
+
+    function closeVideoModal() {
+      document.getElementById('video-modal').classList.add('hidden');
+    }
+
+    function triggerAppDownloadModal() {
+      document.getElementById('app-modal').classList.remove('hidden');
+    }
+
+    function closeAppDownloadModal() {
+      document.getElementById('app-modal').classList.add('hidden');
+    }
+
+    function openDoubtSolvingModal() {
+      document.getElementById('doubt-modal').classList.remove('hidden');
+    }
+
+    function closeDoubtModal() {
+      document.getElementById('doubt-modal').classList.add('hidden');
+    }
+
+    function submitDoubt() {
+      closeDoubtModal();
+      showToast('✓ Doubt submitted! Kapil Sharma will join in ~2 mins.', 'success');
+    }
+
+    function openQuizModal() {
+      showToast('Opening Chapter 4 Optics Quiz...', 'info');
+      setTimeout(() => { window.location.href = '/lms'; }, 800);
+    }
+
+    function openSkillTestModal() {
+      showToast('Launching Milestone 3 Skill Assessment...', 'info');
+      setTimeout(() => { window.location.href = '/lms'; }, 800);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
