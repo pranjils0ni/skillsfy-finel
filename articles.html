@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,1024 +15,489 @@
 
   <base href="/" />
 
-  <!-- Dynamic Metadata -->
-  <title id="meta-page-title">Educational Study Handbooks & Practical Guides | Skillsfy Hub</title>
-  <meta name="description" id="meta-page-desc" content="Personalized practical study handbooks, AI playbooks, freelance client guides, and MP Board academic blueprints." />
-  <link rel="canonical" id="meta-canonical" href="https://skillsfy.in/articles" />
+  <!-- Dynamic Primary SEO Tags -->
+  <title id="seo-title">Articles & Practical Guides | Skillsfy</title>
+  <meta name="description" id="seo-desc" content="Read practical guides, industry blueprints, startup frameworks, and educational articles from Skillsfy." />
+  <link rel="canonical" id="seo-canonical" href="https://skillsfy.in/articles" />
 
-  <!-- Fonts: Merriweather (Literary Serif Headings), Inter (Clean Reader Body), Noto Sans Devanagari (Crisp Hindi) -->
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Skillsfy" />
+  <meta property="og:title" id="og-title" content="Articles & Practical Guides | Skillsfy" />
+  <meta property="og:description" id="og-desc" content="Read practical guides and educational articles from Skillsfy." />
+  <meta property="og:url" id="og-url" content="https://skillsfy.in/articles" />
+  <meta property="og:image" id="og-image" content="https://skillsfy.in/assets/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" id="tw-title" content="Articles & Practical Guides | Skillsfy" />
+  <meta name="twitter:description" id="tw-desc" content="Read practical guides and educational articles from Skillsfy." />
+  <meta name="twitter:image" id="tw-image" content="https://skillsfy.in/assets/logo.png" />
+
+  <!-- Google Fonts: Plus Jakarta Sans (Headings matching LearnMize) & Inter (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Schema.org JSON-LD for Google Search Console & Rich Snippets -->
+  <script type="application/ld+json" id="seo-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Articles & Practical Guides | Skillsfy",
+    "description": "Read practical guides and educational articles from Skillsfy.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Skillsfy",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://skillsfy.in/assets/logo.png"
+      }
+    }
+  }
+  </script>
+
   <style>
-    /* ================= COZY PAPER THEME TOKENS ================= */
-    :root {
-      --bg-paper: #FAF8F5;
-      --bg-card: #FFFFFF;
-      --text-ink: #2C2C2C;
-      --text-muted: #575757;
-      --border-subtle: #E8E5DF;
-      --accent-amber: #F59E0B;
-      --accent-indigo: #4F46E5;
-      --accent-sage: #10B981;
-      --reading-canvas-bg: #FFFFFF;
-    }
-
-    html.dark {
-      --bg-paper: #0F172A;
-      --bg-card: #1E293B;
-      --text-ink: #F8FAFC;
-      --text-muted: #94A3B8;
-      --border-subtle: #334155;
-      --accent-amber: #FBBF24;
-      --accent-indigo: #818CF8;
-      --accent-sage: #34D399;
-      --reading-canvas-bg: #1E293B;
-    }
-
     body {
-      background-color: var(--bg-paper);
-      color: var(--text-ink);
-      font-family: 'Inter', -apple-system, sans-serif;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #ffffff;
+      color: #111827;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    .font-serif-book {
-      font-family: 'Merriweather', Georgia, serif;
+    /* Exact Article typography from LearnMize screenshots */
+    .article-content {
+      font-size: 1.0625rem; /* ~17px */
+      line-height: 1.7;
+      color: #2d3748;
     }
-    .font-hindi {
-      font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
-    }
-
-    /* Top Reading Progress Bar */
-    #reading-progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3.5px;
-      background: linear-gradient(90deg, #F59E0B, #4F46E5);
-      z-index: 100;
-      width: 0%;
-      transition: width 0.1s linear;
-    }
-
-    /* 3D Book Cover Styling */
-    .book-cover-3d {
-      perspective: 1000px;
-      transform-style: preserve-3d;
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-    }
-    .book-cover-3d:hover {
-      transform: translateY(-6px) rotateY(-4deg) rotateX(2deg);
-      box-shadow: 12px 18px 30px -8px rgba(0, 0, 0, 0.18);
-    }
-    .book-spine-accent {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 8px;
-      background: rgba(0, 0, 0, 0.15);
-      border-right: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    /* Interactive Cards */
-    .handbook-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 18px;
-      transition: all 0.25s ease;
-    }
-    .handbook-card:hover {
-      border-color: #D4D0C7;
-      transform: translateY(-4px);
-      box-shadow: 0 14px 28px -6px rgba(0, 0, 0, 0.08);
-    }
-
-    /* Pill Badges & Filters */
-    .filter-pill {
-      transition: all 0.2s ease;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-    .filter-pill.active {
-      background-color: #2C2C2C;
-      color: #FFFFFF;
-      font-weight: 600;
-    }
-    html.dark .filter-pill.active {
-      background-color: #4F46E5;
-      color: #FFFFFF;
-    }
-
-    /* Moneycontrol Style Q&A Accordion */
-    .qna-accordion-item summary {
-      cursor: pointer;
-      list-style: none;
-    }
-    .qna-accordion-item summary::-webkit-details-marker {
-      display: none;
-    }
-
-    /* Apptivo Action Framework Steps */
-    .action-step-badge {
-      font-family: 'Inter', monospace;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-    }
-
-    /* Reader Canvas Specifics */
-    .reader-prose p {
-      font-size: 1.125rem;
-      line-height: 1.8;
+    .article-content p {
       margin-bottom: 1.5rem;
-      color: var(--text-ink);
     }
-    .reader-prose h2 {
-      font-family: 'Merriweather', serif;
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-top: 2.5rem;
+    .article-content h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      color: #111827;
+      font-size: 2rem; /* 32px mobile */
+      line-height: 1.25;
+      margin-bottom: 1.75rem;
+      letter-spacing: -0.02em;
+    }
+    @media (min-width: 640px) {
+      .article-content h1 {
+        font-size: 2.75rem; /* 44px desktop */
+      }
+    }
+    .article-content h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      color: #111827;
+      font-size: 1.5rem; /* 24px */
+      line-height: 1.3;
+      margin-top: 2.25rem;
       margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border-subtle);
+      letter-spacing: -0.01em;
     }
-    .reader-prose h3 {
-      font-family: 'Merriweather', serif;
-      font-size: 1.35rem;
+    .article-content h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
-      margin-top: 2rem;
+      color: #111827;
+      font-size: 1.25rem;
+      margin-top: 1.75rem;
       margin-bottom: 0.75rem;
     }
-
-    /* Sticky Sidebar Table of Contents */
-    .toc-link.active {
-      color: #4F46E5;
+    .article-content ul {
+      margin-bottom: 1.5rem;
+      padding-left: 0.25rem;
+    }
+    .article-content li {
+      margin-bottom: 0.85rem;
+      line-height: 1.65;
+    }
+    .article-content strong {
+      color: #111827;
       font-weight: 700;
-      border-left: 2px solid #4F46E5;
-      padding-left: 10px;
+    }
+    .article-content em, .article-content .italic {
+      color: #4b5563;
+      font-style: italic;
+    }
+    .article-content a {
+      color: #6366f1;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .article-content figure {
+      margin: 2rem 0;
+    }
+    .article-content figure img {
+      border-radius: 16px;
+      width: 100%;
+      height: auto;
+    }
+    .article-content figcaption {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-align: center;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col antialiased">
+<body class="min-h-screen flex flex-col antialiased bg-white text-slate-900">
 
-  <!-- TOP FIXED READING PROGRESS BAR -->
-  <div id="reading-progress-bar"></div>
+  <!-- ================= TOP NOTIFICATION BANNER (MATCHING LEARNMIZE) ================= -->
+  <div class="bg-gradient-to-r from-[#7C3AED] to-[#6366F1] text-white py-2.5 px-4 text-xs font-semibold">
+    <div class="max-w-4xl mx-auto flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2 truncate">
+        <span class="text-sm">🚀</span>
+        <span class="truncate">Our Community is Live | Join Now</span>
+      </div>
+      <a href="/courses" class="bg-white text-[#6D28D9] text-[11px] font-bold px-3 py-1 rounded-full shadow-xs hover:bg-slate-100 transition-colors flex-shrink-0 flex items-center gap-1">
+        <span>Join Community</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
 
-  <!-- ================= TOP STICKY HEADER ================= -->
-  <header class="sticky top-0 z-40 bg-[#FAF8F5]/90 dark:bg-[#0F172A]/90 backdrop-blur-md border-b border-[#E8E5DF] dark:border-[#334155] transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
+  <!-- ================= TOP HEADER (MATCHING LEARNMIZE) ================= -->
+  <header class="border-b border-slate-100 bg-white sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       
-      <!-- Brand Logo & E-Book Hub Badge -->
-      <a href="/articles" class="flex items-center gap-3 flex-shrink-0">
-        <span class="text-xl sm:text-2xl font-black font-serif-book tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
-          <span>Skillsfy</span>
-          <span class="text-base">📖</span>
-        </span>
-        <span class="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 border border-amber-300/60">
-          Study Handbooks Hub
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-2">
+        <span class="text-xl sm:text-2xl font-black tracking-tight text-slate-900 font-heading">
+          SKILLSFY
         </span>
       </a>
 
-      <!-- Real-Time Algorithmic Search Bar -->
-      <div class="flex-1 max-w-lg relative hidden md:block">
-        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
-        <input 
-          type="text" 
-          id="algo-search-input" 
-          placeholder="Search by topic, skill, or keyword (English, Hinglish, हिंदी)..." 
-          class="w-full pl-10 pr-10 py-2 rounded-xl text-xs bg-white dark:bg-slate-800 border border-[#E8E5DF] dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 focus:border-amber-500 dark:focus:border-amber-400 focus:ring-1 focus:ring-amber-500 outline-none shadow-xs transition-all"
-          oninput="handleRealtimeSearch(this.value)"
-        />
-        <button id="search-clear-btn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-          <span class="material-symbols-outlined text-sm">close</span>
-        </button>
-      </div>
-
-      <!-- Right Controls: Language Switcher, Theme Toggle, Home Link -->
-      <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0 text-xs">
-        
-        <!-- Language Switcher Pill -->
-        <div class="flex items-center p-1 bg-white dark:bg-slate-800 border border-[#E8E5DF] dark:border-slate-700 rounded-xl shadow-xs font-medium">
-          <button onclick="switchLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 rounded-lg transition-all font-semibold active bg-slate-900 text-white dark:bg-amber-500 dark:text-slate-950">EN</button>
-          <button onclick="switchLanguage('hinglish')" id="lang-btn-hinglish" class="px-2.5 py-1 rounded-lg transition-all text-slate-600 dark:text-slate-300 hover:text-slate-900">Hinglish</button>
-          <button onclick="switchLanguage('hi')" id="lang-btn-hi" class="px-2.5 py-1 rounded-lg transition-all text-slate-600 dark:text-slate-300 hover:text-slate-900">हिंदी</button>
-        </div>
-
-        <!-- Theme Toggle (Light / Dark) -->
-        <button onclick="toggleDarkMode()" class="p-2 rounded-xl border border-[#E8E5DF] dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all shadow-xs" title="Toggle Cozy Paper / Dark Mode">
-          <span class="material-symbols-outlined text-base" id="theme-icon">dark_mode</span>
-        </button>
-
-        <!-- Back to Home Button -->
-        <a href="/" class="hidden sm:inline-flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors">
-          <span>Home</span>
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      <!-- Right Header Actions: Login button + Mobile Hamburger Menu -->
+      <div class="flex items-center gap-3">
+        <a href="/login" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#EDE9FE] text-[#6D28D9] hover:bg-[#DDD6FE] transition-colors">
+          Login
         </a>
-
+        <button onclick="toggleMobileMenu()" class="p-1.5 text-slate-700 hover:text-slate-900 text-xl focus:outline-none" aria-label="Toggle navigation">
+          ☰
+        </button>
       </div>
 
     </div>
 
-    <!-- Mobile Search Bar (< md) -->
-    <div class="px-4 pb-3 md:hidden">
-      <div class="relative">
-        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
-        <input 
-          type="text" 
-          placeholder="Search handbooks, skills, Hindi guides..." 
-          class="w-full pl-9 pr-8 py-2 rounded-xl text-xs bg-white dark:bg-slate-800 border border-[#E8E5DF] dark:border-slate-700 text-slate-900 dark:text-white outline-none"
-          oninput="handleRealtimeSearch(this.value)"
-        />
-      </div>
+    <!-- Dropdown menu -->
+    <div id="mobile-nav-drawer" class="hidden border-t border-slate-100 bg-white px-4 py-3 space-y-2 text-xs font-bold text-slate-700 shadow-lg">
+      <a href="/" class="block py-2 hover:text-[#6D28D9]">Home</a>
+      <a href="/courses" class="block py-2 hover:text-[#6D28D9]">Courses & Batches</a>
+      <a href="/articles" class="block py-2 text-[#6D28D9]">Articles & Guides</a>
+      <a href="/about" class="block py-2 hover:text-[#6D28D9]">About Us</a>
+      <a href="/contact" class="block py-2 hover:text-[#6D28D9]">Contact</a>
     </div>
   </header>
 
-  <!-- ================= DYNAMIC CATEGORY & SKILL-LEVEL FILTER BAR ================= -->
-  <section class="border-b border-[#E8E5DF] dark:border-[#334155] bg-white/60 dark:bg-slate-900/60 backdrop-blur-xs py-3 sticky top-18 z-30 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-3">
-      
-      <!-- Category Filter Pills -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0 scrollbar-none text-xs">
-        <button onclick="filterByCategory('all')" class="filter-pill active px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-slate-600 font-medium" id="cat-pill-all">All Topics</button>
-        <button onclick="filterByCategory('ai-technology')" class="filter-pill px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 font-medium" id="cat-pill-ai-technology">🤖 AI & Tech</button>
-        <button onclick="filterByCategory('skills')" class="filter-pill px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 font-medium" id="cat-pill-skills">⚡ High-Income Skills</button>
-        <button onclick="filterByCategory('freelancing')" class="filter-pill px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 font-medium" id="cat-pill-freelancing">💼 Freelancing</button>
-        <button onclick="filterByCategory('study-guides')" class="filter-pill px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 font-medium" id="cat-pill-study-guides">📚 MP Board & Schemes</button>
-      </div>
-
-      <!-- Skill-Level Matcher Pills (20% Algorithm Factor) -->
-      <div class="flex items-center gap-1.5 text-xs self-end md:self-auto flex-shrink-0">
-        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider hidden lg:inline mr-1">Level:</span>
-        <button onclick="filterByDifficulty('all')" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200" id="diff-pill-all">All Levels</button>
-        <button onclick="filterByDifficulty('Beginner')" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900" id="diff-pill-Beginner">Beginner</button>
-        <button onclick="filterByDifficulty('Intermediate')" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900" id="diff-pill-Intermediate">Intermediate</button>
-        <button onclick="filterByDifficulty('Advanced')" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900" id="diff-pill-Advanced">Advanced</button>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= HERO SECTION: ALGORITHMIC FEATURED HANDBOOK ================= -->
-  <section id="hero-featured-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-    <!-- Populated dynamically by Algorithmic Selection -->
-    <div id="hero-featured-card" class="handbook-card p-6 sm:p-10 relative overflow-hidden bg-gradient-to-br from-white to-[#FAF6ED] dark:from-slate-800 dark:to-slate-900 shadow-sm">
-      <div class="animate-pulse flex space-x-4">
-        <div class="flex-1 space-y-4 py-1">
-          <div class="h-4 bg-slate-200 rounded w-1/4"></div>
-          <div class="h-8 bg-slate-200 rounded w-3/4"></div>
-          <div class="h-4 bg-slate-200 rounded w-5/6"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= IN-PAGE DIGITAL READER VIEW (DYNAMIC CONTAINER) ================= -->
-  <section id="in-page-reader-view" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 hidden">
+  <!-- ================= MAIN CONTENT AREA ================= -->
+  <main class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
     
-    <!-- Reader Top Bar -->
-    <div class="flex items-center justify-between pb-6 border-b border-[#E8E5DF] dark:border-slate-700 mb-8">
-      <button onclick="closeReaderView()" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-amber-500 transition-colors shadow-xs">
-        <span class="material-symbols-outlined text-sm">arrow_back</span>
-        <span>Back to All Handbooks</span>
-      </button>
-
-      <div class="flex items-center gap-3">
-        <button onclick="window.print()" class="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:border-slate-400 transition-colors">
-          <span class="material-symbols-outlined text-sm">print</span>
-          <span>Print / PDF</span>
-        </button>
-        <button onclick="toggleBookmarkActiveArticle()" id="reader-bookmark-btn" class="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-amber-500 transition-colors">
-          <span class="material-symbols-outlined text-sm" id="reader-bookmark-icon">bookmark_border</span>
-          <span id="reader-bookmark-text">Save Guide</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- 2-Column Reader Layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- VIEW A: SINGLE ARTICLE DETAIL VIEW (MATCHING THE 5 IMAGES EXACTLY) -->
+    <article id="article-detail-view" class="article-content hidden text-left">
       
-      <!-- LEFT STICKY SIDEBAR (TOC + PERSONALIZED UP NEXT) -->
-      <aside class="lg:col-span-4 sticky top-32 space-y-6">
-        
-        <!-- Table of Contents -->
-        <div class="bg-white dark:bg-slate-800 border border-[#E8E5DF] dark:border-slate-700 rounded-2xl p-5 shadow-xs">
-          <div class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
-            <span class="material-symbols-outlined text-sm text-amber-500">menu_book</span>
-            <span>Handbook Chapters</span>
-          </div>
-          <div id="reader-toc-list" class="space-y-2 text-xs font-medium text-slate-600 dark:text-slate-300">
-            <!-- Dynamically generated TOC links -->
-          </div>
-        </div>
+      <!-- Back Link -->
+      <div class="mb-6">
+        <a href="/articles" onclick="handleBackToList(event)" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#6D28D9] transition-colors no-underline">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+          <span>All Articles</span>
+        </a>
+      </div>
 
-        <!-- Algorithmic "Personalized Up Next" Widget -->
-        <div class="bg-[#FAF6ED] dark:bg-slate-800/80 border border-amber-200 dark:border-amber-900/50 rounded-2xl p-5 space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-[11px] font-bold text-amber-800 dark:text-amber-300 uppercase tracking-wide flex items-center gap-1">
-              <span>🎯 UP NEXT FOR YOU</span>
-            </span>
-            <span class="text-[10px] font-semibold bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded-full">Algorithm Match</span>
-          </div>
-          <div id="reader-up-next-content" class="space-y-2 text-left">
-            <!-- Populated via Algorithm -->
-          </div>
-        </div>
+      <!-- Article Title (H1) -->
+      <h1 id="art-title">
+        How to start an ecommerce business
+      </h1>
 
-      </aside>
+      <!-- Article Meta Bar -->
+      <div class="flex items-center gap-3 text-xs text-slate-500 pb-6 border-b border-slate-100 mb-6">
+        <span id="art-author" class="font-semibold text-slate-700">Skillsfy Editorial Team</span>
+        <span>•</span>
+        <span id="art-date">Published</span>
+        <span>•</span>
+        <span id="art-read-time">6 min read</span>
+      </div>
 
-      <!-- MAIN READER CONTENT CANVAS -->
-      <main class="lg:col-span-8 bg-white dark:bg-slate-800 border border-[#E8E5DF] dark:border-slate-700 rounded-3xl p-6 sm:p-10 shadow-sm">
-        
-        <!-- Article Header -->
-        <div class="border-b border-[#E8E5DF] dark:border-slate-700 pb-6 mb-8 space-y-3 text-left">
-          <div class="flex flex-wrap items-center gap-2">
-            <span id="reader-category-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300">Category</span>
-            <span id="reader-diff-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Beginner</span>
-            <span id="reader-time-badge" class="text-xs text-slate-400 font-medium">⏱️ 12 min read</span>
-          </div>
-          <h1 id="reader-title" class="text-2xl sm:text-3xl lg:text-4xl font-black font-serif-book text-slate-900 dark:text-white leading-tight">
-            Article Title
-          </h1>
-          <p id="reader-subtitle" class="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-sans leading-relaxed">
-            Article Subtitle
-          </p>
-        </div>
+      <!-- Dynamic Article HTML Content -->
+      <div id="art-body-html">
+        <!-- Rendered dynamically -->
+      </div>
 
-        <!-- Dynamic Prose Content -->
-        <div id="reader-narrative-canvas" class="reader-prose space-y-6">
-          <!-- Article narrative HTML rendered here -->
-        </div>
-
-      </main>
-
-    </div>
-
-  </section>
-
-  <!-- ================= DYNAMIC BOTTOM FEEDS (ALGORITHMIC RECOMMENDATIONS) ================= -->
-  <section id="algorithmic-feeds-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-    
-    <!-- FEED 1: RECOMMENDED FOR YOU (आपके लिए खास 🎯) -->
-    <div class="space-y-4">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-black font-serif-book text-slate-900 dark:text-white flex items-center gap-2">
-            <span>Recommended For You</span>
-            <span class="text-sm font-hindi text-amber-600 dark:text-amber-400 font-bold">(आपके लिए खास 🎯)</span>
-          </h2>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Personalized based on your reading history, completed topics, and skill level.
-          </p>
+      <!-- Article Footer / Desk Note -->
+      <div class="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>Published with ❤️ by Skillsfy Editorial Desk</p>
+        <div class="flex items-center gap-2">
+          <button onclick="shareArticle()" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">share</span>
+            <span>Share Article</span>
+          </button>
         </div>
       </div>
-      <div id="feed-recommended-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Dynamically rendered -->
-      </div>
-    </div>
 
-    <!-- FEED 2: 🔥 TRENDING THIS WEEK (ENGAGEMENT SCORE RANKED) -->
-    <div class="space-y-4 pt-4 border-t border-[#E8E5DF] dark:border-slate-700">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-black font-serif-book text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🔥 Trending This Week</span>
-          </h2>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Calculated via live engagement: Views (40%) + Completion Rate (40%) + Recency (20%).
-          </p>
+    </article>
+
+    <!-- VIEW B: ARTICLES DIRECTORY LIST (WHEN VISITING /articles) -->
+    <section id="articles-list-view" class="text-left space-y-8">
+      
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-black font-heading text-slate-900 tracking-tight">
+          Articles & Educational Guides
+        </h1>
+        <p class="text-sm text-slate-600 mt-2">
+          Curated industry deep-dives, tactical business frameworks, and practical technology tutorials.
+        </p>
+      </div>
+
+      <!-- Dynamic Articles Grid -->
+      <div id="articles-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <!-- Populated from database / localStorage -->
+      </div>
+
+      <!-- Clean Empty State (When no articles published yet) -->
+      <div id="empty-state-box" class="py-16 text-center space-y-3 hidden">
+        <div class="w-14 h-14 bg-purple-50 text-[#6D28D9] rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold">
+          📖
         </div>
+        <h3 class="text-lg font-bold text-slate-800">No articles published yet</h3>
+        <p class="text-xs text-slate-500 max-w-sm mx-auto">
+          We are currently curating practical guides. New articles will appear here immediately upon publication.
+        </p>
       </div>
-      <div id="feed-trending-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Dynamically rendered -->
-      </div>
-    </div>
 
-    <!-- FEED 3: 📚 EXPLORE ALL HANDBOOKS & CHAPTER BLUEPRINTS -->
-    <div class="space-y-4 pt-4 border-t border-[#E8E5DF] dark:border-slate-700">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-black font-serif-book text-slate-900 dark:text-white flex items-center gap-2">
-            <span>📚 Complete Handbooks Library</span>
-          </h2>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="library-count-indicator">
-            Showing all educational guides
-          </p>
-        </div>
-      </div>
-      <div id="feed-library-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Dynamically rendered -->
-      </div>
-    </div>
+    </section>
 
-  </section>
+  </main>
 
-  <!-- ================= MOBILE BOTTOM NAVIGATION BAR ================= -->
-  <nav class="md:hidden fixed bottom-0 inset-x-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-[#E8E5DF] dark:border-slate-800 z-50 px-6 py-2 flex items-center justify-between text-[11px] font-bold text-slate-600 dark:text-slate-300">
-    <button onclick="scrollToTop()" class="flex flex-col items-center gap-0.5">
-      <span class="material-symbols-outlined text-lg">menu_book</span>
-      <span>Index</span>
-    </button>
-    <button onclick="document.getElementById('algo-search-input')?.focus()" class="flex flex-col items-center gap-0.5">
-      <span class="material-symbols-outlined text-lg">search</span>
-      <span>Search</span>
-    </button>
-    <button onclick="scrollToRecommended()" class="flex flex-col items-center gap-0.5 text-amber-600 dark:text-amber-400">
-      <span class="material-symbols-outlined text-lg">auto_awesome</span>
-      <span>For You</span>
-    </button>
-    <button onclick="readNextRecommendedHandbook()" class="flex flex-col items-center gap-0.5">
-      <span class="material-symbols-outlined text-lg">arrow_forward</span>
-      <span>Next Read</span>
-    </button>
-  </nav>
-
-  <!-- FOOTER -->
-  <footer class="mt-auto border-t border-[#E8E5DF] dark:border-slate-800 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
-    <div class="max-w-7xl mx-auto px-4 space-y-2">
-      <p class="font-serif-book font-bold text-slate-800 dark:text-slate-200 text-sm">Skillsfy Institute of Technology • Practical Study Desk</p>
-      <p>Cozy Paper Literary UI Edition • Grounded Pedagogy & Engineering Knowledge</p>
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-100 py-8 text-center text-xs text-slate-500 mt-auto">
+    <div class="max-w-4xl mx-auto px-4 space-y-2">
+      <p class="font-bold text-slate-800 font-heading">Skillsfy - Institute of Technology</p>
+      <p>Independent Educational Publishing & Technology Engineering</p>
     </div>
   </footer>
 
-  <!-- ================= JAVASCRIPT DATA & ALGORITHM ENGINE ================= -->
-  <script src="js/articles-data.js"></script>
-
+  <!-- ================= JAVASCRIPT SYSTEM ================= -->
   <script>
-    // Global State Engine
-    const state = {
-      lang: localStorage.getItem('skillsfy_articles_lang') || 'en',
-      theme: localStorage.getItem('skillsfy_articles_theme') || 'light',
-      selectedCategory: 'all',
-      selectedDifficulty: 'all',
-      searchQuery: '',
-      activeArticleId: null,
-      readHistory: JSON.parse(localStorage.getItem('skillsfy_read_history') || '[]'),
-      bookmarks: JSON.parse(localStorage.getItem('skillsfy_bookmarks') || '[]'),
-      timeSpentMap: JSON.parse(localStorage.getItem('skillsfy_timespent') || '{}')
-    };
+    const SUPABASE_PROJECT_URL = 'https://ujtxkglububxrqchfepg.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVqdHhrZ2x1YnVieHJxY2hmZXBnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzMTg5MDAsImV4cCI6MjA3MTg5NDkwMH0.DkJ3H6bZlP1X2x8Y9z7a4c1e2f3g4h5i6j7k8l9m0n';
 
-    // Initialize Theme
-    if (state.theme === 'dark' || (!('skillsfy_articles_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-      const icon = document.getElementById('theme-icon');
-      if (icon) icon.textContent = 'light_mode';
+    let allArticles = [];
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-nav-drawer');
+      drawer.classList.toggle('hidden');
     }
 
-    function toggleDarkMode() {
-      const isDark = document.documentElement.classList.toggle('dark');
-      state.theme = isDark ? 'dark' : 'light';
-      localStorage.setItem('skillsfy_articles_theme', state.theme);
-      const icon = document.getElementById('theme-icon');
-      if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
-    }
+    // Fetch articles from Supabase + localStorage (ZERO mock data)
+    async function fetchAllArticles() {
+      let articles = [];
 
-    function switchLanguage(lang) {
-      state.lang = lang;
-      localStorage.setItem('skillsfy_articles_lang', lang);
-      ['en', 'hinglish', 'hi'].forEach(l => {
-        const btn = document.getElementById(`lang-btn-${l}`);
-        if (btn) {
-          if (l === lang) {
-            btn.className = 'px-2.5 py-1 rounded-lg transition-all font-semibold active bg-slate-900 text-white dark:bg-amber-500 dark:text-slate-950';
-          } else {
-            btn.className = 'px-2.5 py-1 rounded-lg transition-all text-slate-600 dark:text-slate-300 hover:text-slate-900';
+      // 1. Read from localStorage
+      const local = JSON.parse(localStorage.getItem('skillsfy_published_articles') || '[]');
+      articles = [...local];
+
+      // 2. Fetch from Supabase blogs table
+      try {
+        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/blogs?select=*&order=created_at.desc`, {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
           }
-        }
-      });
-      renderAllFeeds();
-      if (state.activeArticleId) {
-        renderArticleInReader(state.activeArticleId);
-      }
-    }
-
-    // ================= DYNAMIC RECOMMENDATION ALGORITHM ENGINE =================
-    // Weights:
-    // 1. Contextual Tag Similarity: 40%
-    // 2. User History & Previous Category Affinity: 30%
-    // 3. Difficulty Match: 20%
-    // 4. Engagement & Trending Score: 10%
-    function calculateArticleScore(article, activeArticle, userHistory, targetDiff) {
-      let score = 0;
-
-      // 1. Contextual Tag Similarity (40%)
-      if (activeArticle && article.id !== activeArticle.id) {
-        const activeTags = activeArticle.tags || [];
-        const currentTags = article.tags || [];
-        const matching = currentTags.filter(t => activeTags.includes(t));
-        const similarity = activeTags.length > 0 ? (matching.length / activeTags.length) : 0;
-        score += similarity * 40;
-
-        if (article.category === activeArticle.category) {
-          score += 15;
-        }
-      }
-
-      // 2. User History Affinity (30%)
-      const userReadCount = userHistory.length;
-      if (userReadCount > 0) {
-        // If user has read articles in this category before
-        const readArticles = (window.SKILLSFY_ARTICLES_DATA?.articles || []).filter(a => userHistory.includes(a.id));
-        const matchingCatCount = readArticles.filter(a => a.category === article.category).length;
-        score += Math.min(matchingCatCount * 10, 30);
-      } else {
-        // Default new user bonus to beginner articles
-        if (article.difficulty === 'Beginner') score += 20;
-      }
-
-      // 3. Difficulty Match (20%)
-      if (targetDiff && targetDiff !== 'all') {
-        if (article.difficulty === targetDiff) score += 20;
-      } else {
-        score += 10;
-      }
-
-      // 4. Engagement & Trending Score (10%)
-      // Formula: (views * 0.4) + (completionRate * 0.4) + (recencyDays * 0.2)
-      const viewsNormalized = Math.min((article.views || 1000) / 40000, 1) * 100;
-      const compNormalized = article.completionRate || 80;
-      const recencyNormalized = Math.max(100 - (article.publishedDaysAgo || 5) * 5, 20);
-      const engagementScore = (viewsNormalized * 0.4) + (compNormalized * 0.4) + (recencyNormalized * 0.2);
-      score += (engagementScore / 100) * 10;
-
-      return score;
-    }
-
-    function getArticles() {
-      return (window.SKILLSFY_ARTICLES_DATA && window.SKILLSFY_ARTICLES_DATA.articles) || [];
-    }
-
-    function getLocalized(article) {
-      if (!article) return {};
-      const t = article.translations || {};
-      const trans = t[state.lang] || t['en'] || {};
-      return {
-        title: trans.title || article.title,
-        subtitle: trans.subtitle || article.subtitle || article.summary,
-        tldr: trans.tldr || article.tldr || []
-      };
-    }
-
-    // Filter & Search Engine
-    function filterArticles() {
-      const all = getArticles();
-      return all.filter(a => {
-        // Category Filter
-        if (state.selectedCategory !== 'all') {
-          if (a.categorySlug !== state.selectedCategory && a.category !== state.selectedCategory) return false;
-        }
-        // Difficulty Filter
-        if (state.selectedDifficulty !== 'all') {
-          if (a.difficulty !== state.selectedDifficulty) return false;
-        }
-        // Realtime Search (Fuzzy / Multilingual)
-        if (state.searchQuery.trim()) {
-          const q = state.searchQuery.toLowerCase().trim();
-          const title = (a.title || '').toLowerCase();
-          const transEn = (a.translations?.en?.title || '').toLowerCase();
-          const transHing = (a.translations?.hinglish?.title || '').toLowerCase();
-          const transHi = (a.translations?.hi?.title || '').toLowerCase();
-          const tags = (a.tags || []).join(' ').toLowerCase();
-          const category = (a.category || '').toLowerCase();
-
-          const match = title.includes(q) || transEn.includes(q) || transHing.includes(q) || transHi.includes(q) || tags.includes(q) || category.includes(q);
-          if (!match) return false;
-        }
-        return true;
-      });
-    }
-
-    // ================= RENDER FEED CARDS =================
-    function renderCard(article, isTrending = false) {
-      const loc = getLocalized(article);
-      const isBookmarked = state.bookmarks.includes(article.id);
-      const isRead = state.readHistory.includes(article.id);
-
-      return `
-        <div class="handbook-card flex flex-col justify-between overflow-hidden group">
-          
-          <!-- Card Header & 3D Cover Top -->
-          <div>
-            <div class="relative h-44 bg-gradient-to-tr from-slate-900 via-indigo-950 to-slate-800 p-4 flex flex-col justify-between overflow-hidden cursor-pointer" onclick="openArticleInReader('${article.id}')">
-              <div class="book-spine-accent"></div>
-
-              <!-- Top Badges -->
-              <div class="flex items-center justify-between gap-2 relative z-10">
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/20 text-white backdrop-blur-xs">
-                  ${article.category}
-                </span>
-                ${isTrending ? `
-                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-slate-950 flex items-center gap-1 shadow-sm">
-                    <span>🔥 Trending</span>
-                  </span>
-                ` : ''}
-              </div>
-
-              <!-- Cover Visual Icon & Difficulty -->
-              <div class="relative z-10 flex items-end justify-between">
-                <div class="text-white text-3xl font-bold">
-                  ${article.difficulty === 'Beginner' ? '🌱' : (article.difficulty === 'Intermediate' ? '⚡' : '🚀')}
-                </div>
-                <span class="text-[10px] font-bold text-slate-300 font-mono">
-                  ${article.readingTime || '10 min read'}
-                </span>
-              </div>
-            </div>
-
-            <!-- Card Content Body -->
-            <div class="p-5 space-y-2.5 text-left">
-              <div class="flex items-center gap-2 text-[11px] font-medium text-slate-400">
-                <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold">${article.difficulty || 'Beginner'}</span>
-                <span>•</span>
-                <span>${(article.views || 1200).toLocaleString('en-IN')} readers</span>
-              </div>
-
-              <h3 class="text-base font-bold font-serif-book text-slate-900 dark:text-white leading-snug line-clamp-2 cursor-pointer hover:text-amber-600 dark:hover:text-amber-400 transition-colors" onclick="openArticleInReader('${article.id}')">
-                ${loc.title}
-              </h3>
-
-              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                ${loc.subtitle}
-              </p>
-            </div>
-          </div>
-
-          <!-- Card Bottom Action Bar -->
-          <div class="px-5 pb-5 pt-2 border-t border-[#E8E5DF] dark:border-slate-800 flex items-center justify-between text-xs">
-            <button onclick="toggleBookmark('${article.id}')" class="text-slate-400 hover:text-amber-500 transition-colors flex items-center gap-1 font-semibold" title="Bookmark Handbook">
-              <span class="material-symbols-outlined text-base">${isBookmarked ? 'bookmark' : 'bookmark_border'}</span>
-              <span>${isBookmarked ? 'Saved' : 'Save'}</span>
-            </button>
-
-            <button onclick="openArticleInReader('${article.id}')" class="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-amber-500 dark:hover:bg-amber-400 text-white dark:text-slate-950 font-bold text-xs flex items-center gap-1 shadow-xs transition-transform group-hover:translate-x-0.5">
-              <span>Read Handbook</span>
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </button>
-          </div>
-
-        </div>
-      `;
-    }
-
-    // Render Hero Section
-    function renderHeroSection() {
-      const articles = getArticles();
-      if (articles.length === 0) return;
-
-      // Select top engagement article for Hero
-      const topArticle = [...articles].sort((a, b) => (b.views || 0) - (a.views || 0))[0];
-      const loc = getLocalized(topArticle);
-
-      const heroContainer = document.getElementById('hero-featured-card');
-      if (!heroContainer) return;
-
-      heroContainer.innerHTML = `
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          <!-- Left: 3D Animated Book Cover -->
-          <div class="lg:col-span-4 flex justify-center">
-            <div class="book-cover-3d relative w-56 sm:w-64 h-80 rounded-2xl bg-gradient-to-br from-indigo-900 via-slate-900 to-amber-950 p-6 flex flex-col justify-between shadow-2xl cursor-pointer" onclick="openArticleInReader('${topArticle.id}')">
-              <div class="book-spine-accent"></div>
-              
-              <div class="space-y-2 relative z-10">
-                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-400 text-slate-950 uppercase tracking-wide">
-                  Top Recommended Handbook
-                </span>
-                <p class="text-[10px] text-slate-300 font-mono">${topArticle.readingTime}</p>
-              </div>
-
-              <div class="relative z-10 space-y-2">
-                <h4 class="text-lg font-bold font-serif-book text-white leading-snug">
-                  ${loc.title}
-                </h4>
-                <p class="text-xs text-amber-200/80 font-medium">Skillsfy Pedagogy Desk</p>
-              </div>
-
-              <div class="relative z-10 flex items-center justify-between text-xs text-slate-300 pt-2 border-t border-white/20">
-                <span>🌱 ${topArticle.difficulty}</span>
-                <span class="font-bold text-white">4.9 ★</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: Summary & Key Takeaways with Emojis -->
-          <div class="lg:col-span-8 space-y-5 text-left">
-            <div class="flex flex-wrap items-center gap-2.5">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-900 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
-                ${topArticle.category}
-              </span>
-              <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                ${topArticle.views?.toLocaleString('en-IN') || '25,000'} students finished this month
-              </span>
-            </div>
-
-            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black font-serif-book text-slate-900 dark:text-white leading-tight cursor-pointer hover:text-amber-600 dark:hover:text-amber-400 transition-colors" onclick="openArticleInReader('${topArticle.id}')">
-              ${loc.title}
-            </h1>
-
-            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-              ${loc.subtitle}
-            </p>
-
-            <!-- Key Takeaways with Emojis -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs font-medium text-slate-700 dark:text-slate-200 pt-2">
-              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                <span class="text-base">📖</span>
-                <span>Complete step-by-step practical implementation</span>
-              </div>
-              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                <span class="text-base">🎯</span>
-                <span>Zero fake hype: Real formulas and verified data</span>
-              </div>
-              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                <span class="text-base">⚡</span>
-                <span>Interactive checklists & calculations</span>
-              </div>
-              <div class="flex items-center gap-2 p-2.5 rounded-xl bg-white/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
-                <span class="text-base">💡</span>
-                <span>Includes ready-to-use templates & scripts</span>
-              </div>
-            </div>
-
-            <!-- CTA Button -->
-            <div class="pt-2">
-              <button onclick="openArticleInReader('${topArticle.id}')" class="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-amber-500 dark:hover:bg-amber-400 text-white dark:text-slate-950 font-black text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2">
-                <span>Start Reading Handbook</span>
-                <span class="material-symbols-outlined text-base">arrow_forward</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-      `;
-    }
-
-    // Render All Feeds
-    function renderAllFeeds() {
-      renderHeroSection();
-
-      const articles = filterArticles();
-      const allArticles = getArticles();
-
-      // 1. Recommended For You (Personalized Algorithm)
-      const recommendedContainer = document.getElementById('feed-recommended-grid');
-      if (recommendedContainer) {
-        const sortedByAlgo = [...allArticles].sort((a, b) => {
-          return calculateArticleScore(b, null, state.readHistory, state.selectedDifficulty) -
-                 calculateArticleScore(a, null, state.readHistory, state.selectedDifficulty);
         });
-        const topRecommended = sortedByAlgo.slice(0, 3);
-        recommendedContainer.innerHTML = topRecommended.map(a => renderCard(a, false)).join('');
-      }
-
-      // 2. Trending Handbooks (Engagement Score)
-      const trendingContainer = document.getElementById('feed-trending-grid');
-      if (trendingContainer) {
-        const sortedByTrending = [...allArticles].sort((a, b) => {
-          const scoreA = (a.views || 0) * 0.4 + (a.completionRate || 80) * 0.4;
-          const scoreB = (b.views || 0) * 0.4 + (b.completionRate || 80) * 0.4;
-          return scoreB - scoreA;
-        });
-        trendingContainer.innerHTML = sortedByTrending.slice(0, 3).map(a => renderCard(a, true)).join('');
-      }
-
-      // 3. Complete Library
-      const libraryContainer = document.getElementById('feed-library-grid');
-      const countIndicator = document.getElementById('library-count-indicator');
-      if (libraryContainer) {
-        if (articles.length === 0) {
-          libraryContainer.innerHTML = `
-            <div class="col-span-3 py-12 text-center text-slate-400 space-y-2">
-              <span class="material-symbols-outlined text-4xl">search_off</span>
-              <p class="text-sm font-semibold">No handbooks found matching your search.</p>
-              <button onclick="clearSearch()" class="text-xs font-bold text-amber-600 underline">Reset Search & Filters</button>
-            </div>
-          `;
-        } else {
-          libraryContainer.innerHTML = articles.map(a => renderCard(a, false)).join('');
-        }
-      }
-      if (countIndicator) {
-        countIndicator.textContent = `Showing ${articles.length} handbooks in library`;
-      }
-    }
-
-    // Filter Handlers
-    function filterByCategory(cat) {
-      state.selectedCategory = cat;
-      const pills = ['all', 'ai-technology', 'skills', 'freelancing', 'study-guides'];
-      pills.forEach(p => {
-        const btn = document.getElementById(`cat-pill-${p}`);
-        if (btn) {
-          if (p === cat) {
-            btn.className = 'filter-pill active px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-slate-600 font-medium';
-          } else {
-            btn.className = 'filter-pill px-3.5 py-1.5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 font-medium';
+        if (res.ok) {
+          const dbRows = await res.json();
+          if (Array.isArray(dbRows) && dbRows.length > 0) {
+            dbRows.forEach(row => {
+              const exists = articles.some(a => a.slug === row.slug);
+              if (!exists) {
+                articles.push({
+                  id: row.id,
+                  slug: row.slug,
+                  title: row.title,
+                  category: row.category,
+                  summary: row.summary,
+                  content: row.content,
+                  cover_image: row.cover_image,
+                  author: row.author,
+                  read_time: row.read_time,
+                  published_at: row.created_at ? new Date(row.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Recently'
+                });
+              }
+            });
           }
         }
-      });
-      renderAllFeeds();
-    }
-
-    function filterByDifficulty(diff) {
-      state.selectedDifficulty = diff;
-      const diffs = ['all', 'Beginner', 'Intermediate', 'Advanced'];
-      diffs.forEach(d => {
-        const btn = document.getElementById(`diff-pill-${d}`);
-        if (btn) {
-          if (d === diff) {
-            btn.className = 'px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-slate-900 text-white dark:bg-amber-500 dark:text-slate-950';
-          } else {
-            btn.className = 'px-2.5 py-1 rounded-lg text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900';
-          }
-        }
-      });
-      renderAllFeeds();
-    }
-
-    function handleRealtimeSearch(val) {
-      state.searchQuery = val;
-      const clearBtn = document.getElementById('search-clear-btn');
-      if (clearBtn) clearBtn.classList.toggle('hidden', !val);
-      renderAllFeeds();
-    }
-
-    function clearSearch() {
-      state.searchQuery = '';
-      const input = document.getElementById('algo-search-input');
-      if (input) input.value = '';
-      const clearBtn = document.getElementById('search-clear-btn');
-      if (clearBtn) clearBtn.classList.add('hidden');
-      renderAllFeeds();
-    }
-
-    // ================= READER VIEW CONTROLS =================
-    function openArticleInReader(articleId) {
-      state.activeArticleId = articleId;
-
-      // Track read history
-      if (!state.readHistory.includes(articleId)) {
-        state.readHistory.push(articleId);
-        localStorage.setItem('skillsfy_read_history', JSON.stringify(state.readHistory));
+      } catch (e) {
+        console.warn('Database fetch:', e);
       }
 
-      renderArticleInReader(articleId);
-
-      // Show Reader, Hide Hero & Feeds
-      document.getElementById('hero-featured-section').classList.add('hidden');
-      document.getElementById('algorithmic-feeds-section').classList.add('hidden');
-      const readerSection = document.getElementById('in-page-reader-view');
-      readerSection.classList.remove('hidden');
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      allArticles = articles;
+      routeView();
     }
 
-    function closeReaderView() {
-      state.activeArticleId = null;
-      document.getElementById('in-page-reader-view').classList.add('hidden');
-      document.getElementById('hero-featured-section').classList.remove('hidden');
-      document.getElementById('algorithmic-feeds-section').classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function renderArticleInReader(articleId) {
-      const all = getArticles();
-      const article = all.find(a => a.id === articleId) || all[0];
-      if (!article) return;
-
-      const loc = getLocalized(article);
-
-      document.getElementById('reader-category-badge').textContent = article.category;
-      document.getElementById('reader-diff-badge').textContent = article.difficulty || 'Beginner';
-      document.getElementById('reader-time-badge').textContent = `⏱️ ${article.readingTime || '10 min read'}`;
-      document.getElementById('reader-title').textContent = loc.title;
-      document.getElementById('reader-subtitle').textContent = loc.subtitle;
-
-      // Bookmark button state
-      const isBookmarked = state.bookmarks.includes(article.id);
-      const bIcon = document.getElementById('reader-bookmark-icon');
-      const bText = document.getElementById('reader-bookmark-text');
-      if (bIcon) bIcon.textContent = isBookmarked ? 'bookmark' : 'bookmark_border';
-      if (bText) bText.textContent = isBookmarked ? 'Saved' : 'Save Guide';
-
-      // Render Narrative Canvas
-      const canvas = document.getElementById('reader-narrative-canvas');
-      if (canvas) {
-        canvas.innerHTML = article.narrativeHtml || `
-          <p class="text-base text-slate-700 leading-relaxed">${loc.subtitle}</p>
-          <div class="p-6 bg-amber-50 dark:bg-slate-800 rounded-2xl border border-amber-200 dark:border-slate-700">
-            <h3 class="font-serif-book font-bold text-lg mb-2">Key Takeaways</h3>
-            <ul class="space-y-2 text-sm">
-              ${(loc.tldr || []).map(t => `<li>• ${t}</li>`).join('')}
-            </ul>
-          </div>
-        `;
-      }
-
-      // Generate Table of Contents
-      const tocList = document.getElementById('reader-toc-list');
-      if (tocList) {
-        const headers = canvas.querySelectorAll('h2, h3');
-        if (headers.length > 0) {
-          tocList.innerHTML = Array.from(headers).map((h, i) => {
-            if (!h.id) h.id = `ch-${i + 1}`;
-            return `
-              <a href="#${h.id}" class="toc-link block py-1 text-slate-600 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
-                ${h.textContent.trim()}
-              </a>
-            `;
-          }).join('');
-        } else {
-          tocList.innerHTML = '<p class="text-xs text-slate-400">Complete single chapter</p>';
-        }
-      }
-
-      // Algorithmic Up Next in Reader Sidebar
-      const upNextContainer = document.getElementById('reader-up-next-content');
-      if (upNextContainer) {
-        const otherArticles = all.filter(a => a.id !== article.id);
-        const bestMatch = otherArticles.sort((a, b) => {
-          return calculateArticleScore(b, article, state.readHistory, state.selectedDifficulty) -
-                 calculateArticleScore(a, article, state.readHistory, state.selectedDifficulty);
-        })[0];
-
-        if (bestMatch) {
-          const matchLoc = getLocalized(bestMatch);
-          upNextContainer.innerHTML = `
-            <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-amber-200 dark:border-slate-700 space-y-2 cursor-pointer" onclick="openArticleInReader('${bestMatch.id}')">
-              <span class="text-[10px] font-bold text-amber-700 dark:text-amber-400 block">${bestMatch.category}</span>
-              <h4 class="text-xs font-bold font-serif-book leading-snug line-clamp-2">${matchLoc.title}</h4>
-              <span class="text-[10px] text-slate-500 font-mono block">⏱️ ${bestMatch.readingTime}</span>
-            </div>
-          `;
-        }
-      }
-    }
-
-    function toggleBookmark(id) {
-      if (state.bookmarks.includes(id)) {
-        state.bookmarks = state.bookmarks.filter(b => b !== id);
-      } else {
-        state.bookmarks.push(id);
-      }
-      localStorage.setItem('skillsfy_bookmarks', JSON.stringify(state.bookmarks));
-      renderAllFeeds();
-    }
-
-    function toggleBookmarkActiveArticle() {
-      if (state.activeArticleId) {
-        toggleBookmark(state.activeArticleId);
-        const isBookmarked = state.bookmarks.includes(state.activeArticleId);
-        const bIcon = document.getElementById('reader-bookmark-icon');
-        const bText = document.getElementById('reader-bookmark-text');
-        if (bIcon) bIcon.textContent = isBookmarked ? 'bookmark' : 'bookmark_border';
-        if (bText) bText.textContent = isBookmarked ? 'Saved' : 'Save Guide';
-      }
-    }
-
-    // Scroll Progress Bar Tracker
-    window.addEventListener('scroll', () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
-      const bar = document.getElementById('reading-progress-bar');
-      if (bar) bar.style.width = `${progress}%`;
-    });
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function scrollToRecommended() {
-      document.getElementById('feed-recommended-grid')?.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function readNextRecommendedHandbook() {
-      const all = getArticles();
-      const unread = all.filter(a => !state.readHistory.includes(a.id));
-      const target = unread.length > 0 ? unread[0] : all[0];
-      if (target) openArticleInReader(target.id);
-    }
-
-    // Check URL parameters for direct link to article e.g. /articles?id=art-ai-monetization-playbook-2026
-    document.addEventListener('DOMContentLoaded', () => {
-      renderAllFeeds();
-
+    // Routing: Check if single article or listing
+    function routeView() {
+      const path = window.location.pathname;
       const urlParams = new URLSearchParams(window.location.search);
-      const articleParam = urlParams.get('id') || urlParams.get('article');
-      if (articleParam) {
-        const all = getArticles();
-        const found = all.find(a => a.id === articleParam || a.slug === articleParam);
-        if (found) {
-          openArticleInReader(found.id);
+      
+      let targetSlug = urlParams.get('slug') || urlParams.get('article') || urlParams.get('id');
+
+      // Check if URL matches /articles/[slug]
+      if (!targetSlug && path.startsWith('/articles/')) {
+        const part = path.replace('/articles/', '').replace(/\/$/, '').trim();
+        if (part && part !== 'index.html' && part !== 'articles.html') {
+          targetSlug = part;
         }
       }
+
+      const detailView = document.getElementById('article-detail-view');
+      const listView = document.getElementById('articles-list-view');
+
+      if (targetSlug) {
+        const article = allArticles.find(a => a.slug === targetSlug || a.id == targetSlug);
+        if (article) {
+          renderSingleArticle(article);
+          detailView.classList.remove('hidden');
+          listView.classList.add('hidden');
+          return;
+        }
+      }
+
+      // Default: List View
+      detailView.classList.add('hidden');
+      listView.classList.remove('hidden');
+      renderArticlesList();
+    }
+
+    function handleBackToList(e) {
+      if (e) e.preventDefault();
+      history.pushState(null, '', '/articles');
+      routeView();
+    }
+
+    function openArticle(slug, e) {
+      if (e) e.preventDefault();
+      history.pushState(null, '', `/articles/${slug}`);
+      routeView();
+    }
+
+    // Render single article matching LearnMize screenshots
+    function renderSingleArticle(article) {
+      document.getElementById('art-title').textContent = article.title;
+      document.getElementById('art-author').textContent = article.author || 'Skillsfy Team';
+      document.getElementById('art-date').textContent = article.published_at || 'Recently';
+      document.getElementById('art-read-time').textContent = article.read_time || '5 min read';
+      document.getElementById('art-body-html').innerHTML = article.content || '';
+
+      // Update Dynamic SEO & Schema.org
+      const fullUrl = `https://skillsfy.in/articles/${article.slug}`;
+      const desc = article.summary || article.title;
+
+      document.title = `${article.title} | Skillsfy`;
+      document.getElementById('seo-title').textContent = `${article.title} | Skillsfy`;
+      document.getElementById('seo-desc').setAttribute('content', desc);
+      document.getElementById('seo-canonical').setAttribute('href', fullUrl);
+
+      document.getElementById('og-title').setAttribute('content', article.title);
+      document.getElementById('og-desc').setAttribute('content', desc);
+      document.getElementById('og-url').setAttribute('href', fullUrl);
+      if (article.cover_image) {
+        document.getElementById('og-image').setAttribute('content', article.cover_image);
+        document.getElementById('tw-image').setAttribute('content', article.cover_image);
+      }
+
+      document.getElementById('tw-title').setAttribute('content', article.title);
+      document.getElementById('tw-desc').setAttribute('content', desc);
+
+      // JSON-LD Structured Data Update
+      const schemaScript = document.getElementById('seo-schema');
+      if (schemaScript) {
+        schemaScript.textContent = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": article.title,
+          "description": desc,
+          "image": article.cover_image || "https://skillsfy.in/assets/logo.png",
+          "author": {
+            "@type": "Person",
+            "name": article.author || "Skillsfy Team"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Skillsfy",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://skillsfy.in/assets/logo.png"
+            }
+          },
+          "datePublished": article.published_at || new Date().toISOString(),
+          "mainEntityOfPage": fullUrl
+        });
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Render articles listing
+    function renderArticlesList() {
+      const container = document.getElementById('articles-grid-container');
+      const emptyBox = document.getElementById('empty-state-box');
+
+      if (allArticles.length === 0) {
+        container.innerHTML = '';
+        emptyBox.classList.remove('hidden');
+        return;
+      }
+
+      emptyBox.classList.add('hidden');
+      container.innerHTML = allArticles.map(a => `
+        <div class="border border-slate-200/80 rounded-2xl p-6 bg-white hover:border-[#6366F1] hover:shadow-md transition-all flex flex-col justify-between text-left group">
+          <div class="space-y-3">
+            <span class="text-[11px] font-bold text-[#6D28D9] uppercase tracking-wider block font-heading">
+              ${a.category || 'Guide'}
+            </span>
+            <h2 class="text-xl font-black text-slate-900 leading-snug group-hover:text-[#6D28D9] transition-colors font-heading">
+              <a href="/articles/${a.slug}" onclick="openArticle('${a.slug}', event)">${a.title}</a>
+            </h2>
+            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+              ${a.summary || ''}
+            </p>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <span>⏱️ ${a.read_time || '5 min read'}</span>
+            <a href="/articles/${a.slug}" onclick="openArticle('${a.slug}', event)" class="font-bold text-[#6D28D9] hover:underline flex items-center gap-1">
+              <span>Read Guide</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function shareArticle() {
+      if (navigator.share) {
+        navigator.share({
+          title: document.title,
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Article link copied to clipboard!');
+      }
+    }
+
+    window.addEventListener('popstate', routeView);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchAllArticles();
     });
   </script>
 </body>
