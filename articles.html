@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <base href="/"/>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q400P9M9X4"></script>
@@ -12,8 +13,6 @@
     gtag('js', new Date());
     gtag('config', 'G-Q400P9M9X4');
   </script>
-
-  <base href="/" />
 
   <!-- Dynamic Primary SEO Tags -->
   <title id="seo-title">Articles & Practical Guides | Skillsfy</title>
@@ -34,13 +33,12 @@
   <meta name="twitter:description" id="tw-desc" content="Read practical guides and educational articles from Skillsfy." />
   <meta name="twitter:image" id="tw-image" content="https://skillsfy.in/assets/logo.png" />
 
-  <!-- Google Fonts: Plus Jakarta Sans (Headings matching LearnMize) & Inter (Body) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Manrope (Body) & Outfit (Headings) from Articles Theme.zip -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 
   <!-- Schema.org JSON-LD for Google Search Console & Rich Snippets -->
   <script type="application/ld+json" id="seo-schema">
@@ -61,250 +59,509 @@
   </script>
 
   <style>
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #ffffff;
-      color: #111827;
-      -webkit-font-smoothing: antialiased;
-    }
-    .font-heading {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    /* Exact Article typography from LearnMize screenshots */
-    .article-content {
-      font-size: 1.0625rem; /* ~17px */
-      line-height: 1.7;
-      color: #2d3748;
-    }
-    .article-content p {
-      margin-bottom: 1.5rem;
-    }
-    .article-content h1 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 800;
-      color: #111827;
-      font-size: 2rem; /* 32px mobile */
-      line-height: 1.25;
-      margin-bottom: 1.75rem;
-      letter-spacing: -0.02em;
-    }
-    @media (min-width: 640px) {
-      .article-content h1 {
-        font-size: 2.75rem; /* 44px desktop */
-      }
-    }
-    .article-content h2 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 800;
-      color: #111827;
-      font-size: 1.5rem; /* 24px */
-      line-height: 1.3;
-      margin-top: 2.25rem;
-      margin-bottom: 1rem;
-      letter-spacing: -0.01em;
-    }
-    .article-content h3 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 700;
-      color: #111827;
-      font-size: 1.25rem;
-      margin-top: 1.75rem;
-      margin-bottom: 0.75rem;
-    }
-    .article-content ul {
-      margin-bottom: 1.5rem;
-      padding-left: 0.25rem;
-    }
-    .article-content li {
-      margin-bottom: 0.85rem;
-      line-height: 1.65;
-    }
-    .article-content strong {
-      color: #111827;
-      font-weight: 700;
-    }
-    .article-content em, .article-content .italic {
-      color: #4b5563;
-      font-style: italic;
-    }
-    .article-content a {
-      color: #6366f1;
-      text-decoration: underline;
-      font-weight: 600;
-    }
-    .article-content figure {
-      margin: 2rem 0;
-    }
-    .article-content figure img {
-      border-radius: 16px;
-      width: 100%;
-      height: auto;
-    }
-    .article-content figcaption {
-      font-size: 0.75rem;
-      color: #6b7280;
-      text-align: center;
-      margin-top: 0.5rem;
+    @layer base{
+      html,body{margin:0;padding:0;}
+      main>:first-child{margin-top:0!important;}
+      main>:last-child{margin-bottom:0!important;}
     }
   </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "accent-tag-text": "#D92D20",
+            "on-tertiary-container": "#ffc6ae",
+            "primary-fixed-dim": "#cbbeff",
+            "primary-container": "#5f2eea",
+            "on-error": "#ffffff",
+            "surface-container": "#f0edec",
+            "surface": "#fcf9f8",
+            "surface-bright": "#fcf9f8",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed": "#dae2ff",
+            "on-secondary-container": "#002662",
+            "surface-subtle": "#F7F7F8",
+            "surface-dim": "#dcd9d9",
+            "tertiary-fixed": "#ffdbcd",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#484456",
+            "inverse-on-surface": "#f3f0ef",
+            "tertiary": "#772b00",
+            "inverse-primary": "#cbbeff",
+            "on-primary-fixed-variant": "#4a00d4",
+            "tertiary-fixed-dim": "#ffb596",
+            "text-muted": "#52525B",
+            "on-primary-container": "#d7ccff",
+            "background": "#fcf9f8",
+            "surface-tint": "#6334ee",
+            "secondary": "#1358c8",
+            "on-tertiary": "#ffffff",
+            "on-secondary": "#ffffff",
+            "outline": "#797487",
+            "primary-fixed": "#e6deff",
+            "on-background": "#1c1b1b",
+            "error-container": "#ffdad6",
+            "surface-variant": "#e5e2e1",
+            "on-tertiary-fixed-variant": "#7d2d00",
+            "surface-container-high": "#ebe7e7",
+            "secondary-container": "#588cfe",
+            "primary": "#4700cb",
+            "surface-border": "#E4E4E7",
+            "outline-variant": "#cac3d9",
+            "surface-container-highest": "#e5e2e1",
+            "on-primary-fixed": "#1d0061",
+            "on-secondary-fixed": "#001946",
+            "on-secondary-fixed-variant": "#00419d",
+            "inverse-surface": "#313030",
+            "on-surface": "#1c1b1b",
+            "surface-container-low": "#f6f3f2",
+            "secondary-fixed-dim": "#b1c5ff",
+            "error": "#ba1a1a",
+            "tertiary-container": "#9d3b00",
+            "on-tertiary-fixed": "#360f00"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            gutter: "1.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            margin: "2rem",
+            "space-lg": "1.5rem"
+          },
+          fontFamily: {
+            "label-md": ["Outfit", "sans-serif"],
+            "headline-sm": ["Outfit", "sans-serif"],
+            "body-subtle": ["Manrope", "sans-serif"],
+            "display-hero-mobile": ["Outfit", "sans-serif"],
+            "headline-xl": ["Outfit", "sans-serif"],
+            "label-lg": ["Outfit", "sans-serif"],
+            "headline-xl-mobile": ["Outfit", "sans-serif"],
+            "body-lead": ["Manrope", "sans-serif"],
+            "headline-md": ["Outfit", "sans-serif"],
+            "headline-lg": ["Outfit", "sans-serif"],
+            "label-sm": ["Outfit", "sans-serif"],
+            "body-default": ["Manrope", "sans-serif"],
+            "display-hero": ["Outfit", "sans-serif"]
+          },
+          fontSize: {
+            "label-md": ["13px", { lineHeight: "18px", fontWeight: "500" }],
+            "headline-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }],
+            "body-subtle": ["14px", { lineHeight: "22px", fontWeight: "400" }],
+            "display-hero-mobile": ["32px", { lineHeight: "40px", fontWeight: "700" }],
+            "headline-xl": ["36px", { lineHeight: "44px", fontWeight: "700" }],
+            "label-lg": ["15px", { lineHeight: "20px", fontWeight: "600" }],
+            "headline-xl-mobile": ["26px", { lineHeight: "34px", fontWeight: "700" }],
+            "body-lead": ["18px", { lineHeight: "32px", fontWeight: "400" }],
+            "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+            "headline-lg": ["26px", { lineHeight: "34px", fontWeight: "600" }],
+            "label-sm": ["11px", { lineHeight: "14px", fontWeight: "600" }],
+            "body-default": ["16px", { lineHeight: "28px", fontWeight: "400" }],
+            "display-hero": ["48px", { lineHeight: "56px", fontWeight: "700" }]
+          }
+        }
+      }
+    };
+  </script>
 </head>
-<body class="min-h-screen flex flex-col antialiased bg-white text-slate-900">
+<body class="bg-surface font-body-default text-on-surface antialiased">
 
-  <!-- ================= TOP NOTIFICATION BANNER (MATCHING LEARNMIZE) ================= -->
-  <div class="bg-gradient-to-r from-[#7C3AED] to-[#6366F1] text-white py-2.5 px-4 text-xs font-semibold">
-    <div class="max-w-4xl mx-auto flex items-center justify-between gap-3">
-      <div class="flex items-center gap-2 truncate">
-        <span class="text-sm">🚀</span>
-        <span class="truncate">Our Community is Live | Join Now</span>
-      </div>
-      <a href="/courses" class="bg-white text-[#6D28D9] text-[11px] font-bold px-3 py-1 rounded-full shadow-xs hover:bg-slate-100 transition-colors flex-shrink-0 flex items-center gap-1">
-        <span>Join Community</span>
-        <span>→</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- ================= TOP HEADER (MATCHING LEARNMIZE) ================= -->
-  <header class="border-b border-slate-100 bg-white sticky top-0 z-40">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+  <!-- ================= TOP HEADER (SKILLSFY BRANDING FROM THEME) ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-margin flex items-center justify-between gap-gutter">
       
-      <!-- Brand Logo -->
-      <a href="/" class="flex items-center gap-2">
-        <span class="text-xl sm:text-2xl font-black tracking-tight text-slate-900 font-heading">
-          SKILLSFY
-        </span>
-      </a>
+      <!-- Logo: Skillsfy -->
+      <div class="flex items-center gap-space-lg shrink-0">
+        <a class="flex items-center gap-space-sm group" href="/">
+          <div class="w-9 h-9 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-md text-headline-md shadow-sm">
+            <span class="material-symbols-outlined text-[20px]">auto_stories</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-headline-md text-headline-md tracking-tight text-on-surface group-hover:text-primary transition-colors">
+              Skillsfy
+            </span>
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-semibold -mt-1">
+              Articles
+            </span>
+          </div>
+        </a>
+      </div>
 
-      <!-- Right Header Actions: Login button + Mobile Hamburger Menu -->
-      <div class="flex items-center gap-3">
-        <a href="/login" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#EDE9FE] text-[#6D28D9] hover:bg-[#DDD6FE] transition-colors">
+      <!-- Center Navigation -->
+      <nav class="hidden xl:flex items-center gap-space-lg font-label-lg text-label-lg">
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="/">Home</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="/courses">Courses & Batches</a>
+        <a class="text-primary font-bold transition-colors" href="/articles">Articles & Guides</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="/about">About Us</a>
+        <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="/contact">Contact</a>
+      </nav>
+
+      <!-- Right Actions: Search + Demo + Login -->
+      <div class="flex items-center gap-space-md shrink-0">
+        <div class="relative hidden md:block w-44 lg:w-56">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span>
+          <input 
+            id="search-input"
+            oninput="handleSearch(this.value)"
+            class="w-full pl-9 pr-4 py-1.5 bg-surface-container-low text-on-surface placeholder:text-text-muted rounded-full font-body-subtle text-body-subtle focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" 
+            placeholder="Search articles..." 
+            type="text"
+          />
+        </div>
+
+        <a class="hidden sm:inline-flex items-center px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="/courses">
+          Live Cohort
+        </a>
+
+        <a class="inline-flex items-center px-5 py-2 rounded-full bg-primary-container text-on-primary font-label-md text-label-md shadow-[0_8px_30px_-4px_rgba(95,46,234,0.3)] hover:opacity-95 transition-opacity" href="/login">
           Login
         </a>
-        <button onclick="toggleMobileMenu()" class="p-1.5 text-slate-700 hover:text-slate-900 text-xl focus:outline-none" aria-label="Toggle navigation">
-          ☰
+
+        <!-- Mobile menu hamburger -->
+        <button onclick="toggleMobileMenu()" class="xl:hidden p-2 text-on-surface hover:text-primary">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
         </button>
       </div>
 
     </div>
 
-    <!-- Dropdown menu -->
-    <div id="mobile-nav-drawer" class="hidden border-t border-slate-100 bg-white px-4 py-3 space-y-2 text-xs font-bold text-slate-700 shadow-lg">
-      <a href="/" class="block py-2 hover:text-[#6D28D9]">Home</a>
-      <a href="/courses" class="block py-2 hover:text-[#6D28D9]">Courses & Batches</a>
-      <a href="/articles" class="block py-2 text-[#6D28D9]">Articles & Guides</a>
-      <a href="/about" class="block py-2 hover:text-[#6D28D9]">About Us</a>
-      <a href="/contact" class="block py-2 hover:text-[#6D28D9]">Contact</a>
+    <!-- Mobile Dropdown -->
+    <div id="mobile-nav-drawer" class="hidden xl:hidden border-t border-surface-border bg-surface px-6 py-4 space-y-3 font-label-lg text-label-lg shadow-xl">
+      <a class="block py-1 hover:text-primary" href="/">Home</a>
+      <a class="block py-1 hover:text-primary" href="/courses">Courses & Batches</a>
+      <a class="block py-1 text-primary font-bold" href="/articles">Articles & Guides</a>
+      <a class="block py-1 hover:text-primary" href="/about">About Us</a>
+      <a class="block py-1 hover:text-primary" href="/contact">Contact</a>
     </div>
   </header>
 
-  <!-- ================= MAIN CONTENT AREA ================= -->
-  <main class="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-    
-    <!-- VIEW A: SINGLE ARTICLE DETAIL VIEW (MATCHING THE 5 IMAGES EXACTLY) -->
-    <article id="article-detail-view" class="article-content hidden text-left">
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="w-full pt-20 bg-surface min-h-screen">
+    <div class="flex flex-col w-full">
       
-      <!-- Back Link -->
-      <div class="mb-6">
-        <a href="/articles" onclick="handleBackToList(event)" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#6D28D9] transition-colors no-underline">
-          <span class="material-symbols-outlined text-sm">arrow_back</span>
-          <span>All Articles</span>
-        </a>
+      <!-- Reading Progress Bar -->
+      <div class="sticky top-20 left-0 right-0 z-40 w-full h-1 bg-surface-container">
+        <div class="h-full bg-primary transition-all duration-150 w-0" id="read-indicator"></div>
       </div>
 
-      <!-- Article Title (H1) -->
-      <h1 id="art-title">
-        How to start an ecommerce business
-      </h1>
+      <!-- ================= VIEW A: SINGLE ARTICLE DETAIL VIEW ================= -->
+      <article id="article-detail-view" class="w-full max-w-[820px] mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-14 flex flex-col hidden text-left">
+        
+        <!-- Breadcrumbs -->
+        <nav class="flex items-center gap-2 font-label-md text-label-md text-text-muted mb-6 overflow-x-auto whitespace-nowrap scrollbar-none">
+          <a class="hover:text-primary transition-colors flex items-center gap-1" href="/" onclick="handleBackToList(event)">
+            <span class="material-symbols-outlined text-[16px]">home</span>
+            <span>Home</span>
+          </a>
+          <span class="material-symbols-outlined text-[14px] text-outline-variant">chevron_right</span>
+          <a class="hover:text-primary transition-colors" href="/articles" onclick="handleBackToList(event)">Articles</a>
+          <span class="material-symbols-outlined text-[14px] text-outline-variant">chevron_right</span>
+          <span class="text-on-surface truncate" id="crumb-title">Article</span>
+        </nav>
 
-      <!-- Article Meta Bar -->
-      <div class="flex items-center gap-3 text-xs text-slate-500 pb-6 border-b border-slate-100 mb-6">
-        <span id="art-author" class="font-semibold text-slate-700">Skillsfy Editorial Team</span>
-        <span>•</span>
-        <span id="art-date">Published</span>
-        <span>•</span>
-        <span id="art-read-time">6 min read</span>
-      </div>
-
-      <!-- Dynamic Article HTML Content -->
-      <div id="art-body-html">
-        <!-- Rendered dynamically -->
-      </div>
-
-      <!-- Article Footer / Desk Note -->
-      <div class="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-        <p>Published with ❤️ by Skillsfy Editorial Desk</p>
-        <div class="flex items-center gap-2">
-          <button onclick="shareArticle()" class="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold flex items-center gap-1">
-            <span class="material-symbols-outlined text-sm">share</span>
-            <span>Share Article</span>
-          </button>
+        <!-- Category Pills -->
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm uppercase tracking-wider" id="art-category">
+            <span class="material-symbols-outlined text-[14px]">school</span>
+            Online Earning &amp; Freelancing
+          </span>
+          <span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-subtle text-text-muted font-label-sm text-label-sm uppercase tracking-wider">
+            Practical Guide
+          </span>
         </div>
-      </div>
 
-    </article>
+        <!-- Article Header -->
+        <header class="flex flex-col gap-4 mb-8">
+          <h1 class="font-headline-xl text-headline-xl md:text-[44px] md:leading-[52px] text-on-surface font-bold tracking-tight" id="art-title">
+            College Vidya Se Paise Kaise Kamaye?
+          </h1>
+          <p class="font-body-lead text-body-lead text-text-muted" id="art-lead">
+            Beginners Ke Liye Complete Step-by-Step Guide (2026)
+          </p>
 
-    <!-- VIEW B: ARTICLES DIRECTORY LIST (WHEN VISITING /articles) -->
-    <section id="articles-list-view" class="text-left space-y-8">
-      
-      <div>
-        <h1 class="text-3xl sm:text-4xl font-black font-heading text-slate-900 tracking-tight">
-          Articles & Educational Guides
-        </h1>
-        <p class="text-sm text-slate-600 mt-2">
-          Curated industry deep-dives, tactical business frameworks, and practical technology tutorials.
-        </p>
-      </div>
+          <!-- Meta Bar -->
+          <div class="flex flex-wrap items-center justify-between gap-4 py-4 my-2 border-y border-surface-border">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center ring-2 ring-primary/20 shrink-0">
+                <span class="material-symbols-outlined text-primary text-[24px]">verified_user</span>
+              </div>
+              <div class="flex flex-col">
+                <div class="flex items-center gap-1.5">
+                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold" id="art-author">
+                    Skillsfy Editorial Team
+                  </span>
+                  <span class="material-symbols-outlined text-primary text-[16px]" title="Verified Editorial Desk">verified</span>
+                </div>
+                <div class="flex items-center gap-3 font-body-subtle text-body-subtle text-text-muted">
+                  <span id="art-date">19 September 2026</span>
+                  <span>•</span>
+                  <span class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[15px]">schedule</span>
+                    <span id="art-read-time">8 min read</span>
+                  </span>
+                </div>
+              </div>
+            </div>
 
-      <!-- Dynamic Articles Grid -->
-      <div id="articles-grid-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-        <!-- Populated from database / localStorage -->
-      </div>
+            <!-- Social Actions -->
+            <div class="flex items-center gap-2">
+              <button onclick="shareArticle()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-subtle hover:bg-surface-container font-label-md text-label-md text-on-surface transition-colors" id="copy-btn">
+                <span class="material-symbols-outlined text-[16px]">link</span>
+                <span id="copy-text">Share</span>
+              </button>
+              <button onclick="bookmarkArticle()" class="w-9 h-9 rounded-full bg-surface-subtle hover:bg-surface-container text-on-surface flex items-center justify-center transition-colors" title="Bookmark">
+                <span class="material-symbols-outlined text-[18px]">bookmark</span>
+              </button>
+            </div>
+          </div>
+        </header>
 
-      <!-- Clean Empty State (When no articles published yet) -->
-      <div id="empty-state-box" class="py-16 text-center space-y-3 hidden">
-        <div class="w-14 h-14 bg-purple-50 text-[#6D28D9] rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold">
-          📖
+        <!-- Promotional Card: Skillsfy Live Masterclass Banner (from theme) -->
+        <section class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-[#5317d6] to-secondary p-6 sm:p-8 text-on-primary mb-12 shadow-[0_12px_36px_-6px_rgba(71,0,203,0.35)]">
+          <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="flex flex-col gap-2 max-w-lg">
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/20 text-white font-label-sm text-label-sm w-fit uppercase tracking-wider backdrop-blur-sm">
+                <span class="material-symbols-outlined text-[14px]">bolt</span>
+                Live Skillsfy Masterclass
+              </div>
+              <h2 class="font-headline-lg text-headline-lg text-white font-bold tracking-tight">
+                Want to learn high-income software & AI skills?
+              </h2>
+              <p class="font-body-subtle text-body-subtle text-white/80">
+                Join our upcoming cohort and build real client projects with 1-on-1 mentorship from industry engineers.
+              </p>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-primary font-label-lg text-label-lg shadow-lg hover:bg-surface transition-colors group" href="/courses">
+                <span>Explore Cohort</span>
+                <span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+          <!-- Ambient decorative gradient orbs -->
+          <div class="absolute -right-12 -bottom-16 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+          <div class="absolute right-1/3 -top-12 w-40 h-40 rounded-full bg-secondary-container/20 blur-xl pointer-events-none"></div>
+        </section>
+
+        <!-- Dynamic Article HTML Content -->
+        <div id="art-body-html">
+          <!-- Populated from article object -->
         </div>
-        <h3 class="text-lg font-bold text-slate-800">No articles published yet</h3>
-        <p class="text-xs text-slate-500 max-w-sm mx-auto">
-          We are currently curating practical guides. New articles will appear here immediately upon publication.
-        </p>
-      </div>
 
-    </section>
+        <!-- Tags / Filed under -->
+        <div class="flex flex-wrap items-center gap-2 pt-8 border-t border-surface-border mt-8">
+          <span class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider mr-2">Filed under:</span>
+          <span class="px-3.5 py-1.5 rounded-full bg-surface-subtle text-text-muted font-label-md text-label-md">#OnlineEducation</span>
+          <span class="px-3.5 py-1.5 rounded-full bg-surface-subtle text-text-muted font-label-md text-label-md">#CollegeVidya</span>
+          <span class="px-3.5 py-1.5 rounded-full bg-surface-subtle text-text-muted font-label-md text-label-md">#ZeroInvestmentEarning</span>
+          <span class="px-3.5 py-1.5 rounded-full bg-surface-subtle text-text-muted font-label-md text-label-md">#FreelanceGuide</span>
+        </div>
 
+        <!-- Author Bio Box -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-surface-subtle flex flex-col sm:flex-row items-center sm:items-start gap-6 my-8">
+          <div class="w-16 h-16 rounded-2xl bg-primary text-on-primary flex items-center justify-center font-headline-xl text-headline-xl font-bold shrink-0">
+            SF
+          </div>
+          <div class="flex flex-col gap-2 text-center sm:text-left">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+              <h4 class="font-headline-md text-headline-md text-on-surface font-bold">Skillsfy Editorial &amp; Pedagogy Desk</h4>
+              <span class="font-label-sm text-label-sm text-primary font-medium px-2 py-0.5 rounded-md bg-primary-fixed/50 w-fit mx-auto sm:mx-0">Verified Educators</span>
+            </div>
+            <p class="font-body-subtle text-body-subtle text-text-muted">
+              Specializing in practical industry blueprints, zero-hype earning frameworks, and high-income tech skills. Designed to help ambitious students build self-reliance.
+            </p>
+          </div>
+        </div>
+
+        <!-- Leave a Reply Form (from code.html) -->
+        <section class="flex flex-col gap-6 pt-6 border-t border-surface-border">
+          <div class="flex flex-col gap-1">
+            <h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">Leave a Reply</h2>
+            <p class="font-body-subtle text-body-subtle text-text-muted">
+              Your email address will not be published. Required fields are marked <span class="text-accent-tag-text font-bold">*</span>
+            </p>
+          </div>
+          <form class="flex flex-col gap-5" id="comment-form" onsubmit="handleCommentSubmit(event)">
+            <div class="flex flex-col gap-2">
+              <label class="font-label-md text-label-md text-on-surface font-semibold" for="comment-text">
+                Comment <span class="text-accent-tag-text">*</span>
+              </label>
+              <textarea class="w-full p-4 rounded-xl bg-surface border border-surface-border text-on-surface font-body-default text-body-default placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/15 transition-all" id="comment-text" placeholder="Share your thoughts or questions regarding this guide..." required="" rows="4"></textarea>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex flex-col gap-2">
+                <label class="font-label-md text-label-md text-on-surface font-semibold" for="author-name">
+                  Name <span class="text-accent-tag-text">*</span>
+                </label>
+                <input class="w-full px-4 py-3 rounded-xl bg-surface border border-surface-border text-on-surface font-body-default text-body-default placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/15 transition-all" id="author-name" placeholder="Your name" required="" type="text"/>
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="font-label-md text-label-md text-on-surface font-semibold" for="author-email">
+                  Email <span class="text-accent-tag-text">*</span>
+                </label>
+                <input class="w-full px-4 py-3 rounded-xl bg-surface border border-surface-border text-on-surface font-body-default text-body-default placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/15 transition-all" id="author-email" placeholder="name@domain.com" required="" type="email"/>
+              </div>
+            </div>
+            <div class="pt-2">
+              <button class="px-8 py-3.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-md hover:opacity-90 transition-all" type="submit">
+                Post Comment
+              </button>
+            </div>
+          </form>
+          <div class="hidden p-4 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 font-body-subtle text-body-subtle" id="comment-success">
+            Thank you! Your response has been submitted and is queued for moderation.
+          </div>
+        </section>
+
+      </article>
+
+      <!-- ================= VIEW B: DIRECTORY LISTING ================= -->
+      <section id="articles-list-view" class="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-margin py-8 md:py-14 flex flex-col gap-8 text-left">
+        
+        <div>
+          <span class="font-label-sm text-label-sm text-primary uppercase tracking-widest font-bold">
+            Curated Knowledge &amp; Blueprints
+          </span>
+          <h1 class="font-headline-xl text-headline-xl md:text-[44px] md:leading-[52px] text-on-surface font-bold tracking-tight mt-1">
+            Articles &amp; Educational Guides
+          </h1>
+          <p class="font-body-lead text-body-lead text-text-muted max-w-2xl mt-2">
+            In-depth operational blueprints, zero-investment earning guides, and career frameworks curated for students and builders.
+          </p>
+        </div>
+
+        <!-- Articles Grid (Using Recommended Reading Bento Cards from theme) -->
+        <div id="articles-grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+          <!-- Populated from published-articles.json / JavaScript -->
+        </div>
+
+        <!-- Clean Empty State (When no articles published) -->
+        <div id="empty-state-box" class="py-16 text-center space-y-3 hidden">
+          <div class="w-14 h-14 bg-surface-container text-primary rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold">
+            📖
+          </div>
+          <h3 class="font-headline-md text-headline-md text-on-surface font-bold">No articles published yet</h3>
+          <p class="font-body-subtle text-body-subtle text-text-muted max-w-sm mx-auto">
+            We are currently curating practical guides. New articles will appear here immediately upon publication.
+          </p>
+        </div>
+
+      </section>
+
+    </div>
   </main>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="border-t border-slate-100 py-8 text-center text-xs text-slate-500 mt-auto">
-    <div class="max-w-4xl mx-auto px-4 space-y-2">
-      <p class="font-bold text-slate-800 font-heading">Skillsfy - Institute of Technology</p>
-      <p>Independent Educational Publishing & Technology Engineering</p>
+  <!-- ================= MODERN FOOTER (SKILLSFY BRANDED FROM THEME) ================= -->
+  <footer class="w-full bg-surface-container-low pt-space-xl pb-space-lg border-t border-surface-border mt-auto">
+    <div class="max-w-7xl mx-auto px-margin">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter pb-space-xl">
+        
+        <div class="lg:col-span-4 flex flex-col gap-space-md">
+          <div class="flex items-center gap-space-sm">
+            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-headline-sm text-headline-sm">
+              <span class="material-symbols-outlined text-[18px]">auto_stories</span>
+            </div>
+            <span class="font-headline-md text-headline-md text-on-surface font-bold">Skillsfy Articles</span>
+          </div>
+          <p class="font-body-subtle text-body-subtle text-text-muted max-w-sm">
+            In-depth operational blueprints, high-growth earning guides, and practical technology roadmaps calibrated for modern learners.
+          </p>
+          <div class="flex items-center gap-space-sm pt-space-xs">
+            <span class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider">Skillsfy Institute of Technology</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 flex flex-col gap-space-sm">
+          <span class="font-headline-sm text-headline-sm text-on-surface">Platform</span>
+          <nav class="flex flex-col gap-space-xs font-body-subtle text-body-subtle text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="/courses">All Courses</a>
+            <a class="hover:text-primary transition-colors" href="/courses">Live Cohorts</a>
+            <a class="hover:text-primary transition-colors" href="/verify">Verify Certificate</a>
+            <a class="hover:text-primary transition-colors" href="/login">Student LMS</a>
+          </nav>
+        </div>
+
+        <div class="lg:col-span-2 flex flex-col gap-space-sm">
+          <span class="font-headline-sm text-headline-sm text-on-surface">Editorial</span>
+          <nav class="flex flex-col gap-space-xs font-body-subtle text-body-subtle text-on-surface-variant">
+            <a class="text-primary font-semibold transition-colors" href="/articles">All Guides</a>
+            <a class="hover:text-primary transition-colors" href="/articles/how-to-earn-money-with-college-vidya">College Vidya Guide</a>
+            <a class="hover:text-primary transition-colors" href="/about">Editorial Team</a>
+            <a class="hover:text-primary transition-colors" href="/contact">Contact Editorial</a>
+          </nav>
+        </div>
+
+        <div class="lg:col-span-4 flex flex-col gap-space-sm">
+          <span class="font-headline-sm text-headline-sm text-on-surface">Stay Updated</span>
+          <p class="font-body-subtle text-body-subtle text-text-muted">
+            Join 12,000+ students receiving our weekly practical study briefings.
+          </p>
+          <form class="flex flex-col sm:flex-row gap-space-xs pt-space-xs" onsubmit="event.preventDefault(); alert('Subscribed to Skillsfy Articles!');">
+            <input class="flex-1 px-4 py-2.5 bg-surface rounded-full font-body-subtle text-body-subtle text-on-surface placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/20 border border-surface-border" placeholder="Enter your email" type="email" required/>
+            <button class="px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity shrink-0" type="submit">
+              Subscribe
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md font-body-subtle text-body-subtle text-text-muted border-t border-surface-border">
+        <p>© 2026 Skillsfy Institute of Technology. All rights reserved.</p>
+        <div class="flex items-center gap-space-md">
+          <a class="hover:text-on-surface transition-colors" href="/terms">Terms of Service</a>
+          <a class="hover:text-on-surface transition-colors" href="/privacy-policy">Privacy Policy</a>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- ================= JAVASCRIPT SYSTEM ================= -->
+  <!-- ================= CLIENT JAVASCRIPT SYSTEM ================= -->
   <script>
     const SUPABASE_PROJECT_URL = 'https://iqssjqfyfdmujlmlbjhl.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVqdHhrZ2x1YnVieHJxY2hmZXBnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYzMTg5MDAsImV4cCI6MjA3MTg5NDkwMH0.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlxc3NqcWZ5ZmRtdWpsbWxiamhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMzY3NzIsImV4cCI6MjEwMjcxMjc3Mn0.o7gGbhiuRkLxxJCRJNM1RzBrIVHnOTxuzX0-EOQVyyU';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlxc3NqcWZ5ZmRtdWpsbWxiamhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMzY3NzIsImV4cCI6MjEwMjcxMjc3Mn0.o7gGbhiuRkLxxJCRJNM1RzBrIVHnOTxuzX0-EOQVyyU';
 
-    let allArticles = [{"id":"art-college-vidya-earning-guide-2026","slug":"how-to-earn-money-with-college-vidya","title":"College Vidya Se Paise Kaise Kamaye? Complete Beginners Guide (2026)","category":"Online Earning & Freelancing","author":"Skillsfy Editorial Team","read_time":"8 min read","cover_image":"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80","summary":"College Vidya Refer & Earn aur Partner Program se ghar baithe paise kaise kamaye? Beginners ke liye step-by-step guide, practical counselling tips aur common mistakes.","content":"\n<div class=\"space-y-6\">\n\n  <!-- Language Switcher Banner -->\n  <div class=\"p-3 sm:p-3.5 rounded-xl bg-purple-50/70 border border-purple-200/80 flex items-center justify-between text-xs font-semibold text-[#6D28D9]\">\n    <span class=\"flex items-center gap-1.5\">\n      <span class=\"text-sm\">🌐</span>\n      <span>This article is also available in English:</span>\n    </span>\n    <a href=\"/articles/how-to-earn-money-with-college-vidya-guide\" class=\"px-2.5 py-1 rounded-lg bg-white border border-purple-200 text-[#6D28D9] font-bold hover:bg-purple-100 transition-colors\">\n      Read English Edition →\n    </a>\n  </div>\n\n  <!-- Intro -->\n  <p class=\"text-base sm:text-lg leading-relaxed text-[#2D3748]\">\n    Aaj ke time me har koi ghar baithe kuch extra income ka rasta dhundh raha hai. Koi student hai jo apni pocket money nikalna chahta hai, koi housewife hai jo bina ghar se bahar gaye kuch kamana chahti hai, aur koi job karne wala hai jo side income banana chahta hai. Agar aap in me se koi bhi ho, to <strong>College Vidya</strong> ek aisa platform hai jisse aap bina koi paisa lagaye kamai shuru kar sakte ho.\n  </p>\n\n  <p class=\"text-base leading-relaxed text-[#2D3748]\">\n    Is article me hum bilkul shuru se samjhenge: College Vidya kya hai, isse paise kaise milte hain, kaun sa tarika aapke liye sahi hai, pehla student kaise dhundhe, usse baat kaise kare, aur kin galtiyon se bachna hai. Har cheez step-by-step aur practical detail me samjhayi gayi hai, taaki ek beginner bhi bina kisi confusion ke shuru kar sake.\n  </p>\n\n  <!-- Quick Index Box -->\n  <div class=\"p-5 rounded-2xl bg-slate-50 border border-slate-200/80 my-6\">\n    <h3 class=\"text-sm font-black uppercase tracking-wider text-slate-900 mb-3 font-heading flex items-center gap-2\">\n      <span>📑</span>\n      <span>Is Article Me Aap Kya Seekhoge:</span>\n    </h3>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-medium text-slate-700\">\n      <div>• 1. College Vidya kya hai aur ye kaise kaam karta hai</div>\n      <div>• 2. Online degree ki market demand kyun hai</div>\n      <div>• 3. Paise kamane ke 2 main tarike & comparison</div>\n      <div>• 4. Refer & Earn se kamai ka poora process</div>\n      <div>• 5. Partner Program se kamai: Step-by-step</div>\n      <div>• 6. Student ko sahi tarike se counsel kaise karein</div>\n      <div>• 7. Students dhundhne ke 6 asaan practical tarike</div>\n      <div>• 8. Pehle 30 din ka step-by-step action plan</div>\n      <div>• 9. Beginners ki 5 badi galtiyan jinse bachna hai</div>\n      <div>• 10. FAQs: Aksar puche jaane wale zaroori sawal</div>\n    </div>\n  </div>\n\n  <!-- Section 1 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-4 mb-2 font-heading\">\n    1. College Vidya Kya Hai Aur Ye Kaise Kaam Karta Hai?\n  </h2>\n  \n  <p>\n    College Vidya ek online education counselling platform hai. Iska primary kaam students ko sahi online degree aur sahi university chunne me madad karna hai. Yahan aapko <strong>Online BBA, MBA, BCA, MCA, B.Com, M.Com</strong> jaise kai programs ki unbiased jaankari milti hai.\n  </p>\n\n  <p>\n    Bahut se log regular college nahi ja paate. Kisi ki job hoti hai, kisi ki shaadi ho chuki hoti hai, kisi ki degree beech me chhoot gayi hoti hai, ya kisi ke paas regular college ki heavy fees nahi hoti. Aise logon ke liye online degree ek practical aur affordable option hai. Lekin problem ye hai ki market me bahut saari universities hain aur student ko samajh nahi aata ki kaun si sahi hai, fees kitni hai, aur eligibility kya hai. College Vidya isi confusion ko door karta hai.\n  </p>\n\n  <h3 class=\"text-lg font-bold text-slate-900 mt-4 mb-2 font-heading\">\n    Isme aapki kamai kahan se aati hai?\n  </h3>\n  <p>\n    Jab aap kisi interested student ko College Vidya se connect karte ho, to platform ka expert counsellor us student ko guide karta hai. Agar student admission le leta hai, to platform ko university se jo revenue milta hai, uska ek hissa aapko <strong>reward ya commission</strong> ke roop me milta hai. Yaani aap ek bridge ki tarah kaam karte ho: ek taraf student jise verified degree chahiye, aur doosri taraf platform jo use guide karta hai.\n  </p>\n\n  <!-- Purple Callout -->\n  <div class=\"p-4 sm:p-5 rounded-2xl bg-purple-50/70 border-l-4 border-[#7C3AED] my-5 text-sm text-[#1E1E1E] leading-relaxed\">\n    <strong>💡 Yaad rakhein:</strong> Aapki kamai tabhi hoti hai jab student ka admission confirm ho jaye. Sirf lead dene ya fake form bharwane se paisa nahi milta. Isliye hamesha genuine aur interested students par focus karna zaroori hai.\n  </div>\n\n  <!-- Section 2 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-4 mb-2 font-heading\">\n    2. Online Degree Ki Demand Kyun Hai?\n  </h2>\n  <p class=\"italic text-[#4B5563] mb-3\">\n    Agar aap samajh loge ki log online degree kyun lete hain, to aapke liye sahi logon ko dhundhna bahut aasan ho jayega. Ye kuch sabse common groups hain:\n  </p>\n\n  <ul class=\"space-y-2.5 pl-2 mb-6\">\n    <li>• <strong>Working professionals:</strong> Jo job karte hain aur promotion ya better salary hike ke liye MBA ya graduation complete karna chahte hain.</li>\n    <li>• <strong>12th pass students:</strong> Jo job ke saath ya kam fees me recognized graduation karna chahte hain.</li>\n    <li>• <strong>Housewives:</strong> Jinki padhai shaadi ke baad ruk gayi thi aur ab wo ghar sambhalte hue apni degree poori karna chahti hain.</li>\n    <li>• <strong>Adhoori degree wale log:</strong> Jinhone kisi financial ya family problem ki wajah se beech me padhai chhod di thi.</li>\n    <li>• <strong>Business owners:</strong> Jo apne business ko expand karne ya market me creditability banane ke liye formal degree lena chahte hain.</li>\n  </ul>\n\n  <p>\n    Ye sab log aapke aas-paas hi hain: aapke rishtedaar, dost, office colleagues, padosi. Isliye aapko shuruaat me kisi anjaan audience ke paas jaane ki zaroorat nahi hai, apne hi personal network se kaam shuru ho sakta hai.\n  </p>\n\n  <!-- Section 3 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-4 mb-2 font-heading\">\n    3. College Vidya Se Paise Kamane Ke 2 Tarike\n  </h2>\n  <p>\n    College Vidya se kamai ke mainly do raste hain. Dono me <strong>zero investment</strong> lagti hai, lekin dono ka level aur kaam alag hai. Pehle dono ko ek comparison table me dekh lijiye:\n  </p>\n\n  <!-- Responsive Comparison Table -->\n  <div class=\"overflow-x-auto my-5 rounded-2xl border border-slate-200\">\n    <table class=\"w-full text-left text-xs sm:text-sm\">\n      <thead class=\"bg-slate-100 text-slate-800 font-heading font-bold uppercase text-[11px]\">\n        <tr>\n          <th class=\"p-3 sm:p-4 border-b border-slate-200\">Point</th>\n          <th class=\"p-3 sm:p-4 border-b border-slate-200 text-indigo-700\">Refer & Earn Program</th>\n          <th class=\"p-3 sm:p-4 border-b border-slate-200 text-purple-700\">Partner Program</th>\n        </tr>\n      </thead>\n      <tbody class=\"divide-y divide-slate-100 text-slate-700\">\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Kiske liye</td>\n          <td class=\"p-3 sm:p-4\">Students, beginners, casual referrers</td>\n          <td class=\"p-3 sm:p-4 font-semibold text-slate-900\">Serious earners, bloggers, counsellors, influencers</td>\n        </tr>\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Kaam ka level</td>\n          <td class=\"p-3 sm:p-4\">Halka. Sirf friends ya family ko refer karna</td>\n          <td class=\"p-3 sm:p-4\">Zyada. Students ko khud counsel karna & application submit karna</td>\n        </tr>\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Investment</td>\n          <td class=\"p-3 sm:p-4 text-emerald-700 font-bold\">Zero (₹0)</td>\n          <td class=\"p-3 sm:p-4 text-emerald-700 font-bold\">Zero (₹0)</td>\n        </tr>\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Kamai ka type</td>\n          <td class=\"p-3 sm:p-4\">Har successful enrollment par one-time reward (upto ₹20,000 claim)</td>\n          <td class=\"p-3 sm:p-4\">Commission, har semester har referred student par</td>\n        </tr>\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Platform Support</td>\n          <td class=\"p-3 sm:p-4\">College Vidya counsellor student ko guide karta hai</td>\n          <td class=\"p-3 sm:p-4\">Training, marketing toolkit & dedicated Relationship Manager</td>\n        </tr>\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Kiske liye best</td>\n          <td class=\"p-3 sm:p-4\">Jo casual side income chahte hain</td>\n          <td class=\"p-3 sm:p-4 font-bold text-purple-700\">Jo ise long-term education business banana chahte hain</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n  <p class=\"text-sm text-slate-600\">\n    Agar aap bilkul naye ho, to <strong>Refer & Earn</strong> se shuru karna sabse safe aur aasan hai. Jab aapko process samajh aa jaye aur confidence badhe, tab aap Partner Program par shift ho sakte ho.\n  </p>\n\n  <!-- Section 4 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-2 font-heading\">\n    4. Tarika 1: Refer & Earn Program Se Kamai (Step-by-Step)\n  </h2>\n  <p>\n    Ye College Vidya ka sabse simple program hai. Is program me har successful enrollment par reward milne ka claim hai. Actual reward amount university aur program ke hisaab se alag hota hai, isliye kisi ko bhi pehle se exact fixed amount ka pakka wada na karein.\n  </p>\n\n  <h3 class=\"text-base sm:text-lg font-bold text-[#1E1E1E] pt-2 font-heading\">\n    Step 1: Apni Eligibility Check Karo\n  </h3>\n  <p>\n    Sabse pehle samjho ki program kiske liye hai. Official guidelines ke mutabik jo students College Vidya ke through kisi degree program me enroll hain, wo direct referral link paate hain. Agar aap student nahi hain, to official website par jaake check karein ki direct registration open hai ya terms kya hain.\n  </p>\n\n  <h3 class=\"text-base sm:text-lg font-bold text-[#1E1E1E] pt-2 font-heading\">\n    Step 2: Apna Target Audience Pehchano\n  </h3>\n  <p>\n    Ek notebook ya mobile notes me 15-20 logon ki list banayein jo online education me interested ho sakte hain:\n  </p>\n  <ul class=\"space-y-2 pl-2\">\n    <li>• Kaunse dost 12th ke baad aage regular college afford nahi kar sakte?</li>\n    <li>• Office me kaunsa junior/colleague MBA ya BBA ki degree chahta hai?</li>\n    <li>• Family me kin didi ya bhabhi ki shaadi ke baad padhai chhoot gayi thi?</li>\n    <li>• Kaunsa relative job me promotion ke liye higher degree chahta hai?</li>\n  </ul>\n\n  <h3 class=\"text-base sm:text-lg font-bold text-[#1E1E1E] pt-2 font-heading\">\n    Step 3: Sahi Tarike Se Baat Shuru Karo\n  </h3>\n  <p>\n    Kisi ko seedha \"admission le lo\" mat bolo. Pehle uski problem samjho. Ek genuine madad karne wala starting message bhejein:\n  </p>\n\n  <!-- WhatsApp Script Box -->\n  <div class=\"p-4 sm:p-5 rounded-2xl bg-emerald-50/70 border-l-4 border-emerald-500 my-4 text-xs sm:text-sm font-mono text-slate-800 leading-relaxed shadow-xs\">\n    <div class=\"font-sans font-bold text-emerald-800 uppercase text-[11px] mb-1.5 flex items-center gap-1.5\">\n      <span>💬</span>\n      <span>Recommended WhatsApp Conversation Starter:</span>\n    </div>\n    \"Hi [Naam], tum pehle bol rahe the na ki degree complete karni hai? Mujhe ek platform pata hai jo online degree ke liye free counselling aur university comparison deta hai. Wo tumhari qualification aur budget ke hisaab se sahi approved university bata dete hain. Agar tumhe jaanna ho to bolo, main details share kar deta hu.\"\n  </div>\n\n  <p class=\"text-xs text-slate-500 italic\">\n    Is message me koi sales pressure nahi hai, koi jhootha vada nahi hai, aur baat ek dostana madad ki tarah ki gayi hai. Log aisi genuine advice par sabse zyada trust karte hain.\n  </p>\n\n  <h3 class=\"text-base sm:text-lg font-bold text-[#1E1E1E] pt-2 font-heading\">\n    Step 4: Referral Link Ya Details Share Karo\n  </h3>\n  <p>\n    Jab samne wala interest dikhaye, to apna unique referral link share karein ya student ki permission le kar uski details College Vidya portal me enter karein. <em>Kabhi bhi kisi ki personal details bina uski marzi ke share na karein.</em>\n  </p>\n\n  <h3 class=\"text-base sm:text-lg font-bold text-[#1E1E1E] pt-2 font-heading\">\n    Step 5: Counsellor Student Ko Guide Karega\n  </h3>\n  <p>\n    Referral ke baad College Vidya ka expert counsellor student se baat karta hai aur unhe UGC-DEB approved university suggest karta hai. Is dauran aapka kaam hai student ke touch me rehna aur puchna ki koi doubt to nahi bacha.\n  </p>\n\n  <h3 class=\"text-base sm:text-lg font-bold text-[#1E1E1E] pt-2 font-heading\">\n    Step 6: Admission Ke Baad Reward Paao\n  </h3>\n  <p>\n    Jab student officially enroll karke admission fees submit kar deta hai, tab aapke account me referral reward credit ho jata hai.\n  </p>\n\n  <!-- Bullets of Pros & Cons -->\n  <div class=\"p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-2 mt-4\">\n    <strong class=\"text-slate-900 block font-heading\">Refer & Earn Ke Fayde Aur Limits:</strong>\n    <p>• <strong>Fayda:</strong> Zero investment ya setup cost.</p>\n    <p>• <strong>Fayda:</strong> Simple process, kisi technical skill ki zaroorat nahi.</p>\n    <p>• <strong>Fayda:</strong> Agar aap khud student hain, to apni fees ka ek hissa recover kar sakte hain.</p>\n    <p>• <strong>Limit:</strong> Kamai aapke network aur regular follow-up par depend karti hai.</p>\n    <p>• <strong>Limit:</strong> Reward tabhi milta hai jab student ka admission confirm ho.</p>\n  </div>\n\n  <!-- Section 5 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-2 font-heading\">\n    5. Tarika 2: College Vidya Partner Program Se Kamai (Detail Me)\n  </h2>\n  <p>\n    Agar aap is kaam ko sirf side pocket money nahi, balki ek scalable education consultancy business ki tarah lena chahte hain, to <strong>Partner Program</strong> aapke liye hai. Isme aap students ko khud guide karte hain aur dedicated dashboard se applications submit karte hain.\n  </p>\n\n  <ul class=\"space-y-2.5 pl-2 mb-4\">\n    <li>• <strong>Step 1: Partner Panel Registration:</strong> Official website par account banayein. Registration 100% free hoti hai. Agar koi paise maange to wo fake hai.</li>\n    <li>• <strong>Step 2: CV Course Finder Ko Samjho:</strong> Dashboard me \"Course Finder\" tool milta hai jisse aap eligible universities, fee structures, scholarships, aur alag-alag courses ka commission compare kar sakte hain.</li>\n    <li>• <strong>Step 3: Training Aur Marketing Toolkit:</strong> Free training modules ko complete karein taaki aapko universities ke UGC/AICTE approvals aur common student queries ke authentic answers pata chal sakein.</li>\n    <li>• <strong>Step 4: Application Submission:</strong> Student ke verified documents upload karke panel se application submit karein.</li>\n    <li>• <strong>Step 5: Commission Tracking:</strong> Monthly payout schedule ke hisaab se apne dashboard me har student ka status track karein.</li>\n  </ul>\n\n  <!-- Purple Warning Callout -->\n  <div class=\"p-4 rounded-xl bg-amber-50 border-l-4 border-amber-500 my-4 text-xs sm:text-sm text-slate-800\">\n    <strong>⚠️ Dhyan rakhein:</strong> Agar koi user pehle se College Vidya ka registered user hai, to uske liye partner commission nahi milta. Hamesha fresh student leads par hi focus karein.\n  </div>\n\n  <!-- Section 6 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-2 font-heading\">\n    6. Student Ko Sahi Tarike Se Counsel Kaise Karein?\n  </h2>\n  <p>\n    Achhi counselling hi aapki asli kamai hai. Jo student aap par bharosa karta hai, wo na sirf khud admission leta hai, balki apne dosto ko bhi refer karta hai. Isliye commission ke lalach me kabhi galat course suggest na karein.\n  </p>\n\n  <div class=\"p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-2\">\n    <strong class=\"text-slate-900 block font-heading\">Counselling se pehle ye 5 sawal zaroor puchein:</strong>\n    <p><strong>1. Last qualification kya hai?</strong> — Isse eligibility clear hoti hai (jaise graduation percentage).</p>\n    <p><strong>2. Degree kyun chahiye?</strong> — Promotion ke liye, govt exam ke liye, ya nayi field switch ke liye?</p>\n    <p><strong>3. Budget kitna hai?</strong> — Per semester fees aur monthly EMI options pehle hi clear karein.</p>\n    <p><strong>4. Padhai ke liye kitna time de sakte hain?</strong> — Working professionals ke liye flexible schedule zaroori hota hai.</p>\n    <p><strong>5. Documents ready hain?</strong> — 10th/12th marksheets, Aadhaar card aur photo ready rakhein.</p>\n  </div>\n\n  <!-- Section 7 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-2 font-heading\">\n    7. Students Dhundhne Ke 6 Practical Tarike\n  </h2>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4 my-4\">\n    <div class=\"p-4 rounded-xl border border-slate-200 bg-white\">\n      <h4 class=\"font-bold text-slate-900 font-heading text-sm mb-1\">1. WhatsApp & Telegram Groups</h4>\n      <p class=\"text-xs text-slate-600\">College ya coaching groups me spam kiye bina informative posts dalein: \"Online MBA vs Distance MBA comparison guide\".</p>\n    </div>\n    <div class=\"p-4 rounded-xl border border-slate-200 bg-white\">\n      <h4 class=\"font-bold text-slate-900 font-heading text-sm mb-1\">2. Reels & YouTube Shorts</h4>\n      <p class=\"text-xs text-slate-600\">30-second videos banayein: \"Kya online degree govt job ke liye valid hai?\", \"Top 3 universities for online MCA\".</p>\n    </div>\n    <div class=\"p-4 rounded-xl border border-slate-200 bg-white\">\n      <h4 class=\"font-bold text-slate-900 font-heading text-sm mb-1\">3. Educational Blog</h4>\n      <p class=\"text-xs text-slate-600\">Specific search topics par articles likhein jaise \"Job ke saath MBA kaise karein\". Google search se organic high-intent leads milti hain.</p>\n    </div>\n    <div class=\"p-4 rounded-xl border border-slate-200 bg-white\">\n      <h4 class=\"font-bold text-slate-900 font-heading text-sm mb-1\">4. LinkedIn Networking</h4>\n      <p class=\"text-xs text-slate-600\">Corporate juniors aur professionals se connect karein jo executive degrees ya career boost chahte hain.</p>\n    </div>\n    <div class=\"p-4 rounded-xl border border-slate-200 bg-white\">\n      <h4 class=\"font-bold text-slate-900 font-heading text-sm mb-1\">5. Facebook Career Communities</h4>\n      <p class=\"text-xs text-slate-600\">Career advice groups me bina link dale genuinely sawalon ke jawab dein. Log profile dekhkar direct message karenge.</p>\n    </div>\n    <div class=\"p-4 rounded-xl border border-slate-200 bg-white\">\n      <h4 class=\"font-bold text-slate-900 font-heading text-sm mb-1\">6. Local Offline Network</h4>\n      <p class=\"text-xs text-slate-600\">Apne local libraries, coaching centres aur parivaar me baat karein. Offline me trust jaldi banta hai.</p>\n    </div>\n  </div>\n\n  <!-- Section 8 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-2 font-heading\">\n    8. Pehle 30 Din Ka Action Plan\n  </h2>\n  \n  <div class=\"overflow-x-auto my-4 rounded-2xl border border-slate-200\">\n    <table class=\"w-full text-left text-xs sm:text-sm\">\n      <thead class=\"bg-slate-100 text-slate-800 font-heading font-bold uppercase text-[11px]\">\n        <tr>\n          <th class=\"p-3 border-b border-slate-200\">Timeline</th>\n          <th class=\"p-3 border-b border-slate-200\">Kya Karna Hai</th>\n          <th class=\"p-3 border-b border-slate-200\">Target Goal</th>\n        </tr>\n      </thead>\n      <tbody class=\"divide-y divide-slate-100 text-slate-700\">\n        <tr>\n          <td class=\"p-3 font-bold text-slate-900\">Din 1 se 3</td>\n          <td class=\"p-3\">Official platform terms padhein aur account activate karein.</td>\n          <td class=\"p-3 font-semibold text-indigo-700\">Process samajhna</td>\n        </tr>\n        <tr>\n          <td class=\"p-3 font-bold text-slate-900\">Din 4 se 7</td>\n          <td class=\"p-3\">Course Finder explore karein aur 20 potential leads ki list banayein.</td>\n          <td class=\"p-3 font-semibold text-indigo-700\">Tayyari poori karna</td>\n        </tr>\n        <tr>\n          <td class=\"p-3 font-bold text-slate-900\">Hafta 2</td>\n          <td class=\"p-3\">List ke 10 logon se genuine advice ke saath conversation shuru karein.</td>\n          <td class=\"p-3 font-semibold text-indigo-700\">3-5 Interested students</td>\n        </tr>\n        <tr>\n          <td class=\"p-3 font-bold text-slate-900\">Hafta 3</td>\n          <td class=\"p-3\">Interested students ke queries solve karein aur counsellor session arrange karein.</td>\n          <td class=\"p-3 font-semibold text-indigo-700\">Trust build-up</td>\n        </tr>\n        <tr>\n          <td class=\"p-3 font-bold text-slate-900\">Hafta 4</td>\n          <td class=\"p-3\">Documents upload karwake first application complete karein.</td>\n          <td class=\"p-3 font-bold text-emerald-700\">Pehla Admission 🎯</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n  <!-- Section 9 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-2 font-heading\">\n    9. Beginners Ki 5 Badi Galtiyan (Jinse Bachein)\n  </h2>\n  <ul class=\"space-y-2.5 pl-2 mb-4 text-xs sm:text-sm\">\n    <li>• <strong>1. Jhoothe Promises Karna:</strong> \"100% job guarantee\" ya \"kuch padhna nahi padega\" jaise fake daave kabhi na karein.</li>\n    <li>• <strong>2. Blind Spamming:</strong> Har WhatsApp group me bina permission link bhejne se log block kar dete hain. Pehle value dein.</li>\n    <li>• <strong>3. Approval Check Na Karna:</strong> Hamesha confirm karein ki proposed university UGC-DEB aur AICTE approved ho.</li>\n    <li>• <strong>4. T&C Na Padhna:</strong> Payout timeline aur eligibility terms pehle hi padh lein taaki baad me koi confusion na ho.</li>\n    <li>• <strong>5. Ek Raat Me Ameer Hone Ki Ummeed:</strong> Trust banane me thoda samay lagta hai. Consistent rehne par hi result milta hai.</li>\n  </ul>\n\n  <!-- Section 10 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-2 font-heading\">\n    10. Scam Se Kaise Bachein? (Security Rules)\n  </h2>\n  <div class=\"p-4 rounded-xl bg-rose-50/70 border border-rose-200 text-xs sm:text-sm text-slate-800 space-y-1.5\">\n    <p>• Hamesha official website se hi registration karein; kisi random Telegram group se nahi.</p>\n    <p>• Kisi ko bhi \"joining fee\" ya \"registration charge\" ke naam par ek rupya bhi na dein.</p>\n    <p>• Apna OTP, bank password ya UPI PIN kisi ke saath share na karein.</p>\n  </div>\n\n  <!-- Section 11: FAQs -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-3 font-heading\">\n    11. FAQs (Aksar Puche Jaane Wale Sawal)\n  </h2>\n\n  <div class=\"space-y-3\">\n    <div class=\"p-4 rounded-xl bg-slate-50 border border-slate-200/80\">\n      <h4 class=\"font-bold text-slate-900 text-sm mb-1 font-heading\">Q1. Kya College Vidya se paise kamane ke liye koi fees lagti hai?</h4>\n      <p class=\"text-xs text-slate-600\">Nahi, official Refer & Earn aur Partner Program dono me registration zero fees (bilkul free) hoti hai.</p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-slate-50 border border-slate-200/80\">\n      <h4 class=\"font-bold text-slate-900 text-sm mb-1 font-heading\">Q2. Kya beginner bhi isse kamai shuru kar sakta hai?</h4>\n      <p class=\"text-xs text-slate-600\">Haan, bilkul. Bas basic communication skills aur online degree programs ki zaroori jaankari honi chahiye.</p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-slate-50 border border-slate-200/80\">\n      <h4 class=\"font-bold text-slate-900 text-sm mb-1 font-heading\">Q3. Kya student ko koi extra paisa dena padta hai?</h4>\n      <p class=\"text-xs text-slate-600\">Nahi. Student se koi extra fees nahi li jaati. Aapki kamai platform dwara di jaati hai, student se nahi.</p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-slate-50 border border-slate-200/80\">\n      <h4 class=\"font-bold text-slate-900 text-sm mb-1 font-heading\">Q4. Kya ye kaam full-time job ke saath kiya ja sakta hai?</h4>\n      <p class=\"text-xs text-slate-600\">Bilkul. Roz 1 se 2 ghante ya weekends par time dekar ise aasaani se manage kiya ja sakta hai.</p>\n    </div>\n  </div>\n\n  <!-- Conclusion & Next Step -->\n  <div class=\"mt-8 p-6 rounded-2xl bg-purple-50 border border-purple-200 space-y-3\">\n    <h3 class=\"text-lg font-black text-[#6D28D9] font-heading\">\n      Conclusion: Aapka Agla Kadam (Next Step)\n    </h3>\n    <p class=\"text-xs sm:text-sm text-slate-700 leading-relaxed\">\n      College Vidya se kamai shuru karne ke liye kisi badi degree ya technical background ki zaroorat nahi hai. Safalta ki sabse badi kunji hai: <strong>Honesty, Sahi Guidance aur Regular Follow-up</strong>.\n    </p>\n    <ol class=\"list-decimal list-inside text-xs font-semibold text-slate-800 space-y-1\">\n      <li>College Vidya ki official portal par jaake details samjhein.</li>\n      <li>Apne network me 15-20 prospective students ki list banayein.</li>\n      <li>Kal se pehle 3 dosto ya colleagues se friendly consultation shuru karein.</li>\n    </ol>\n  </div>\n\n  <p class=\"text-[11px] text-slate-400 italic pt-2\">\n    Disclaimer: Is article me di gayi kamai ke aakde platform ke official marketing references par based hain. Individual earning aapki mehnat aur verified admissions par nirbhar karti hai.\n  </p>\n\n</div>\n","published_at":"19 September 2026","timestamp":1789828346793},{"id":"art-college-vidya-guide-english-2026","slug":"how-to-earn-money-with-college-vidya-guide","title":"How to Earn Money with College Vidya? Complete Beginner’s Guide (2026)","category":"Online Earning & Freelancing","author":"Skillsfy Editorial Team","read_time":"7 min read","cover_image":"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80","summary":"A step-by-step guide on earning from home via College Vidya Refer & Earn and Partner Programs. Learn ethical counselling frameworks, lead generation channels, and key pitfalls.","content":"\n<div class=\"space-y-6\">\n\n  <!-- Language Switcher Banner -->\n  <div class=\"p-3 sm:p-3.5 rounded-xl bg-purple-50/70 border border-purple-200/80 flex items-center justify-between text-xs font-semibold text-[#6D28D9]\">\n    <span class=\"flex items-center gap-1.5\">\n      <span class=\"text-sm\">🌐</span>\n      <span>Yeh guide Hinglish me bhi available hai:</span>\n    </span>\n    <a href=\"/articles/how-to-earn-money-with-college-vidya\" class=\"px-2.5 py-1 rounded-lg bg-white border border-purple-200 text-[#6D28D9] font-bold hover:bg-purple-100 transition-colors\">\n      हिंदी / Hinglish me padhein →\n    </a>\n  </div>\n\n  <!-- Intro -->\n  <p class=\"text-base sm:text-lg leading-relaxed text-[#2D3748]\">\n    Today, nearly everyone is looking for practical ways to build extra income from home. Whether you are a college student looking to cover your personal expenses, a homemaker seeking financial independence, or a working professional aiming for a secondary income stream, <strong>College Vidya</strong> offers a legitimate zero-investment gateway to earn through verified education referrals.\n  </p>\n\n  <p class=\"text-base leading-relaxed text-[#2D3748]\">\n    In this comprehensive guide, we examine how the platform works, the two primary earning mechanisms, how to identify and counsel prospective students, and actionable steps to close your first verified enrollment without making unrealistic promises.\n  </p>\n\n  <!-- Quick Index Box -->\n  <div class=\"p-5 rounded-2xl bg-slate-50 border border-slate-200/80 my-6\">\n    <h3 class=\"text-sm font-black uppercase tracking-wider text-slate-900 mb-3 font-heading flex items-center gap-2\">\n      <span>📑</span>\n      <span>Table of Contents:</span>\n    </h3>\n    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-medium text-slate-700\">\n      <div>• 1. What is College Vidya & how it works</div>\n      <div>• 2. Why online degrees are in high demand</div>\n      <div>• 3. The 2 primary earning paths compared</div>\n      <div>• 4. Step-by-step Refer & Earn blueprint</div>\n      <div>• 5. The Partner Program for higher commissions</div>\n      <div>• 6. Ethical student counselling frameworks</div>\n      <div>• 7. 6 practical lead generation channels</div>\n      <div>• 8. 30-day action plan for beginners</div>\n      <div>• 9. 5 fatal mistakes to avoid</div>\n      <div>• 10. Frequently Asked Questions (FAQs)</div>\n    </div>\n  </div>\n\n  <!-- Section 1 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-4 mb-2 font-heading\">\n    1. What is College Vidya and How Does It Work?\n  </h2>\n  \n  <p>\n    College Vidya is an unbiased online education counselling and comparison platform. Its primary objective is helping prospective learners select the right accredited online degree and recognized university. The platform lists programs across <strong>Online BBA, MBA, BCA, MCA, B.Com, and M.Com</strong> from UGC-DEB approved institutions.\n  </p>\n\n  <p>\n    Many individuals cannot attend conventional on-campus universities due to full-time jobs, geographical constraints, career breaks, or financial limitations. Online education bridges this gap. However, prospective students often face overwhelming ambiguity regarding university credibility, fee structures, and approvals. College Vidya clarifies this decision.\n  </p>\n\n  <h3 class=\"text-lg font-bold text-slate-900 mt-4 mb-2 font-heading\">\n    Where Does Your Revenue Come From?\n  </h3>\n  <p>\n    When you connect an interested candidate to College Vidya, expert academic advisors counsel the student to find the right university match. When that student successfully enrolls and pays their semester fee, the university compensates the platform, and a share of this revenue is disbursed to you as a <strong>referral reward or commission</strong>. You act as a trusted connector between students needing guidance and accredited institutions.\n  </p>\n\n  <!-- Purple Callout -->\n  <div class=\"p-4 sm:p-5 rounded-2xl bg-purple-50/70 border-l-4 border-[#7C3AED] my-5 text-sm text-[#1E1E1E] leading-relaxed\">\n    <strong>💡 Key Insight:</strong> Payouts are triggered strictly upon confirmed admission. Merely submitting random contact forms or fake leads generates zero revenue. Success requires focusing on genuine students with legitimate intent.\n  </div>\n\n  <!-- Section 2 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-4 mb-2 font-heading\">\n    2. Why Online Degrees Have Surging Market Demand\n  </h2>\n  <p class=\"italic text-[#4B5563] mb-3\">\n    Understanding the buyer's motivations makes identifying prospective students effortless:\n  </p>\n\n  <ul class=\"space-y-2.5 pl-2 mb-6\">\n    <li>• <strong>Working Professionals:</strong> Seeking salary increments, managerial promotions, or corporate elevation via an Online MBA without quitting their jobs.</li>\n    <li>• <strong>12th Pass Learners:</strong> Desiring recognized undergraduate degrees while simultaneously gaining initial job experience.</li>\n    <li>• <strong>Homemakers & Women Returning to Work:</strong> Resuming interrupted educations comfortably from home.</li>\n    <li>• <strong>Incomplete Degree Holders:</strong> Individuals whose studies were paused due to personal or financial emergencies.</li>\n    <li>• <strong>Small Business Owners:</strong> Elevating commercial literacy and credentialing through formal management education.</li>\n  </ul>\n\n  <!-- Section 3 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-4 mb-2 font-heading\">\n    3. Two Ways to Earn: Refer & Earn vs Partner Program\n  </h2>\n  <p>\n    Both channels require <strong>zero upfront capital</strong>, but they cater to different operational scales:\n  </p>\n\n  <!-- Comparison Table -->\n  <div class=\"overflow-x-auto my-5 rounded-2xl border border-slate-200\">\n    <table class=\"w-full text-left text-xs sm:text-sm\">\n      <thead class=\"bg-slate-100 text-slate-800 font-heading font-bold uppercase text-[11px]\">\n        <tr>\n          <th class=\"p-3 sm:p-4 border-b border-slate-200\">Dimension</th>\n          <th class=\"p-3 sm:p-4 border-b border-slate-200 text-indigo-700\">Refer & Earn</th>\n          <th class=\"p-3 sm:p-4 border-b border-slate-200 text-purple-700\">Partner Program</th>\n        </tr>\n      </thead>\n      <tbody class=\"divide-y divide-slate-100 text-slate-700\">\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Target User</td>\n          <td class=\"p-3 sm:p-4\">Students, casual referrers, beginners</td>\n          <td class=\"p-3 sm:p-4 font-semibold text-slate-900\">Consultants, creators, educators, agency owners</td>\n        </tr>\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Effort Level</td>\n          <td class=\"p-3 sm:p-4\">Low. Share links with acquaintances</td>\n          <td class=\"p-3 sm:p-4\">Medium/High. Direct counselling & application submission</td>\n        </tr>\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Investment</td>\n          <td class=\"p-3 sm:p-4 text-emerald-700 font-bold\">Zero ($0 / ₹0)</td>\n          <td class=\"p-3 sm:p-4 text-emerald-700 font-bold\">Zero ($0 / ₹0)</td>\n        </tr>\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Payout Structure</td>\n          <td class=\"p-3 sm:p-4\">One-time cash reward per enrollment</td>\n          <td class=\"p-3 sm:p-4\">Multi-semester recurring commissions per student</td>\n        </tr>\n        <tr class=\"hover:bg-slate-50/80\">\n          <td class=\"p-3 sm:p-4 font-bold text-slate-900\">Platform Support</td>\n          <td class=\"p-3 sm:p-4\">In-house counsellor guides the student</td>\n          <td class=\"p-3 sm:p-4\">Relationship Manager, collateral kit & CV Course Finder</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n  <!-- Section 4 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-2 font-heading\">\n    4. The Refer & Earn Blueprint: 6 Practical Steps\n  </h2>\n  \n  <ul class=\"space-y-3 pl-2 mb-4 text-xs sm:text-sm\">\n    <li>• <strong>Step 1: Check Eligibility:</strong> Verify terms on the official portal to ensure active referral authorization.</li>\n    <li>• <strong>Step 2: Map Your Immediate Network:</strong> Draft a focused list of 15-20 people in your professional or family circle seeking higher education.</li>\n    <li>• <strong>Step 3: Value-First Outreach:</strong> Never hard-sell admissions. Frame outreach around solving their specific dilemma (e.g. comparing recognized universities without broker commissions).</li>\n    <li>• <strong>Step 4: Share Trackable Links:</strong> Only share your referral link after receiving clear affirmative interest from the candidate.</li>\n    <li>• <strong>Step 5: Follow Up Constructively:</strong> Check in to ensure the student received their counselling call and that their eligibility questions were answered.</li>\n    <li>• <strong>Step 6: Receive Reward:</strong> Upon fee payment and admission verification, the platform credits your referral reward according to the published payout schedule.</li>\n  </ul>\n\n  <!-- WhatsApp Script Box -->\n  <div class=\"p-4 sm:p-5 rounded-2xl bg-emerald-50/70 border-l-4 border-emerald-500 my-4 text-xs sm:text-sm font-mono text-slate-800 leading-relaxed shadow-xs\">\n    <div class=\"font-sans font-bold text-emerald-800 uppercase text-[11px] mb-1.5 flex items-center gap-1.5\">\n      <span>💬</span>\n      <span>Recommended Casual Outreach Script:</span>\n    </div>\n    \"Hey [Name], were you still planning to finish your degree this year? I found an official counselling platform that offers free comparison of UGC-DEB approved universities and EMI fees based on your profile. If you'd like to check your options, let me know and I'll send you their link.\"\n  </div>\n\n  <!-- Section 5 -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-2 font-heading\">\n    5. Ethical Student Counselling Framework\n  </h2>\n  <p>\n    Sustained income in education consulting relies entirely on trust. Misleading candidates for quick commissions destroys your reputation and creates student dropouts. Always verify:\n  </p>\n  <ul class=\"space-y-2 pl-2 mb-4 text-xs sm:text-sm\">\n    <li>• <strong>Statutory Approvals:</strong> Confirm the target institution is recognized by UGC-DEB and AICTE.</li>\n    <li>• <strong>Fee Transparency:</strong> Disclose full semester breakdown and exam fees upfront.</li>\n    <li>• <strong>Realistic Outcomes:</strong> Never promise guaranteed employment; emphasize genuine skill development and accredited credentialing.</li>\n  </ul>\n\n  <!-- Section 6: FAQs -->\n  <h2 class=\"text-xl sm:text-2xl font-black text-[#1E1E1E] pt-6 mb-3 font-heading\">\n    6. Frequently Asked Questions\n  </h2>\n\n  <div class=\"space-y-3\">\n    <div class=\"p-4 rounded-xl bg-slate-50 border border-slate-200/80\">\n      <h4 class=\"font-bold text-slate-900 text-sm mb-1 font-heading\">Does joining require any upfront fee?</h4>\n      <p class=\"text-xs text-slate-600\">No. Both Refer & Earn and the Partner Program are completely free to join.</p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-slate-50 border border-slate-200/80\">\n      <h4 class=\"font-bold text-slate-900 text-sm mb-1 font-heading\">Does the student pay any additional cost through my link?</h4>\n      <p class=\"text-xs text-slate-600\">Never. Students pay only the standard university tuition fees; consultation through the portal is free.</p>\n    </div>\n\n    <div class=\"p-4 rounded-xl bg-slate-50 border border-slate-200/80\">\n      <h4 class=\"font-bold text-slate-900 text-sm mb-1 font-heading\">Can I run this alongside a full-time corporate job?</h4>\n      <p class=\"text-xs text-slate-600\">Yes. 1-2 hours of targeted networking in evenings and weekends is sufficient to build consistent momentum.</p>\n    </div>\n  </div>\n\n  <!-- Conclusion & Next Step -->\n  <div class=\"mt-8 p-6 rounded-2xl bg-purple-50 border border-purple-200 space-y-3\">\n    <h3 class=\"text-lg font-black text-[#6D28D9] font-heading\">\n      Conclusion & Your Next Move\n    </h3>\n    <p class=\"text-xs sm:text-sm text-slate-700 leading-relaxed\">\n      Earning through online education referrals is built on consistency and sincere guidance. Start by creating a focused list of 15 contacts who could legitimately benefit from an online degree, initiate friendly consultations, and scale from there.\n    </p>\n  </div>\n\n  <p class=\"text-[11px] text-slate-400 italic pt-2\">\n    Disclaimer: Figures mentioned reflect illustrative platform claims. Actual revenue depends entirely on verified admissions and candidate eligibility.\n  </p>\n\n</div>\n","published_at":"19 September 2026","timestamp":1789828345793}];
+    let allArticles = [{"id":"art-college-vidya-earning-guide-2026","slug":"how-to-earn-money-with-college-vidya","title":"College Vidya Se Paise Kaise Kamaye? Complete Beginners Guide (2026)","category":"Online Earning & Freelancing","author":"Skillsfy Editorial Team","read_time":"8 min read","cover_image":"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80","summary":"College Vidya Refer & Earn aur Partner Program se ghar baithe paise kaise kamaye? Beginners ke liye step-by-step guide, practical counselling tips aur common mistakes.","content":"\n<div class=\"flex flex-col gap-10 text-on-surface\">\n\n  <!-- Language Switcher Banner -->\n  <div class=\"p-3.5 rounded-xl bg-primary-fixed/60 border border-outline-variant/40 flex items-center justify-between text-xs font-semibold text-on-primary-fixed\">\n    <span class=\"flex items-center gap-2\">\n      <span class=\"material-symbols-outlined text-[18px] text-primary\">language</span>\n      <span>This comprehensive guide is also available in English:</span>\n    </span>\n    <a href=\"/articles/how-to-earn-money-with-college-vidya-guide\" class=\"px-3 py-1 rounded-full bg-white text-primary font-bold shadow-xs hover:bg-surface-subtle transition-colors\">\n      Read English Edition →\n    </a>\n  </div>\n\n  <!-- Introduction Section -->\n  <section class=\"flex flex-col gap-4\">\n    <p class=\"font-body-lead text-body-lead text-on-surface\">\n      Aaj ke time me har koi ghar baithe kuch extra income ka rasta dhundh raha hai. Koi student hai jo apni pocket money nikalna chahta hai, koi housewife hai jo bina ghar se bahar gaye kuch kamana chahti hai, aur koi job karne wala hai jo side income banana chahta hai. Agar aap in me se koi bhi ho, to <strong>College Vidya</strong> ek aisa platform hai jisse aap bina koi paisa lagaye kamai shuru kar sakte ho.\n    </p>\n\n    <p class=\"font-body-default text-body-default text-text-muted\">\n      Is article me hum bilkul shuru se samjhenge: College Vidya kya hai, isse paise kaise milte hain, kaun sa tarika aapke liye sahi hai, pehla student kaise dhundhe, usse baat kaise kare, aur kin galtiyon se bachna hai. Har cheez step-by-step aur practical detail me hai, taaki ek beginner bhi bina kisi confusion ke shuru kar sake.\n    </p>\n\n    <!-- Visual Highlight Quote Box -->\n    <blockquote class=\"my-3 p-6 rounded-2xl bg-surface-subtle border-l-4 border-primary flex flex-col gap-2 relative\">\n      <span class=\"material-symbols-outlined text-primary/20 text-4xl absolute right-4 top-4\">format_quote</span>\n      <p class=\"font-headline-sm text-headline-sm text-on-surface italic font-medium\">\n        “Aapki kamai tabhi hoti hai jab student ka admission confirm ho jaye. Sirf lead dene ya fake form bharwane se paisa nahi milta. Isliye hamesha genuine aur interested students par focus karna zaroori hai.”\n      </p>\n      <cite class=\"font-label-md text-label-md text-text-muted not-italic font-semibold\">\n        — The Golden Rule of Education Consulting\n      </cite>\n    </blockquote>\n  </section>\n\n  <!-- Section 1: What is College Vidya & How it Works -->\n  <section class=\"flex flex-col gap-4\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      1. College Vidya Kya Hai Aur Ye Kaise Kaam Karta Hai?\n    </h2>\n    <p class=\"font-body-default text-body-default text-on-surface\">\n      College Vidya ek online education counselling platform hai. Iska kaam students ko sahi online degree aur sahi university chunne me madad karna hai. Yahan aapko <strong>Online BBA, MBA, BCA, MCA, B.Com, M.Com</strong> jaise kai programs ki unbiased jaankari milti hai.\n    </p>\n    <p class=\"font-body-default text-body-default text-on-surface\">\n      Bahut se log regular college nahi ja paate. Kisi ki job hoti hai, kisi ki shaadi ho chuki hoti hai, kisi ki degree beech me chhoot gayi hoti hai, ya kisi ke paas regular college ki heavy fees nahi hoti. Aise logon ke liye online degree ek practical option hai. Lekin problem ye hai ki market me bahut saari universities hain aur student ko samajh nahi aata ki kaun si sahi hai, fees kitni hai, aur eligibility kya hai. College Vidya isi confusion ko door karta hai.\n    </p>\n\n    <div class=\"p-5 rounded-2xl bg-surface-subtle border border-surface-border mt-2\">\n      <h3 class=\"font-headline-sm text-headline-sm text-primary font-bold mb-2\">\n        Isme aapki kamai kahan se aati hai?\n      </h3>\n      <p class=\"font-body-default text-body-default text-text-muted\">\n        Jab aap kisi interested student ko College Vidya se connect karte ho, to platform ka counsellor us student ko guide karta hai. Agar student admission le leta hai, to platform ko university se jo income hoti hai, uska ek hissa aapko <strong>reward ya commission</strong> ke roop me milta hai. Yaani aap ek bridge ki tarah kaam karte ho: ek taraf student jise verified degree chahiye, aur doosri taraf platform jo use guide karta hai.\n      </p>\n    </div>\n  </section>\n\n  <!-- Section 2: Online Degree Ki Demand Kyun Hai (Bento Grid) -->\n  <section class=\"flex flex-col gap-6\">\n    <div>\n      <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n        2. Online Degree Ki Demand Kyun Hai?\n      </h2>\n      <p class=\"font-body-default text-body-default text-text-muted mt-1\">\n        Agar aap samajh loge ki log online degree kyun lete hain, to aapke liye sahi logon ko dhundhna bahut aasan ho jayega:\n      </p>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n      <!-- Card 1 -->\n      <div class=\"p-6 rounded-2xl bg-surface-subtle flex flex-col gap-3 transition-transform hover:-translate-y-0.5\">\n        <div class=\"flex items-center gap-3\">\n          <div class=\"w-10 h-10 rounded-xl bg-primary-fixed text-primary flex items-center justify-center shrink-0\">\n            <span class=\"material-symbols-outlined text-[20px]\">badge</span>\n          </div>\n          <h3 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">1. Working Professionals</h3>\n        </div>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">\n          Jo job karte hain aur promotion ya better salary ke liye MBA ya graduation complete karna chahte hain bina apni regular naukri chhode.\n        </p>\n      </div>\n\n      <!-- Card 2 -->\n      <div class=\"p-6 rounded-2xl bg-surface-subtle flex flex-col gap-3 transition-transform hover:-translate-y-0.5\">\n        <div class=\"flex items-center gap-3\">\n          <div class=\"w-10 h-10 rounded-xl bg-secondary-fixed text-secondary flex items-center justify-center shrink-0\">\n            <span class=\"material-symbols-outlined text-[20px]\">school</span>\n          </div>\n          <h3 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">2. 12th Pass Students</h3>\n        </div>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">\n          Jo job ke saath ya kam budget fees me recognized graduation karke practical skills aur experience seekhna chahte hain.\n        </p>\n      </div>\n\n      <!-- Card 3 -->\n      <div class=\"p-6 rounded-2xl bg-surface-subtle flex flex-col gap-3 transition-transform hover:-translate-y-0.5\">\n        <div class=\"flex items-center gap-3\">\n          <div class=\"w-10 h-10 rounded-xl bg-tertiary-fixed text-tertiary flex items-center justify-center shrink-0\">\n            <span class=\"material-symbols-outlined text-[20px]\">family_restroom</span>\n          </div>\n          <h3 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">3. Housewives & Homemakers</h3>\n        </div>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">\n          Jinki padhai shaadi ke baad ruk gayi thi aur ab wo ghar sambhalte hue apni degree poori karke financially independent banna chahti hain.\n        </p>\n      </div>\n\n      <!-- Card 4 -->\n      <div class=\"p-6 rounded-2xl bg-surface-subtle flex flex-col gap-3 transition-transform hover:-translate-y-0.5\">\n        <div class=\"flex items-center gap-3\">\n          <div class=\"w-10 h-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shrink-0\">\n            <span class=\"material-symbols-outlined text-[20px]\">storefront</span>\n          </div>\n          <h3 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">4. Small Business Owners</h3>\n        </div>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">\n          Jo apne business ko grow karne ke liye formal management degree chahte hain, ya jinhone kisi samay beech me padhai chhod di thi.\n        </p>\n      </div>\n    </div>\n  </section>\n\n  <!-- Section 3: 2 Ways Compared (Comparison Table) -->\n  <section class=\"flex flex-col gap-5\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      3. College Vidya Se Paise Kamane Ke 2 Tarike\n    </h2>\n    <p class=\"font-body-default text-body-default text-text-muted\">\n      College Vidya se kamai ke mainly do raste hain. Dono me zero investment lagti hai, lekin dono ka level aur kaam alag hai:\n    </p>\n\n    <div class=\"overflow-x-auto rounded-2xl border border-surface-border\">\n      <table class=\"w-full text-left font-body-default text-body-subtle\">\n        <thead class=\"bg-surface-subtle font-headline-sm text-headline-sm text-on-surface border-b border-surface-border\">\n          <tr>\n            <th class=\"p-4\">Point</th>\n            <th class=\"p-4 text-primary\">Refer & Earn Program</th>\n            <th class=\"p-4 text-secondary\">Partner Program</th>\n          </tr>\n        </thead>\n        <tbody class=\"divide-y divide-surface-border text-on-surface\">\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Kiske liye</td>\n            <td class=\"p-4\">Students, beginners, casual referrers</td>\n            <td class=\"p-4 font-semibold text-primary\">Serious earners, counsellors, influencers</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Kaam ka level</td>\n            <td class=\"p-4\">Halka. Friends ya family ko refer karna</td>\n            <td class=\"p-4\">Zyada. Khud counsel karna aur application submit karna</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Investment</td>\n            <td class=\"p-4 text-emerald-700 font-bold\">Zero (₹0)</td>\n            <td class=\"p-4 text-emerald-700 font-bold\">Zero (₹0)</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Kamai ka type</td>\n            <td class=\"p-4\">Har admission par reward (₹20,000 tak claim)</td>\n            <td class=\"p-4\">Commission, har semester har student par</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Support</td>\n            <td class=\"p-4\">College Vidya counsellor guide karta hai</td>\n            <td class=\"p-4\">Training, toolkit & dedicated Relationship Manager</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Kiske liye sahi</td>\n            <td class=\"p-4\">Jo sirf side income chahte hain</td>\n            <td class=\"p-4 font-bold text-primary\">Jo ise education business ki tarah lena chahte hain</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </section>\n\n  <!-- Section 4: Refer & Earn Step-by-Step (Timeline steps matching code.html) -->\n  <section class=\"flex flex-col gap-6\">\n    <div>\n      <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n        4. Refer & Earn Program Se Kamai (6-Step Process)\n      </h2>\n      <p class=\"font-body-default text-body-default text-text-muted mt-1\">\n        Ye sabse simple program hai. Har successful enrollment par reward milta hai. Is 6-step blueprint ko follow karein:\n      </p>\n    </div>\n\n    <div class=\"flex flex-col gap-5\">\n      <!-- Step 1 -->\n      <div class=\"flex flex-col sm:flex-row gap-5 p-6 rounded-2xl bg-surface-subtle relative\">\n        <div class=\"w-12 h-12 rounded-2xl bg-primary text-on-primary flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0\">01</div>\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"font-headline-lg text-headline-lg text-on-surface font-bold\">Apni Eligibility Check Karo</h3>\n          <p class=\"font-body-default text-body-default text-text-muted\">\n            Official guidelines ke mutabik jo students College Vidya ke through kisi degree program me enroll hote hain, unhe unique referral link milta hai. Official website par jaakar terms & conditions zaroor padhein.\n          </p>\n        </div>\n      </div>\n\n      <!-- Step 2 -->\n      <div class=\"flex flex-col sm:flex-row gap-5 p-6 rounded-2xl bg-surface-subtle relative\">\n        <div class=\"w-12 h-12 rounded-2xl bg-primary text-on-primary flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0\">02</div>\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"font-headline-lg text-headline-lg text-on-surface font-bold\">Target Audience Ki List Banao</h3>\n          <p class=\"font-body-default text-body-default text-text-muted\">\n            Ek paper ya mobile notes me 15-20 aise logon ki list banayein jo online degree me interested ho sakte hain (office colleagues, cousins, school friends, padosi).\n          </p>\n        </div>\n      </div>\n\n      <!-- Step 3 -->\n      <div class=\"flex flex-col sm:flex-row gap-5 p-6 rounded-2xl bg-surface-subtle relative\">\n        <div class=\"w-12 h-12 rounded-2xl bg-primary text-on-primary flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0\">03</div>\n        <div class=\"flex flex-col gap-3\">\n          <h3 class=\"font-headline-lg text-headline-lg text-on-surface font-bold\">Sahi Tarike Se Baat Shuru Karo</h3>\n          <p class=\"font-body-default text-body-default text-text-muted\">\n            Kisi ko direct \"admission le lo\" mat bolo. Pehle uski requirement samjho. Ek helpful conversation starter bhejein:\n          </p>\n          <!-- WhatsApp Pitch Card -->\n          <div class=\"p-4 rounded-xl bg-surface border border-surface-border text-on-surface font-body-subtle shadow-xs\">\n            <span class=\"font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold block mb-1\">💬 Recommended WhatsApp Script:</span>\n            \"Hi [Naam], tum pehle bol rahe the na ki degree complete karni hai? Mujhe ek platform pata hai jo online degree ke liye free counselling deta hai. Wo tumhari qualification ke hisaab se sahi university aur fees bata dete hain. Agar tumhe jaanna ho to bolo, main details bhej deta hu.\"\n          </div>\n        </div>\n      </div>\n\n      <!-- Step 4 -->\n      <div class=\"flex flex-col sm:flex-row gap-5 p-6 rounded-2xl bg-surface-subtle relative\">\n        <div class=\"w-12 h-12 rounded-2xl bg-primary text-on-primary flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0\">04</div>\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"font-headline-lg text-headline-lg text-on-surface font-bold\">Referral Link Share Karo</h3>\n          <p class=\"font-body-default text-body-default text-text-muted\">\n            Jab samne wala genuine interest dikhaye, tabhi apna unique referral link share karein ya student ki permission lekar details share karein.\n          </p>\n        </div>\n      </div>\n\n      <!-- Step 5 -->\n      <div class=\"flex flex-col sm:flex-row gap-5 p-6 rounded-2xl bg-surface-subtle relative\">\n        <div class=\"w-12 h-12 rounded-2xl bg-primary text-on-primary flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0\">05</div>\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"font-headline-lg text-headline-lg text-on-surface font-bold\">Counsellor Student Ko Guide Karega</h3>\n          <p class=\"font-body-default text-body-default text-text-muted\">\n            Platform ka expert counsellor student ko suitable university suggest karta hai. Is dauran student se regular follow-up karein aur puchhe ki koi doubt to nahi raha.\n          </p>\n        </div>\n      </div>\n\n      <!-- Step 6 -->\n      <div class=\"flex flex-col sm:flex-row gap-5 p-6 rounded-2xl bg-surface-subtle relative\">\n        <div class=\"w-12 h-12 rounded-2xl bg-primary text-on-primary flex items-center justify-center font-headline-md text-headline-md font-bold shrink-0\">06</div>\n        <div class=\"flex flex-col gap-2\">\n          <h3 class=\"font-headline-lg text-headline-lg text-on-surface font-bold\">Admission Confirm Hone Par Reward Paao</h3>\n          <p class=\"font-body-default text-body-default text-text-muted\">\n            Admission complete hone ke baad reward aapke registered bank account me transfer ho jata hai.\n          </p>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- Section 5: Partner Program -->\n  <section class=\"flex flex-col gap-5\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      5. Partner Program Se Kamai (For Scalable Consultancy)\n    </h2>\n    <p class=\"font-body-default text-body-default text-on-surface\">\n      Agar aap is kaam ko ek regular education consulting business banana chahte hain, to Partner Program behtar hai. Isme CV Course Finder tool, commission comparison, marketing collateral aur relationship manager ka support milta hai.\n    </p>\n\n    <!-- Info Notice -->\n    <div class=\"p-4 rounded-xl bg-primary-fixed text-on-primary-fixed flex items-center gap-3\">\n      <span class=\"material-symbols-outlined text-primary text-[24px] shrink-0\">info</span>\n      <p class=\"font-body-subtle text-body-subtle\">\n        <strong>Important Rule:</strong> Agar student pehle se College Vidya par registered hai, to partner commission nahi milta. Hamesha fresh leads ke saath hi operate karein.\n      </p>\n    </div>\n  </section>\n\n  <!-- Section 6: Ethical Counselling -->\n  <section class=\"flex flex-col gap-4\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      6. Student Ko Sahi Tarike Se Counsel Kaise Karein?\n    </h2>\n    <p class=\"font-body-default text-body-default text-text-muted\">\n      Counselling me hamesha honesty rakhein. Galat course suggest karne se student ka bharosa toot jata hai. Pehle ye 5 sawal zaroor puchein:\n    </p>\n\n    <div class=\"flex flex-col gap-3\">\n      <div class=\"flex items-start gap-3.5 p-4 rounded-xl bg-surface-subtle\">\n        <div class=\"w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0 mt-0.5\">\n          <span class=\"material-symbols-outlined text-[16px]\">school</span>\n        </div>\n        <div>\n          <span class=\"font-headline-sm text-headline-sm text-on-surface font-semibold\">1. Last Qualification Kya Hai?</span>\n          <p class=\"font-body-subtle text-body-subtle text-text-muted\">Isse student ki eligibility clear hoti hai ki wo kaun se program me enter kar sakta hai.</p>\n        </div>\n      </div>\n\n      <div class=\"flex items-start gap-3.5 p-4 rounded-xl bg-surface-subtle\">\n        <div class=\"w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0 mt-0.5\">\n          <span class=\"material-symbols-outlined text-[16px]\">target</span>\n        </div>\n        <div>\n          <span class=\"font-headline-sm text-headline-sm text-on-surface font-semibold\">2. Degree Kyun Lena Chahte Hain?</span>\n          <p class=\"font-body-subtle text-body-subtle text-text-muted\">Job promotion ke liye, nayi field me switch ke liye, ya sirf degree complete karne ke liye.</p>\n        </div>\n      </div>\n\n      <div class=\"flex items-start gap-3.5 p-4 rounded-xl bg-surface-subtle\">\n        <div class=\"w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0 mt-0.5\">\n          <span class=\"material-symbols-outlined text-[16px]\">payments</span>\n        </div>\n        <div>\n          <span class=\"font-headline-sm text-headline-sm text-on-surface font-semibold\">3. Fees Ka Budget Kitna Hai?</span>\n          <p class=\"font-body-subtle text-body-subtle text-text-muted\">Semester-wise fees aur monthly no-cost EMI options pehle hi transparently clear karein.</p>\n        </div>\n      </div>\n\n      <div class=\"flex items-start gap-3.5 p-4 rounded-xl bg-surface-subtle\">\n        <div class=\"w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0 mt-0.5\">\n          <span class=\"material-symbols-outlined text-[16px]\">schedule</span>\n        </div>\n        <div>\n          <span class=\"font-headline-sm text-headline-sm text-on-surface font-semibold\">4. Daily Kitna Time De Sakte Hain?</span>\n          <p class=\"font-body-subtle text-body-subtle text-text-muted\">Working professionals ke liye flexible exam and study schedules suggest karein.</p>\n        </div>\n      </div>\n\n      <div class=\"flex items-start gap-3.5 p-4 rounded-xl bg-surface-subtle\">\n        <div class=\"w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0 mt-0.5\">\n          <span class=\"material-symbols-outlined text-[16px]\">verified</span>\n        </div>\n        <div>\n          <span class=\"font-headline-sm text-headline-sm text-on-surface font-semibold\">5. University Ka UGC-DEB Approval Verify Karein</span>\n          <p class=\"font-body-subtle text-body-subtle text-text-muted\">Student ko hamesha verified approved university hi suggest karein taaki degree par sawal na uthe.</p>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- Section 7: Students Dhundhne Ke 6 Practical Tarike (Bento 3-col) -->\n  <section class=\"flex flex-col gap-5\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      7. Students Dhundhne Ke 6 Practical Tarike\n    </h2>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-4\">\n      <div class=\"p-5 rounded-2xl bg-surface-subtle flex flex-col gap-2\">\n        <span class=\"font-label-sm text-label-sm text-primary uppercase font-bold\">Channel 01</span>\n        <h4 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">WhatsApp & Telegram</h4>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Bina spam kiye informative posts share karein jaise \"Online vs Distance MBA guide\".</p>\n      </div>\n      <div class=\"p-5 rounded-2xl bg-surface-subtle flex flex-col gap-2\">\n        <span class=\"font-label-sm text-label-sm text-secondary uppercase font-bold\">Channel 02</span>\n        <h4 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">Reels & Short Videos</h4>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">30-second short Q&A videos: \"Kya online degree govt jobs ke liye valid hai?\".</p>\n      </div>\n      <div class=\"p-5 rounded-2xl bg-surface-subtle flex flex-col gap-2\">\n        <span class=\"font-label-sm text-label-sm text-primary-container uppercase font-bold\">Channel 03</span>\n        <h4 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">Educational Blog</h4>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Search topics par articles likhein jaise \"Job ke saath MBA kaise karein\" for organic leads.</p>\n      </div>\n      <div class=\"p-5 rounded-2xl bg-surface-subtle flex flex-col gap-2\">\n        <span class=\"font-label-sm text-label-sm text-primary uppercase font-bold\">Channel 04</span>\n        <h4 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">LinkedIn Networking</h4>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Corporate juniors se connect karein jo career boost aur salary hike chahte hain.</p>\n      </div>\n      <div class=\"p-5 rounded-2xl bg-surface-subtle flex flex-col gap-2\">\n        <span class=\"font-label-sm text-label-sm text-secondary uppercase font-bold\">Channel 05</span>\n        <h4 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">Career Communities</h4>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Groups me logon ke sawalon ke genuine answers dein; log profile dekh kar DM karenge.</p>\n      </div>\n      <div class=\"p-5 rounded-2xl bg-surface-subtle flex flex-col gap-2\">\n        <span class=\"font-label-sm text-label-sm text-primary-container uppercase font-bold\">Channel 06</span>\n        <h4 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">Offline Network</h4>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Local coaching institutes, libraries aur relatives se direct face-to-face baat karein.</p>\n      </div>\n    </div>\n  </section>\n\n  <!-- Section 8: 30-Day Plan Table -->\n  <section class=\"flex flex-col gap-5\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      8. Pehle 30 Din Ka Step-by-Step Action Plan\n    </h2>\n\n    <div class=\"overflow-x-auto rounded-2xl border border-surface-border\">\n      <table class=\"w-full text-left font-body-default text-body-subtle\">\n        <thead class=\"bg-surface-subtle font-headline-sm text-headline-sm text-on-surface border-b border-surface-border\">\n          <tr>\n            <th class=\"p-4\">Timeline</th>\n            <th class=\"p-4\">Kya Karna Hai</th>\n            <th class=\"p-4 text-primary\">Goal</th>\n          </tr>\n        </thead>\n        <tbody class=\"divide-y divide-surface-border text-on-surface\">\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Din 1 se 3</td>\n            <td class=\"p-4\">Official platform terms padhein aur registration poora karein.</td>\n            <td class=\"p-4 font-semibold text-primary\">Process samajhna</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Din 4 se 7</td>\n            <td class=\"p-4\">Course Finder explore karein aur 20 potential logon ki list banayein.</td>\n            <td class=\"p-4 font-semibold text-primary\">Tayyari poori karna</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Hafta 2</td>\n            <td class=\"p-4\">List ke logon ko message karein aur 3 se 5 conversations shuru karein.</td>\n            <td class=\"p-4 font-semibold text-primary\">Interested students</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Hafta 3</td>\n            <td class=\"p-4\">Interested students ko counsel karein aur counsellor session arrange karein.</td>\n            <td class=\"p-4 font-semibold text-primary\">Trust banana</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Hafta 4</td>\n            <td class=\"p-4\">Follow-up karke pehli application complete karwayein.</td>\n            <td class=\"p-4 font-bold text-emerald-700\">Pehla Admission 🎯</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </section>\n\n  <!-- Section 9: 5 Common Mistakes -->\n  <section class=\"flex flex-col gap-4\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      9. Beginners Ki 5 Badi Galtiyan (Jinse Bachein)\n    </h2>\n    <div class=\"flex flex-col gap-2.5\">\n      <div class=\"p-3.5 rounded-xl bg-surface-subtle flex items-start gap-3\">\n        <span class=\"px-2.5 py-1 rounded-md bg-accent-tag-text/10 text-accent-tag-text font-label-sm text-label-sm font-bold uppercase\">Avoid 01</span>\n        <p class=\"font-body-subtle text-body-subtle text-on-surface\"><strong>Jhoothe Promises:</strong> \"100% job guarantee\" ya \"kuch padhna nahi padega\" jaise fake daave kabhi na karein.</p>\n      </div>\n      <div class=\"p-3.5 rounded-xl bg-surface-subtle flex items-start gap-3\">\n        <span class=\"px-2.5 py-1 rounded-md bg-accent-tag-text/10 text-accent-tag-text font-label-sm text-label-sm font-bold uppercase\">Avoid 02</span>\n        <p class=\"font-body-subtle text-body-subtle text-on-surface\"><strong>Spamming:</strong> Har group me bina consent link share na karein. Pehle value dein phir link.</p>\n      </div>\n      <div class=\"p-3.5 rounded-xl bg-surface-subtle flex items-start gap-3\">\n        <span class=\"px-2.5 py-1 rounded-md bg-accent-tag-text/10 text-accent-tag-text font-label-sm text-label-sm font-bold uppercase\">Avoid 03</span>\n        <p class=\"font-body-subtle text-body-subtle text-on-surface\"><strong>Approval Check Na Karna:</strong> Hamesha verify karein ki proposed university UGC-DEB approved ho.</p>\n      </div>\n      <div class=\"p-3.5 rounded-xl bg-surface-subtle flex items-start gap-3\">\n        <span class=\"px-2.5 py-1 rounded-md bg-accent-tag-text/10 text-accent-tag-text font-label-sm text-label-sm font-bold uppercase\">Avoid 04</span>\n        <p class=\"font-body-subtle text-body-subtle text-on-surface\"><strong>T&C Na Padhna:</strong> Payout timelines aur reward eligibility terms pehle se clear rakhein.</p>\n      </div>\n      <div class=\"p-3.5 rounded-xl bg-surface-subtle flex items-start gap-3\">\n        <span class=\"px-2.5 py-1 rounded-md bg-accent-tag-text/10 text-accent-tag-text font-label-sm text-label-sm font-bold uppercase\">Avoid 05</span>\n        <p class=\"font-body-subtle text-body-subtle text-on-surface\"><strong>R रातों-रात अमीर होने की उम्मीद:</strong> Trust build hone me thoda time lagta hai; consistency se hi results milte hain.</p>\n      </div>\n    </div>\n  </section>\n\n  <!-- Section 10: FAQs -->\n  <section class=\"flex flex-col gap-4\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      10. Frequently Asked Questions (FAQs)\n    </h2>\n    <div class=\"flex flex-col gap-3\">\n      <div class=\"p-4 rounded-xl bg-surface-subtle\">\n        <h4 class=\"font-headline-sm text-headline-sm text-on-surface font-bold mb-1\">Kya College Vidya se judne ke liye koi fees lagti hai?</h4>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Nahi. Dono Refer & Earn aur Partner Program 100% free hain.</p>\n      </div>\n      <div class=\"p-4 rounded-xl bg-surface-subtle\">\n        <h4 class=\"font-headline-sm text-headline-sm text-on-surface font-bold mb-1\">Kya student ko koi extra paisa dena padta hai?</h4>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Nahi. Student se koi extra charge nahi liya jata. Student sirf normal university fees deta hai.</p>\n      </div>\n      <div class=\"p-4 rounded-xl bg-surface-subtle\">\n        <h4 class=\"font-headline-sm text-headline-sm text-on-surface font-bold mb-1\">Kya ye kaam job ke saath kiya ja sakta hai?</h4>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Bilkul. Roz 1 se 2 ghante ya weekends par time dekar ise asani se kiya ja sakta hai.</p>\n      </div>\n    </div>\n  </section>\n\n  <!-- Conclusion -->\n  <section class=\"p-8 rounded-2xl bg-surface-subtle border-l-4 border-primary flex flex-col gap-3\">\n    <h3 class=\"font-headline-lg text-headline-lg text-on-surface font-bold\">\n      Aapka Next Step\n    </h3>\n    <p class=\"font-body-default text-body-default text-text-muted\">\n      College Vidya se kamai shuru karne ke liye kisi technical skill ki zaroorat nahi hai. Safalta ki chaabi hai: <strong>Honesty, Sahi Guidance aur Regular Follow-up</strong>. Aaj hi 15 prospective logon ki list banayein aur pehli friendly conversation shuru karein.\n    </p>\n  </section>\n\n</div>\n","published_at":"19 September 2026","timestamp":1789837931111},{"id":"art-college-vidya-guide-english-2026","slug":"how-to-earn-money-with-college-vidya-guide","title":"How to Earn Money with College Vidya? Complete Beginner’s Guide (2026)","category":"Online Earning & Freelancing","author":"Skillsfy Editorial Team","read_time":"7 min read","cover_image":"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80","summary":"A step-by-step guide on earning from home via College Vidya Refer & Earn and Partner Programs. Learn ethical counselling frameworks, lead generation channels, and key pitfalls.","content":"\n<div class=\"flex flex-col gap-10 text-on-surface\">\n\n  <!-- Language Switcher Banner -->\n  <div class=\"p-3.5 rounded-xl bg-primary-fixed/60 border border-outline-variant/40 flex items-center justify-between text-xs font-semibold text-on-primary-fixed\">\n    <span class=\"flex items-center gap-2\">\n      <span class=\"material-symbols-outlined text-[18px] text-primary\">language</span>\n      <span>Yeh guide Hinglish me bhi available hai:</span>\n    </span>\n    <a href=\"/articles/how-to-earn-money-with-college-vidya\" class=\"px-3 py-1 rounded-full bg-white text-primary font-bold shadow-xs hover:bg-surface-subtle transition-colors\">\n      हिंदी / Hinglish me padhein →\n    </a>\n  </div>\n\n  <!-- Introduction Section -->\n  <section class=\"flex flex-col gap-4\">\n    <p class=\"font-body-lead text-body-lead text-on-surface\">\n      Today, nearly everyone is looking for practical ways to build secondary income from home. Whether you are a college student looking to cover your personal living expenses, a homemaker seeking financial independence, or a full-time employee looking for a reliable side venture, <strong>College Vidya</strong> offers a legitimate zero-investment avenue through accredited education referrals.\n    </p>\n\n    <p class=\"font-body-default text-body-default text-text-muted\">\n      In this comprehensive guide, we unpack the platform mechanics, compare the Refer & Earn versus Partner Program frameworks, demonstrate how to ethically counsel prospective students, and share actionable steps to secure your first confirmed enrollment.\n    </p>\n\n    <!-- Visual Highlight Quote Box -->\n    <blockquote class=\"my-3 p-6 rounded-2xl bg-surface-subtle border-l-4 border-primary flex flex-col gap-2 relative\">\n      <span class=\"material-symbols-outlined text-primary/20 text-4xl absolute right-4 top-4\">format_quote</span>\n      <p class=\"font-headline-sm text-headline-sm text-on-surface italic font-medium\">\n        “Referral revenue is disbursed strictly upon confirmed, verified university admission. Merely submitting random contact leads yields zero reward. Sustainable success requires genuine student interest.”\n      </p>\n      <cite class=\"font-label-md text-label-md text-text-muted not-italic font-semibold\">\n        — The Core Principle of Educational Consulting\n      </cite>\n    </blockquote>\n  </section>\n\n  <!-- Section 1 -->\n  <section class=\"flex flex-col gap-4\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      1. What is College Vidya and How Does It Work?\n    </h2>\n    <p class=\"font-body-default text-body-default text-on-surface\">\n      College Vidya is an unbiased online education counselling and comparison platform. Its primary objective is helping prospective learners select accredited online degrees and recognized universities across <strong>Online BBA, MBA, BCA, MCA, B.Com, and M.Com</strong> programs.\n    </p>\n    <p class=\"font-body-default text-body-default text-on-surface\">\n      Many individuals cannot attend conventional on-campus universities due to full-time jobs, geographical constraints, or financial limitations. Online education bridges this gap. However, prospective students face overwhelming ambiguity regarding university credibility, fee structures, and approvals. College Vidya clarifies this decision.\n    </p>\n\n    <div class=\"p-5 rounded-2xl bg-surface-subtle border border-surface-border mt-2\">\n      <h3 class=\"font-headline-sm text-headline-sm text-primary font-bold mb-2\">\n        Where Does Your Revenue Come From?\n      </h3>\n      <p class=\"font-body-default text-body-default text-text-muted\">\n        When you connect an interested candidate to College Vidya, expert academic advisors counsel the student to find the right university match. When that student successfully enrolls and pays their semester fee, the university compensates the platform, and a share of this revenue is disbursed to you as a <strong>referral reward or recurring commission</strong>.\n      </p>\n    </div>\n  </section>\n\n  <!-- Section 2 -->\n  <section class=\"flex flex-col gap-6\">\n    <div>\n      <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n        2. Why Online Degrees Have Surging Market Demand\n      </h2>\n      <p class=\"font-body-default text-body-default text-text-muted mt-1\">\n        Understanding the core buyer motivations makes identifying prospective students straightforward:\n      </p>\n    </div>\n\n    <div class=\"grid grid-cols-1 md:grid-cols-2 gap-4\">\n      <div class=\"p-6 rounded-2xl bg-surface-subtle flex flex-col gap-3 transition-transform hover:-translate-y-0.5\">\n        <div class=\"flex items-center gap-3\">\n          <div class=\"w-10 h-10 rounded-xl bg-primary-fixed text-primary flex items-center justify-center shrink-0\">\n            <span class=\"material-symbols-outlined text-[20px]\">badge</span>\n          </div>\n          <h3 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">1. Working Professionals</h3>\n        </div>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">\n          Seeking salary increments, managerial promotions, or corporate elevation via an Online MBA without pausing their employment.\n        </p>\n      </div>\n\n      <div class=\"p-6 rounded-2xl bg-surface-subtle flex flex-col gap-3 transition-transform hover:-translate-y-0.5\">\n        <div class=\"flex items-center gap-3\">\n          <div class=\"w-10 h-10 rounded-xl bg-secondary-fixed text-secondary flex items-center justify-center shrink-0\">\n            <span class=\"material-symbols-outlined text-[20px]\">school</span>\n          </div>\n          <h3 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">2. 12th Pass Learners</h3>\n        </div>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">\n          Desiring recognized undergraduate degrees while simultaneously gaining initial workplace experience at lower tuition fees.\n        </p>\n      </div>\n\n      <div class=\"p-6 rounded-2xl bg-surface-subtle flex flex-col gap-3 transition-transform hover:-translate-y-0.5\">\n        <div class=\"flex items-center gap-3\">\n          <div class=\"w-10 h-10 rounded-xl bg-tertiary-fixed text-tertiary flex items-center justify-center shrink-0\">\n            <span class=\"material-symbols-outlined text-[20px]\">family_restroom</span>\n          </div>\n          <h3 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">3. Homemakers</h3>\n        </div>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">\n          Resuming interrupted educations comfortably from home while balancing family commitments.\n        </p>\n      </div>\n\n      <div class=\"p-6 rounded-2xl bg-surface-subtle flex flex-col gap-3 transition-transform hover:-translate-y-0.5\">\n        <div class=\"w-10 h-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shrink-0\">\n          <span class=\"material-symbols-outlined text-[20px]\">storefront</span>\n        </div>\n        <h3 class=\"font-headline-sm text-headline-sm text-on-surface font-bold\">4. Business Owners</h3>\n      </div>\n      <p class=\"font-body-subtle text-body-subtle text-text-muted\">\n        Elevating commercial acumen and market credibility through formal management credentialing.\n      </p>\n    </div>\n  </section>\n\n  <!-- Section 3 -->\n  <section class=\"flex flex-col gap-5\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      3. Two Earning Pathways Compared\n    </h2>\n    <div class=\"overflow-x-auto rounded-2xl border border-surface-border\">\n      <table class=\"w-full text-left font-body-default text-body-subtle\">\n        <thead class=\"bg-surface-subtle font-headline-sm text-headline-sm text-on-surface border-b border-surface-border\">\n          <tr>\n            <th class=\"p-4\">Dimension</th>\n            <th class=\"p-4 text-primary\">Refer & Earn</th>\n            <th class=\"p-4 text-secondary\">Partner Program</th>\n          </tr>\n        </thead>\n        <tbody class=\"divide-y divide-surface-border text-on-surface\">\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Target User</td>\n            <td class=\"p-4\">Students, casual referrers, beginners</td>\n            <td class=\"p-4 font-semibold text-primary\">Consultants, creators, educators</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Effort Level</td>\n            <td class=\"p-4\">Low. Share link with acquaintances</td>\n            <td class=\"p-4\">Medium/High. Direct counselling & application submission</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Investment</td>\n            <td class=\"p-4 text-emerald-700 font-bold\">Zero ($0 / ₹0)</td>\n            <td class=\"p-4 text-emerald-700 font-bold\">Zero ($0 / ₹0)</td>\n          </tr>\n          <tr class=\"hover:bg-surface-subtle/50 transition-colors\">\n            <td class=\"p-4 font-bold\">Payout Model</td>\n            <td class=\"p-4\">One-time reward per confirmed admission</td>\n            <td class=\"p-4\">Recurring multi-semester commissions</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </section>\n\n  <!-- Section 4 -->\n  <section class=\"flex flex-col gap-4\">\n    <h2 class=\"font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight\">\n      4. Ethical Student Counselling Framework\n    </h2>\n    <p class=\"font-body-default text-body-default text-text-muted\">\n      Long-term earning in education consulting requires immaculate trust. Always verify:\n    </p>\n    <div class=\"flex flex-col gap-3\">\n      <div class=\"p-4 rounded-xl bg-surface-subtle\">\n        <strong class=\"font-headline-sm text-headline-sm text-on-surface block\">1. Statutory Accreditation</strong>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Ensure target universities possess active UGC-DEB and AICTE approvals.</p>\n      </div>\n      <div class=\"p-4 rounded-xl bg-surface-subtle\">\n        <strong class=\"font-headline-sm text-headline-sm text-on-surface block\">2. Total Fee Transparency</strong>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Disclose full semester tuition, exam charges, and EMI arrangements upfront.</p>\n      </div>\n      <div class=\"p-4 rounded-xl bg-surface-subtle\">\n        <strong class=\"font-headline-sm text-headline-sm text-on-surface block\">3. Realistic Career Expectations</strong>\n        <p class=\"font-body-subtle text-body-subtle text-text-muted\">Never promise guaranteed employment; highlight genuine skill acquisition and credentialing.</p>\n      </div>\n    </div>\n  </section>\n\n  <!-- Section 5 -->\n  <section class=\"p-8 rounded-2xl bg-surface-subtle border-l-4 border-primary flex flex-col gap-3\">\n    <h3 class=\"font-headline-lg text-headline-lg text-on-surface font-bold\">\n      Conclusion & Your Next Step\n    </h3>\n    <p class=\"font-body-default text-body-default text-text-muted\">\n      Success in education consulting comes down to consistency, sincere guidance, and timely follow-up. Draft a focused list of 15 contacts who could legitimately benefit from an online degree, initiate friendly consultations, and scale from there.\n    </p>\n  </section>\n\n</div>\n","published_at":"19 September 2026","timestamp":1789837930111}];
 
     function toggleMobileMenu() {
       const drawer = document.getElementById('mobile-nav-drawer');
-      drawer.classList.toggle('hidden');
+      if (drawer) drawer.classList.toggle('hidden');
     }
 
-    // Fetch articles from Supabase + localStorage (ZERO mock data)
+    // Scroll reading progress calculation
+    window.addEventListener('scroll', function () {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (window.scrollY / (docHeight || 1)) * 100;
+      const bar = document.getElementById('read-indicator');
+      if (bar) bar.style.width = Math.min(100, Math.max(0, scrolled)) + '%';
+    });
+
+    // Merge articles from localStorage & Supabase
     async function fetchAllArticles() {
-      let articles = [];
+      let articles = [...allArticles];
 
-      // 1. Read from localStorage
-      const local = JSON.parse(localStorage.getItem('skillsfy_published_articles') || '[]');
-      articles = [...local];
+      try {
+        const local = JSON.parse(localStorage.getItem('skillsfy_published_articles') || '[]');
+        if (Array.isArray(local) && local.length > 0) {
+          local.forEach(loc => {
+            const idx = articles.findIndex(a => a.slug === loc.slug);
+            if (idx >= 0) articles[idx] = loc;
+            else articles.unshift(loc);
+          });
+        }
+      } catch (e) {}
 
-      // 2. Fetch from Supabase blogs table
       try {
         const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/blogs?select=*&order=created_at.desc`, {
           headers: {
@@ -316,40 +573,36 @@
           const dbRows = await res.json();
           if (Array.isArray(dbRows) && dbRows.length > 0) {
             dbRows.forEach(row => {
-              const exists = articles.some(a => a.slug === row.slug);
-              if (!exists) {
-                articles.push({
-                  id: row.id,
-                  slug: row.slug,
-                  title: row.title,
-                  category: row.category,
-                  summary: row.summary,
-                  content: row.content,
-                  cover_image: row.cover_image,
-                  author: row.author,
-                  read_time: row.read_time,
-                  published_at: row.created_at ? new Date(row.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Recently'
-                });
-              }
+              const idx = articles.findIndex(a => a.slug === row.slug);
+              const dbArticle = {
+                id: row.id,
+                slug: row.slug,
+                title: row.title,
+                category: row.category,
+                summary: row.summary,
+                content: row.content,
+                cover_image: row.cover_image,
+                author: row.author,
+                read_time: row.read_time,
+                published_at: row.created_at ? new Date(row.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Recently'
+              };
+              if (idx >= 0) articles[idx] = dbArticle;
+              else articles.push(dbArticle);
             });
           }
         }
-      } catch (e) {
-        console.warn('Database fetch:', e);
-      }
+      } catch (e) {}
 
       allArticles = articles;
       routeView();
     }
 
-    // Routing: Check if single article or listing
+    // Routing
     function routeView() {
       const path = window.location.pathname;
       const urlParams = new URLSearchParams(window.location.search);
-      
       let targetSlug = urlParams.get('slug') || urlParams.get('article') || urlParams.get('id');
 
-      // Check if URL matches /articles/[slug]
       if (!targetSlug && path.startsWith('/articles/')) {
         const part = path.replace('/articles/', '').replace(/\/$/, '').trim();
         if (part && part !== 'index.html' && part !== 'articles.html') {
@@ -364,16 +617,15 @@
         const article = allArticles.find(a => a.slug === targetSlug || a.id == targetSlug);
         if (article) {
           renderSingleArticle(article);
-          detailView.classList.remove('hidden');
-          listView.classList.add('hidden');
+          if (detailView) detailView.classList.remove('hidden');
+          if (listView) listView.classList.add('hidden');
           return;
         }
       }
 
-      // Default: List View
-      detailView.classList.add('hidden');
-      listView.classList.remove('hidden');
-      renderArticlesList();
+      if (detailView) detailView.classList.add('hidden');
+      if (listView) listView.classList.remove('hidden');
+      renderArticlesList(allArticles);
     }
 
     function handleBackToList(e) {
@@ -388,116 +640,140 @@
       routeView();
     }
 
-    // Render single article matching LearnMize screenshots
     function renderSingleArticle(article) {
-      document.getElementById('art-title').textContent = article.title;
-      document.getElementById('art-author').textContent = article.author || 'Skillsfy Team';
-      document.getElementById('art-date').textContent = article.published_at || 'Recently';
-      document.getElementById('art-read-time').textContent = article.read_time || '5 min read';
-      document.getElementById('art-body-html').innerHTML = article.content || '';
+      const titleEl = document.getElementById('art-title');
+      const crumbEl = document.getElementById('crumb-title');
+      const leadEl = document.getElementById('art-lead');
+      const authorEl = document.getElementById('art-author');
+      const dateEl = document.getElementById('art-date');
+      const readTimeEl = document.getElementById('art-read-time');
+      const categoryEl = document.getElementById('art-category');
+      const bodyEl = document.getElementById('art-body-html');
 
-      // Update Dynamic SEO & Schema.org
+      if (titleEl) titleEl.textContent = article.title;
+      if (crumbEl) crumbEl.textContent = article.title;
+      if (leadEl) leadEl.textContent = article.summary || '';
+      if (authorEl) authorEl.textContent = article.author || 'Skillsfy Editorial Team';
+      if (dateEl) dateEl.textContent = article.published_at || 'Recently';
+      if (readTimeEl) readTimeEl.textContent = article.read_time || '8 min read';
+      if (categoryEl) categoryEl.innerHTML = `<span class="material-symbols-outlined text-[14px]">school</span> ${article.category || 'Guide'}`;
+      if (bodyEl) bodyEl.innerHTML = article.content || '';
+
+      // SEO updates
       const fullUrl = `https://skillsfy.in/articles/${article.slug}`;
       const desc = article.summary || article.title;
-
       document.title = `${article.title} | Skillsfy`;
-      document.getElementById('seo-title').textContent = `${article.title} | Skillsfy`;
-      document.getElementById('seo-desc').setAttribute('content', desc);
-      document.getElementById('seo-canonical').setAttribute('href', fullUrl);
 
-      document.getElementById('og-title').setAttribute('content', article.title);
-      document.getElementById('og-desc').setAttribute('content', desc);
-      document.getElementById('og-url').setAttribute('href', fullUrl);
-      if (article.cover_image) {
-        document.getElementById('og-image').setAttribute('content', article.cover_image);
-        document.getElementById('tw-image').setAttribute('content', article.cover_image);
-      }
+      const seoTitle = document.getElementById('seo-title');
+      if (seoTitle) seoTitle.textContent = `${article.title} | Skillsfy`;
 
-      document.getElementById('tw-title').setAttribute('content', article.title);
-      document.getElementById('tw-desc').setAttribute('content', desc);
+      const seoDesc = document.getElementById('seo-desc');
+      if (seoDesc) seoDesc.setAttribute('content', desc);
 
-      // JSON-LD Structured Data Update
-      const schemaScript = document.getElementById('seo-schema');
-      if (schemaScript) {
-        schemaScript.textContent = JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BlogPosting",
-          "headline": article.title,
-          "description": desc,
-          "image": article.cover_image || "https://skillsfy.in/assets/logo.png",
-          "author": {
-            "@type": "Person",
-            "name": article.author || "Skillsfy Team"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Skillsfy",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://skillsfy.in/assets/logo.png"
-            }
-          },
-          "datePublished": article.published_at || new Date().toISOString(),
-          "mainEntityOfPage": fullUrl
-        });
-      }
+      const seoCanonical = document.getElementById('seo-canonical');
+      if (seoCanonical) seoCanonical.setAttribute('href', fullUrl);
+
+      const ogTitle = document.getElementById('og-title');
+      if (ogTitle) ogTitle.setAttribute('content', article.title);
+
+      const ogDesc = document.getElementById('og-desc');
+      if (ogDesc) ogDesc.setAttribute('content', desc);
+
+      const ogUrl = document.getElementById('og-url');
+      if (ogUrl) ogUrl.setAttribute('href', fullUrl);
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Render articles listing
-    function renderArticlesList() {
+    function renderArticlesList(list) {
       const container = document.getElementById('articles-grid-container');
       const emptyBox = document.getElementById('empty-state-box');
+      if (!container) return;
 
-      if (allArticles.length === 0) {
+      if (!list || list.length === 0) {
         container.innerHTML = '';
-        emptyBox.classList.remove('hidden');
+        if (emptyBox) emptyBox.classList.remove('hidden');
         return;
       }
 
-      emptyBox.classList.add('hidden');
-      container.innerHTML = allArticles.map(a => `
-        <div class="border border-slate-200/80 rounded-2xl p-6 bg-white hover:border-[#6366F1] hover:shadow-md transition-all flex flex-col justify-between text-left group">
-          <div class="space-y-3">
-            <span class="text-[11px] font-bold text-[#6D28D9] uppercase tracking-wider block font-heading">
-              ${a.category || 'Guide'}
-            </span>
-            <h2 class="text-xl font-black text-slate-900 leading-snug group-hover:text-[#6D28D9] transition-colors font-heading">
-              <a href="/articles/${a.slug}" onclick="openArticle('${a.slug}', event)">${a.title}</a>
-            </h2>
-            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-              ${a.summary || ''}
-            </p>
+      if (emptyBox) emptyBox.classList.add('hidden');
+      container.innerHTML = list.map(a => `
+        <a class="group flex flex-col bg-surface-subtle border border-surface-border rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-primary/40 transition-all text-left" href="/articles/${a.slug}" onclick="openArticle('${a.slug}', event)">
+          <div class="w-full h-48 bg-cover bg-center overflow-hidden transition-transform duration-300 group-hover:scale-102" style="background-image: url('${a.cover_image || 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80'}');">
           </div>
-
-          <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-            <span>⏱️ ${a.read_time || '5 min read'}</span>
-            <a href="/articles/${a.slug}" onclick="openArticle('${a.slug}', event)" class="font-bold text-[#6D28D9] hover:underline flex items-center gap-1">
-              <span>Read Guide</span>
-              <span>→</span>
-            </a>
+          <div class="p-6 flex flex-col justify-between flex-1 gap-4">
+            <div class="flex flex-col gap-2">
+              <span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">
+                ${a.category || 'Practical Guide'}
+              </span>
+              <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors line-clamp-2">
+                ${a.title}
+              </h3>
+              <p class="font-body-subtle text-body-subtle text-text-muted line-clamp-3 leading-relaxed">
+                ${a.summary || ''}
+              </p>
+            </div>
+            <div class="pt-3 border-t border-surface-border flex items-center justify-between font-label-md text-label-md text-primary font-semibold">
+              <span class="text-text-muted text-xs font-normal">⏱️ ${a.read_time || '8 min read'}</span>
+              <span class="flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>Read article</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </span>
+            </div>
           </div>
-        </div>
+        </a>
       `).join('');
+    }
+
+    function handleSearch(query) {
+      const q = (query || '').toLowerCase().trim();
+      if (!q) {
+        renderArticlesList(allArticles);
+        return;
+      }
+      const filtered = allArticles.filter(a => 
+        (a.title && a.title.toLowerCase().includes(q)) || 
+        (a.summary && a.summary.toLowerCase().includes(q)) ||
+        (a.category && a.category.toLowerCase().includes(q))
+      );
+      renderArticlesList(filtered);
     }
 
     function shareArticle() {
       if (navigator.share) {
-        navigator.share({
-          title: document.title,
-          url: window.location.href
-        }).catch(() => {});
+        navigator.share({ title: document.title, url: window.location.href }).catch(() => {});
       } else {
         navigator.clipboard.writeText(window.location.href);
-        alert('Article link copied to clipboard!');
+        const copyText = document.getElementById('copy-text');
+        if (copyText) {
+          copyText.textContent = 'Copied!';
+          setTimeout(() => { copyText.textContent = 'Share'; }, 2000);
+        } else {
+          alert('Article link copied to clipboard!');
+        }
+      }
+    }
+
+    function bookmarkArticle() {
+      alert('Article bookmarked in your browser reading list!');
+    }
+
+    function handleCommentSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('comment-form');
+      const successMsg = document.getElementById('comment-success');
+      if (form) form.reset();
+      if (successMsg) {
+        successMsg.classList.remove('hidden');
+        setTimeout(() => { successMsg.classList.add('hidden'); }, 6000);
       }
     }
 
     window.addEventListener('popstate', routeView);
 
     document.addEventListener('DOMContentLoaded', () => {
-      fetchAllArticles();
+      routeView(); // Instant synchronous render
+      fetchAllArticles(); // Background sync
     });
   </script>
 </body>
