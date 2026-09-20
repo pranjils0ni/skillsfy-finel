@@ -41,8 +41,8 @@ const SKILLSFY_COURSES = [
     badge: "Flagship Program",
     level: "Beginner to Pro",
     status: "active", // active | coming_soon | disabled
-    rating: 4.98,
-    reviewsCount: 2840,
+    rating: 5.0,
+    reviewsCount: 0,
     duration: "50+ Hours (8 Weeks)",
     hoursPerWeek: "6-8 hrs/week",
     language: "Hinglish",
@@ -189,10 +189,10 @@ const SKILLSFY_COURSES = [
     affiliateCommissionAmount: 625,
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
     instructor: {
-      name: "Growth Leads & Performance Experts",
-      role: "Scaled ₹2Cr+ in D2C & EdTech Ad Spend",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-      bio: "Ex-agency media buyers managing multi-million rupee campaigns with laser-targeted CBOs, lookalikes, and conversion API tracking."
+      name: "Pranjil Soni",
+      role: "Founder, Skillsfy • Coming Soon",
+      avatar: "assets/founder.jpg",
+      bio: "Flagship cohort curated by Pranjil Soni. Curriculum details and admissions opening soon."
     },
     stats: {
       placementRate: "95%",
@@ -223,15 +223,15 @@ const SKILLSFY_COURSES = [
   {
     id: "video-editing",
     title: "Advanced Video Editing & Viral Motion Graphics",
-    subtitle: "Create viral short-form Reels, YouTube video documentaries, and cinematic commercial edits with Premiere Pro & After Effects.",
-    category: "Creative Media",
+    subtitle: "Master high-retention video editing, motion graphics, sound design, and pacing for top YouTube creators and D2C brands.",
+    category: "Creative & Media",
     badge: "Coming Soon",
-    level: "Beginner to Advanced",
+    level: "All Levels",
     status: "coming_soon",
     rating: 5.0,
     reviewsCount: 0,
-    duration: "6 Weeks",
-    hoursPerWeek: "6-8 hrs/week",
+    duration: "4 Weeks",
+    hoursPerWeek: "5 hrs/week",
     language: "Hinglish",
     nextCohort: "Launching Soon (Pre-register Open)",
     priceOriginalINR: 4999,
@@ -242,10 +242,10 @@ const SKILLSFY_COURSES = [
     affiliateCommissionAmount: 625,
     image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80",
     instructor: {
-      name: "Top Viral Video Editors & Motion Artists",
-      role: "Edited for Creators with 10M+ Combined Views",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
-      bio: "Mastering storytelling pacing, sound design, custom typography animations, and viral hook editing."
+      name: "Pranjil Soni",
+      role: "Founder, Skillsfy • Coming Soon",
+      avatar: "assets/founder.jpg",
+      bio: "Flagship cohort curated by Pranjil Soni. Curriculum details and admissions opening soon."
     },
     stats: {
       placementRate: "96%",
@@ -295,10 +295,10 @@ const SKILLSFY_COURSES = [
     affiliateCommissionAmount: 500,
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
     instructor: {
-      name: "Personal Brand Strategists",
-      role: "Grew 500k+ Combined Organic Followers",
-      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
-      bio: "Specializing in organic content algorithms, viral carousel design, newsletter building, and high-ticket consulting offers."
+      name: "Pranjil Soni",
+      role: "Founder, Skillsfy • Coming Soon",
+      avatar: "assets/founder.jpg",
+      bio: "Flagship cohort curated by Pranjil Soni. Curriculum details and admissions opening soon."
     },
     stats: {
       placementRate: "94%",
@@ -328,47 +328,11 @@ const SKILLSFY_COURSES = [
   }
 ];
 
-// Indian Fast-Growing Startups & Tech Brands for Trust Strip
-const INDIAN_TECH_PARTNERS = [
-  { name: "Swiggy", tag: "Tech Ecosystem" },
-  { name: "Zomato", tag: "Product & Growth" },
-  { name: "Razorpay", tag: "Fintech & Engineering" },
-  { name: "Zepto", tag: "Quick Commerce" },
-  { name: "CRED", tag: "High-Performance Tech" },
-  { name: "Meesho", tag: "E-Commerce Innovation" },
-  { name: "Groww", tag: "Fintech Platforms" },
-  { name: "InMobi", tag: "Global AdTech" }
-];
+// Partner Brands (Kept empty until real corporate tie-ups)
+const INDIAN_TECH_PARTNERS = [];
 
-const SKILLSFY_TESTIMONIALS = [
-  {
-    name: "Aman Verma",
-    location: "Jabalpur, MP",
-    role: "AI Automation Specialist at Indian Tech Startup",
-    pastRole: "B.Tech Final Year Student",
-    hike: "Placed at ₹8.2 LPA",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80",
-    quote: "Jabalpur me rahke mujhe laga tha ki achhi tech job milna mushkil hai. Pranjil bhaiya ke Skillsfy Standard Course ne Google AI Studio aur Make automations sikha ke mera pura confidence badal diya. 2 mahine me placement mil gaya!"
-  },
-  {
-    name: "Pooja Sharma",
-    location: "Bhopal, MP",
-    role: "Freelance AI Consultant & Media Creator",
-    pastRole: "College Fresher",
-    hike: "Earns ₹1.4 Lakh / Month",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
-    quote: "Standard Course ke sath jo Client Acquisition Blueprint mila usse mujhe 3 freelance clients mile. 14 AI modules itne practical aur Hinglish me hain ki bina coding background ke bhi sab samajh aata hai."
-  },
-  {
-    name: "Rohit Deshmukh",
-    location: "Indore, MP",
-    role: "Full-Stack AI Developer",
-    pastRole: "Junior Web Developer",
-    hike: "+85% Salary Leap",
-    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&q=80",
-    quote: "ChatGPT workflows, Claude 3.5 Sonnet aur Next.js AI integrations ne mera standard badha diya. Skillsfy Institute ka support aur practical training sach me 100% genuine hai."
-  }
-];
+// Reviews & Testimonials (Kept empty until real student reviews are collected)
+const SKILLSFY_TESTIMONIALS = [];
 
 const INITIAL_STUDENT_PROFILE = {
   name: "Pranjil Soni",

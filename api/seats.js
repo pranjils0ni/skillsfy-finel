@@ -20,8 +20,8 @@ module.exports = async (req, res) => {
       'Content-Type': 'application/json'
     };
 
-    // 1. Fetch course configuration
-    let totalSeats = courseSlug === 'workshop-30-aug' ? 150 : 50;
+    const isWorkshop = courseSlug === 'workshop-30-oct' || courseSlug === 'workshop-30-aug' || courseSlug.includes('workshop');
+    let totalSeats = isWorkshop ? 150 : 50;
     try {
       const courseRes = await fetch(`${SUPABASE_URL}/rest/v1/courses?slug=eq.${courseSlug}&select=*`, { headers });
       if (courseRes.ok) {
@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
     // 2. Fetch confirmed paid enrollments
     let filledSeats = 0;
     try {
-      if (courseSlug === 'workshop-30-aug') {
+      if (isWorkshop) {
         const regRes = await fetch(`${SUPABASE_URL}/rest/v1/workshop_registrations?payment_status=eq.paid&select=id`, { headers });
         if (regRes.ok) {
           const regs = await regRes.json();
