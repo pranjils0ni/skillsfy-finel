@@ -177,76 +177,73 @@
 </head>
 <body class="bg-surface font-body-default text-on-surface antialiased">
 
-  <!-- ================= TOP HEADER (SKILLSFY BRANDING FROM THEME) ================= -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-    <div class="h-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-margin flex items-center justify-between gap-gutter">
+  <!-- ================= FLOATING ISLAND NAVIGATION HEADER ================= -->
+  <header class="sticky top-3 z-50 w-full px-3 sm:px-6">
+    <div class="max-w-6xl mx-auto bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-[0_4px_25px_rgba(0,0,0,0.06)] px-4 sm:px-7 py-3 flex items-center justify-between transition-all">
       
-      <!-- Logo: Skillsfy -->
-      <div class="flex items-center gap-space-lg shrink-0">
-        <a class="flex items-center gap-3 group" href="/">
-          <img src="/assets/logo.png" alt="Skillsfy" class="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-102" />
-          <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20">
-            Articles
-          </span>
-        </a>
-      </div>
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-2.5 group">
+        <img src="/assets/logo.png" alt="Skillsfy" class="h-8 w-auto object-contain group-hover:scale-105 transition-transform" />
+      </a>
 
-      <!-- Center Navigation -->
-      <nav class="hidden xl:flex items-center gap-space-lg font-label-lg text-label-lg">
-        <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="/">Home</a>
-        <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="/courses">Courses & Batches</a>
-        <a class="text-primary font-bold transition-colors" href="/articles">Articles & Guides</a>
-        <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="/about">About Us</a>
-        <a class="text-on-surface-variant hover:text-on-surface transition-colors" href="/contact">Contact</a>
+      <!-- Clean Focused Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-7 lg:gap-9 text-[14px] font-semibold text-slate-700">
+        <a href="/" class="hover:text-primary transition-colors">Home</a>
+        <a href="/courses" class="hover:text-primary transition-colors">Courses</a>
+        <a href="/lp1" class="hover:text-primary transition-colors flex items-center gap-1.5">
+          <span>Workshop</span>
+          <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-sky-100 text-sky-800 font-mono">30 Oct</span>
+        </a>
+        <a href="/articles" class="text-primary font-bold transition-colors">Articles</a>
+        <a href="/verify" class="hover:text-primary transition-colors">Verify</a>
+        <a href="/about" class="hover:text-primary transition-colors">About</a>
       </nav>
 
-      <!-- Right Actions: Search + Demo + Login -->
-      <div class="flex items-center gap-space-md shrink-0">
-        <div class="relative hidden md:block w-44 lg:w-56">
-          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span>
-          <input 
-            id="search-input"
-            oninput="handleSearch(this.value)"
-            class="w-full pl-9 pr-4 py-1.5 bg-surface-container-low text-on-surface placeholder:text-text-muted rounded-full font-body-subtle text-body-subtle focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" 
-            placeholder="Search articles..." 
-            type="text"
-          />
-        </div>
-
-        <a class="hidden sm:inline-flex items-center px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="/courses">
-          Live Cohort
+      <!-- Right Action CTA (Matches Dark Pill in Reference Mockup) -->
+      <div class="flex items-center gap-2.5">
+        <a href="https://wa.me/919876543210?text=Hello%20Skillsfy,%20I%20have%20a%20query%20regarding%20courses%20and%20workshops." target="_blank" class="bg-[#1e1f2e] hover:bg-slate-900 text-white text-xs sm:text-sm font-bold px-5 sm:px-6 py-2.5 rounded-xl shadow-sm transition-all hover:scale-105 inline-flex items-center gap-1.5">
+          <span>Chat Now</span>
         </a>
 
-        <a class="inline-flex items-center px-5 py-2 rounded-full bg-primary-container text-on-primary font-label-md text-label-md shadow-[0_8px_30px_-4px_rgba(95,46,234,0.3)] hover:opacity-95 transition-opacity" href="/login">
-          Login
-        </a>
-
-        <!-- Mobile menu hamburger -->
-        <button onclick="toggleMobileMenu()" class="xl:hidden p-2 text-on-surface hover:text-primary">
-          <span class="material-symbols-outlined text-[24px]">menu</span>
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleMobileMenu()" class="p-2 rounded-xl text-slate-700 hover:bg-slate-100 md:hidden focus:outline-none" aria-label="Toggle menu">
+          <span class="material-symbols-outlined text-2xl">menu</span>
         </button>
       </div>
 
-    </div>
-
-    <!-- Mobile Dropdown -->
-    <div id="mobile-nav-drawer" class="hidden xl:hidden border-t border-surface-border bg-surface px-6 py-4 space-y-3 font-label-lg text-label-lg shadow-xl">
-      <div class="flex items-center justify-between pb-3 border-b border-surface-border">
-        <a href="/" class="flex items-center gap-2">
-          <img src="/assets/logo.png" alt="Skillsfy" class="h-7 w-auto object-contain" />
-          <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary">Articles</span>
-        </a>
-        <button onclick="toggleMobileMenu()" class="p-1 text-text-muted hover:text-on-surface">
-          <span class="material-symbols-outlined text-[20px]">close</span>
-        </button>
-      </div>
-      <a class="block py-1 hover:text-primary" href="/">Home</a>
-      <a class="block py-1 hover:text-primary" href="/courses">Courses & Batches</a>
-      <a class="block py-1 text-primary font-bold" href="/articles">Articles & Guides</a>
-      <a class="block py-1 hover:text-primary" href="/about">About Us</a>
-      <a class="block py-1 hover:text-primary" href="/contact">Contact</a>
     </div>
   </header>
+
+  <!-- Mobile Dropdown -->
+  <div id="mobile-nav-drawer" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm">
+    <div class="fixed top-0 right-0 w-4/5 max-w-sm h-full bg-white shadow-2xl p-6 flex flex-col justify-between font-['Geist'] text-sm overflow-y-auto">
+      <div class="space-y-6">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+          <img src="/assets/logo.png" alt="Skillsfy" class="h-8 object-contain" />
+          <button onclick="toggleMobileMenu()" class="p-1 text-slate-400 hover:text-slate-700">
+            <span class="material-symbols-outlined text-2xl">close</span>
+          </button>
+        </div>
+        <nav class="space-y-4 text-sm font-semibold text-slate-800">
+          <a href="/" class="block py-1 hover:text-primary">Home</a>
+          <a href="/courses" class="block py-1 hover:text-primary">Courses &amp; Batches</a>
+          <a href="/lp1" class="block py-1 text-sky-700 font-bold hover:text-primary flex items-center justify-between">
+            <span>Live Workshop</span>
+            <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-sky-100 text-sky-800">30 Oct</span>
+          </a>
+          <a href="/articles" class="block py-1 text-primary font-bold">Articles &amp; Guides</a>
+          <a href="/verify" class="block py-1 hover:text-primary">Verify Certificate</a>
+          <a href="/about" class="block py-1 hover:text-primary">About Us</a>
+          <a href="/contact" class="block py-1 hover:text-primary">Contact Desk</a>
+        </nav>
+      </div>
+      <div class="pt-6 border-t border-slate-100 space-y-3">
+        <a href="https://wa.me/919876543210?text=Hello%20Skillsfy,%20I%20have%20a%20query%20regarding%20courses%20and%20workshops." target="_blank" class="w-full bg-[#1e1f2e] text-white py-3 rounded-xl text-center block font-bold text-xs shadow-sm">
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- ================= MAIN CONTENT ================= -->
   <main class="w-full pt-20 bg-surface min-h-screen">

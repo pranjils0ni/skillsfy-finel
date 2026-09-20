@@ -80,7 +80,7 @@
   border-radius: 8px;
 }
 
-/* Frozen Sticky Header - Stays permanently pinned on scroll */
+/* Frozen Sticky Header & Floating Island Navigation */
 .sticky-header-frozen {
   position: -webkit-sticky;
   position: sticky;
@@ -92,6 +92,45 @@
   border-bottom: 1px solid #e2e8fc;
   box-shadow: 0 4px 15px rgba(3, 22, 54, 0.06);
   transition: all 0.2s ease-in-out;
+}
+
+.floating-island-nav {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 999;
+  width: 100%;
+  padding: 0 0.75rem;
+}
+@media (min-width: 640px) {
+  .floating-island-nav {
+    padding: 0 1.5rem;
+    top: 1rem;
+  }
+}
+.floating-island-card {
+  max-width: 72rem;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 1rem;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.06);
+  padding: 0.65rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.25s ease-in-out;
+}
+@media (min-width: 640px) {
+  .floating-island-card {
+    border-radius: 1.25rem;
+    padding: 0.75rem 1.75rem;
+  }
+}
+.floating-island-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.09);
+  border-color: rgba(203, 213, 225, 0.95);
 }
 
 /* Custom Scrollbar */
