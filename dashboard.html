@@ -529,97 +529,56 @@
       const btn = e.target.querySelector('button[type="submit"]');
 
       if (!identifier || !password) {
-        showToast('Please enter your registered Email/Phone and Password.', 'warning');
+        showToast('Please enter your registered Email/Roll No and Password.', 'warning');
         return;
       }
 
       const originalBtnText = btn ? btn.innerHTML : 'Sign In';
       if (btn) {
-        btn.innerHTML = '<span>Verifying...</span>';
+        btn.innerHTML = '<span>Verifying credentials...</span>';
         btn.disabled = true;
       }
 
       try {
-        const cleanId = identifier.toLowerCase();
-        let filter;
-        if (cleanId === 'pranjils0ni' || cleanId === 'pranjil' || cleanId === 'admin') {
-          filter = `or=(email.ilike.theskillsfy@gmail.com,email.ilike.admin@skillsfy.in,name.ilike.%Pranjil%)`;
-        } else if (cleanId.includes('@')) {
-          filter = `email=ilike.${encodeURIComponent(cleanId)}`;
-        } else {
-          const rollMatch = cleanId.match(/sf-2026-(\d+)/i);
-          const numId = rollMatch ? rollMatch[1] : (/^\d+$/.test(cleanId) && cleanId.length < 6 ? cleanId : null);
-          if (numId) {
-            filter = `or=(email.ilike.${encodeURIComponent(cleanId)},phone.eq.${encodeURIComponent(identifier)},id.eq.${numId})`;
-          } else {
-            filter = `or=(email.ilike.${encodeURIComponent(cleanId)},phone.eq.${encodeURIComponent(identifier)})`;
-          }
-        }
-
-        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?${filter}&select=*`, {
-          headers: SUPABASE_HEADERS
+        const res = await fetch('/api/auth-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identifier, password })
         });
 
-        if (!res.ok) {
-          throw new Error('Database connection error. Status: ' + res.status);
-        }
+        const data = await res.json();
 
-        const rows = await res.json();
-        if (!Array.isArray(rows) || rows.length === 0) {
-          showToast('❌ No student account found with this Email/Phone. Please check your credentials or register.', 'error');
+        if (!res.ok || !data.success) {
+          showToast('❌ ' + (data.message || 'Login failed. Please check your credentials.'), 'error');
           if (btn) { btn.innerHTML = originalBtnText; btn.disabled = false; }
           return;
         }
 
-        const student = rows[0];
-
-        // Password Check
-        if (student.password_hash !== password && password !== 'Suhani@12') {
-          showToast('❌ Incorrect password. Please try again.', 'error');
-          if (btn) { btn.innerHTML = originalBtnText; btn.disabled = false; }
-        }
-
-        const cleanName = student.name || student.email.split('@')[0];
-        const formattedName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
-        const rollNo = student.roll_no || ('SF-2026-' + student.id);
-
-        const fullProfile = {
-          id: student.id,
-          name: formattedName,
-          email: student.email,
-          phone: student.phone || '+91 98765 43210',
-          avatar: student.avatar || 'assets/logo-badge.png',
-          rollNo: rollNo,
-          roll_no: rollNo,
-          enrolledCourses: student.enrolled_courses && student.enrolled_courses.length > 0 ? student.enrolled_courses : ['standard-course'],
-          enrolled_courses: student.enrolled_courses && student.enrolled_courses.length > 0 ? student.enrolled_courses : ['standard-course'],
-          courseProgress: {
-            'standard-course': { percent: 45, completedLessons: [], lastActive: 'Just now' }
-          },
-          affiliateStats: {
-            referralCode: student.affiliate_code || `SF-${formattedName.toUpperCase().slice(0, 5)}-2026`,
-            totalEarningsINR: student.total_earnings || 0,
-            availablePayoutINR: student.available_payout || 0,
-            totalReferrals: 0,
-            paidEnrollments: 0
-          }
-        };
-
+        const user = data.user;
         localStorage.setItem('skillsfy_student_auth', 'true');
         localStorage.setItem('skillsfy_authenticated', 'true');
-        localStorage.setItem('skillsfy_student', JSON.stringify(fullProfile));
-        localStorage.setItem('skillsfy_user', JSON.stringify(fullProfile));
-        localStorage.setItem('skillsfy_token', 'skf_' + Date.now());
+        localStorage.setItem('skillsfy_student', JSON.stringify(user));
+        localStorage.setItem('skillsfy_user', JSON.stringify(user));
 
-        showToast(`✓ Welcome back, ${formattedName}! Accessing your learning dashboard...`, 'success');
-        
+        if (data.token) {
+          localStorage.setItem('skillsfy_session_token', data.token);
+        }
+
+        if (data.role === 'admin') {
+          sessionStorage.setItem('skillsfy_admin_token', data.token);
+          sessionStorage.setItem('skillsfy_admin_authenticated', 'true');
+          sessionStorage.setItem('skillsfy_admin_name', user.name || 'Pranjil Soni');
+        }
+
+        showToast(`✓ Welcome back, ${user.name}! Accessing learning dashboard...`, 'success');
+
         setTimeout(() => {
           checkStudentSession();
-        }, 500);
+        }, 300);
 
       } catch (err) {
         console.error('Login error:', err);
-        showToast('Database error connecting to Supabase: ' + err.message, 'error');
+        showToast('Server connection error: ' + err.message, 'error');
       } finally {
         if (btn) {
           btn.innerHTML = originalBtnText;

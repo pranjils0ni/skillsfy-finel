@@ -6,6 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
   <title>Super Admin Command Center | Skillsfy Institute of Technology</title>
   
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
@@ -554,9 +555,9 @@
     }
 
     function checkAdminAuth() {
-      const isAuth = sessionStorage.getItem('skillsfy_admin_authenticated');
+      const token = sessionStorage.getItem('skillsfy_admin_token');
       const lockScreen = document.getElementById('admin-lock-screen');
-      if (isAuth === 'true') {
+      if (token) {
         lockScreen.classList.add('hidden');
         fetchMasterAdminData();
       } else {
@@ -566,7 +567,7 @@
 
     async function handleAdminUnlock(e) {
       e.preventDefault();
-      const user = document.getElementById('admin-user-input').value.trim().toLowerCase();
+      const user = document.getElementById('admin-user-input').value.trim();
       const pass = document.getElementById('admin-pass-input').value.trim();
       const btn = document.getElementById('btn-admin-unlock');
 
@@ -576,61 +577,34 @@
       }
 
       if (btn) {
-        btn.textContent = 'Authenticating with Supabase...';
+        btn.textContent = 'Authenticating via Secure Server...';
         btn.disabled = true;
       }
 
       try {
-        let isAuthorized = false;
-        let adminName = 'Administrator';
+        const authRes = await fetch('/api/auth-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identifier: user, password: pass })
+        });
 
-        // 1. Check Master Admin Credentials
-        const cleanAdminUser = user.toLowerCase();
-        if ((cleanAdminUser === 'pranjils0ni' || cleanAdminUser === 'pranjil' || cleanAdminUser === 'theskillsfy@gmail.com' || cleanAdminUser === 'admin' || cleanAdminUser === 'admin@skillsfy.in') && 
-            (pass === 'Suhani@12' || pass === 'Admin@2026' || pass === 'Skillsfy@2026' || pass === '4821')) {
-          isAuthorized = true;
-          adminName = 'Pranjil Soni';
-        }
+        const authData = await authRes.json();
 
-        // 2. Query Supabase students table where status = 'admin'
-        if (!isAuthorized) {
-          try {
-            const filter = user.includes('@')
-              ? `email=ilike.${encodeURIComponent(user)}`
-              : `or=(email.ilike.${encodeURIComponent(user)},phone.eq.${encodeURIComponent(user)})`;
-
-            const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?${filter}&select=*`, {
-              headers: SUPABASE_HEADERS
-            });
-
-            if (res.ok) {
-              const rows = await res.json();
-              if (Array.isArray(rows) && rows.length > 0) {
-                const row = rows[0];
-                if ((row.status === 'admin' || row.status === 'administrator') && (row.password_hash === pass || pass === 'Suhani@12')) {
-                  isAuthorized = true;
-                  adminName = row.name || 'Admin';
-                }
-              }
-            }
-          } catch(err) {
-            console.warn('Supabase admin check error:', err);
-          }
-        }
-
-        if (isAuthorized) {
+        if (authRes.ok && authData.success && authData.role === 'admin' && authData.token) {
+          sessionStorage.setItem('skillsfy_admin_token', authData.token);
           sessionStorage.setItem('skillsfy_admin_authenticated', 'true');
-          sessionStorage.setItem('skillsfy_admin_name', adminName);
+          sessionStorage.setItem('skillsfy_admin_name', (authData.user && authData.user.name) || 'Pranjil Soni');
+
           document.getElementById('admin-lock-screen').classList.add('hidden');
-          showToast(`✓ Authenticated as ${adminName}! Loading live Supabase database...`, 'success');
+          showToast(`✓ Authenticated as ${(authData.user && authData.user.name) || 'Admin'}! Loading protected database...`, 'success');
           fetchMasterAdminData();
         } else {
-          showToast('❌ Access Denied: Incorrect Admin Email/Username or Password.', 'error');
+          showToast('❌ Access Denied: ' + (authData.message || 'Incorrect credentials'), 'error');
         }
 
       } catch (err) {
         console.error('Admin auth error:', err);
-        showToast('Error connecting to database: ' + err.message, 'error');
+        showToast('Error connecting to authentication service: ' + err.message, 'error');
       } finally {
         if (btn) {
           btn.textContent = 'Verify & Unlock Admin Suite →';
@@ -640,9 +614,19 @@
     }
 
     function lockAdminPortal() {
+      sessionStorage.removeItem('skillsfy_admin_token');
       sessionStorage.removeItem('skillsfy_admin_authenticated');
-      checkAdminAuth();
-      showToast('Admin portal locked.', 'info');
+      allPayments = [];
+      allWorkshopRegs = [];
+      allStudents = [];
+      allCourses = [];
+      allCoupons = [];
+      allBlogs = [];
+      allEnquiries = [];
+      updateDashboardKPIs();
+      const lockScreen = document.getElementById('admin-lock-screen');
+      if (lockScreen) lockScreen.classList.remove('hidden');
+      showToast('Admin portal locked and session cleared.', 'info');
     }
 
     function switchAdminTab(tab) {
@@ -660,42 +644,37 @@
       if (activeBtn) activeBtn.className = 'px-4 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold shadow-md flex items-center gap-2';
     }
 
-    // ================= FETCH ALL MASTER DATA FROM SUPABASE =================
+    // ================= FETCH ALL MASTER DATA FROM SERVERLESS SECURE ENDPOINT =================
     async function fetchMasterAdminData() {
+      const token = sessionStorage.getItem('skillsfy_admin_token');
+      if (!token) {
+        lockAdminPortal();
+        return;
+      }
+
       try {
-        // Fetch Enquiries & Subscribers
-        try {
-          const enqRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/enquiries?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
-          if (enqRes.ok) allEnquiries = await enqRes.json();
-        } catch(e) {}
+        const res = await fetch('/api/admin-data', {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        });
 
-        // 1. Fetch Courses
-        const cRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/courses?select=*`, { headers: SUPABASE_HEADERS });
-        if (cRes.ok) allCourses = await cRes.json();
+        if (!res.ok) {
+          showToast('Session expired or unauthorized. Please unlock again.', 'error');
+          lockAdminPortal();
+          return;
+        }
 
-        // 2. Fetch Payments
-        const pRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/payments?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
-        if (pRes.ok) allPayments = await pRes.json();
+        const json = await res.json();
+        const d = (json && json.data) ? json.data : {};
 
-        // 3. Fetch Workshop Registrations
-        const wRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/workshop_registrations?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
-        if (wRes.ok) allWorkshopRegs = await wRes.json();
-
-        // 4. Fetch Students
-        const sRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
-        if (sRes.ok) allStudents = await sRes.json();
-
-        // 5. Fetch Coupons
-        try {
-          const cpRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/coupons?select=*`, { headers: SUPABASE_HEADERS });
-          if (cpRes.ok) allCoupons = await cpRes.json();
-        } catch(e) {}
-
-        // 6. Fetch Blogs
-        try {
-          const blRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/blogs?select=*`, { headers: SUPABASE_HEADERS });
-          if (blRes.ok) allBlogs = await blRes.json();
-        } catch(e) {}
+        allPayments = Array.isArray(d.payments) ? d.payments : [];
+        allWorkshopRegs = Array.isArray(d.workshop_registrations) ? d.workshop_registrations : [];
+        allStudents = Array.isArray(d.students) ? d.students : [];
+        allCourses = Array.isArray(d.courses) ? d.courses : [];
+        allCoupons = Array.isArray(d.coupons) ? d.coupons : [];
+        allBlogs = Array.isArray(d.blogs) ? d.blogs : [];
+        allEnquiries = Array.isArray(d.enquiries) ? d.enquiries : [];
 
         updateDashboardKPIs();
         renderTransactionsTable();
@@ -707,8 +686,8 @@
         loadSystemConfigForm();
 
       } catch (err) {
-        console.error('Data fetch error:', err);
-        showToast('Error loading live data from Supabase. Re-checking...', 'error');
+        console.error('Protected data fetch error:', err);
+        showToast('Error loading live data: ' + err.message, 'error');
       }
     }
 
