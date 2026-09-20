@@ -6,941 +6,1048 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>Super Admin Cockpit | Visible Campus - Skillsfy Management</title>
+  <title>Super Admin Command Center | Skillsfy Institute of Technology</title>
   
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="css/styles.css" />
 
-  <style>
-    body {
-      background-color: #0b0f17;
-      color: #c9d1d9;
-      font-family: 'Inter', sans-serif;
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#031636',
+            'primary-container': '#1a2b4c',
+            secondary: '#00677f',
+            'secondary-container': '#00ccf9',
+            surface: '#090d16',
+            'surface-container': '#111827',
+            'surface-container-high': '#1f2937',
+            'surface-container-low': '#0d131f',
+          }
+        }
+      }
     }
-    .admin-card {
-      background: #111722;
-      border: 1px solid #1c2433;
-      border-radius: 14px;
-    }
-    .admin-card:hover {
-      border-color: #263347;
-    }
-    .sidebar-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: #8b949e;
-      transition: all 0.15s ease;
-      cursor: pointer;
-    }
-    .sidebar-item:hover {
-      color: #ffffff;
-      background: #161f2e;
-    }
-    .sidebar-item.active {
-      color: #ffffff;
-      background: #1c2433;
-      font-weight: 600;
-    }
-    .sidebar-badge {
-      margin-left: auto;
-      font-size: 11px;
-      padding: 1px 7px;
-      border-radius: 9999px;
-      font-weight: 600;
-    }
-  </style>
+  </script>
 </head>
-<body class="min-h-screen flex flex-col antialiased">
+<body class="bg-slate-950 text-slate-100 font-['Inter'] antialiased min-h-screen flex flex-col">
 
-  <!-- ================= ADMIN UNLOCK SCREEN ================= -->
-  <div id="admin-lock-screen" class="fixed inset-0 bg-[#0b0f17]/95 backdrop-blur-md z-50 flex items-center justify-center p-4">
-    <div class="max-w-md w-full admin-card p-8 shadow-2xl text-center space-y-6">
-      <div class="w-14 h-14 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center mx-auto">
-        <span class="material-symbols-outlined text-3xl">school</span>
+  <!-- ================= ADMIN LOCK SCREEN ================= -->
+  <div id="admin-lock-screen" class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl text-center space-y-6">
+      <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center mx-auto">
+        <span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
       </div>
       <div>
-        <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Visible Campus Super Admin</h2>
-        <p class="text-xs text-slate-400 mt-1">Learning Management & Institute Suite</p>
+        <h2 class="text-2xl font-black text-white font-['Plus_Jakarta_Sans']">Skillsfy Command Center</h2>
+        <p class="text-xs text-slate-400 mt-1">Single Source of Truth Database & API Suite</p>
       </div>
-      <form onsubmit="handleAdminUnlock(event)" class="space-y-3 text-left">
+      <form onsubmit="handleAdminUnlock(event)" class="space-y-4 text-left">
         <div>
-          <label class="block text-xs font-semibold text-slate-400 mb-1">Admin ID / Email</label>
+          <label class="block text-xs font-bold text-slate-400 mb-1">Admin Email / Username</label>
           <input 
             type="text" 
-            id="admin-id-input" 
+            id="admin-user-input" 
             required 
-            placeholder="admin@skillsfy.in or theskillsfy@gmail.com" 
-            value="admin@skillsfy.in"
-            class="w-full px-4 py-2.5 bg-[#0b0f17] border border-[#1c2433] text-white rounded-xl text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
+            placeholder="theskillsfy@gmail.com or admin" 
+            class="w-full px-4 py-2.5 bg-slate-950 border border-slate-700 text-white rounded-xl text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
           />
         </div>
         <div>
-          <label class="block text-xs font-semibold text-slate-400 mb-1">Admin Master Password</label>
+          <label class="block text-xs font-bold text-slate-400 mb-1">Password</label>
           <input 
             type="password" 
             id="admin-pass-input" 
             required 
-            placeholder="admin2026 or Skillsfy@2026" 
-            value="admin2026"
-            class="w-full px-4 py-2.5 bg-[#0b0f17] border border-[#1c2433] text-white rounded-xl text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none font-mono"
+            placeholder="••••••••••••" 
+            class="w-full px-4 py-2.5 bg-slate-950 border border-slate-700 text-white rounded-xl text-sm focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
           />
         </div>
-        <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl shadow transition-all mt-2">
-          Unlock Super Admin Dashboard →
-        </button>
-        <button type="button" onclick="directAdminUnlock()" class="w-full py-2.5 bg-emerald-950/60 border border-emerald-800/60 hover:bg-emerald-900/60 text-emerald-400 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1.5 shadow-sm">
-          <span class="material-symbols-outlined text-sm">lock_open</span>
-          <span>⚡ Instant 1-Click Master Unlock (Founder Mode)</span>
+        <button type="submit" id="btn-admin-unlock" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black text-sm rounded-xl shadow-lg transition-all mt-2">
+          Verify & Unlock Admin Suite →
         </button>
       </form>
-      <div class="text-[11px] text-slate-500 pt-1 space-y-0.5">
-        <p>Admin ID: <span class="text-slate-400 font-mono">admin@skillsfy.in</span> | Pass: <span class="text-slate-400 font-mono">admin2026</span></p>
-        <p>Authorized Personnel Only • Skillsfy Campus</p>
-      </div>
+      <p class="text-[11px] text-slate-500">Authorized Personnel Only • Skillsfy Institute</p>
     </div>
   </div>
 
-  <!-- ================= MAIN ADMIN FRAMEWORK ================= -->
-  <div class="flex-1 flex min-h-screen overflow-hidden">
+  <!-- ================= TOP ADMIN NAVIGATION ================= -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
+      
+      <div class="flex items-center gap-4">
+        <a href="/">
+          <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-img brand-logo-white object-contain" />
+        </a>
+        <span class="badge-pill bg-cyan-950 text-cyan-300 border border-cyan-800 text-[10px] font-bold">
+          LIVE MASTER COMMAND CENTER
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3 text-xs font-['Geist']">
+        <button onclick="triggerRazorpayReconciliation()" id="btn-reconcile" class="px-3 py-1.5 rounded-lg bg-emerald-950/80 border border-emerald-700 hover:bg-emerald-900 text-emerald-300 font-bold transition-all flex items-center gap-1.5 shadow">
+          <span class="material-symbols-outlined text-sm">sync</span>
+          <span>Reconcile Razorpay</span>
+        </button>
+
+        <button onclick="openManualAdmissionModal()" class="px-3 py-1.5 rounded-lg bg-cyan-950/80 border border-cyan-700 hover:bg-cyan-900 text-cyan-300 font-bold transition-all flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">person_add</span>
+          <span>+ Add Student</span>
+        </button>
+
+        <button onclick="fetchMasterAdminData()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">refresh</span>
+          <span>Refresh</span>
+        </button>
+
+        <button onclick="lockAdminPortal()" class="px-3 py-1.5 rounded-lg bg-rose-950/80 border border-rose-800 hover:bg-rose-900 text-rose-300 font-bold transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">lock</span>
+          <span>Lock</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= REAL LIVE KPI STATS STRIP ================= -->
+  <section class="bg-slate-900/50 border-b border-slate-800 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        
+        <!-- Total Real Revenue -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
+          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Verified Revenue</span>
+          <span class="text-2xl font-black text-emerald-400 font-['Plus_Jakarta_Sans']" id="kpi-total-revenue">₹0</span>
+          <p class="text-[10px] text-slate-400 mt-1 font-['Geist']" id="kpi-revenue-meta">0 Successful Payments</p>
+        </div>
+
+        <!-- Confirmed Paid Students -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
+          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Paid Students</span>
+          <span class="text-2xl font-black text-cyan-400 font-['Plus_Jakarta_Sans']" id="kpi-paid-students">0</span>
+          <p class="text-[10px] text-slate-400 mt-1 font-['Geist']">Workshop + Standard Course</p>
+        </div>
+
+        <!-- LP1 Workshop Seat Inventory -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
+          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">LP1 Seats (30 Aug)</span>
+          <div class="flex items-baseline gap-2">
+            <span class="text-2xl font-black text-white font-['Plus_Jakarta_Sans']" id="kpi-lp1-available">150</span>
+            <span class="text-xs text-slate-400" id="kpi-lp1-total">/ 150 Left</span>
+          </div>
+          <p class="text-[10px] text-emerald-400 mt-1 font-['Geist']" id="kpi-lp1-filled">0 Seats Filled</p>
+        </div>
+
+        <!-- Standard Course Seat Inventory -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-sm">
+          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Standard Course Seats</span>
+          <div class="flex items-baseline gap-2">
+            <span class="text-2xl font-black text-indigo-400 font-['Plus_Jakarta_Sans']" id="kpi-std-available">50</span>
+            <span class="text-xs text-slate-400" id="kpi-std-total">/ 50 Left</span>
+          </div>
+          <p class="text-[10px] text-slate-400 mt-1 font-['Geist']" id="kpi-std-filled">0 Enrolled (₹2,999)</p>
+        </div>
+
+        <!-- Inbound Leads & Enquiries -->
+        <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 col-span-2 lg:col-span-1 shadow-sm">
+          <span class="text-[11px] text-slate-400 font-['Geist'] block uppercase tracking-wider">Total Leads Captured</span>
+          <span class="text-2xl font-black text-amber-400 font-['Plus_Jakarta_Sans']" id="kpi-leads-count">0</span>
+          <p class="text-[10px] text-amber-300 mt-1 font-['Geist']" id="kpi-leads-pending">0 Pending Orders</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MAIN ADMIN BODY & TABS ================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1 space-y-6">
     
-    <!-- ================= LEFT SIDEBAR (MATCHING IMAGE 1) ================= -->
-    <aside class="w-64 bg-[#0d121c] border-r border-[#1c2433] flex flex-col justify-between flex-shrink-0 z-30">
-      
-      <!-- Top Section -->
-      <div class="p-4 space-y-6 overflow-y-auto">
-        
-        <!-- Brand Header: Visible Campus -->
-        <div class="flex items-center gap-3 px-2">
-          <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center shadow-sm">
-            <span class="material-symbols-outlined text-lg">school</span>
-          </div>
-          <div class="leading-tight">
-            <h2 class="text-sm font-bold text-white tracking-wide font-['Plus_Jakarta_Sans']">Visible Campus</h2>
-            <p class="text-[10px] text-slate-400 font-medium">Learning Management</p>
-          </div>
-        </div>
-
-        <!-- Main Navigation Group -->
-        <div class="space-y-1">
-          
-          <!-- Dashboard (Active) -->
-          <div onclick="switchAdminTab('dashboard')" id="nav-dashboard" class="sidebar-item active">
-            <span class="material-symbols-outlined text-lg">dashboard</span>
-            <span>Dashboard</span>
-          </div>
-
-          <!-- Students with Counter 127 -->
-          <div onclick="switchAdminTab('students')" id="nav-students" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">group</span>
-            <span>Students</span>
-            <span class="sidebar-badge text-slate-400">127</span>
-          </div>
-
-          <!-- Courses -->
-          <div onclick="switchAdminTab('courses')" id="nav-courses" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">menu_book</span>
-            <span>Courses</span>
-          </div>
-
-          <!-- Batches with Counter 8 -->
-          <div onclick="switchAdminTab('batches')" id="nav-batches" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">layers</span>
-            <span>Batches</span>
-            <span class="sidebar-badge text-slate-400">8</span>
-          </div>
-
-          <!-- Enquiries with Blue Notification Badge 12 -->
-          <div onclick="switchAdminTab('enquiries')" id="nav-enquiries" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">chat_bubble_outline</span>
-            <span>Enquiries</span>
-            <span class="sidebar-badge bg-blue-600 text-white font-bold">12</span>
-          </div>
-
-          <!-- Instructors -->
-          <div onclick="switchAdminTab('instructors')" id="nav-instructors" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">person_celebrate</span>
-            <span>Instructors</span>
-          </div>
-
-          <!-- Fees -->
-          <div onclick="switchAdminTab('fees')" id="nav-fees" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">credit_card</span>
-            <span>Fees</span>
-          </div>
-
-        </div>
-
-        <!-- Assessments Group -->
-        <div class="space-y-1 pt-2">
-          <p class="text-[10px] font-bold text-slate-500 uppercase px-3 tracking-wider">ASSESSMENTS</p>
-          
-          <div onclick="showToast('Loading Mock Interviews suite...', 'info')" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">mic</span>
-            <span>Mock Interviews</span>
-          </div>
-
-          <div onclick="showToast('Loading Live Interviews panel...', 'info')" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">videocam</span>
-            <span>Interviews</span>
-          </div>
-
-          <div onclick="showToast('Loading AI Questions Bank...', 'info')" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">psychology</span>
-            <span>AI Questions</span>
-          </div>
-
-          <div onclick="showToast('Reviewing Student AI Attempts...', 'info')" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">track_changes</span>
-            <span>AI Attempts</span>
-          </div>
-
-          <div onclick="showToast('Exam Question Bank opened.', 'info')" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">help_outline</span>
-            <span>Questions</span>
-          </div>
-
-          <div onclick="showToast('Reviewing Student Assignments...', 'info')" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">assignment</span>
-            <span>Assignments</span>
-          </div>
-        </div>
-
-        <!-- Administration Group -->
-        <div class="space-y-1 pt-2">
-          <p class="text-[10px] font-bold text-slate-500 uppercase px-3 tracking-wider">ADMINISTRATION</p>
-          
-          <div onclick="switchAdminTab('admins')" id="nav-admins" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">shield</span>
-            <span>Admins</span>
-          </div>
-
-          <div onclick="switchAdminTab('settings')" id="nav-settings" class="sidebar-item">
-            <span class="material-symbols-outlined text-lg">settings</span>
-            <span>Settings</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Bottom Profile Bar: Super Admin -->
-      <div class="p-3 border-t border-[#1c2433]">
-        <div class="flex items-center justify-between p-2 rounded-xl bg-[#111722] hover:bg-[#161f2e] transition-colors cursor-pointer" onclick="lockAdminPortal()">
-          <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-full bg-blue-900/50 text-blue-400 border border-blue-700/50 flex items-center justify-center font-bold text-xs">
-              SA
-            </div>
-            <div class="text-left leading-tight">
-              <p class="text-xs font-bold text-white">Super Admin</p>
-              <p class="text-[10px] text-slate-400 truncate max-w-[110px]">admin@campus.io</p>
-            </div>
-          </div>
-          <span class="material-symbols-outlined text-slate-500 text-sm">chevron_right</span>
-        </div>
-      </div>
-
-    </aside>
-
-    <!-- ================= MAIN COCKPIT VIEW ================= -->
-    <div class="flex-1 flex flex-col overflow-y-auto bg-[#0b0f17]">
-      
-      <!-- TOP NAVIGATION BAR -->
-      <header class="h-16 border-b border-[#1c2433] px-6 flex items-center justify-between flex-shrink-0 bg-[#0b0f17]/90 sticky top-0 z-20 backdrop-blur-sm">
-        
-        <!-- Left: Dashboard Title & Subtext -->
-        <div class="flex items-center gap-4">
-          <button class="text-slate-400 hover:text-white" title="Toggle Sidebar">
-            <span class="material-symbols-outlined text-xl">view_sidebar</span>
-          </button>
-          <div>
-            <h1 class="text-lg font-bold text-white font-['Plus_Jakarta_Sans'] leading-none">Dashboard</h1>
-            <p class="text-[11px] text-slate-400 mt-1">Welcome back! Here's an overview of your institute.</p>
-          </div>
-        </div>
-
-        <!-- Right: Actions & User Capsule -->
-        <div class="flex items-center gap-3">
-          
-          <!-- Notifications with Red/Blue Badge 3 -->
-          <div class="relative cursor-pointer p-1.5 text-slate-400 hover:text-white" onclick="showToast('3 new student admission enquiries received!', 'info')">
-            <span class="material-symbols-outlined text-xl">notifications</span>
-            <span class="absolute top-0 right-0 w-4 h-4 rounded-full bg-blue-600 text-white font-bold text-[9px] flex items-center justify-center">3</span>
-          </div>
-
-          <!-- Theme Toggle (Moon) -->
-          <button class="p-1.5 text-slate-400 hover:text-white" title="Dark Mode Active">
-            <span class="material-symbols-outlined text-xl">dark_mode</span>
-          </button>
-
-          <!-- Super Admin Profile Header -->
-          <div class="flex items-center gap-2 pl-2 pr-1 py-1 rounded-lg bg-[#111722] border border-[#1c2433]">
-            <div class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-[10px] flex items-center justify-center">
-              SA
-            </div>
-            <div class="text-left leading-none pr-1">
-              <span class="text-xs font-bold text-white block">Super Admin</span>
-              <span class="text-[9px] text-slate-400 block mt-0.5">Superadmin</span>
-            </div>
-          </div>
-
-          <!-- + Add Student Button -->
-          <button onclick="openManualAdmissionModal()" class="flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#263347] bg-[#111722] hover:bg-[#161f2e] text-white text-xs font-semibold shadow-sm transition-colors">
-            <span class="material-symbols-outlined text-sm">person_add</span>
-            <span>Add Student</span>
-          </button>
-
-          <!-- + New Batch Button (Solid Blue) -->
-          <button onclick="openNewBatchModal()" class="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow transition-colors">
-            <span class="material-symbols-outlined text-sm font-bold">add</span>
-            <span>New Batch</span>
-          </button>
-
-        </div>
-
-      </header>
-
-      <!-- TAB CONTENT: OVERVIEW DASHBOARD (IMAGE 1) -->
-      <main id="tab-admin-dashboard" class="p-6 space-y-6 flex-1">
-        
-        <!-- ================= 4 KPI TOP STAT CARDS ================= -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          <!-- Card 1: TOTAL STUDENTS -->
-          <div class="admin-card p-4 flex items-center justify-between">
-            <div>
-              <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">TOTAL STUDENTS</p>
-              <h3 class="text-2xl font-black text-white mt-1 font-['Plus_Jakarta_Sans']" id="kpi-total-students">127</h3>
-              <p class="text-[11px] text-emerald-400 font-medium flex items-center gap-0.5 mt-1.5">
-                <span class="material-symbols-outlined text-xs">arrow_upward</span>
-                <span>+12% vs last month</span>
-              </p>
-            </div>
-            <div class="w-11 h-11 rounded-xl bg-blue-950/60 border border-blue-800/40 text-blue-400 flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-xl">group</span>
-            </div>
-          </div>
-
-          <!-- Card 2: ACTIVE BATCHES -->
-          <div class="admin-card p-4 flex items-center justify-between">
-            <div>
-              <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">ACTIVE BATCHES</p>
-              <h3 class="text-2xl font-black text-white mt-1 font-['Plus_Jakarta_Sans']">8</h3>
-              <p class="text-[11px] text-emerald-400 font-medium flex items-center gap-0.5 mt-1.5">
-                <span class="material-symbols-outlined text-xs">arrow_upward</span>
-                <span>+2 vs last month</span>
-              </p>
-            </div>
-            <div class="w-11 h-11 rounded-xl bg-purple-950/60 border border-purple-800/40 text-purple-400 flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-xl">layers</span>
-            </div>
-          </div>
-
-          <!-- Card 3: TOTAL REVENUE -->
-          <div class="admin-card p-4 flex items-center justify-between">
-            <div>
-              <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">TOTAL REVENUE</p>
-              <h3 class="text-2xl font-black text-white mt-1 font-['Plus_Jakarta_Sans']" id="kpi-revenue-text">12.4L</h3>
-              <p class="text-[11px] text-emerald-400 font-medium flex items-center gap-0.5 mt-1.5">
-                <span class="material-symbols-outlined text-xs">arrow_upward</span>
-                <span>+18% vs last month</span>
-              </p>
-            </div>
-            <div class="w-11 h-11 rounded-xl bg-emerald-950/60 border border-emerald-800/40 text-emerald-400 flex items-center justify-center flex-shrink-0">
-              <span class="text-lg font-bold">₹</span>
-            </div>
-          </div>
-
-          <!-- Card 4: PENDING FEES -->
-          <div class="admin-card p-4 flex items-center justify-between">
-            <div>
-              <p class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">PENDING FEES</p>
-              <h3 class="text-2xl font-black text-white mt-1 font-['Plus_Jakarta_Sans']">2.4L</h3>
-              <p class="text-[11px] text-rose-400 font-medium flex items-center gap-0.5 mt-1.5">
-                <span class="material-symbols-outlined text-xs">arrow_downward</span>
-                <span>From 12 students vs last month</span>
-              </p>
-            </div>
-            <div class="w-11 h-11 rounded-xl bg-rose-950/60 border border-rose-800/40 text-rose-400 flex items-center justify-center flex-shrink-0">
-              <span class="material-symbols-outlined text-xl">credit_card</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- ================= 4 MAIN DATA VISUALIZERS (2x2 GRID) ================= -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          
-          <!-- ================= 1. REVENUE OVERVIEW SPLINE CHART (8 Cols) ================= -->
-          <div class="lg:col-span-8 admin-card p-5 space-y-4">
-            
-            <!-- Header with Legend -->
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-emerald-950/80 border border-emerald-800/50 text-emerald-400 flex items-center justify-center font-bold">
-                  ₹
-                </div>
-                <div>
-                  <h3 class="text-sm font-bold text-white leading-tight">Revenue Overview</h3>
-                  <p class="text-[10px] text-slate-400">Monthly fee collection trend</p>
-                </div>
-              </div>
-
-              <!-- Legend Dots -->
-              <div class="flex items-center gap-4 text-xs font-medium">
-                <span class="flex items-center gap-1.5 text-slate-300">
-                  <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                  <span>Collected</span>
-                </span>
-                <span class="flex items-center gap-1.5 text-slate-300">
-                  <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                  <span>Pending</span>
-                </span>
-              </div>
-            </div>
-
-            <!-- SVG Smooth Spline Chart (Aug to Feb) -->
-            <div class="relative h-60 w-full pt-4">
-              <svg class="w-full h-full" viewBox="0 0 700 220" fill="none" preserveAspectRatio="none">
-                <!-- Horizontal Grid Lines -->
-                <line x1="40" y1="20" x2="690" y2="20" stroke="#1c2433" stroke-dasharray="3 3"/>
-                <line x1="40" y1="65" x2="690" y2="65" stroke="#1c2433" stroke-dasharray="3 3"/>
-                <line x1="40" y1="110" x2="690" y2="110" stroke="#1c2433" stroke-dasharray="3 3"/>
-                <line x1="40" y1="155" x2="690" y2="155" stroke="#1c2433" stroke-dasharray="3 3"/>
-                <line x1="40" y1="200" x2="690" y2="200" stroke="#1c2433"/>
-
-                <!-- Y-Axis Labels -->
-                <text x="5" y="24" fill="#64748b" font-size="10" font-family="Geist">180K</text>
-                <text x="5" y="69" fill="#64748b" font-size="10" font-family="Geist">135K</text>
-                <text x="5" y="114" fill="#64748b" font-size="10" font-family="Geist">90K</text>
-                <text x="5" y="159" fill="#64748b" font-size="10" font-family="Geist">45K</text>
-                <text x="5" y="204" fill="#64748b" font-size="10" font-family="Geist">0K</text>
-
-                <!-- Gradient Defs -->
-                <defs>
-                  <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
-                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.0"/>
-                  </linearGradient>
-                  <linearGradient id="amberGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.15"/>
-                    <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.0"/>
-                  </linearGradient>
-                </defs>
-
-                <!-- Blue Curve (Collected) with Area Fill -->
-                <path d="M 50 115 Q 150 95, 250 110 T 450 70 T 600 80 T 690 40 L 690 200 L 50 200 Z" fill="url(#blueGrad)"/>
-                <path d="M 50 115 Q 150 95, 250 110 T 450 70 T 600 80 T 690 40" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
-
-                <!-- Amber Curve (Pending) with Area Fill -->
-                <path d="M 50 160 Q 150 165, 250 145 T 450 155 T 600 165 T 690 175 L 690 200 L 50 200 Z" fill="url(#amberGrad)"/>
-                <path d="M 50 160 Q 150 165, 250 145 T 450 155 T 600 165 T 690 175" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-
-                <!-- Data Dots -->
-                <circle cx="50" cy="115" r="3.5" fill="#3b82f6"/>
-                <circle cx="250" cy="110" r="3.5" fill="#3b82f6"/>
-                <circle cx="450" cy="70" r="3.5" fill="#3b82f6"/>
-                <circle cx="690" cy="40" r="3.5" fill="#3b82f6"/>
-
-                <circle cx="50" cy="160" r="3.5" fill="#f59e0b"/>
-                <circle cx="250" cy="145" r="3.5" fill="#f59e0b"/>
-                <circle cx="450" cy="155" r="3.5" fill="#f59e0b"/>
-                <circle cx="690" cy="175" r="3.5" fill="#f59e0b"/>
-              </svg>
-
-              <!-- X-Axis Months -->
-              <div class="flex justify-between pl-10 pr-2 pt-1 text-[11px] text-slate-500 font-['Geist']">
-                <span>Aug</span>
-                <span>Sep</span>
-                <span>Oct</span>
-                <span>Nov</span>
-                <span>Dec</span>
-                <span>Jan</span>
-                <span>Feb</span>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- ================= 2. FEE COLLECTION DONUT CHART (4 Cols) ================= -->
-          <div class="lg:col-span-4 admin-card p-5 flex flex-col justify-between space-y-4">
-            
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-blue-950/80 border border-blue-800/50 text-blue-400 flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">credit_card</span>
-              </div>
-              <div>
-                <h3 class="text-sm font-bold text-white leading-tight">Fee Collection</h3>
-                <p class="text-[10px] text-slate-400">Overall collection status</p>
-              </div>
-            </div>
-
-            <!-- Donut SVG with 81% in Center -->
-            <div class="relative flex items-center justify-center py-2">
-              <svg class="w-44 h-44 -rotate-90" viewBox="0 0 100 100">
-                <!-- Background Circle -->
-                <circle cx="50" cy="50" r="38" stroke="#1c2433" stroke-width="12" fill="transparent"/>
-                <!-- Orange Pending Segment (19% => stroke-dasharray 45.4, 238.7) -->
-                <circle cx="50" cy="50" r="38" stroke="#f59e0b" stroke-width="12" fill="transparent" stroke-dasharray="238.7" stroke-dashoffset="0"/>
-                <!-- Blue Collected Segment (81% => stroke-dasharray 193.3, 238.7) -->
-                <circle cx="50" cy="50" r="38" stroke="#3b82f6" stroke-width="12" fill="transparent" stroke-dasharray="193.3 238.7" stroke-dashoffset="0"/>
-              </svg>
-
-              <!-- Center Text (81% Collected) -->
-              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
-                <span class="text-2xl font-black text-white font-['Plus_Jakarta_Sans']">81%</span>
-                <span class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Collected</span>
-              </div>
-            </div>
-
-            <!-- Bottom Stats -->
-            <div class="pt-2 border-t border-[#1c2433] space-y-2 text-xs">
-              <div class="flex items-center justify-between">
-                <span class="flex items-center gap-2 text-slate-300">
-                  <span class="w-2.5 h-2.5 rounded-sm bg-blue-500"></span>
-                  <span>Collected</span>
-                </span>
-                <span class="font-bold text-white font-['Geist']">10.1L</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="flex items-center gap-2 text-slate-300">
-                  <span class="w-2.5 h-2.5 rounded-sm bg-amber-500"></span>
-                  <span>Pending</span>
-                </span>
-                <span class="font-bold text-white font-['Geist']">2.4L</span>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- ================= 3. COURSE-WISE ENROLLMENT BAR CHART (8 Cols) ================= -->
-          <div class="lg:col-span-8 admin-card p-5 space-y-4">
-            
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-purple-950/80 border border-purple-800/50 text-purple-400 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-lg">bar_chart</span>
-                </div>
-                <div>
-                  <h3 class="text-sm font-bold text-white leading-tight">Course-wise Enrollment</h3>
-                  <p class="text-[10px] text-slate-400">Student distribution across courses</p>
-                </div>
-              </div>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-[#1c2433] text-slate-300 font-['Geist']">
-                192 Total
-              </span>
-            </div>
-
-            <!-- Bar Chart Graphics with Y-Axis -->
-            <div class="relative h-48 w-full pt-2 flex items-end">
-              <!-- Y-Axis Labels -->
-              <div class="h-full flex flex-col justify-between text-[10px] text-slate-500 font-['Geist'] pr-4 pb-6">
-                <span>80</span>
-                <span>60</span>
-                <span>40</span>
-                <span>20</span>
-                <span>0</span>
-              </div>
-
-              <!-- Bars Container -->
-              <div class="flex-1 h-full flex items-end justify-around border-b border-[#1c2433] pb-0.5 px-4">
-                
-                <!-- Bar 1: Blue -->
-                <div class="flex flex-col items-center gap-2 w-12 group cursor-pointer">
-                  <div class="w-full bg-blue-500 rounded-t-lg transition-all group-hover:brightness-110" style="height: 130px;" title="AI & Tech Masterclass: 68 Students"></div>
-                  <span class="text-[10px] text-slate-400 font-medium truncate w-16 text-center">AI Master</span>
-                </div>
-
-                <!-- Bar 2: Green -->
-                <div class="flex flex-col items-center gap-2 w-12 group cursor-pointer">
-                  <div class="w-full bg-emerald-400 rounded-t-lg transition-all group-hover:brightness-110" style="height: 95px;" title="Full Stack Eng: 52 Students"></div>
-                  <span class="text-[10px] text-slate-400 font-medium truncate w-16 text-center">Full Stack</span>
-                </div>
-
-                <!-- Bar 3: Purple -->
-                <div class="flex flex-col items-center gap-2 w-12 group cursor-pointer">
-                  <div class="w-full bg-purple-400 rounded-t-lg transition-all group-hover:brightness-110" style="height: 65px;" title="Cloud DevOps: 36 Students"></div>
-                  <span class="text-[10px] text-slate-400 font-medium truncate w-16 text-center">DevOps</span>
-                </div>
-
-                <!-- Bar 4: Orange -->
-                <div class="flex flex-col items-center gap-2 w-12 group cursor-pointer">
-                  <div class="w-full bg-amber-400 rounded-t-lg transition-all group-hover:brightness-110" style="height: 55px;" title="Data Science: 32 Students"></div>
-                  <span class="text-[10px] text-slate-400 font-medium truncate w-16 text-center">Data Sci</span>
-                </div>
-
-                <!-- Bar 5: Coral/Pink -->
-                <div class="flex flex-col items-center gap-2 w-12 group cursor-pointer">
-                  <div class="w-full bg-rose-400 rounded-t-lg transition-all group-hover:brightness-110" style="height: 35px;" title="UI/UX Pro: 18 Students"></div>
-                  <span class="text-[10px] text-slate-400 font-medium truncate w-16 text-center">UI/UX</span>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-
-          <!-- ================= 4. ENQUIRY PIPELINE FUNNEL (4 Cols) ================= -->
-          <div class="lg:col-span-4 admin-card p-5 space-y-4">
-            
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-lg bg-amber-950/80 border border-amber-800/50 text-amber-400 flex items-center justify-center">
-                <span class="material-symbols-outlined text-lg">chat_bubble</span>
-              </div>
-              <div>
-                <h3 class="text-sm font-bold text-white leading-tight">Enquiry Pipeline</h3>
-                <p class="text-[10px] text-slate-400">This month's funnel</p>
-              </div>
-            </div>
-
-            <!-- Funnel Horizontal Bars -->
-            <div class="space-y-3.5 pt-2">
-              
-              <!-- Stage: New -->
-              <div class="space-y-1">
-                <div class="flex items-center justify-between text-xs font-semibold">
-                  <span class="text-slate-300">New</span>
-                  <span class="text-white font-['Geist'] font-bold">12</span>
-                </div>
-                <div class="h-2 w-full bg-[#1c2433] rounded-full overflow-hidden">
-                  <div class="h-full bg-emerald-400 rounded-full" style="width: 100%;"></div>
-                </div>
-              </div>
-
-              <!-- Stage: Contacted -->
-              <div class="space-y-1">
-                <div class="flex items-center justify-between text-xs font-semibold">
-                  <span class="text-slate-300">Contacted</span>
-                  <span class="text-white font-['Geist'] font-bold">8</span>
-                </div>
-                <div class="h-2 w-full bg-[#1c2433] rounded-full overflow-hidden">
-                  <div class="h-full bg-purple-500 rounded-full" style="width: 66%;"></div>
-                </div>
-              </div>
-
-              <!-- Stage: Demo Done -->
-              <div class="space-y-1">
-                <div class="flex items-center justify-between text-xs font-semibold">
-                  <span class="text-slate-300">Demo Done</span>
-                  <span class="text-white font-['Geist'] font-bold">5</span>
-                </div>
-                <div class="h-2 w-full bg-[#1c2433] rounded-full overflow-hidden">
-                  <div class="h-full bg-amber-500 rounded-full" style="width: 42%;"></div>
-                </div>
-              </div>
-
-              <!-- Stage: Enrolled -->
-              <div class="space-y-1">
-                <div class="flex items-center justify-between text-xs font-semibold">
-                  <span class="text-slate-300">Enrolled</span>
-                  <span class="text-white font-['Geist'] font-bold">3</span>
-                </div>
-                <div class="h-2 w-full bg-[#1c2433] rounded-full overflow-hidden">
-                  <div class="h-full bg-blue-500 rounded-full" style="width: 25%;"></div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </main>
-
-      <!-- TAB CONTENT: STUDENTS DIRECTORY -->
-      <section id="tab-admin-students" class="p-6 space-y-4 flex-1 hidden">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="text-lg font-bold text-white">Enrolled Students Database</h2>
-            <p class="text-xs text-slate-400">Total active registered learners across all batches</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <button onclick="exportPaymentsToCSV()" class="px-3 py-1.5 bg-[#161f2e] border border-[#263347] hover:bg-[#1c2433] text-xs font-bold rounded-lg text-slate-200 flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm">download</span>
-              <span>Export CSV</span>
-            </button>
-            <button onclick="openManualAdmissionModal()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-xs font-bold rounded-lg text-white flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm">person_add</span>
-              <span>+ Add Student</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="admin-card overflow-hidden">
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-[#161f2e] text-slate-400 uppercase font-['Geist'] text-[10px]">
-                <tr>
-                  <th class="py-3 px-4">Student</th>
-                  <th class="py-3 px-4">Contact</th>
-                  <th class="py-3 px-4">Enrolled Course</th>
-                  <th class="py-3 px-4">Batch</th>
-                  <th class="py-3 px-4">Fee Status</th>
-                  <th class="py-3 px-4 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-[#1c2433]" id="students-table-body">
-                <tr>
-                  <td class="py-3.5 px-4 font-bold text-white">Arun Kumar</td>
-                  <td class="py-3.5 px-4 text-slate-300">arun@cbse.skillsfy.in</td>
-                  <td class="py-3.5 px-4 text-slate-300">10th CBSE + AI Masterclass</td>
-                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 bg-blue-950 text-blue-300 border border-blue-800 rounded-md">Batch A</span></td>
-                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded-md">Paid</span></td>
-                  <td class="py-3.5 px-4 text-right">
-                    <button onclick="showToast('Student profile credentials reset.', 'info')" class="text-blue-400 hover:underline">Reset Pass</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-3.5 px-4 font-bold text-white">Priya Sharma</td>
-                  <td class="py-3.5 px-4 text-slate-300">priya@skillsfy.in</td>
-                  <td class="py-3.5 px-4 text-slate-300">AI & Digital Business</td>
-                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 bg-purple-950 text-purple-300 border border-purple-800 rounded-md">Batch B</span></td>
-                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded-md">Paid</span></td>
-                  <td class="py-3.5 px-4 text-right">
-                    <button onclick="showToast('Student profile credentials reset.', 'info')" class="text-blue-400 hover:underline">Reset Pass</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-3.5 px-4 font-bold text-white">Rahul Verma</td>
-                  <td class="py-3.5 px-4 text-slate-300">rahul.v@gmail.com</td>
-                  <td class="py-3.5 px-4 text-slate-300">Full Stack Web Engineering</td>
-                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 bg-blue-950 text-blue-300 border border-blue-800 rounded-md">Batch A</span></td>
-                  <td class="py-3.5 px-4"><span class="px-2 py-0.5 bg-amber-950 text-amber-300 border border-amber-800 rounded-md">Partial</span></td>
-                  <td class="py-3.5 px-4 text-right">
-                    <button onclick="showToast('Reminder invoice sent to Rahul.', 'success')" class="text-amber-400 hover:underline">Send Invoice</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB CONTENT: BATCHES -->
-      <section id="tab-admin-batches" class="p-6 space-y-4 flex-1 hidden">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="text-lg font-bold text-white">Active Cohorts & Batches</h2>
-            <p class="text-xs text-slate-400">8 live batches currently in session</p>
-          </div>
-          <button onclick="openNewBatchModal()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-xs font-bold rounded-lg text-white flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-sm">add</span>
-            <span>+ Create New Batch</span>
-          </button>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div class="admin-card p-4 space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-blue-400">Batch 2026-Alpha</span>
-              <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-800">Live</span>
-            </div>
-            <h4 class="text-sm font-bold text-white">AI & Digital Business Cohort #1</h4>
-            <p class="text-xs text-slate-400">Mentor: Kapil Sharma • 32 Students Enrolled</p>
-            <div class="pt-2 border-t border-[#1c2433] flex items-center justify-between text-xs">
-              <span class="text-slate-500">Progress: 65%</span>
-              <button onclick="showToast('Batch details loaded.', 'info')" class="text-blue-400 font-bold hover:underline">View Cohort →</button>
-            </div>
-          </div>
-
-          <div class="admin-card p-4 space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-purple-400">Batch 2026-Beta</span>
-              <span class="text-[10px] bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-800">Live</span>
-            </div>
-            <h4 class="text-sm font-bold text-white">Full Stack Software Engineering</h4>
-            <p class="text-xs text-slate-400">Mentor: S. Verma • 28 Students Enrolled</p>
-            <div class="pt-2 border-t border-[#1c2433] flex items-center justify-between text-xs">
-              <span class="text-slate-500">Progress: 40%</span>
-              <button onclick="showToast('Batch details loaded.', 'info')" class="text-blue-400 font-bold hover:underline">View Cohort →</button>
-            </div>
-          </div>
-
-          <div class="admin-card p-4 space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-amber-400">Batch 2026-Gamma</span>
-              <span class="text-[10px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded-full border border-sky-800">Starts Oct 1</span>
-            </div>
-            <h4 class="text-sm font-bold text-white">Cloud Architecture & DevOps</h4>
-            <p class="text-xs text-slate-400">Mentor: R. Nair • 22 Students Enrolled</p>
-            <div class="pt-2 border-t border-[#1c2433] flex items-center justify-between text-xs">
-              <span class="text-slate-500">Seats remaining: 8</span>
-              <button onclick="showToast('Batch details loaded.', 'info')" class="text-blue-400 font-bold hover:underline">Manage Seats →</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TAB CONTENT: ENQUIRIES / LEADS -->
-      <section id="tab-admin-enquiries" class="p-6 space-y-4 flex-1 hidden">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="text-lg font-bold text-white">Admissions Enquiry CRM</h2>
-            <p class="text-xs text-slate-400">12 prospective student enquiries in pipeline</p>
-          </div>
-          <button onclick="exportWorkshopToCSV()" class="px-3 py-1.5 bg-[#161f2e] border border-[#263347] hover:bg-[#1c2433] text-xs font-bold rounded-lg text-slate-200 flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-sm">download</span>
-            <span>Export Leads CSV</span>
-          </button>
-        </div>
-
-        <div class="admin-card overflow-hidden">
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
-              <thead class="bg-[#161f2e] text-slate-400 uppercase font-['Geist'] text-[10px]">
-                <tr>
-                  <th class="py-3 px-4">Lead Name</th>
-                  <th class="py-3 px-4">Phone / Email</th>
-                  <th class="py-3 px-4">Interested Program</th>
-                  <th class="py-3 px-4">Stage</th>
-                  <th class="py-3 px-4 text-right">Update Stage</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-[#1c2433]">
-                <tr>
-                  <td class="py-3 px-4 font-bold text-white">Aman Gupta</td>
-                  <td class="py-3 px-4 text-slate-300">+91 98231 44521 • aman@gmail.com</td>
-                  <td class="py-3 px-4 text-slate-300">AI Masterclass</td>
-                  <td class="py-3 px-4"><span class="px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-800 rounded-md">New</span></td>
-                  <td class="py-3 px-4 text-right">
-                    <button onclick="showToast('Lead marked as Contacted', 'success')" class="text-blue-400 hover:underline">Mark Contacted</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-3 px-4 font-bold text-white">Neha Singhal</td>
-                  <td class="py-3 px-4 text-slate-300">+91 98711 00923 • neha.s@gmail.com</td>
-                  <td class="py-3 px-4 text-slate-300">Full Stack Engineering</td>
-                  <td class="py-3 px-4"><span class="px-2 py-0.5 bg-purple-950 text-purple-300 border border-purple-800 rounded-md">Contacted</span></td>
-                  <td class="py-3 px-4 text-right">
-                    <button onclick="showToast('Demo scheduled with Neha', 'success')" class="text-purple-400 hover:underline">Schedule Demo</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
+    <!-- Tab Controls Navigation -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-slate-800 text-xs font-bold font-['Geist'] whitespace-nowrap">
+      <button onclick="switchAdminTab('transactions')" id="admin-tab-btn-transactions" class="px-4 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold shadow-md flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">receipt_long</span>
+        <span>Live Transactions (<span id="tab-count-payments">0</span>)</span>
+      </button>
+
+      <button onclick="switchAdminTab('workshop')" id="admin-tab-btn-workshop" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-sky-400">groups</span>
+        <span>LP1 Workshop (<span id="tab-count-workshop">0</span>)</span>
+      </button>
+
+      <button onclick="switchAdminTab('students')" id="admin-tab-btn-students" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-indigo-400">school</span>
+        <span>Students & LMS (<span id="tab-count-students">0</span>)</span>
+      </button>
+
+      <button onclick="switchAdminTab('courses')" id="admin-tab-btn-courses" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-emerald-400">tune</span>
+        <span>Courses & Seats</span>
+      </button>
+
+      <button onclick="switchAdminTab('coupons')" id="admin-tab-btn-coupons" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-amber-400">sell</span>
+        <span>Coupons & Promos</span>
+      </button>
+
+      <button onclick="switchAdminTab('blogs')" id="admin-tab-btn-blogs" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-purple-400">article</span>
+        <span>Educational Blogs & SEO</span>
+      </button>
+
+      <button onclick="switchAdminTab('settings')" id="admin-tab-btn-settings" class="px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2">
+        <span class="material-symbols-outlined text-base text-cyan-400">settings</span>
+        <span>API & System Config</span>
+      </button>
     </div>
 
-  </div>
+    <!-- ================= TAB 1: LIVE TRANSACTIONS & PAYMENTS ================= -->
+    <div id="admin-tab-transactions" class="space-y-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Razorpay Verified Payment Transactions</h2>
+          <p class="text-xs text-slate-400">Click any row to open full 360° candidate details, WhatsApp triggers, and receipt.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="exportPaymentsToCSV()" class="px-3 py-2 text-xs rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold border border-slate-700 flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-sm text-emerald-400">download</span>
+            <span>Export CSV</span>
+          </button>
+          <input type="text" id="search-transactions" onkeyup="filterTransactionsTable()" placeholder="Search payments..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white w-64">
+        </div>
+      </div>
 
-  <!-- ================= MANUAL ADMISSION MODAL ================= -->
-  <div id="modal-manual-admission" class="fixed inset-0 bg-[#0b0f17]/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="max-w-md w-full admin-card p-6 space-y-4 shadow-2xl">
-      <div class="flex items-center justify-between border-b border-[#1c2433] pb-3">
-        <h3 class="text-sm font-bold text-white font-['Plus_Jakarta_Sans']">Admit New Student Manually</h3>
-        <button onclick="closeManualAdmissionModal()" class="text-slate-400 hover:text-white">
-          <span class="material-symbols-outlined text-base">close</span>
+      <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl overflow-x-auto">
+        <table class="w-full text-left text-xs font-['Inter']">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px] uppercase tracking-wider">
+              <th class="pb-3">Payment ID</th>
+              <th class="pb-3">Student Name</th>
+              <th class="pb-3">Contact</th>
+              <th class="pb-3">Program</th>
+              <th class="pb-3">Amount</th>
+              <th class="pb-3">Status</th>
+              <th class="pb-3">Date & Time</th>
+              <th class="pb-3 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60" id="transactions-table-body">
+            <tr>
+              <td colspan="8" class="py-8 text-center text-slate-500">Loading live payments from Supabase...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ================= TAB 2: LP1 WORKSHOP REGISTRATIONS CRM ================= -->
+    <div id="admin-tab-workshop" class="space-y-4 hidden">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">LP1 Workshop Pipeline (30 August 2026)</h2>
+          <p class="text-xs text-slate-400">Live registrations, coupon usage, payment status, and instant WhatsApp follow-up triggers.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="exportWorkshopToCSV()" class="px-3 py-2 text-xs rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold border border-slate-700 flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-sm text-sky-400">download</span>
+            <span>Export CSV</span>
+          </button>
+          <select id="filter-workshop-status" onchange="filterWorkshopTable()" class="px-3 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white">
+            <option value="all">All Statuses</option>
+            <option value="paid">Paid & Verified Only</option>
+            <option value="payment_pending">Payment Pending (Leads)</option>
+            <option value="payment_failed">Payment Failed</option>
+          </select>
+          <input type="text" id="search-workshop" onkeyup="filterWorkshopTable()" placeholder="Search workshop leads..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white w-64">
+        </div>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl overflow-x-auto">
+        <table class="w-full text-left text-xs font-['Inter']">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px] uppercase tracking-wider">
+              <th class="pb-3">Ticket No</th>
+              <th class="pb-3">Candidate</th>
+              <th class="pb-3">WhatsApp Phone</th>
+              <th class="pb-3">Email</th>
+              <th class="pb-3">City</th>
+              <th class="pb-3">Goal</th>
+              <th class="pb-3">Payment Status</th>
+              <th class="pb-3">Amount</th>
+              <th class="pb-3 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60" id="workshop-table-body">
+            <tr>
+              <td colspan="9" class="py-8 text-center text-slate-500">Loading workshop registrations...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ================= TAB 3: ENROLLED STUDENTS & LMS ================= -->
+    <div id="admin-tab-students" class="space-y-4 hidden">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Enrolled Student Directory & LMS Portal</h2>
+          <p class="text-xs text-slate-400">All registered students with Roll Numbers, courses, and manual admission capability.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="openManualAdmissionModal()" class="px-3 py-2 text-xs rounded-xl bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold flex items-center gap-1.5 transition-all">
+            <span class="material-symbols-outlined text-sm">add</span>
+            <span>Direct Student Admission</span>
+          </button>
+          <input type="text" id="search-students" onkeyup="filterStudentsTable()" placeholder="Search students..." class="px-3.5 py-2 text-xs rounded-xl bg-slate-900 border border-slate-700 text-white w-64">
+        </div>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl overflow-x-auto">
+        <table class="w-full text-left text-xs font-['Inter']">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px] uppercase tracking-wider">
+              <th class="pb-3">Roll No</th>
+              <th class="pb-3">Student Name</th>
+              <th class="pb-3">Email</th>
+              <th class="pb-3">Phone</th>
+              <th class="pb-3">City</th>
+              <th class="pb-3">Enrolled In</th>
+              <th class="pb-3">Joined Date</th>
+              <th class="pb-3 text-right">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60" id="students-table-body">
+            <tr>
+              <td colspan="8" class="py-8 text-center text-slate-500">Loading student directory...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ================= TAB 4: COURSE & CAPACITY CONTROLLER ================= -->
+    <div id="admin-tab-courses" class="space-y-6 hidden">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Course & Seat Inventory Controller</h2>
+          <p class="text-xs text-slate-400">Control total batch capacities, prices, and live Zoom/Google Meet links directly in Supabase.</p>
+        </div>
+        <button onclick="openAddCourseModal()" class="px-3.5 py-2 text-xs rounded-xl bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">add_circle</span>
+          <span>+ Create New Course</span>
         </button>
       </div>
 
-      <form onsubmit="handleManualAdmissionSubmit(event)" class="space-y-3 text-xs">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="course-inventory-cards">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- ================= TAB 5: COUPONS & DISCOUNTS ================= -->
+    <div id="admin-tab-coupons" class="space-y-6 hidden">
+      <div class="flex items-center justify-between">
         <div>
-          <label class="block text-slate-400 mb-1">Student Full Name</label>
-          <input type="text" id="adm-name" required placeholder="e.g. Vikram Malhotra" class="w-full px-3 py-2 bg-[#0b0f17] border border-[#1c2433] text-white rounded-lg outline-none focus:border-blue-500" />
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Coupon Codes & Promo Discounts</h2>
+          <p class="text-xs text-slate-400">Create promo codes (like FIRST1 for ₹1, VIP50 for 50% discount) for instant checkout use.</p>
+        </div>
+        <button onclick="openAddCouponModal()" class="px-3.5 py-2 text-xs rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">add</span>
+          <span>+ Create New Coupon</span>
+        </button>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl overflow-x-auto">
+        <table class="w-full text-left text-xs font-['Inter']">
+          <thead>
+            <tr class="border-b border-slate-800 text-slate-400 font-['Geist'] text-[11px] uppercase tracking-wider">
+              <th class="pb-3">Coupon Code</th>
+              <th class="pb-3">Discount Type</th>
+              <th class="pb-3">Discount Value</th>
+              <th class="pb-3">Applicable Course</th>
+              <th class="pb-3">Usage Limit</th>
+              <th class="pb-3">Times Used</th>
+              <th class="pb-3">Status</th>
+              <th class="pb-3 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60" id="coupons-table-body">
+            <tr>
+              <td colspan="8" class="py-8 text-center text-slate-500">Loading active coupons...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ================= TAB 6: BLOGS & SEO ARTICLES ================= -->
+    <div id="admin-tab-blogs" class="space-y-6 hidden">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Educational Articles & SEO Publisher</h2>
+          <p class="text-xs text-slate-400">Publish educational blogs and tutorials to index on Google Search and attract organic student leads.</p>
+        </div>
+        <button onclick="openAddBlogModal()" class="px-3.5 py-2 text-xs rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">post_add</span>
+          <span>+ Write New Blog Post</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="blogs-cards-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- ================= TAB 7: API & SYSTEM CONFIG ================= -->
+    <div id="admin-tab-settings" class="space-y-6 hidden">
+      <div>
+        <h2 class="text-xl font-bold text-white font-['Plus_Jakarta_Sans']">Master API Keys & Global Settings</h2>
+        <p class="text-xs text-slate-400">Change WhatsApp VIP Links, contact info, Razorpay keys, and analytics IDs with 1 click.</p>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 space-y-6 max-w-3xl">
+        <form onsubmit="handleSaveSystemConfig(event)" class="space-y-4 text-xs">
+          
+          <div>
+            <label class="block text-slate-300 font-bold mb-1">Official WhatsApp VIP Community Link:</label>
+            <input type="url" id="cfg-whatsapp" required placeholder="https://chat.whatsapp.com/..." class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-xs">
+            <p class="text-[10px] text-slate-500 mt-1">This link is dynamically unlocked for students upon successful Razorpay payment.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-slate-300 font-bold mb-1">Official Support Phone:</label>
+              <input type="text" id="cfg-phone" placeholder="+91 9691699530" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-xs">
+            </div>
+            <div>
+              <label class="block text-slate-300 font-bold mb-1">Official Support Email:</label>
+              <input type="email" id="cfg-email" placeholder="theskillsfy@gmail.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-xs">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-300 font-bold mb-1">Campus / Headquarters Address:</label>
+            <input type="text" id="cfg-address" placeholder="Civic Center, Jabalpur, MP - 482002" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-800">
+            <div>
+              <label class="block text-slate-300 font-bold mb-1">Google Analytics (GA4) ID:</label>
+              <input type="text" id="cfg-ga4" value="G-Q400P9M9X4" placeholder="G-Q400P9M9X4" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-xs">
+            </div>
+            <div>
+              <label class="block text-slate-300 font-bold mb-1">Meta (Facebook) Pixel ID:</label>
+              <input type="text" id="cfg-pixel" placeholder="PIXEL-SKF-8921" class="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-xs">
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <button type="submit" class="w-full py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs rounded-xl shadow-lg transition-all">
+              Save Global Settings & Publish Across Platform →
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= PAYMENT & STUDENT FULL DETAILS MODAL ================= -->
+  <div id="details-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="max-w-2xl w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-bold text-white font-['Plus_Jakarta_Sans'] flex items-center gap-2">
+          <span class="material-symbols-outlined text-cyan-400">badge</span>
+          <span>Official Registration & Transaction Record</span>
+        </h3>
+        <button onclick="closeDetailsModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <div id="details-modal-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MANUAL STUDENT ADMISSION MODAL ================= -->
+  <div id="modal-manual-admission" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="max-w-lg w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-bold text-white font-['Plus_Jakarta_Sans']">Direct Student Admission</h3>
+        <button onclick="closeManualAdmissionModal()" class="text-slate-400 hover:text-white"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <form onsubmit="handleDirectStudentAdmission(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1">Student Full Name:</label>
+          <input type="text" id="man-name" required placeholder="e.g. Rahul Sharma" class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-slate-400 mb-1">WhatsApp Phone:</label>
+            <input type="text" id="man-phone" required placeholder="9876543210" class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Email Address:</label>
+            <input type="email" id="man-email" required placeholder="rahul@gmail.com" class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-slate-400 mb-1">Program / Batch:</label>
+            <select id="man-course" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
+              <option value="workshop-30-aug">AI Web Dev Workshop (₹149)</option>
+              <option value="standard-course">Skillsfy Standard Course (₹2,999)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Amount Paid (₹):</label>
+            <input type="number" id="man-amount" value="149" class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-emerald-400 font-bold font-mono">
+          </div>
         </div>
         <div>
-          <label class="block text-slate-400 mb-1">Email Address</label>
-          <input type="email" id="adm-email" required placeholder="vikram@gmail.com" class="w-full px-3 py-2 bg-[#0b0f17] border border-[#1c2433] text-white rounded-lg outline-none focus:border-blue-500" />
+          <label class="block text-slate-400 mb-1">Payment Method / Note:</label>
+          <input type="text" id="man-note" placeholder="Direct UPI / Cash / Offline Batch" class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white">
         </div>
-        <div>
-          <label class="block text-slate-400 mb-1">Assign Batch & Program</label>
-          <select id="adm-course" class="w-full px-3 py-2 bg-[#0b0f17] border border-[#1c2433] text-white rounded-lg outline-none focus:border-blue-500">
-            <option value="ai-masterclass">AI & Digital Business Cohort #1</option>
-            <option value="full-stack">Full Stack Software Engineering</option>
-            <option value="cloud-devops">Cloud DevOps Architecture</option>
-          </select>
-        </div>
-        <button type="submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg shadow mt-2">
-          Create Student Credentials & Enroll →
+        <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs rounded-xl shadow-lg transition-all mt-2">
+          Enroll Student & Generate Official Ticket →
         </button>
       </form>
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION CONTAINER -->
-  <div id="admin-toast" class="fixed bottom-6 right-6 z-50 bg-[#161f2e] text-white text-xs font-semibold px-4 py-2.5 rounded-xl shadow-2xl border border-[#263347] flex items-center gap-2 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
-    <span class="material-symbols-outlined text-sm text-emerald-400" id="admin-toast-icon">check_circle</span>
-    <span id="admin-toast-msg">Action performed</span>
-  </div>
+  <!-- Toast Notification Container -->
+  <div id="admin-toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all transform duration-300"></div>
 
-  <!-- ================= ADMIN LOGIC ================= -->
+  <!-- ================= JAVASCRIPT & SUPABASE REALTIME BINDING ================= -->
   <script>
-    function showToast(msg, type = 'success') {
+    const SUPABASE_PROJECT_URL = 'https://iqssjqfyfdmujlmlbjhl.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlxc3NqcWZ5ZmRtdWpsbWxiamhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODcxMzY3NzIsImV4cCI6MjEwMjcxMjc3Mn0.o7gGbhiuRkLxxJCRJNM1RzBrIVHnOTxuzX0-EOQVyyU';
+
+    const SUPABASE_HEADERS = {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json'
+    };
+
+    let allPayments = [];
+    let allWorkshopRegs = [];
+    let allStudents = [];
+    let allEnquiries = [];
+    let allCourses = [];
+    let allCoupons = [];
+    let allBlogs = [];
+
+    function showToast(msg, type = 'info') {
       const toast = document.getElementById('admin-toast');
-      const toastMsg = document.getElementById('admin-toast-msg');
-      const toastIcon = document.getElementById('admin-toast-icon');
-
-      toastMsg.textContent = msg;
-      if (type === 'success') {
-        toastIcon.textContent = 'check_circle';
-        toastIcon.className = 'material-symbols-outlined text-sm text-emerald-400';
-      } else if (type === 'info') {
-        toastIcon.textContent = 'info';
-        toastIcon.className = 'material-symbols-outlined text-sm text-blue-400';
-      } else {
-        toastIcon.textContent = 'warning';
-        toastIcon.className = 'material-symbols-outlined text-sm text-amber-400';
-      }
-
-      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-      setTimeout(() => {
-        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-      }, 3000);
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.className = `fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold text-white transition-all ${
+        type === 'success' ? 'bg-emerald-600 border border-emerald-400' :
+        type === 'error' ? 'bg-rose-600 border border-rose-400' : 'bg-cyan-600 border border-cyan-400'
+      }`;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 4000);
     }
 
     function checkAdminAuth() {
-      const isAuth = localStorage.getItem('skillsfy_admin_auth');
+      const isAuth = sessionStorage.getItem('skillsfy_admin_authenticated');
       const lockScreen = document.getElementById('admin-lock-screen');
       if (isAuth === 'true') {
         lockScreen.classList.add('hidden');
+        fetchMasterAdminData();
       } else {
         lockScreen.classList.remove('hidden');
       }
     }
 
-    function handleAdminUnlock(e) {
+    async function handleAdminUnlock(e) {
       e.preventDefault();
+      const user = document.getElementById('admin-user-input').value.trim().toLowerCase();
       const pass = document.getElementById('admin-pass-input').value.trim();
-      if (pass === 'admin2026' || pass === 'skillsfy@2026' || pass === 'admin') {
-        localStorage.setItem('skillsfy_admin_auth', 'true');
-        document.getElementById('admin-lock-screen').classList.add('hidden');
-        showToast('✓ Super Admin Suite Unlocked', 'success');
-      } else {
-        showToast('Invalid Master Password', 'warning');
+      const btn = document.getElementById('btn-admin-unlock');
+
+      if (!user || !pass) {
+        showToast('Please enter both Admin Email/Username and Password.', 'warning');
+        return;
+      }
+
+      if (btn) {
+        btn.textContent = 'Authenticating with Supabase...';
+        btn.disabled = true;
+      }
+
+      try {
+        let isAuthorized = false;
+        let adminName = 'Administrator';
+
+        // 1. Check Master Admin Credentials
+        if ((user === 'theskillsfy@gmail.com' || user === 'admin' || user === 'admin@skillsfy.in' || user === 'pranjil') && 
+            (pass === 'Admin@2026' || pass === 'Skillsfy@2026' || pass === '4821')) {
+          isAuthorized = true;
+          adminName = 'Pranjil Soni';
+        }
+
+        // 2. Query Supabase students table where status = 'admin'
+        if (!isAuthorized) {
+          try {
+            const filter = user.includes('@')
+              ? `email=ilike.${encodeURIComponent(user)}`
+              : `or=(email.ilike.${encodeURIComponent(user)},phone.eq.${encodeURIComponent(user)})`;
+
+            const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?${filter}&select=*`, {
+              headers: SUPABASE_HEADERS
+            });
+
+            if (res.ok) {
+              const rows = await res.json();
+              if (Array.isArray(rows) && rows.length > 0) {
+                const row = rows[0];
+                if ((row.status === 'admin' || row.status === 'administrator') && row.password_hash === pass) {
+                  isAuthorized = true;
+                  adminName = row.name || 'Admin';
+                }
+              }
+            }
+          } catch(err) {
+            console.warn('Supabase admin check error:', err);
+          }
+        }
+
+        if (isAuthorized) {
+          sessionStorage.setItem('skillsfy_admin_authenticated', 'true');
+          sessionStorage.setItem('skillsfy_admin_name', adminName);
+          document.getElementById('admin-lock-screen').classList.add('hidden');
+          showToast(`✓ Authenticated as ${adminName}! Loading live Supabase database...`, 'success');
+          fetchMasterAdminData();
+        } else {
+          showToast('❌ Access Denied: Incorrect Admin Email or Password.', 'error');
+        }
+
+      } catch (err) {
+        console.error('Admin auth error:', err);
+        showToast('Error connecting to database: ' + err.message, 'error');
+      } finally {
+        if (btn) {
+          btn.textContent = 'Verify & Unlock Admin Suite →';
+          btn.disabled = false;
+        }
       }
     }
 
     function lockAdminPortal() {
-      localStorage.removeItem('skillsfy_admin_auth');
-      document.getElementById('admin-lock-screen').classList.remove('hidden');
-      showToast('Admin Suite Locked', 'info');
+      sessionStorage.removeItem('skillsfy_admin_authenticated');
+      checkAdminAuth();
+      showToast('Admin portal locked.', 'info');
     }
 
     function switchAdminTab(tab) {
-      const tabs = ['dashboard', 'students', 'batches', 'enquiries'];
+      const tabs = ['transactions', 'workshop', 'students', 'courses', 'coupons', 'blogs', 'settings'];
       tabs.forEach(t => {
-        const view = document.getElementById(`tab-admin-${t}`);
-        const nav = document.getElementById(`nav-${t}`);
-        if (view) view.classList.add('hidden');
-        if (nav) nav.classList.remove('active');
+        const tabEl = document.getElementById(`admin-tab-${t}`);
+        const btnEl = document.getElementById(`admin-tab-btn-${t}`);
+        if (tabEl) tabEl.classList.add('hidden');
+        if (btnEl) btnEl.className = 'px-4 py-2.5 rounded-xl text-slate-400 hover:text-white flex items-center gap-2';
       });
 
-      const activeView = document.getElementById(`tab-admin-${tab}`);
-      const activeNav = document.getElementById(`nav-${tab}`);
-      if (activeView) activeView.classList.remove('hidden');
-      if (activeNav) activeNav.classList.add('active');
+      const activeTab = document.getElementById(`admin-tab-${tab}`);
+      const activeBtn = document.getElementById(`admin-tab-btn-${tab}`);
+      if (activeTab) activeTab.classList.remove('hidden');
+      if (activeBtn) activeBtn.className = 'px-4 py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold shadow-md flex items-center gap-2';
     }
 
+    // ================= FETCH ALL MASTER DATA FROM SUPABASE =================
+    async function fetchMasterAdminData() {
+      try {
+        // Fetch Enquiries & Subscribers
+        try {
+          const enqRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/enquiries?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
+          if (enqRes.ok) allEnquiries = await enqRes.json();
+        } catch(e) {}
+      try {
+        // 1. Fetch Courses
+        const cRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/courses?select=*`, { headers: SUPABASE_HEADERS });
+        if (cRes.ok) allCourses = await cRes.json();
+
+        // 2. Fetch Payments
+        const pRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/payments?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
+        if (pRes.ok) allPayments = await pRes.json();
+
+        // 3. Fetch Workshop Registrations
+        const wRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/workshop_registrations?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
+        if (wRes.ok) allWorkshopRegs = await wRes.json();
+
+        // 4. Fetch Students
+        const sRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?order=created_at.desc&select=*`, { headers: SUPABASE_HEADERS });
+        if (sRes.ok) allStudents = await sRes.json();
+
+        // 5. Fetch Coupons
+        try {
+          const cpRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/coupons?select=*`, { headers: SUPABASE_HEADERS });
+          if (cpRes.ok) allCoupons = await cpRes.json();
+        } catch(e) {}
+
+        // 6. Fetch Blogs
+        try {
+          const blRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/blogs?select=*`, { headers: SUPABASE_HEADERS });
+          if (blRes.ok) allBlogs = await blRes.json();
+        } catch(e) {}
+
+        updateDashboardKPIs();
+        renderTransactionsTable();
+        renderWorkshopTable();
+        renderStudentsTable();
+        renderCourseInventory();
+        renderCouponsTable();
+        renderBlogsGrid();
+        loadSystemConfigForm();
+
+      } catch (err) {
+        console.error('Data fetch error:', err);
+        showToast('Error loading live data from Supabase. Re-checking...', 'error');
+      }
+    }
+
+    // ================= CALCULATE REAL KPIS =================
+    function updateDashboardKPIs() {
+      let totalRevenue = 0;
+      const countedPaymentIds = new Set();
+
+      allPayments.forEach(p => {
+        if (p.status === 'paid' && p.amount) {
+          totalRevenue += parseFloat(p.amount);
+          if (p.payment_id) countedPaymentIds.add(p.payment_id);
+        }
+      });
+
+      allWorkshopRegs.forEach(w => {
+        if (w.payment_status === 'paid' && w.amount_paid) {
+          if (!w.razorpay_payment_id || !countedPaymentIds.has(w.razorpay_payment_id)) {
+            totalRevenue += parseFloat(w.amount_paid);
+          }
+        }
+      });
+
+      document.getElementById('kpi-total-revenue').textContent = `₹${totalRevenue.toLocaleString('en-IN')}`;
+      const paidCount = countedPaymentIds.size || allWorkshopRegs.filter(w => w.payment_status === 'paid').length;
+      document.getElementById('kpi-revenue-meta').textContent = `${paidCount} Verified Transactions`;
+      document.getElementById('kpi-paid-students').textContent = paidCount;
+
+      const lp1Course = allCourses.find(c => c.slug === 'workshop-30-aug');
+      const lp1TotalSeats = lp1Course ? parseInt(lp1Course.total_seats) : 150;
+      const lp1PaidSeats = allWorkshopRegs.filter(w => w.payment_status === 'paid').length;
+      const lp1Available = Math.max(0, lp1TotalSeats - lp1PaidSeats);
+
+      document.getElementById('kpi-lp1-available').textContent = lp1Available;
+      document.getElementById('kpi-lp1-total').textContent = `/ ${lp1TotalSeats} Left`;
+      document.getElementById('kpi-lp1-filled').textContent = `${lp1PaidSeats} Seats Filled (${Math.round((lp1PaidSeats/lp1TotalSeats)*100)}%)`;
+
+      const stdCourse = allCourses.find(c => c.slug === 'standard-course');
+      const stdTotalSeats = stdCourse ? parseInt(stdCourse.total_seats) : 50;
+      const stdPaidSeats = allStudents.filter(s => Array.isArray(s.enrolled_courses) && s.enrolled_courses.includes('standard-course')).length;
+      const stdAvailable = Math.max(0, stdTotalSeats - stdPaidSeats);
+
+      document.getElementById('kpi-std-available').textContent = stdAvailable;
+      document.getElementById('kpi-std-total').textContent = `/ ${stdTotalSeats} Left`;
+      document.getElementById('kpi-std-filled').textContent = `${stdPaidSeats} Enrolled (₹2,999)`;
+
+      const pendingWorkshop = allWorkshopRegs.filter(w => w.payment_status === 'payment_pending').length;
+      document.getElementById('kpi-leads-count').textContent = allWorkshopRegs.length;
+      document.getElementById('kpi-leads-pending').textContent = `${pendingWorkshop} Pending Workshop Orders`;
+
+      document.getElementById('tab-count-payments').textContent = allPayments.length || paidCount;
+      document.getElementById('tab-count-workshop').textContent = allWorkshopRegs.length;
+      document.getElementById('tab-count-students').textContent = allStudents.length;
+    }
+
+    // ================= RENDER TRANSACTIONS TABLE =================
+    function renderTransactionsTable(list = allPayments) {
+      const tbody = document.getElementById('transactions-table-body');
+      if (!tbody) return;
+
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="py-12 text-center text-slate-500">
+              <div class="space-y-2">
+                <span class="material-symbols-outlined text-3xl text-slate-600 block">receipt</span>
+                <p class="font-bold text-slate-400">No payment transactions recorded yet.</p>
+                <p class="text-xs text-slate-500">Click "Reconcile Razorpay" at top to import existing Razorpay payments.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = list.map(p => `
+        <tr class="hover:bg-slate-800/60 transition-colors cursor-pointer group" onclick="openPaymentDetailsModal('${p.payment_id}')">
+          <td class="py-3 font-mono font-bold text-cyan-400">
+            <span class="group-hover:underline flex items-center gap-1">
+              <span>${p.payment_id || 'N/A'}</span>
+              <span class="material-symbols-outlined text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">open_in_new</span>
+            </span>
+          </td>
+          <td class="py-3 font-bold text-white">
+            <div>${p.student_name || 'Student'}</div>
+            <div class="text-[10px] text-slate-400 font-normal">${p.student_email || ''}</div>
+          </td>
+          <td class="py-3 font-mono text-slate-300">
+            ${p.student_phone || '-'}
+          </td>
+          <td class="py-3">
+            <span class="badge-pill ${p.course_slug === 'workshop-30-aug' ? 'bg-sky-950 text-sky-300 border border-sky-800' : 'bg-indigo-950 text-indigo-300 border border-indigo-800'} text-[10px] font-bold">
+              ${p.course_slug === 'workshop-30-aug' ? 'Workshop (30 Aug)' : 'Standard Course'}
+            </span>
+          </td>
+          <td class="py-3 font-mono font-bold text-emerald-400 text-sm">₹${p.amount}</td>
+          <td class="py-3">
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold ${p.status === 'paid' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-amber-950 text-amber-300'}">
+              ${(p.status || 'PAID').toUpperCase()}
+            </span>
+          </td>
+          <td class="py-3 font-mono text-slate-400 text-[11px]">${p.created_at ? new Date(p.created_at).toLocaleString('en-IN') : 'Recent'}</td>
+          <td class="py-3 text-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1.5">
+              <button onclick="openPaymentDetailsModal('${p.payment_id}')" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[11px]">
+                Details
+              </button>
+              ${p.student_phone ? `
+                <a href="https://wa.me/${p.student_phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(p.student_name || 'Student')},%20Skillsfy%20se%20Pranjil%20Soni%20here.%20Aapka%20Workshop%20Pass%20Payment%20Verified%20hai." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px] inline-flex items-center gap-1">
+                  <span>WhatsApp</span>
+                </a>
+              ` : ''}
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function filterTransactionsTable() {
+      const q = document.getElementById('search-transactions').value.toLowerCase();
+      const filtered = allPayments.filter(p => 
+        (p.payment_id && p.payment_id.toLowerCase().includes(q)) ||
+        (p.student_name && p.student_name.toLowerCase().includes(q)) ||
+        (p.student_phone && p.student_phone.includes(q)) ||
+        (p.student_email && p.student_email.toLowerCase().includes(q)) ||
+        (p.ticket_no && p.ticket_no.toLowerCase().includes(q))
+      );
+      renderTransactionsTable(filtered);
+    }
+
+    // ================= RENDER WORKSHOP REGISTRATIONS =================
+    function renderWorkshopTable(list = allWorkshopRegs) {
+      const tbody = document.getElementById('workshop-table-body');
+      if (!tbody) return;
+
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" class="py-12 text-center text-slate-500">
+              <span class="material-symbols-outlined text-3xl text-slate-600 block">groups</span>
+              <p class="font-bold text-slate-400">No workshop registrations found.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = list.map(w => `
+        <tr class="hover:bg-slate-800/60 transition-colors cursor-pointer group" onclick="openWorkshopDetailsModal('${w.ticket_no}')">
+          <td class="py-3 font-mono font-bold text-sky-400">
+            <span class="group-hover:underline">${w.ticket_no || 'N/A'}</span>
+          </td>
+          <td class="py-3 font-bold text-white">${w.name}</td>
+          <td class="py-3 font-mono text-cyan-300">${w.phone}</td>
+          <td class="py-3 text-slate-400">${w.email}</td>
+          <td class="py-3 text-slate-400">${w.city || 'India'}</td>
+          <td class="py-3 text-slate-400 truncate max-w-[120px]">${w.goal || 'AI Web Dev'}</td>
+          <td class="py-3">
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold ${
+              w.payment_status === 'paid' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' :
+              w.payment_status === 'payment_failed' ? 'bg-rose-950 text-rose-300 border border-rose-800' :
+              'bg-amber-950 text-amber-300 border border-amber-800'
+            }">
+              ${(w.payment_status || 'PENDING').toUpperCase()}
+            </span>
+          </td>
+          <td class="py-3 font-mono font-bold ${w.payment_status === 'paid' ? 'text-emerald-400' : 'text-slate-500'}">
+            ₹${w.amount_paid || 149}
+            ${w.coupon_code ? `<span class="text-[9px] text-amber-400 block font-mono font-bold">${w.coupon_code}</span>` : ''}
+          </td>
+          <td class="py-3 text-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1.5">
+              <button onclick="openWorkshopDetailsModal('${w.ticket_no}')" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[11px]">
+                Details
+              </button>
+              <a href="https://wa.me/${w.phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(w.name)},%20Skillsfy%20se%20Pranjil%20Soni%20here.%20Aapka%20Workshop%20Ticket%20${w.ticket_no}%20ready%20hai." target="_blank" class="px-2 py-1 rounded-lg bg-emerald-600/30 text-emerald-300 hover:bg-emerald-600 hover:text-white font-bold text-[11px] inline-flex items-center gap-1">
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function filterWorkshopTable() {
+      const status = document.getElementById('filter-workshop-status').value;
+      const q = document.getElementById('search-workshop').value.toLowerCase();
+      
+      let filtered = allWorkshopRegs;
+      if (status !== 'all') {
+        filtered = filtered.filter(w => w.payment_status === status);
+      }
+      if (q) {
+        filtered = filtered.filter(w => 
+          (w.ticket_no && w.ticket_no.toLowerCase().includes(q)) ||
+          (w.name && w.name.toLowerCase().includes(q)) ||
+          (w.phone && w.phone.includes(q)) ||
+          (w.email && w.email.toLowerCase().includes(q))
+        );
+      }
+      renderWorkshopTable(filtered);
+    }
+
+    // ================= FULL DETAILS MODAL =================
+    function openPaymentDetailsModal(paymentId) {
+      const payment = allPayments.find(p => p.payment_id === paymentId);
+      if (!payment) return;
+
+      const matchingWorkshop = allWorkshopRegs.find(w => w.razorpay_payment_id === paymentId || (payment.ticket_no && w.ticket_no === payment.ticket_no));
+      const matchingStudent = allStudents.find(s => s.email === payment.student_email || s.phone === payment.student_phone);
+
+      const modal = document.getElementById('details-modal');
+      const content = document.getElementById('details-modal-content');
+      if (!modal || !content) return;
+
+      const dateFormatted = payment.created_at ? new Date(payment.created_at).toLocaleString('en-IN', { dateStyle: 'full', timeStyle: 'medium' }) : 'Recent';
+
+      content.innerHTML = `
+        <div class="space-y-6 text-left">
+          <div class="flex items-start justify-between pb-4 border-b border-slate-800">
+            <div>
+              <span class="badge-pill bg-emerald-950 text-emerald-300 border border-emerald-800 text-xs font-bold">✓ VERIFIED TRANSACTION</span>
+              <h3 class="text-xl font-black text-white font-['Plus_Jakarta_Sans'] mt-2">${payment.student_name || 'Student'}</h3>
+              <p class="text-xs text-slate-400 font-mono mt-0.5">Payment ID: <strong class="text-cyan-400">${payment.payment_id}</strong></p>
+            </div>
+            <div class="text-right">
+              <span class="text-2xl font-black text-emerald-400 font-mono">₹${payment.amount}</span>
+              <span class="text-xs text-slate-500 block">INR (Razorpay Live)</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Student Profile</span>
+              <div class="flex justify-between"><span class="text-slate-400">Full Name:</span><span class="font-bold text-white">${payment.student_name || matchingWorkshop?.name || '-'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Phone:</span><span class="font-mono font-bold text-cyan-300">${payment.student_phone || matchingWorkshop?.phone || '-'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Email:</span><span class="text-slate-200">${payment.student_email || matchingWorkshop?.email || '-'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">City:</span><span class="text-slate-200">${matchingWorkshop?.city || matchingStudent?.city || 'India'}</span></div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Program & Enrollment</span>
+              <div class="flex justify-between"><span class="text-slate-400">Program:</span><span class="font-bold text-indigo-300">${payment.course_slug === 'workshop-30-aug' ? 'AI Web Dev Workshop (30 Aug)' : 'Skillsfy Standard Course'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Ticket / Roll No:</span><span class="font-mono font-bold text-amber-300">${payment.ticket_no || matchingWorkshop?.ticket_no || matchingStudent?.roll_no || 'SKF-LP1-VERIFIED'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Coupon:</span><span class="font-mono text-emerald-400 font-bold">${payment.coupon_code || matchingWorkshop?.coupon_code || 'None'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Goal:</span><span class="text-slate-300 truncate max-w-[140px]">${matchingWorkshop?.goal || 'Web Development'}</span></div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2 text-xs font-mono text-[11px]">
+            <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Technical Receipt</span>
+            <div><span class="text-slate-500">Order ID:</span> <span class="text-slate-300">${payment.order_id || 'Direct'}</span></div>
+            <div><span class="text-slate-500">Timestamp:</span> <span class="text-slate-300">${dateFormatted}</span></div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            ${(payment.student_phone || matchingWorkshop?.phone) ? `
+              <a href="https://wa.me/${(payment.student_phone || matchingWorkshop?.phone).replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(payment.student_name || 'Student')},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here.%20Aapka%20AI%20Web%20Dev%20Workshop%20Ticket%20(${payment.ticket_no || matchingWorkshop?.ticket_no || 'Verified'})%20confirm%20ho%20gaya%20hai.%20VIP%20WhatsApp%20Group:%20https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN" target="_blank" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all">
+                <span class="material-symbols-outlined text-base">chat</span>
+                <span>Send WhatsApp VIP Link</span>
+              </a>
+            ` : ''}
+            <button onclick="copyDetailsToClipboard('${payment.payment_id}', '${payment.student_name}', '${payment.student_phone}', '${payment.student_email}', '${payment.amount}')" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-base">content_copy</span>
+              <span>Copy</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function openWorkshopDetailsModal(ticketNo) {
+      const w = allWorkshopRegs.find(item => item.ticket_no === ticketNo);
+      if (!w) return;
+
+      const modal = document.getElementById('details-modal');
+      const content = document.getElementById('details-modal-content');
+      if (!modal || !content) return;
+
+      content.innerHTML = `
+        <div class="space-y-6 text-left">
+          <div class="flex items-start justify-between pb-4 border-b border-slate-800">
+            <div>
+              <span class="badge-pill ${w.payment_status === 'paid' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-amber-950 text-amber-300 border border-amber-800'} text-xs font-bold">
+                ${w.payment_status === 'paid' ? '✓ PAID WORKSHOP PASS' : '⏳ LEAD / PAYMENT PENDING'}
+              </span>
+              <h3 class="text-xl font-black text-white font-['Plus_Jakarta_Sans'] mt-2">${w.name}</h3>
+              <p class="text-xs text-slate-400 font-mono mt-0.5">Ticket: <strong class="text-sky-400">${w.ticket_no}</strong></p>
+            </div>
+            <div class="text-right">
+              <span class="text-2xl font-black ${w.payment_status === 'paid' ? 'text-emerald-400' : 'text-slate-400'} font-mono">₹${w.amount_paid || 149}</span>
+              <span class="text-xs text-slate-500 block font-bold">${(w.payment_status || 'PENDING').toUpperCase()}</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Candidate Information</span>
+              <div class="flex justify-between"><span class="text-slate-400">Name:</span><span class="font-bold text-white">${w.name}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Phone:</span><span class="font-mono font-bold text-cyan-300">${w.phone}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Email:</span><span class="text-slate-200">${w.email}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">City:</span><span class="text-slate-200">${w.city || 'India'}</span></div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <span class="text-slate-500 font-bold uppercase tracking-wider text-[10px] block">Registration Details</span>
+              <div class="flex justify-between"><span class="text-slate-400">Experience:</span><span class="text-slate-300">${w.experience_level || 'Beginner'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Primary Goal:</span><span class="text-slate-300">${w.goal || 'Freelance'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Coupon Used:</span><span class="font-mono text-amber-400 font-bold">${w.coupon_code || 'None'}</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">Razorpay ID:</span><span class="font-mono text-cyan-400">${w.razorpay_payment_id || 'Pending'}</span></div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a href="https://wa.me/${w.phone.replace(/[^0-9]/g, '')}?text=Namaste%20${encodeURIComponent(w.name)},%20Skillsfy%20Institute%20se%20Pranjil%20Soni%20here.%20Aapka%2030%20Aug%20AI%20Workshop%20Ticket%20${w.ticket_no}%20ready%20hai." target="_blank" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all">
+              <span class="material-symbols-outlined text-base">chat</span>
+              <span>Chat on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeDetailsModal() {
+      const modal = document.getElementById('details-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function copyDetailsToClipboard(id, name, phone, email, amount) {
+      const text = `Skillsfy Record:\nID: ${id}\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nAmount: ₹${amount}`;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Details copied to clipboard!', 'success');
+      });
+    }
+
+    // ================= MANUAL DIRECT STUDENT ADMISSION =================
     function openManualAdmissionModal() {
       document.getElementById('modal-manual-admission').classList.remove('hidden');
     }
@@ -949,23 +1056,417 @@
       document.getElementById('modal-manual-admission').classList.add('hidden');
     }
 
-    function handleManualAdmissionSubmit(e) {
+    async function handleDirectStudentAdmission(e) {
       e.preventDefault();
-      const name = document.getElementById('adm-name').value.trim();
-      closeManualAdmissionModal();
-      showToast(`✓ Student "${name}" admitted & credentials generated!`, 'success');
+      const name = document.getElementById('man-name').value.trim();
+      const phone = document.getElementById('man-phone').value.trim();
+      const email = document.getElementById('man-email').value.trim();
+      const courseSlug = document.getElementById('man-course').value;
+      const amount = parseFloat(document.getElementById('man-amount').value) || 149;
+      const note = document.getElementById('man-note').value.trim() || 'Manual Admin Admission';
+
+      const isWorkshop = (courseSlug === 'workshop-30-aug');
+      const ticketNo = isWorkshop ? `SKF-LP1-${Math.floor(100000 + Math.random()*900000)}` : `SKF-STD-${Math.floor(100000 + Math.random()*900000)}`;
+      const paymentId = `pay_manual_${Date.now().toString().slice(-6)}`;
+
+      try {
+        // 1. Insert into payments
+        await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/payments`, {
+          method: 'POST',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            payment_id: paymentId,
+            student_name: name,
+            student_email: email,
+            student_phone: phone,
+            course_slug: courseSlug,
+            amount: amount,
+            status: 'paid',
+            ticket_no: ticketNo,
+            metadata: { note, admitted_by: 'Admin' }
+          })
+        });
+
+        // 2. Insert into workshop_registrations if workshop
+        if (isWorkshop) {
+          await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/workshop_registrations`, {
+            method: 'POST',
+            headers: SUPABASE_HEADERS,
+            body: JSON.stringify({
+              ticket_no: ticketNo,
+              name: name,
+              phone: phone,
+              email: email,
+              city: 'Direct Admission',
+              status: 'Payment Verified',
+              payment_status: 'paid',
+              razorpay_payment_id: paymentId,
+              amount_paid: amount,
+              paid_at: new Date().toISOString(),
+              notes: note
+            })
+          });
+        }
+
+        // 3. Insert Student
+        const rollNo = `SF-2026-${Math.floor(1000 + Math.random()*9000)}`;
+        await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students`, {
+          method: 'POST',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            roll_no: rollNo,
+            name: name,
+            email: email,
+            phone: phone,
+            enrolled_courses: [courseSlug],
+            status: 'active'
+          })
+        });
+
+        closeManualAdmissionModal();
+        showToast(`✓ Enrolled! Ticket ${ticketNo} generated for ${name}`, 'success');
+        fetchMasterAdminData();
+
+      } catch (err) {
+        showToast('Error admitting student: ' + err.message, 'error');
+      }
     }
 
-    function openNewBatchModal() {
-      showToast('Opening Batch Scheduling Wizard...', 'info');
+    // ================= RENDER STUDENTS TABLE =================
+    function renderStudentsTable(list = allStudents) {
+      const tbody = document.getElementById('students-table-body');
+      if (!tbody) return;
+
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="py-12 text-center text-slate-500">
+              <span class="material-symbols-outlined text-3xl text-slate-600 block">school</span>
+              <p class="font-bold text-slate-400">No student profiles registered yet.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = list.map(s => `
+        <tr class="hover:bg-slate-900/50 transition-colors">
+          <td class="py-3 font-mono font-bold text-indigo-400">${s.roll_no || 'SF-2026'}</td>
+          <td class="py-3 font-bold text-white">${s.name}</td>
+          <td class="py-3 text-slate-400">${s.email}</td>
+          <td class="py-3 font-mono text-cyan-300">${s.phone}</td>
+          <td class="py-3 text-slate-400">${s.city || 'Jabalpur'}</td>
+          <td class="py-3">
+            <span class="badge-pill bg-slate-800 text-slate-300 text-[10px]">
+              ${Array.isArray(s.enrolled_courses) ? s.enrolled_courses.join(', ') : 'Standard Course'}
+            </span>
+          </td>
+          <td class="py-3 font-mono text-slate-400 text-[11px]">${s.created_at ? new Date(s.created_at).toLocaleDateString('en-IN') : 'Recent'}</td>
+          <td class="py-3 text-right">
+            <span class="px-2 py-0.5 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800 text-[10px] font-bold">
+              ACTIVE
+            </span>
+          </td>
+        </tr>
+      `).join('');
     }
 
+    function filterStudentsTable() {
+      const q = document.getElementById('search-students').value.toLowerCase();
+      const filtered = allStudents.filter(s => 
+        (s.name && s.name.toLowerCase().includes(q)) ||
+        (s.email && s.email.toLowerCase().includes(q)) ||
+        (s.phone && s.phone.includes(q)) ||
+        (s.roll_no && s.roll_no.toLowerCase().includes(q))
+      );
+      renderStudentsTable(filtered);
+    }
+
+    // ================= RENDER COURSE CONTROLLERS =================
+    function renderCourseInventory() {
+      const container = document.getElementById('course-inventory-cards');
+      if (!container) return;
+
+      const coursesList = allCourses.length > 0 ? allCourses : [
+        { slug: 'workshop-30-aug', title: 'AI Web Dev Live Masterclass (30 Aug 2026)', total_seats: 150, price_inr: 149 },
+        { slug: 'standard-course', title: 'Skillsfy Standard Course: AI + Digital Business', total_seats: 50, price_inr: 2999 }
+      ];
+
+      container.innerHTML = coursesList.map(c => `
+        <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="badge-pill ${c.slug === 'workshop-30-aug' ? 'bg-sky-950 text-sky-300 border border-sky-800' : 'bg-indigo-950 text-indigo-300 border border-indigo-800'} text-[10px] font-bold">
+              ${c.slug}
+            </span>
+            <span class="text-xs text-emerald-400 font-bold">● Active in Production</span>
+          </div>
+
+          <h3 class="text-lg font-bold text-white font-['Plus_Jakarta_Sans']">${c.title}</h3>
+
+          <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-800 text-xs">
+            <div>
+              <label class="block text-slate-400 mb-1">Total Capacity (Seats):</label>
+              <input 
+                type="number" 
+                id="seat-input-${c.slug}" 
+                value="${c.total_seats || (c.slug === 'workshop-30-aug' ? 150 : 50)}" 
+                class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-white font-bold"
+              />
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Tuition Fee (₹ INR):</label>
+              <input 
+                type="number" 
+                id="price-input-${c.slug}" 
+                value="${c.price_inr || (c.slug === 'workshop-30-aug' ? 149 : 2999)}" 
+                class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-emerald-400 font-bold"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-400 mb-1 text-xs">Live Meeting / VIP Group Link:</label>
+            <input 
+              type="text" 
+              id="meeting-input-${c.slug}" 
+              value="${c.meeting_link || 'https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN'}" 
+              class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-slate-300 text-xs font-mono"
+            />
+          </div>
+
+          <button onclick="saveCourseConfig('${c.slug}')" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-black text-xs rounded-xl shadow transition-all">
+            Save Seat & Price Settings to Supabase →
+          </button>
+        </div>
+      `).join('');
+    }
+
+    async function saveCourseConfig(slug) {
+      const seats = parseInt(document.getElementById(`seat-input-${slug}`).value, 10);
+      const price = parseFloat(document.getElementById(`price-input-${slug}`).value);
+      const meetingLink = document.getElementById(`meeting-input-${slug}`).value.trim();
+
+      try {
+        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/courses?slug=eq.${slug}`, {
+          method: 'PATCH',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            total_seats: seats,
+            price_inr: price,
+            meeting_link: meetingLink,
+            updated_at: new Date().toISOString()
+          })
+        });
+
+        if (res.ok) {
+          showToast(`Seat, Price & Link config for ${slug} updated!`, 'success');
+          fetchMasterAdminData();
+        }
+      } catch (e) {
+        showToast('Error saving course config: ' + e.message, 'error');
+      }
+    }
+
+    // ================= RENDER COUPONS TABLE =================
+    function renderCouponsTable() {
+      const tbody = document.getElementById('coupons-table-body');
+      if (!tbody) return;
+
+      if (!allCoupons || allCoupons.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="py-8 text-center text-slate-500">No promo coupons active. Click "+ Create New Coupon" above.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = allCoupons.map(cp => `
+        <tr class="hover:bg-slate-900/50">
+          <td class="py-3 font-mono font-bold text-amber-400">${cp.code}</td>
+          <td class="py-3 text-slate-300">${cp.discount_type || 'fixed_price'}</td>
+          <td class="py-3 font-mono font-bold text-emerald-400">₹${cp.discount_value}</td>
+          <td class="py-3 text-slate-400">${cp.course_slug || 'All'}</td>
+          <td class="py-3 font-mono text-slate-300">${cp.max_uses || 100}</td>
+          <td class="py-3 font-mono text-cyan-300">${cp.times_used || 0}</td>
+          <td class="py-3"><span class="badge-pill bg-emerald-950 text-emerald-300 text-[10px]">Active</span></td>
+          <td class="py-3 text-right">
+            <button onclick="deleteCoupon('${cp.id}')" class="px-2 py-1 bg-rose-950 text-rose-300 hover:bg-rose-900 rounded-lg text-[10px] font-bold">
+              Delete
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // ================= RENDER BLOGS GRID =================
+    function renderBlogsGrid() {
+      const container = document.getElementById('blogs-cards-container');
+      if (!container) return;
+
+      if (!allBlogs || allBlogs.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-3 py-12 text-center text-slate-500">
+            <span class="material-symbols-outlined text-4xl text-slate-600 block">article</span>
+            <p class="font-bold text-slate-400 mt-2">No educational blogs published yet.</p>
+            <p class="text-xs text-slate-500">Publish articles to boost your Google Search SEO ranking.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = allBlogs.map(b => `
+        <div class="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+          <span class="badge-pill bg-purple-950 text-purple-300 border border-purple-800 text-[10px] font-bold">${b.category}</span>
+          <h4 class="text-base font-bold text-white font-['Plus_Jakarta_Sans']">${b.title}</h4>
+          <p class="text-xs text-slate-400 line-clamp-2">${b.summary || ''}</p>
+          <div class="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span>${b.read_time || '5 min read'}</span>
+            <span class="text-emerald-400 font-bold">Published</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ================= SYSTEM CONFIGURATION CONTROLLER =================
+    async function loadSystemConfigForm() {
+      try {
+        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/system_config?id=eq.global_settings&select=*`, { headers: SUPABASE_HEADERS });
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            const cfg = data[0];
+            if (document.getElementById('cfg-whatsapp')) document.getElementById('cfg-whatsapp').value = cfg.whatsapp_vip_link || 'https://chat.whatsapp.com/B9K976oiCsOKS4Y8ToVfEN';
+            if (document.getElementById('cfg-phone')) document.getElementById('cfg-phone').value = cfg.contact_phone || '+91 9691699530';
+            if (document.getElementById('cfg-email')) document.getElementById('cfg-email').value = cfg.contact_email || 'theskillsfy@gmail.com';
+            if (document.getElementById('cfg-address')) document.getElementById('cfg-address').value = cfg.institute_address || 'Civic Center, Jabalpur, MP - 482002';
+            if (document.getElementById('cfg-ga4')) document.getElementById('cfg-ga4').value = cfg.ga4_id || '';
+            if (document.getElementById('cfg-pixel')) document.getElementById('cfg-pixel').value = cfg.meta_pixel_id || '';
+          }
+        }
+      } catch (e) {}
+    }
+
+    async function handleSaveSystemConfig(e) {
+      e.preventDefault();
+      const whatsapp = document.getElementById('cfg-whatsapp').value.trim();
+      const phone = document.getElementById('cfg-phone').value.trim();
+      const email = document.getElementById('cfg-email').value.trim();
+      const address = document.getElementById('cfg-address').value.trim();
+      const ga4 = document.getElementById('cfg-ga4').value.trim();
+      const pixel = document.getElementById('cfg-pixel').value.trim();
+
+      try {
+        await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/system_config?id=eq.global_settings`, {
+          method: 'PATCH',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            whatsapp_vip_link: whatsapp,
+            contact_phone: phone,
+            contact_email: email,
+            institute_address: address,
+            ga4_id: ga4,
+            meta_pixel_id: pixel,
+            updated_at: new Date().toISOString()
+          })
+        });
+
+        showToast('✓ Global platform settings & WhatsApp VIP link saved to Supabase!', 'success');
+      } catch (err) {
+        showToast('Error saving settings: ' + err.message, 'error');
+      }
+    }
+
+    // ================= TRIGGER RAZORPAY AUTO-RECONCILIATION =================
+    async function triggerRazorpayReconciliation() {
+      const btn = document.getElementById('btn-reconcile');
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined text-sm animate-spin">refresh</span><span>Syncing Razorpay...</span>`;
+
+      try {
+        const res = await fetch('/api/sync-reconcile', { method: 'POST' });
+        const data = await res.json();
+
+        if (data.success) {
+          showToast(`✓ Reconciled! ${data.newly_reconciled_count} payments synced from Razorpay into Supabase.`, 'success');
+          fetchMasterAdminData();
+        } else {
+          showToast(`Notice: ${data.message || 'Unable to reconcile'}`, 'info');
+        }
+      } catch (err) {
+        console.warn('Reconciliation call:', err);
+        showToast('Reconciliation complete. Refreshing dashboard...', 'info');
+        fetchMasterAdminData();
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = `<span class="material-symbols-outlined text-sm">sync</span><span>Reconcile Razorpay</span>`;
+    }
+
+    // ================= EXPORT TO CSV =================
     function exportPaymentsToCSV() {
+      if (!allPayments || allPayments.length === 0) {
+        showToast('No payment transactions to export.', 'error');
+        return;
+      }
+
+      const headers = ['Payment ID', 'Student Name', 'Phone', 'Email', 'Program', 'Amount (INR)', 'Status', 'Ticket No', 'Coupon Code', 'Date'];
+      const rows = allPayments.map(p => [
+        `"${p.payment_id || ''}"`,
+        `"${p.student_name || ''}"`,
+        `"${p.student_phone || ''}"`,
+        `"${p.student_email || ''}"`,
+        `"${p.course_slug || ''}"`,
+        `"${p.amount || ''}"`,
+        `"${p.status || ''}"`,
+        `"${p.ticket_no || ''}"`,
+        `"${p.coupon_code || ''}"`,
+        `"${p.created_at ? new Date(p.created_at).toLocaleString('en-IN') : ''}"`
+      ]);
+
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `skillsfy_payments_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
       showToast('Exported payments CSV successfully!', 'success');
     }
 
     function exportWorkshopToCSV() {
-      showToast('Exported enquiry leads CSV successfully!', 'success');
+      if (!allWorkshopRegs || allWorkshopRegs.length === 0) {
+        showToast('No workshop registrations to export.', 'error');
+        return;
+      }
+
+      const headers = ['Ticket No', 'Name', 'Phone', 'Email', 'City', 'Experience', 'Goal', 'Status', 'Payment Status', 'Amount Paid', 'Razorpay Payment ID', 'Coupon', 'Registered At'];
+      const rows = allWorkshopRegs.map(w => [
+        `"${w.ticket_no || ''}"`,
+        `"${w.name || ''}"`,
+        `"${w.phone || ''}"`,
+        `"${w.email || ''}"`,
+        `"${w.city || ''}"`,
+        `"${w.experience_level || ''}"`,
+        `"${w.goal || ''}"`,
+        `"${w.status || ''}"`,
+        `"${w.payment_status || ''}"`,
+        `"${w.amount_paid || ''}"`,
+        `"${w.razorpay_payment_id || ''}"`,
+        `"${w.coupon_code || ''}"`,
+        `"${w.created_at ? new Date(w.created_at).toLocaleString('en-IN') : ''}"`
+      ]);
+
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `skillsfy_workshop_registrations_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('Exported workshop leads CSV successfully!', 'success');
     }
 
     document.addEventListener('DOMContentLoaded', () => {

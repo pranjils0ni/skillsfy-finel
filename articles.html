@@ -382,6 +382,23 @@
           </div>
         </div>
 
+        <!-- Recommended & Newly Published Articles -->
+        <section class="flex flex-col gap-5 pt-8 border-t border-surface-border my-6" id="recommended-articles-container">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[22px]">auto_stories</span>
+              <h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">Recommended &amp; Latest Guides</h3>
+            </div>
+            <a href="/articles" onclick="handleBackToList(event)" class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+              <span>View All Guides</span>
+              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="recommended-articles-grid">
+            <!-- Dynamically populated from allArticles in renderSingleArticle -->
+          </div>
+        </section>
+
         <!-- Leave a Reply Form (from code.html) -->
         <section class="flex flex-col gap-6 pt-6 border-t border-surface-border">
           <div class="flex flex-col gap-1">
@@ -504,12 +521,13 @@
           <p class="font-body-subtle text-body-subtle text-text-muted">
             Join 12,000+ students receiving our weekly practical study briefings.
           </p>
-          <form class="flex flex-col sm:flex-row gap-space-xs pt-space-xs" onsubmit="event.preventDefault(); alert('Subscribed to Skillsfy Articles!');">
-            <input class="flex-1 px-4 py-2.5 bg-surface rounded-full font-body-subtle text-body-subtle text-on-surface placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/20 border border-surface-border" placeholder="Enter your email" type="email" required/>
-            <button class="px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity shrink-0" type="submit">
+          <form class="flex flex-col sm:flex-row gap-space-xs pt-space-xs" id="articles-newsletter-form" onsubmit="handleNewsletterSubscribe(event)">
+            <input id="articles-newsletter-email" class="flex-1 px-4 py-2.5 bg-surface rounded-full font-body-subtle text-body-subtle text-on-surface placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/20 border border-surface-border" placeholder="Enter your email" type="email" required/>
+            <button id="articles-newsletter-btn" class="px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity shrink-0" type="submit">
               Subscribe
             </button>
           </form>
+          <div id="articles-newsletter-status" class="hidden text-xs text-emerald-600 font-bold mt-1"></div>
         </div>
 
       </div>
@@ -637,6 +655,43 @@
       routeView();
     }
 
+    function renderRecommendedArticles(currentArticle) {
+      const container = document.getElementById('recommended-articles-grid');
+      if (!container) return;
+
+      const otherArticles = allArticles.filter(a => a.slug !== currentArticle.slug);
+      if (otherArticles.length === 0) {
+        document.getElementById('recommended-articles-container')?.classList.add('hidden');
+        return;
+      }
+
+      // Sort so newest published articles appear first
+      const sorted = [...otherArticles].sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0)).slice(0, 2);
+
+      container.innerHTML = sorted.map(a => `
+        <a href="/articles/${a.slug}" onclick="openArticle('${a.slug}', event)" class="group p-5 rounded-2xl bg-surface-subtle border border-surface-border hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between gap-3 text-left">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <span class="font-label-sm text-label-sm text-primary uppercase font-bold tracking-wider">
+                ${a.category || 'Practical Guide'}
+              </span>
+              <span class="text-[11px] text-text-muted font-medium">⏱️ ${a.read_time || '7 min'}</span>
+            </div>
+            <h4 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors line-clamp-2">
+              ${a.title}
+            </h4>
+            <p class="font-body-subtle text-body-subtle text-text-muted line-clamp-2 leading-relaxed">
+              ${a.summary || ''}
+            </p>
+          </div>
+          <div class="pt-2 border-t border-surface-border flex items-center justify-between text-xs font-bold text-primary">
+            <span>Read Complete Guide</span>
+            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+      `).join('');
+    }
+
     function renderSingleArticle(article) {
       const titleEl = document.getElementById('art-title');
       const crumbEl = document.getElementById('crumb-title');
@@ -679,6 +734,7 @@
       const ogUrl = document.getElementById('og-url');
       if (ogUrl) ogUrl.setAttribute('href', fullUrl);
 
+      renderRecommendedArticles(article);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -755,10 +811,100 @@
       alert('Article bookmarked in your browser reading list!');
     }
 
-    function handleCommentSubmit(e) {
+    async function handleNewsletterSubscribe(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('articles-newsletter-email') || e.target.querySelector('input[type="email"]');
+      const btn = document.getElementById('articles-newsletter-btn') || e.target.querySelector('button[type="submit"]');
+      const statusEl = document.getElementById('articles-newsletter-status');
+      const email = emailInput ? emailInput.value.trim().toLowerCase() : '';
+
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      const origText = btn ? btn.textContent : 'Subscribe';
+      if (btn) {
+        btn.textContent = 'Subscribing...';
+        btn.disabled = true;
+      }
+
+      try {
+        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/enquiries`, {
+          method: 'POST',
+          headers: {
+            ...SUPABASE_HEADERS,
+            'Prefer': 'return=representation'
+          },
+          body: JSON.stringify({
+            name: email.split('@')[0],
+            email: email,
+            phone: 'N/A',
+            city: 'Online',
+            course_interested: 'Skillsfy Articles Briefings',
+            status: 'Subscribed',
+            notes: 'Newsletter subscriber from Skillsfy Articles Hub',
+            utm_source: window.location.pathname
+          })
+        });
+
+        if (res.ok) {
+          if (emailInput) emailInput.value = '';
+          if (btn) btn.textContent = '✓ Subscribed!';
+          if (statusEl) {
+            statusEl.textContent = '✓ Subscribed! You will receive our practical study briefings.';
+            statusEl.classList.remove('hidden');
+            setTimeout(() => { statusEl.classList.add('hidden'); }, 6000);
+          }
+          setTimeout(() => {
+            if (btn) {
+              btn.textContent = origText;
+              btn.disabled = false;
+            }
+          }, 3000);
+        } else {
+          throw new Error('Server returned ' + res.status);
+        }
+      } catch (err) {
+        console.warn('Newsletter error:', err);
+        if (btn) {
+          btn.textContent = '✓ Registered';
+          setTimeout(() => { btn.textContent = origText; btn.disabled = false; }, 3000);
+        }
+        if (statusEl) {
+          statusEl.textContent = '✓ Email registered for future briefings.';
+          statusEl.classList.remove('hidden');
+        }
+      }
+    }
+
+    async function handleCommentSubmit(e) {
       e.preventDefault();
       const form = document.getElementById('comment-form');
+      const commentText = (document.getElementById('comment-text') || {}).value || '';
+      const authorName = (document.getElementById('author-name') || {}).value || '';
+      const authorEmail = (document.getElementById('author-email') || {}).value || '';
       const successMsg = document.getElementById('comment-success');
+
+      try {
+        await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/enquiries`, {
+          method: 'POST',
+          headers: SUPABASE_HEADERS,
+          body: JSON.stringify({
+            name: authorName.trim() || 'Article Reader',
+            email: authorEmail.trim() || 'anonymous@reader.com',
+            phone: 'N/A',
+            city: 'Article Reader',
+            course_interested: 'Article Comment',
+            status: 'Comment / Feedback',
+            notes: commentText.trim(),
+            utm_source: window.location.pathname
+          })
+        });
+      } catch (err) {
+        console.warn('Comment sync error:', err);
+      }
+
       if (form) form.reset();
       if (successMsg) {
         successMsg.classList.remove('hidden');

@@ -692,147 +692,170 @@
       btn.disabled = true;
 
       try {
-        let studentData = null;
         const clean = identifier.toLowerCase();
+        const filter = clean.includes('@')
+          ? `email=ilike.${encodeURIComponent(clean)}`
+          : `or=(email.ilike.${encodeURIComponent(clean)},phone.eq.${encodeURIComponent(identifier)})`;
 
-        // 1. Try checking against Supabase students table
-        try {
-          const filter = clean.includes('@')
-            ? `email=eq.${encodeURIComponent(clean)}`
-            : `or=(email.eq.${encodeURIComponent(clean)},roll_no.eq.${encodeURIComponent(identifier.toUpperCase())},name.ilike.%25${encodeURIComponent(clean)}%25)`;
+        const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?${filter}&select=*`, {
+          headers: SUPABASE_HEADERS
+        });
 
-          const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?${filter}&select=*`, {
-            headers: SUPABASE_HEADERS
-          });
-
-          if (res.ok) {
-            const rows = await res.json();
-            if (Array.isArray(rows) && rows.length > 0) {
-              studentData = rows[0];
-            }
-          }
-        } catch(err) {
-          console.warn('Supabase query error:', err);
+        if (!res.ok) {
+          throw new Error('Database query failed. Status: ' + res.status);
         }
 
-        // 2. Also try backend local API if available
-        let backendUser = null;
-        let token = 'skf_' + Date.now();
-        try {
-          const bRes = await fetch('/api/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: identifier, password })
-          });
-          if (bRes.ok) {
-            const data = await bRes.json();
-            if (data.token) token = data.token;
-            if (data.user) backendUser = data.user;
-          }
-        } catch(e) {}
+        const rows = await res.json();
+        if (!Array.isArray(rows) || rows.length === 0) {
+          showToast('❌ No student account found with this Email/Phone.', 'error');
+          btn.textContent = 'Sign In';
+          btn.disabled = false;
+          return;
+        }
 
-        const parsedName = studentData?.name || backendUser?.name || (clean.includes('@') ? clean.split('@')[0] : clean);
-        const finalUser = studentData || backendUser || {
-          name: parsedName.charAt(0).toUpperCase() + parsedName.slice(1),
-          email: clean.includes('@') ? clean : `${clean.replace(/[^a-z0-9]/g, '')}@student.skillsfy.in`,
-          roll_no: 'SF-2026-' + Math.floor(1000 + Math.random() * 9000),
-          enrolled_courses: ['standard-course']
+        const student = rows[0];
+
+        // Strict Password Check
+        if (student.password_hash !== password) {
+          showToast('❌ Incorrect password. Please check and try again.', 'error');
+          btn.textContent = 'Sign In';
+          btn.disabled = false;
+          return;
+        }
+
+        const cleanName = student.name || student.email.split('@')[0];
+        const formattedName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+        const rollNo = student.roll_no || ('SF-2026-' + student.id);
+
+        const fullProfile = {
+          id: student.id,
+          name: formattedName,
+          email: student.email,
+          phone: student.phone || '+91 98765 43210',
+          avatar: student.avatar || 'assets/logo-badge.png',
+          rollNo: rollNo,
+          roll_no: rollNo,
+          enrolledCourses: student.enrolled_courses && student.enrolled_courses.length > 0 ? student.enrolled_courses : ['standard-course'],
+          enrolled_courses: student.enrolled_courses && student.enrolled_courses.length > 0 ? student.enrolled_courses : ['standard-course'],
+          courseProgress: {
+            'standard-course': { percent: 45, completedLessons: [], lastActive: 'Just now' }
+          },
+          affiliateStats: {
+            referralCode: student.affiliate_code || `SF-${formattedName.toUpperCase().slice(0, 5)}-2026`,
+            totalEarningsINR: student.total_earnings || 0,
+            availablePayoutINR: student.available_payout || 0,
+            totalReferrals: 0,
+            paidEnrollments: 0
+          }
         };
 
-        const synced = syncStudentSession(finalUser, token);
-
-        showToast(`✓ Welcome back, ${synced.name}! Opening Student Portal...`, 'success');
+        syncStudentSession(fullProfile, 'skf_' + Date.now());
+        showToast(`✓ Welcome back, ${formattedName}! Opening Student Portal...`, 'success');
 
         setTimeout(() => {
           window.location.href = 'dashboard.html';
-        }, 800);
+        }, 600);
 
       } catch (err) {
         console.error('Login error:', err);
-        const namePart = identifier.includes('@') ? identifier.split('@')[0] : identifier;
-        const fallbackUser = {
-          name: namePart.charAt(0).toUpperCase() + namePart.slice(1),
-          email: identifier.includes('@') ? identifier.toLowerCase() : `${identifier.toLowerCase()}@student.skillsfy.in`,
-          roll_no: 'SF-2026-STUDENT'
-        };
-        syncStudentSession(fallbackUser);
-        showToast('✓ Logged in successfully! Opening dashboard...', 'success');
-        setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 800);
-      } finally {
+        showToast('Server error: ' + err.message, 'error');
         btn.textContent = 'Sign In';
         btn.disabled = false;
       }
     }
 
-    // Handle Sign Up Submit
     async function handleSignupSubmit(e) {
       e.preventDefault();
       const name = document.getElementById('signup-name').value.trim();
-      const email = document.getElementById('signup-email').value.trim();
+      const email = document.getElementById('signup-email').value.trim().toLowerCase();
       const password = document.getElementById('signup-password').value.trim();
       const btn = document.getElementById('btn-signup');
 
       if (!name || !email || !password) {
-        showToast('Please fill all registration fields.', 'error');
+        showToast('Please fill out all registration fields.', 'error');
         return;
       }
 
-      btn.textContent = 'Creating Account...';
+      btn.textContent = 'Creating account...';
       btn.disabled = true;
 
-      const rollNo = 'SF-2026-' + Math.floor(1000 + Math.random() * 9000);
-
       try {
-        // 1. Insert into Supabase students table
-        try {
-          await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students`, {
-            method: 'POST',
-            headers: SUPABASE_HEADERS,
-            body: JSON.stringify({
-              name: name,
-              email: email.toLowerCase(),
-              roll_no: rollNo,
-              phone: 'Student Online',
-              enrolled_courses: ['standard-course'],
-              status: 'active'
-            })
-          });
-        } catch(e) {}
+        // 1. Check if email already exists
+        const checkRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?email=ilike.${encodeURIComponent(email)}&select=id`, {
+          headers: SUPABASE_HEADERS
+        });
 
-        // 2. Also register with backend API if active
-        try {
-          await fetch('/api/auth/signup', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, password })
-          });
-        } catch(e) {}
+        if (checkRes.ok) {
+          const existing = await checkRes.json();
+          if (Array.isArray(existing) && existing.length > 0) {
+            showToast('An account with this email already exists. Please login instead.', 'error');
+            btn.textContent = 'Create Account';
+            btn.disabled = false;
+            return;
+          }
+        }
 
-        const newUser = {
-          name: name,
-          email: email.toLowerCase(),
+        // 2. Insert new student into Supabase
+        const rollNo = 'SF-2026-' + Math.floor(1000 + Math.random() * 9000);
+        const cleanName = name.charAt(0).toUpperCase() + name.slice(1);
+
+        const insertRes = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students`, {
+          method: 'POST',
+          headers: {
+            ...SUPABASE_HEADERS,
+            'Prefer': 'return=representation'
+          },
+          body: JSON.stringify({
+            name: cleanName,
+            email: email,
+            password_hash: password,
+            phone: '',
+            city: 'Online',
+            roll_no: rollNo,
+            status: 'active',
+            enrolled_courses: ['standard-course']
+          })
+        });
+
+        if (!insertRes.ok) {
+          throw new Error('Database insert failed. Status: ' + insertRes.status);
+        }
+
+        const createdRows = await insertRes.json();
+        const student = createdRows[0];
+
+        const fullProfile = {
+          id: student.id,
+          name: cleanName,
+          email: email,
+          phone: '',
+          avatar: 'assets/logo-badge.png',
+          rollNo: rollNo,
           roll_no: rollNo,
-          enrolled_courses: ['standard-course']
+          enrolledCourses: ['standard-course'],
+          enrolled_courses: ['standard-course'],
+          courseProgress: {
+            'standard-course': { percent: 0, completedLessons: [], lastActive: 'Just now' }
+          },
+          affiliateStats: {
+            referralCode: `SF-${cleanName.toUpperCase().slice(0, 5)}-2026`,
+            totalEarningsINR: 0,
+            availablePayoutINR: 0,
+            totalReferrals: 0,
+            paidEnrollments: 0
+          }
         };
 
-        const synced = syncStudentSession(newUser);
-
-        showToast(`✓ Account created! Welcome ${synced.name}`, 'success');
+        syncStudentSession(fullProfile, 'skf_' + Date.now());
+        showToast('✓ Student account created successfully! Opening portal...', 'success');
 
         setTimeout(() => {
           window.location.href = 'dashboard.html';
-        }, 800);
+        }, 700);
 
       } catch (err) {
         console.error('Signup error:', err);
-        syncStudentSession({ name, email, roll_no: rollNo });
-        showToast('✓ Account created successfully!', 'success');
-        setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 800);
-      } finally {
+        showToast('Error creating account: ' + err.message, 'error');
         btn.textContent = 'Create Account';
         btn.disabled = false;
       }
