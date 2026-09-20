@@ -51,7 +51,7 @@
     <!-- Top Bar -->
     <header class="max-w-6xl mx-auto w-full flex items-center justify-between py-4">
       <a href="/" class="flex items-center gap-2.5">
-        <img src="assets/logo.png" alt="Skillsfy" class="brand-logo-white"/>
+        <img src="assets/logo-dark.png" alt="Skillsfy" class="h-8 w-auto object-contain"/>
       </a>
       <a href="/" class="text-xs font-bold text-slate-300 hover:text-cyan-300 transition-colors flex items-center gap-1">
         <span class="material-symbols-outlined text-sm">arrow_back</span>
@@ -146,7 +146,7 @@
         <a href="/refund-policy" class="hover:text-white">Refund Policy</a>
         <a href="/privacy-policy" class="hover:text-white">Privacy Policy</a>
         <a href="/terms" class="hover:text-white">Terms</a>
-        <a href="/admin" class="text-slate-500 hover:text-slate-300">Admin</a>
+        
       </div>
     </footer>
 
@@ -541,9 +541,18 @@
 
       try {
         const cleanId = identifier.toLowerCase();
-        const filter = cleanId.includes('@')
-          ? `email=ilike.${encodeURIComponent(cleanId)}`
-          : `or=(email.ilike.${encodeURIComponent(cleanId)},phone.eq.${encodeURIComponent(identifier)})`;
+        let filter;
+        if (cleanId.includes('@')) {
+          filter = `email=ilike.${encodeURIComponent(cleanId)}`;
+        } else {
+          const rollMatch = cleanId.match(/sf-2026-(\d+)/i);
+          const numId = rollMatch ? rollMatch[1] : (/^\d+$/.test(cleanId) && cleanId.length < 6 ? cleanId : null);
+          if (numId) {
+            filter = `or=(email.ilike.${encodeURIComponent(cleanId)},phone.eq.${encodeURIComponent(identifier)},id.eq.${numId})`;
+          } else {
+            filter = `or=(email.ilike.${encodeURIComponent(cleanId)},phone.eq.${encodeURIComponent(identifier)})`;
+          }
+        }
 
         const res = await fetch(`${SUPABASE_PROJECT_URL}/rest/v1/students?${filter}&select=*`, {
           headers: SUPABASE_HEADERS
