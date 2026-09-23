@@ -2,28 +2,6 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/articles/:slug*",
-      "destination": "https://articles.skillsfy.in/:slug*",
-      "permanent": true
-    },
-    {
-      "source": "/articles",
-      "destination": "https://articles.skillsfy.in",
-      "permanent": true
-    },
-    {
-      "source": "/guides/:slug*",
-      "destination": "https://articles.skillsfy.in/:slug*",
-      "permanent": true
-    },
-    {
-      "source": "/guides",
-      "destination": "https://articles.skillsfy.in",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     {
       "has": [
@@ -65,6 +43,9 @@
       "source": "/",
       "destination": "/api/articles"
     },
+    { "source": "/articles/:slug*", "destination": "/api/articles?slug=:slug*" },
+    { "source": "/articles", "destination": "/api/articles" },
+    { "source": "/articles.html", "destination": "/api/articles" },
     { "source": "/api/articles", "destination": "/api/articles" },
     { "source": "/article/:slug*", "destination": "/api/article" },
     { "source": "/article", "destination": "/api/article" },
