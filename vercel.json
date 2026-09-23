@@ -32,6 +32,26 @@
           "value": "articles.skillsfy.in"
         }
       ],
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "articles.skillsfy.in"
+        }
+      ],
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "articles.skillsfy.in"
+        }
+      ],
       "source": "/:slug*",
       "destination": "/api/articles?slug=:slug*"
     },
