@@ -2,11 +2,50 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/articles/:slug*",
+      "destination": "https://articles.skillsfy.in/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/articles",
+      "destination": "https://articles.skillsfy.in",
+      "permanent": true
+    },
+    {
+      "source": "/guides/:slug*",
+      "destination": "https://articles.skillsfy.in/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/guides",
+      "destination": "https://articles.skillsfy.in",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/guides/:slug*", "destination": "/api/articles" },
-    { "source": "/guides", "destination": "/api/articles" },
-    { "source": "/articles/:slug*", "destination": "/api/articles" },
-    { "source": "/articles", "destination": "/api/articles" },
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "articles.skillsfy.in"
+        }
+      ],
+      "source": "/:slug*",
+      "destination": "/api/articles?slug=:slug*"
+    },
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "articles.skillsfy.in"
+        }
+      ],
+      "source": "/",
+      "destination": "/api/articles"
+    },
+    { "source": "/api/articles", "destination": "/api/articles" },
     { "source": "/article/:slug*", "destination": "/api/article" },
     { "source": "/article", "destination": "/api/article" },
     { "source": "/insights", "destination": "/insights.html" },
