@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-image/1.1
+        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
 
   <!-- Homepage -->
   <url>
@@ -10,25 +13,37 @@
     <lastmod>2026-09-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://skillsfy.in/assets/logo.png</image:loc>
+      <image:title>Skillsfy - Institute of Technology</image:title>
+    </image:image>
   </url>
 
-  <!-- Live Workshop Landing Page -->
+  <!-- Live AI Workshop Landing Page -->
   <url>
     <loc>https://skillsfy.in/lp1</loc>
     <lastmod>2026-09-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://skillsfy.in/assets/logo.png</image:loc>
+      <image:title>Skillsfy AI Mastery &amp; Career Workshop</image:title>
+    </image:image>
   </url>
 
-  <!-- Courses -->
+  <!-- Courses Hub -->
   <url>
     <loc>https://skillsfy.in/courses</loc>
     <lastmod>2026-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://skillsfy.in/assets/logo.png</image:loc>
+      <image:title>Skillsfy Industry Courses &amp; Certifications</image:title>
+    </image:image>
   </url>
 
-  <!-- Course Details -->
+  <!-- Course Details Page -->
   <url>
     <loc>https://skillsfy.in/course-details</loc>
     <lastmod>2026-09-23</lastmod>
@@ -42,6 +57,10 @@
     <lastmod>2026-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://skillsfy.in/assets/logo.png</image:loc>
+      <image:title>About Skillsfy Institute</image:title>
+    </image:image>
   </url>
 
   <!-- Contact Us -->
@@ -98,73 +117,46 @@
     <lastmod>2026-09-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://skillsfy.in/assets/logo.png</image:loc>
+      <image:title>Skillsfy Articles &amp; Insights</image:title>
+    </image:image>
   </url>
 
-  <!-- Featured & Published Articles (Direct Subdomain URLs) -->
+  <!-- Published Article 1: The AI Paradox -->
   <url>
     <loc>https://articles.skillsfy.in/ai-paradox-safest-career-bets-future-of-work</loc>
     <lastmod>2026-09-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>The AI Paradox: Why the Most Exposed Jobs Are Actually Your Safest Career Bets</image:title>
+    </image:image>
   </url>
+
+  <!-- Published Article 2: College Vidya (Hindi) -->
   <url>
     <loc>https://articles.skillsfy.in/how-to-earn-money-with-college-vidya</loc>
     <lastmod>2026-09-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>College Vidya Se Paise Kaise Kamaye? Complete Beginners Guide</image:title>
+    </image:image>
   </url>
+
+  <!-- Published Article 3: College Vidya (English) -->
   <url>
     <loc>https://articles.skillsfy.in/how-to-earn-money-with-college-vidya-guide</loc>
     <lastmod>2026-09-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&amp;fit=crop&amp;w=1200&amp;q=80</image:loc>
+      <image:title>How to Earn Money with College Vidya? Complete Beginner's Guide</image:title>
+    </image:image>
   </url>
-  <url>
-    <loc>https://articles.skillsfy.in/mp-board-class-10-svadhyayi-self-study-guide-75-percent</loc>
-    <lastmod>2026-09-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://articles.skillsfy.in/mukhyamantri-udyam-kranti-yojana-2026</loc>
-    <lastmod>2026-09-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://articles.skillsfy.in/how-students-can-use-ai-without-becoming-dependent</loc>
-    <lastmod>2026-09-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://articles.skillsfy.in/high-income-coding-ai-skills-students-2026</loc>
-    <lastmod>2026-09-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://articles.skillsfy.in/how-to-land-first-freelance-client-student</loc>
-    <lastmod>2026-09-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://articles.skillsfy.in/prompt-engineering-for-students-ai-tutor</loc>
-    <lastmod>2026-09-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://articles.skillsfy.in/building-real-projects-vs-memorizing-dsa</loc>
-    <lastmod>2026-09-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://articles.skillsfy.in/daily-habit-top-software-developers</loc>
-    <lastmod>2026-09-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+
 </urlset>
