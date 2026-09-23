@@ -10,45 +10,43 @@
           "value": "articles.skillsfy.in"
         }
       ],
-      "source": "/sitemap.xml",
-      "destination": "/sitemap.xml"
-    },
-    {
-      "has": [
-        {
-          "type": "host",
-          "value": "articles.skillsfy.in"
-        }
-      ],
-      "source": "/robots.txt",
-      "destination": "/robots.txt"
-    },
-    {
-      "has": [
-        {
-          "type": "host",
-          "value": "articles.skillsfy.in"
-        }
-      ],
-      "source": "/:slug*",
-      "destination": "/api/articles?slug=:slug*"
-    },
-    {
-      "has": [
-        {
-          "type": "host",
-          "value": "articles.skillsfy.in"
-        }
-      ],
       "source": "/",
       "destination": "/api/articles"
     },
-    { "source": "/articles/:slug*", "destination": "/api/articles?slug=:slug*" },
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "articles.skillsfy.in"
+        }
+      ],
+      "source": "/articles",
+      "destination": "/api/articles"
+    },
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "articles.skillsfy.in"
+        }
+      ],
+      "source": "/articles/:slug",
+      "destination": "/api/articles?slug=:slug"
+    },
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "articles.skillsfy.in"
+        }
+      ],
+      "source": "/:slug((?!api|assets|css|js|scratch|images|fonts|favicon\\.ico|sitemap\\.xml|robots\\.txt|.*\\..*).*)",
+      "destination": "/api/articles?slug=:slug"
+    },
     { "source": "/articles", "destination": "/api/articles" },
-    { "source": "/articles.html", "destination": "/api/articles" },
-    { "source": "/api/articles", "destination": "/api/articles" },
-    { "source": "/article/:slug*", "destination": "/api/article" },
+    { "source": "/articles/:slug", "destination": "/api/articles?slug=:slug" },
     { "source": "/article", "destination": "/api/article" },
+    { "source": "/article/:slug", "destination": "/api/article" },
     { "source": "/insights", "destination": "/insights.html" },
     { "source": "/login", "destination": "/login.html" }
   ],
