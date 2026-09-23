@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+  <script>
+    if (window.location.hostname.indexOf('articles.skillsfy.in') !== -1) {
+      var slug = window.location.pathname.replace(/^\/+/, '').replace(/\.html$/, '');
+      var apiUrl = '/api/articles' + (slug && slug !== 'articles' && slug !== 'index' ? '?slug=' + encodeURIComponent(slug) : '') + window.location.search;
+      fetch(apiUrl)
+        .then(function(r) { return r.text(); })
+        .then(function(html) {
+          document.open();
+          document.write(html);
+          document.close();
+        })
+        .catch(function() {
+          window.location.replace('/articles.html');
+        });
+    }
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
