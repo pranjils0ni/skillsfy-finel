@@ -107,9 +107,9 @@ function generateSitemap() {
   <!-- Core Platform Pages -->\n`;
 
   for (const p of staticPages) {
-    xml += `  <url>\n    <loc>${p.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${p.changefreq}</changefreq>\n    <priority>${p.priority}</priority>\n`;
+    xml += `  <url>\n    <loc>${escapeXml(p.loc)}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${p.changefreq}</changefreq>\n    <priority>${p.priority}</priority>\n`;
     if (p.image) {
-      xml += `    <image:image>\n      <image:loc>${p.image}</image:loc>\n      <image:title>${escapeXml(p.imageTitle || '')}</image:title>\n    </image:image>\n`;
+      xml += `    <image:image>\n      <image:loc>${escapeXml(p.image)}</image:loc>\n      <image:title>${escapeXml(p.imageTitle || '')}</image:title>\n    </image:image>\n`;
     }
     xml += `  </url>\n`;
   }
@@ -123,8 +123,8 @@ function generateSitemap() {
     const artTitle = art.title || 'Skillsfy Article';
     const artDate = art.timestamp ? new Date(art.timestamp).toISOString().split('T')[0] : today;
 
-    xml += `  <url>\n    <loc>${artUrl}</loc>\n    <lastmod>${artDate}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.9</priority>\n`;
-    xml += `    <image:image>\n      <image:loc>${artImg}</image:loc>\n      <image:title>${escapeXml(artTitle)}</image:title>\n    </image:image>\n`;
+    xml += `  <url>\n    <loc>${escapeXml(artUrl)}</loc>\n    <lastmod>${artDate}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.9</priority>\n`;
+    xml += `    <image:image>\n      <image:loc>${escapeXml(artImg)}</image:loc>\n      <image:title>${escapeXml(artTitle)}</image:title>\n    </image:image>\n`;
     xml += `  </url>\n`;
   }
 
@@ -135,7 +135,8 @@ function generateSitemap() {
 }
 
 function escapeXml(str) {
-  return str
+  if (!str) return '';
+  return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
