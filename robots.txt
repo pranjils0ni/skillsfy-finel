@@ -1,5 +1,13 @@
 User-agent: *
 Allow: /
 
+# Disallow private administrative & auth views
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /dashboard.html
+Disallow: /login.html
+Disallow: /api/
+
 # Sitemaps
 Sitemap: https://skillsfy.in/sitemap.xml
+Sitemap: https://articles.skillsfy.in/sitemap.xml
